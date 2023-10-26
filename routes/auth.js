@@ -6,10 +6,10 @@ require('../config/passport')(passport);
 const User = require('../models').User;
 const Role = require('../models').Role;
 
-router.post('/signup', function (req, res) {
+router.post('/register', function (req, res) {
     if (!req.body.email || !req.body.password || !req.body.nombre) {
         res.status(400).send({
-            msg: 'Please pass username, password and name.'
+            msg: 'Ingresa un nombre o contraseña válidos.'
         })
     } else {
         Role.findOne({
@@ -38,7 +38,7 @@ router.post('/signup', function (req, res) {
     }
 });
 
-router.post('/signin', function (req, res) {
+router.post('/login', function (req, res) {
     User
         .findOne({
             where: {
@@ -48,7 +48,7 @@ router.post('/signin', function (req, res) {
         .then((user) => {
             if (!user) {
                 return res.status(401).send({
-                    message: 'Authentication failed. User not found.',
+                    message: 'Authentication failed.',
                 });
             }
             user.comparePassword(req.body.password, (err, isMatch) => {
@@ -59,14 +59,14 @@ router.post('/signin', function (req, res) {
                     jwt.verify(token, 'nodeauthsecret', function (err, data) {
                         console.log(err, data);
                     })
-                    res.json({
+                    res.send({
                         success: true,
                         token: 'JWT ' + token
                     });
                 } else {
                     res.status(401).send({
                         success: false,
-                        msg: 'Authentication failed. Wrong password.'
+                        msg: 'Credenciales incorrectas.'
                     });
                 }
             })
