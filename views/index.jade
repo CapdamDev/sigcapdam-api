@@ -1,5 +1,21 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+html
+  title SIGCAPDAM
+  include ./includes/head.jade
+  body
+    .container
+      .row
+        .col-md-12
+          h1 Bienvenido a SIGCAPDAM
+          p
+            | SIGCAPDAM es un sistema de información geográfica para la gestión de
+            | captaciones de agua para uso doméstico en la microcuenca del río
+            | Cauca, Colombia.
+          p
+            | Este sistema permite a los usuarios realizar consultas sobre las
+            | captaciones de agua para uso doméstico en la microcuenca del río
+            | Cauca, Colombia.
+          p
+            | Para realizar una consulta, por favor haga clic en el botón
+            | "Consultar" en la barra de navegación.
+    include ./includes/footer.jade

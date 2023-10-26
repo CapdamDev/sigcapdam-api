@@ -1,6 +1,17 @@
-extends layout
+//- extends layout
 
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+//- block content
+//-   h1= message
+//-   h2= error.status
+//-   pre #{error.stack}
+doctype html
+html
+  head
+    title Page Not Found
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css")
+
+  body(class="bg-gray-100 h-screen flex flex-col items-center justify-center")
+    .container
+      h1(class="text-6xl font-bold text-gray-800") 404
+      p(class="text-xl text-gray-600") Page Not Found
+      a(href="/" class="mt-4 px-6 py-3 bg-blue-500 text-white rounded-full inline-block hover:bg-blue-700") Go Home
