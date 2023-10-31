@@ -22,4 +22,8 @@ router.get('/dashboard', function(req, res, next) {
   res.render('dashboard');
 });
 
+router.get('/layers', function(req, res, next) {
+  res.render('layers');
+});
+
 module.exports = router;
