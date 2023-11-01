@@ -3,20 +3,64 @@ html
     head
         title OpenLayers Map
         link(rel='stylesheet' href='https://openlayers.org/en/v4.6.5/css/ol.css')
+        link(href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css")
         include ./includes/head.jade
-    body
-        div
-            label(for='layerSelector') Select Layer:
-            select#layerSelector
-                option(value='') Selecciona una capa
-                // The options will be populated dynamically using JavaScript
-        #map(style='width: 100%; height: 500px;')
+
+    body(class='font-sans bg-gray-100')
+        div(class="flex h-screen")
+            div(class="bg-gray-800 text-white w-1/5 p-4")
+                h1(class="text-2xl font-semibold mb-4")
+                    | SIGCAPDAM
+                div(class="mb-4")
+                    label(for='layerSelector')
+                        | Select Layer:  
+                    select#layerSelector.w-full.mt-2.p-2.bg-gray-700.rounded
+                        option(value='') Selecciona una capa
+                        // The options will be populated dynamically using JavaScript
+                div(class="mb-4")
+                    div#jstree.p-4.bg-gray-800.text-white
+                        ul
+                            li.mb-2
+                                span.jstree-icon
+                                a.cursor-pointer
+                                    | Root Node 1
+                                ul.ml-4
+                                    li.mb-2
+                                        span.jstree-icon
+                                        a.cursor-pointer
+                                            | Child Node 1
+                                    li.mb-2
+                                        span.jstree-icon
+                                        a.cursor-pointer
+                                            | Child Node 2
+
+            div(class='w-4/5 ml-1/5')
+                #map.w-full.h-screen.bg-white.rounded-lg.shadow-md
+
         script(src='https://openlayers.org/en/v4.6.5/build/ol.js')
+        include ./includes/footer.jade
+        script(src="https://code.jquery.com/jquery-3.6.0.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js")
+
         script.
             var geoJSONDataUrl = 'assets/layers/capas_js/0.json';
             var map;
-            var centerCoordinates = [-104.336608, 19.10707];
-            // Create the base map on load page
+            var centerCoordinates = [-104.33, 19.08];
+
+            $('#jstree').jstree({
+                "core": {
+                    "themes": {
+                        "variant": "large"
+                    }
+                },
+                "checkbox": {
+                    "keep_selected_style": false
+                },
+                "plugins": ["checkbox"]
+            });
+
+            // Create the base map on page load
             document.addEventListener('DOMContentLoaded', function () {
                 map = new ol.Map({
                     target: 'map',
@@ -78,3 +122,8 @@ html
                 .catch((error) => {
                     console.error('Error fetching layers:', error);
                 });
+
+            function toggleSubcategories(id) {
+                const subcategories = document.getElementById(id);
+                subcategories.classList.toggle("hidden");
+            }
