@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2023 a las 22:22:42
+-- Tiempo de generación: 01-11-2023 a las 21:58:50
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -18,10 +18,36 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `sigcapdam`
+-- Base de datos: `sigcapdam-api`
 --
 CREATE DATABASE IF NOT EXISTS `sigcapdam-api` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `sigcapdam-api`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `layers`
+--
+
+CREATE TABLE IF NOT EXISTS `layers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `category` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `layers`
+--
+
+INSERT INTO `layers` (`id`, `name`, `category`, `createdAt`, `updatedAt`) VALUES
+(1, '3_DE_MAYO_44.json', 'catastro', '2023-10-31 16:22:04', '2023-10-31 16:22:04'),
+(2, '101_0_0.json', 'rutas', '2023-10-31 17:35:55', '2023-10-31 17:35:55'),
+(3, 'POZOS_0.JSON', 'pozos', '2023-10-31 20:21:20', '2023-10-31 20:21:20'),
+(4, 'POZOS_CONAGUA_9.json', 'conagua', '2023-10-31 20:25:26', '2023-10-31 20:25:26'),
+(5, 'POZODEVISITA_12.json', 'visita', '2023-10-31 20:26:28', '2023-10-31 20:26:28');
 
 -- --------------------------------------------------------
 
@@ -139,7 +165,12 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 ('20210916024852-create-role.js'),
 ('20210916024907-create-permission.js'),
 ('20210916025034-create-user.js'),
-('20210916031105-create-role-permission.js');
+('20210916031105-create-role-permission.js'),
+('20231025202524-create-permission.js'),
+('20231025202524-create-role-permission.js'),
+('20231025202524-create-role.js'),
+('20231025202524-create-user.js'),
+('20231031150143-create-layer.js');
 
 -- --------------------------------------------------------
 
