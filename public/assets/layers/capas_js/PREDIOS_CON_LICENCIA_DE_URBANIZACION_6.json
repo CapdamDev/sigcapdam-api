@@ -1,0 +1,483 @@
+{
+    "type": "FeatureCollection",
+    "name": "PREDIOS_CON_LICENCIA_DE_URBANIZACION_6",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [{
+            "type": "Feature",
+            "properties": {
+                "ID_": "072695015052000",
+                "NO_": 23.0,
+                "NOMBRE_DEL": null,
+                "TPO_DE_ACT": "ALMACENES MKM",
+                "PARCELA": "52",
+                "EJIDO": "EL COLOMO Y LA ARENA",
+                "CLAVE_CATA": "072695015052000",
+                "PROPIETARI": "INMOBILIARIA MKM HINOJOSA S.A. DE C.V. \/ MAURICIO HINOJOSA CANALES",
+                "CUENTA_CON": "SI",
+                "FECHA_DE_P": "14-jul.-16",
+                "MODIFICACI": "27-ago.-16",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "NO",
+                "FOLIO": "SI",
+                "LICENCIA_D": "UR-024\/2020-PEU",
+                "FOLIO1": "NO",
+                "INCORPORAC": "NO",
+                "FECHA_DE_2": "NO",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "ACTA 588\/ACTIVA",
+                "APROBACION": "SI",
+                "F22": 0.0,
+                "_NAME": "PREDIOS CON LICENCIA DE URBANIZACION",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "58,215,54",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.218945488698949, 19.050348145104639],
+                            [-104.218520228821603, 19.04867059878266],
+                            [-104.218762396596034, 19.048179209092357],
+                            [-104.220451465874078, 19.048671897995447],
+                            [-104.221076585411666, 19.050530986403452],
+                            [-104.220292195658189, 19.050542040804658],
+                            [-104.219576486882389, 19.05036120472052],
+                            [-104.218945488698949, 19.050348145104639]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "072490100008000",
+                "NO_": 36.0,
+                "NOMBRE_DEL": "TRANSPORTES TRANS NEYNO",
+                "TPO_DE_ACT": "NO, PATIO DE TRANSPORTES NEYNO",
+                "PARCELA": "8",
+                "EJIDO": "TAPEIXTLES",
+                "CLAVE_CATA": "072490100008000",
+                "PROPIETARI": "MARIA HORTENCIA GABRIELA HERRERA ORTEGA, FRANCISCO NEVAREZ HERRERA",
+                "CUENTA_CON": "SI, NO",
+                "FECHA_DE_P": "1-dic.-18",
+                "MODIFICACI": "NO",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "SI",
+                "FOLIO": "UR-030\/2019-PEU",
+                "LICENCIA_D": "SI",
+                "FOLIO1": "UR-074\/2019-LUES",
+                "INCORPORAC": "NO",
+                "FECHA_DE_2": "NO",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "SE EMITIO OFICIO DE OBSERVACIONES 0474\/2018, ACTA 664\/ACTIVA",
+                "APROBACION": "14-sep.-18",
+                "F22": 1.0,
+                "_NAME": "PREDIOS CON LICENCIA DE URBANIZACION",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "58,215,54",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.280177244531259, 19.095607405385007],
+                            [-104.28043058617034, 19.095546997055429],
+                            [-104.279889303133885, 19.096586843250076],
+                            [-104.279395134814976, 19.096457994804442],
+                            [-104.279598791593457, 19.095746628482178],
+                            [-104.280177244531259, 19.095607405385007]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "072490100033000",
+                "NO_": 19.0,
+                "NOMBRE_DEL": "LOGISTICA MULTIMODAL VENCES",
+                "TPO_DE_ACT": null,
+                "PARCELA": "33",
+                "EJIDO": null,
+                "CLAVE_CATA": "072490100033000",
+                "PROPIETARI": "LOGISTICA MODAL VENCES",
+                "CUENTA_CON": "SI",
+                "FECHA_DE_P": "14-ene.-12",
+                "MODIFICACI": "NO",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "SI",
+                "FOLIO": "UR-40\/15",
+                "LICENCIA_D": "SI",
+                "FOLIO1": "UR-41\/15",
+                "INCORPORAC": "NO",
+                "FECHA_DE_2": "NO",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "NO",
+                "APROBACION": "10-dic.-11",
+                "F22": 0.0,
+                "_NAME": "PREDIOS CON LICENCIA DE URBANIZACION",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "58,215,54",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.28489421852872, 19.087290467243673],
+                            [-104.285401945001411, 19.087516419866073],
+                            [-104.284826862541337, 19.088026666120665],
+                            [-104.284557901903582, 19.087924878976619],
+                            [-104.28489421852872, 19.087290467243673]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "072695015903000",
+                "NO_": 31.0,
+                "NOMBRE_DEL": null,
+                "TPO_DE_ACT": "MULTIMANIOBRAS Y LOGISTICA INTERNACIONAL, PATIO DE ALMACENAJE REFEPA",
+                "PARCELA": "903 FRACCION PARCELA 228",
+                "EJIDO": "EL COLOMO Y LA ARENA",
+                "CLAVE_CATA": "072695015903000",
+                "PROPIETARI": "HUMBERTO ALFREDO CHÁVEZ MALDONADO\/ MEGAN JACKELINE ÁLVAREZ MEZA, HUMBERTO ALFREDO CHAVEZ MALDONADO",
+                "CUENTA_CON": "SI, NO",
+                "FECHA_DE_P": "29-may.-18",
+                "MODIFICACI": "26-sep.-18",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "NO",
+                "FOLIO": "SI",
+                "LICENCIA_D": "UR-PEU-004\/2018, UR-027\/2019-PEU",
+                "FOLIO1": "SI",
+                "INCORPORAC": "UR-25\/2019-LU, UR-029\/2019-LU",
+                "FECHA_DE_2": "SI",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "ACTA 174 Y 554\/PENDIENTE, ACTA 549\/ACTIVA",
+                "APROBACION": "SI",
+                "F22": 1.0,
+                "_NAME": "PREDIOS CON LICENCIA DE URBANIZACION",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "58,215,54",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.230214639894427, 19.023693276668467],
+                            [-104.23025929794683, 19.021833037091074],
+                            [-104.23254735025543, 19.021774284200326],
+                            [-104.232443311857267, 19.023717319487215],
+                            [-104.230214639894427, 19.023693276668467]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "072695015112000",
+                "NO_": 21.0,
+                "NOMBRE_DEL": null,
+                "TPO_DE_ACT": "ESTACIONAMIENTO PARA TRAILERES MELGOZA",
+                "PARCELA": "112",
+                "EJIDO": "EL COLOMO Y LA ARENA",
+                "CLAVE_CATA": "072695015112000",
+                "PROPIETARI": "RODRIGO MELGOZA CARBAJAL",
+                "CUENTA_CON": "SI",
+                "FECHA_DE_P": "28-jun.-16",
+                "MODIFICACI": "13-ago.-16",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "NO",
+                "FOLIO": "SI",
+                "LICENCIA_D": "UR-11\/2017",
+                "FOLIO1": "SI",
+                "INCORPORAC": "UR-12\/2017",
+                "FECHA_DE_2": "NO",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "ACTA 539 \/ACTIVA",
+                "APROBACION": "SI",
+                "F22": 0.0,
+                "_NAME": "PREDIOS CON LICENCIA DE URBANIZACION",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "58,215,54",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.227338435001315, 19.043761155336682],
+                            [-104.227679381278705, 19.042964686688912],
+                            [-104.228877330482518, 19.043104227176627],
+                            [-104.229178845277701, 19.041847805564807],
+                            [-104.22917898543993, 19.041847861588213],
+                            [-104.230666763060185, 19.042362863077244],
+                            [-104.229132966576913, 19.044429281644533],
+                            [-104.227338435001315, 19.043761155336682]
+                        ]
+                    ],
+                    [
+                        [
+                            [-104.230837395617627, 19.042133334691766],
+                            [-104.230027926480602, 19.041852678833806],
+                            [-104.230199685033867, 19.041856929574212],
+                            [-104.231219934146068, 19.04156545950844],
+                            [-104.231244197258277, 19.041586230833332],
+                            [-104.231244088694382, 19.041586263427444],
+                            [-104.230837395617627, 19.042133334691766]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "070286001079000",
+                "NO_": 46.0,
+                "NOMBRE_DEL": "LOCALES\nCORMERCIALES Y ESTACIÓN DE AUTOSERVICIO LAS PAROTAS",
+                "TPO_DE_ACT": null,
+                "PARCELA": "115",
+                "EJIDO": null,
+                "CLAVE_CATA": "070286001079000",
+                "PROPIETARI": "FLORENCIO QUEZADA PEREZ",
+                "CUENTA_CON": "SI",
+                "FECHA_DE_P": "20-feb.-10",
+                "MODIFICACI": "NO",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "SI",
+                "FOLIO": "UR-70\/15",
+                "LICENCIA_D": "SI",
+                "FOLIO1": "UR-71\/15",
+                "INCORPORAC": "NO",
+                "FECHA_DE_2": "NO",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "NO",
+                "APROBACION": "23-dic.-09",
+                "F22": 0.0,
+                "_NAME": "PREDIOS CON LICENCIA DE URBANIZACION",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "58,215,54",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.342503913987869, 19.132945454517369],
+                            [-104.341621088845827, 19.130966468704987],
+                            [-104.345368390860926, 19.131076520882992],
+                            [-104.344836612063872, 19.132977993053824],
+                            [-104.342503913987869, 19.132945454517369]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "072490100008000",
+                "NO_": 36.0,
+                "NOMBRE_DEL": "TRANSPORTES TRANS NEYNO",
+                "TPO_DE_ACT": "NO, PATIO DE TRANSPORTES NEYNO",
+                "PARCELA": "8",
+                "EJIDO": "TAPEIXTLES",
+                "CLAVE_CATA": "072490100008000",
+                "PROPIETARI": "MARIA HORTENCIA GABRIELA HERRERA ORTEGA, FRANCISCO NEVAREZ HERRERA",
+                "CUENTA_CON": "SI, NO",
+                "FECHA_DE_P": "1-dic.-18",
+                "MODIFICACI": "NO",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "SI",
+                "FOLIO": "UR-030\/2019-PEU",
+                "LICENCIA_D": "SI",
+                "FOLIO1": "UR-074\/2019-LUES",
+                "INCORPORAC": "NO",
+                "FECHA_DE_2": "NO",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "SE EMITIO OFICIO DE OBSERVACIONES 0474\/2018, ACTA 664\/ACTIVA",
+                "APROBACION": "14-sep.-18",
+                "F22": 1.0,
+                "_NAME": "PREDIOS CON LICENCIA DE URBANIZACION",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "58,215,54",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.28043058617034, 19.095546997055429],
+                            [-104.280177244531259, 19.095607405385007],
+                            [-104.280430923615484, 19.09554634879267],
+                            [-104.28043058617034, 19.095546997055429]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "070109149005000",
+                "NO_": 0.0,
+                "NOMBRE_DEL": "ESTACION DE SERVICIOS URBANOS \"AUTOSERVICIO MANZANILLO PUERTO S.A. DE C.V., AUTOSERVICIO MANZANILLO PUERTO SA DE CV",
+                "TPO_DE_ACT": null,
+                "PARCELA": "149, PARCELA 40 Y FRACCIÓN 2 LOTE 3 MANZANA 2 ZONA 4",
+                "EJIDO": "TAPEIXTLES",
+                "CLAVE_CATA": "070109149005000",
+                "PROPIETARI": "AUTOSERVICIOS MANZANILLO PUERTO, AUTOSERVICIOS MANZANILLO PUERTO SA DE CV",
+                "CUENTA_CON": "SI",
+                "FECHA_DE_P": "10-dic.-05, 20-dic.-05",
+                "MODIFICACI": "NO",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "SI",
+                "FOLIO": "NO, UR-045\/2016",
+                "LICENCIA_D": "SI",
+                "FOLIO1": "NO, DGDUE-1080\/2016",
+                "INCORPORAC": "SI",
+                "FECHA_DE_2": "26-ago.-17",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "NO",
+                "APROBACION": "8-abr.-05",
+                "F22": 1.0,
+                "_NAME": "PREDIOS CON LICENCIA DE URBANIZACION",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "58,215,54",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.279846020141292, 19.088001117160378],
+                            [-104.279311749087654, 19.087836045585782],
+                            [-104.279496061471548, 19.087106763670011],
+                            [-104.279798180252826, 19.087039986098862],
+                            [-104.279981853543816, 19.087003200106565],
+                            [-104.279979489304822, 19.086993792351993],
+                            [-104.280629960783671, 19.08691748446472],
+                            [-104.279846020141292, 19.088001117160378]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "072663007001000",
+                "NO_": 25.0,
+                "NOMBRE_DEL": null,
+                "TPO_DE_ACT": "RUSTICO",
+                "PARCELA": "431",
+                "EJIDO": "EL COLOMO Y LA ARENA",
+                "CLAVE_CATA": "072663007001000",
+                "PROPIETARI": "HUMBERTO RAMIREZ HERNANDEZ",
+                "CUENTA_CON": "SI",
+                "FECHA_DE_P": "10-jun.-17",
+                "MODIFICACI": "NO",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "SI",
+                "FOLIO": "UR-016\/2019-PEU",
+                "LICENCIA_D": "SI",
+                "FOLIO1": "UR-057\/2019-LUES",
+                "INCORPORAC": "NO",
+                "FECHA_DE_2": "NO",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "NO",
+                "APROBACION": "NO",
+                "F22": 0.0,
+                "_NAME": "PREDIOS CON LICENCIA DE URBANIZACION",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "58,215,54",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.241370232291374, 19.024126402440913],
+                            [-104.241928128725775, 19.02450508646357],
+                            [-104.241967782840561, 19.024525489166564],
+                            [-104.242007784821553, 19.024543533594276],
+                            [-104.242078163035146, 19.024569631400603],
+                            [-104.242125713846505, 19.024583493310704],
+                            [-104.242164746787068, 19.024592737176999],
+                            [-104.24220031364635, 19.024599546540582],
+                            [-104.242220515476816, 19.024602745212782],
+                            [-104.242243798278906, 19.024605840181241],
+                            [-104.2422746469678, 19.024608977021714],
+                            [-104.242293789827968, 19.024610376395803],
+                            [-104.242297541509927, 19.024610601806476],
+                            [-104.241712247750158, 19.02505577204181],
+                            [-104.241067962878887, 19.024672131824559],
+                            [-104.241370232291374, 19.024126402440913]
+                        ]
+                    ]
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,4257 @@
+{
+    "type": "FeatureCollection",
+    "name": "Canaleta_6",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [{
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "1",
+                "OBJECTID": "11212",
+                "FID_": "0",
+                "LONGITUD": -104.654654835,
+                "LATITUD": 19.171786249899998,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.654654835216874, 19.171786249877812, 6.3462]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "2",
+                "OBJECTID": "11213",
+                "FID_": "1",
+                "LONGITUD": -104.65439538299999,
+                "LATITUD": 19.171707046000002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.654395383242118, 19.171707046045125, 6.202199999999721]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "3",
+                "OBJECTID": "11214",
+                "FID_": "2",
+                "LONGITUD": -104.654114374,
+                "LATITUD": 19.171624188100001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.654114374233444, 19.171624188092501, 6.202199999999721]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "4",
+                "OBJECTID": "11215",
+                "FID_": "3",
+                "LONGITUD": -104.412212184,
+                "LATITUD": 19.107245088,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.412212184058689, 19.107245088039505, 47.364600000000792]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "5",
+                "OBJECTID": "11216",
+                "FID_": "4",
+                "LONGITUD": -104.412590502,
+                "LATITUD": 19.1092990647,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.412590501963265, 19.109299064669983, 99.497399999992922]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "6",
+                "OBJECTID": "11217",
+                "FID_": "5",
+                "LONGITUD": -104.411870459,
+                "LATITUD": 19.1072809924,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.411870458699141, 19.10728099243547, 46.588199999998324]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "7",
+                "OBJECTID": "11218",
+                "FID_": "6",
+                "LONGITUD": -104.410703287,
+                "LATITUD": 19.108469557700001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.410703286651113, 19.108469557666069, 52.702199999999721]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "8",
+                "OBJECTID": "11219",
+                "FID_": "7",
+                "LONGITUD": -104.411129641,
+                "LATITUD": 19.108395201800001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.411129641146431, 19.10839520178617, 58.462199999994482]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "9",
+                "OBJECTID": "11220",
+                "FID_": "8",
+                "LONGITUD": -104.411081326,
+                "LATITUD": 19.108406112400001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.411081326114939, 19.108406112402136, 57.958199999993667]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "10",
+                "OBJECTID": "11221",
+                "FID_": "9",
+                "LONGITUD": -104.410192374,
+                "LATITUD": 19.111079454599999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.410192374184717, 19.111079454616803, 26.913000000000466]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "11",
+                "OBJECTID": "11222",
+                "FID_": "10",
+                "LONGITUD": -104.388467287,
+                "LATITUD": 19.130601440100001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.388467287494805, 19.130601440132878, 36.450599999996484]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "12",
+                "OBJECTID": "11223",
+                "FID_": "11",
+                "LONGITUD": -104.371602638,
+                "LATITUD": 19.119985668999998,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.371602637839743, 19.119985668994374, 6.78059999999823]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "13",
+                "OBJECTID": "11224",
+                "FID_": "12",
+                "LONGITUD": -104.37151743299999,
+                "LATITUD": 19.119970903199999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.371517433474054, 19.119970903234456, 6.78059999999823]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "14",
+                "OBJECTID": "11225",
+                "FID_": "13",
+                "LONGITUD": -104.371411374,
+                "LATITUD": 19.119961120700001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.371411374425321, 19.119961120672063, 6.672600000005332]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "15",
+                "OBJECTID": "11226",
+                "FID_": "14",
+                "LONGITUD": -104.412187176,
+                "LATITUD": 19.1073482537,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.4121871757729, 19.107348253748672, 47.184599999993225]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "16",
+                "OBJECTID": "11227",
+                "FID_": "15",
+                "LONGITUD": -104.351874962,
+                "LATITUD": 19.1402402788,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.351874961819689, 19.1402402787885, 36.917400000005728]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "17",
+                "OBJECTID": "11228",
+                "FID_": "16",
+                "LONGITUD": -104.348773581,
+                "LATITUD": 19.140163858699999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.348773581499771, 19.140163858722243, 27.391799999997602]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "18",
+                "OBJECTID": "11229",
+                "FID_": "17",
+                "LONGITUD": -104.34882520399999,
+                "LATITUD": 19.1402988848,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.348825204433638, 19.140298884847681, 27.067800000004354]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "19",
+                "OBJECTID": "11230",
+                "FID_": "18",
+                "LONGITUD": -104.346458885,
+                "LATITUD": 19.139818195299998,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.34645888477462, 19.139818195307715, 28.553400000004331]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "20",
+                "OBJECTID": "11231",
+                "FID_": "19",
+                "LONGITUD": -104.346372491,
+                "LATITUD": 19.1399664958,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.346372490978311, 19.139966495815045, 28.697400000004563]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "21",
+                "OBJECTID": "11232",
+                "FID_": "20",
+                "LONGITUD": -104.34260181400001,
+                "LATITUD": 19.1388883469,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.342601813795483, 19.138888346914502, 29.482199999998556]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "22",
+                "OBJECTID": "11233",
+                "FID_": "21",
+                "LONGITUD": -104.342373817,
+                "LATITUD": 19.138510909499999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.342373816797902, 19.138510909495668, 28.925399999992806]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "23",
+                "OBJECTID": "11234",
+                "FID_": "22",
+                "LONGITUD": -104.342499187,
+                "LATITUD": 19.138278391899998,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.342499186759341, 19.138278391863757, 27.568199999994249]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "24",
+                "OBJECTID": "11235",
+                "FID_": "23",
+                "LONGITUD": -104.342131408,
+                "LATITUD": 19.138614841700001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.342131407505121, 19.138614841737134, 30.125400000004447]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "25",
+                "OBJECTID": "11236",
+                "FID_": "24",
+                "LONGITUD": -104.341807145,
+                "LATITUD": 19.138529199000001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.341807145055455, 19.1385291990429, 31.427400000000489]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "26",
+                "OBJECTID": "11237",
+                "FID_": "25",
+                "LONGITUD": -104.341514374,
+                "LATITUD": 19.138384834499998,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.341514374317001, 19.138384834473463, 32.915399999998044]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "27",
+                "OBJECTID": "11238",
+                "FID_": "26",
+                "LONGITUD": -104.346965551,
+                "LATITUD": 19.139899643900002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.346965551122651, 19.139899643931852, 28.585800000000745]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "28",
+                "OBJECTID": "11239",
+                "FID_": "27",
+                "LONGITUD": -104.342901711,
+                "LATITUD": 19.139010411000001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.342901711019408, 19.139010410962317, 29.502600000007078]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "29",
+                "OBJECTID": "11240",
+                "FID_": "28",
+                "LONGITUD": -104.284941613,
+                "LATITUD": 19.098821824800002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.284941613144795, 19.098821824753109, 29.774999999994179]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "30",
+                "OBJECTID": "11241",
+                "FID_": "29",
+                "LONGITUD": -104.285501529,
+                "LATITUD": 19.098760477199999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.285501528680044, 19.098760477164742, 29.697000000000116]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "31",
+                "OBJECTID": "11242",
+                "FID_": "30",
+                "LONGITUD": -104.286176101,
+                "LATITUD": 19.098696005299999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.28617610146938, 19.098696005323479, 28.570200000001932]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "32",
+                "OBJECTID": "11243",
+                "FID_": "31",
+                "LONGITUD": -104.275092696,
+                "LATITUD": 19.093230201899999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.27509269636225, 19.093230201914132, 34.170599999997648]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "33",
+                "OBJECTID": "11244",
+                "FID_": "32",
+                "LONGITUD": -104.275467631,
+                "LATITUD": 19.093692400399998,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.275467631298767, 19.093692400445512, 32.045400000002701]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "38",
+                "OBJECTID": "11249",
+                "FID_": "33",
+                "LONGITUD": -104.29265337699999,
+                "LATITUD": 19.049423179400002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.292653377053313, 19.049423179438289, 9.20339999999851]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "39",
+                "OBJECTID": "11250",
+                "FID_": "34",
+                "LONGITUD": -104.314259564,
+                "LATITUD": 19.038335120300001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.31425956363978, 19.038335120327062, 3.24659999999858]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "40",
+                "OBJECTID": "11251",
+                "FID_": "35",
+                "LONGITUD": -104.31427898600001,
+                "LATITUD": 19.038092799299999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.3142789863536, 19.038092799295395, 3.24659999999858]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "41",
+                "OBJECTID": "11252",
+                "FID_": "36",
+                "LONGITUD": -104.31423814199999,
+                "LATITUD": 19.038558252600001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314238142317237, 19.038558252608425, 3.213000000003376]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "42",
+                "OBJECTID": "11253",
+                "FID_": "37",
+                "LONGITUD": -104.314145595,
+                "LATITUD": 19.039663393600001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314145595492732, 19.039663393596872, 3.414600000003702]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "43",
+                "OBJECTID": "11254",
+                "FID_": "38",
+                "LONGITUD": -104.314123583,
+                "LATITUD": 19.0399066891,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314123582576087, 19.039906689087509, 3.414600000003702]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "44",
+                "OBJECTID": "11255",
+                "FID_": "39",
+                "LONGITUD": -104.31409767,
+                "LATITUD": 19.040178988299999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314097670198592, 19.040178988319724, 3.448199999998906]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "45",
+                "OBJECTID": "11256",
+                "FID_": "40",
+                "LONGITUD": -104.314074811,
+                "LATITUD": 19.040417855200001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314074811488467, 19.040417855161849, 3.448199999998906]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "46",
+                "OBJECTID": "11257",
+                "FID_": "41",
+                "LONGITUD": -104.31403964,
+                "LATITUD": 19.040793815699999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314039640137466, 19.040793815651661, 3.481799999994109]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "47",
+                "OBJECTID": "11258",
+                "FID_": "42",
+                "LONGITUD": -104.314028681,
+                "LATITUD": 19.040984523500001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314028681024126, 19.040984523508573, 3.481799999994109]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "48",
+                "OBJECTID": "11259",
+                "FID_": "43",
+                "LONGITUD": -104.313993149,
+                "LATITUD": 19.041364417400001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.313993149239366, 19.041364417389076, 3.515400000003865]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "49",
+                "OBJECTID": "11260",
+                "FID_": "44",
+                "LONGITUD": -104.313968453,
+                "LATITUD": 19.041657624,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.313968453317926, 19.041657623953601, 3.347399999998743]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "50",
+                "OBJECTID": "11261",
+                "FID_": "45",
+                "LONGITUD": -104.313760468,
+                "LATITUD": 19.044179657299999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.31376046786896, 19.044179657338805, 4.137000000002445]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "51",
+                "OBJECTID": "11262",
+                "FID_": "46",
+                "LONGITUD": -104.31377673599999,
+                "LATITUD": 19.043909038599999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.313776735688521, 19.04390903860957, 3.543000000005122]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "52",
+                "OBJECTID": "11263",
+                "FID_": "47",
+                "LONGITUD": -104.3137468,
+                "LATITUD": 19.044452014499999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.313746799559681, 19.044452014521831, 4.770600000003469]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "53",
+                "OBJECTID": "11264",
+                "FID_": "48",
+                "LONGITUD": -104.314361078,
+                "LATITUD": 19.037196405100001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314361078357877, 19.037196405071111, 3.330600000001141]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "54",
+                "OBJECTID": "11265",
+                "FID_": "49",
+                "LONGITUD": -104.314401812,
+                "LATITUD": 19.036751288400001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.31440181246289, 19.036751288410063, 3.358200000002398]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "55",
+                "OBJECTID": "11266",
+                "FID_": "50",
+                "LONGITUD": -104.314436546,
+                "LATITUD": 19.036355178600001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314436545676415, 19.036355178622369, 3.364199999996345]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "56",
+                "OBJECTID": "11267",
+                "FID_": "51",
+                "LONGITUD": -104.31450981899999,
+                "LATITUD": 19.0354523757,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314509818768514, 19.035452375685814, 3.988200000007055]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "57",
+                "OBJECTID": "11268",
+                "FID_": "52",
+                "LONGITUD": -104.314548508,
+                "LATITUD": 19.034986376399999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314548508029119, 19.034986376410842, 3.6762000000017]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "58",
+                "OBJECTID": "11269",
+                "FID_": "53",
+                "LONGITUD": -104.31458822099999,
+                "LATITUD": 19.034557139499999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314588220730002, 19.034557139461388, 3.947400000004563]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "59",
+                "OBJECTID": "11270",
+                "FID_": "54",
+                "LONGITUD": -104.314593997,
+                "LATITUD": 19.034203195100002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314593997457322, 19.03420319511088, 4.18739999999525]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "60",
+                "OBJECTID": "11271",
+                "FID_": "55",
+                "LONGITUD": -104.314586588,
+                "LATITUD": 19.0340680063,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314586587947105, 19.034068006345358, 4.0674]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "61",
+                "OBJECTID": "11272",
+                "FID_": "56",
+                "LONGITUD": -104.314579262,
+                "LATITUD": 19.033887039300001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314579261724234, 19.033887039349739, 4.46940000000177]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "62",
+                "OBJECTID": "11273",
+                "FID_": "57",
+                "LONGITUD": -104.31457692399999,
+                "LATITUD": 19.033706247200001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.314576923644182, 19.033706247201788, 4.313399999999092]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "63",
+                "OBJECTID": "11274",
+                "FID_": "58",
+                "LONGITUD": -104.280295692,
+                "LATITUD": 19.013269659799999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.280295691554159, 19.013269659806291, 4.29660000000149]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "64",
+                "OBJECTID": "11275",
+                "FID_": "59",
+                "LONGITUD": -104.279878106,
+                "LATITUD": 19.013153065600001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.279878106301055, 19.013153065603952, 4.29660000000149]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "65",
+                "OBJECTID": "11276",
+                "FID_": "60",
+                "LONGITUD": -104.26576495099999,
+                "LATITUD": 19.049272783900001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.265764950894152, 19.049272783886863, 2.763300000005984]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "66",
+                "OBJECTID": "11277",
+                "FID_": "61",
+                "LONGITUD": -104.264674134,
+                "LATITUD": 19.0488181258,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.264674133527265, 19.048818125822425, 2.352100000003702]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "67",
+                "OBJECTID": "11278",
+                "FID_": "62",
+                "LONGITUD": -104.264363575,
+                "LATITUD": 19.048672189099999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.26436357513289, 19.048672189098689, 2.363400000002002]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "68",
+                "OBJECTID": "11279",
+                "FID_": "63",
+                "LONGITUD": -104.26418364200001,
+                "LATITUD": 19.0485736965,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.26418364247526, 19.048573696545972, 2.417700000005425]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "69",
+                "OBJECTID": "11280",
+                "FID_": "64",
+                "LONGITUD": -104.243008137,
+                "LATITUD": 19.023444873100001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.24300813746045, 19.023444873094387, 16.968299999993178]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "70",
+                "OBJECTID": "11281",
+                "FID_": "65",
+                "LONGITUD": -104.243118387,
+                "LATITUD": 19.023166598900001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.243118386693567, 19.023166598906869, 17.404599999994389]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "71",
+                "OBJECTID": "11282",
+                "FID_": "66",
+                "LONGITUD": -104.24464421899999,
+                "LATITUD": 19.019316748200001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.244644219130947, 19.01931674822465, 17.050499999997555]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "72",
+                "OBJECTID": "11283",
+                "FID_": "67",
+                "LONGITUD": -104.244740241,
+                "LATITUD": 19.019072346000002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.244740240638833, 19.019072346031578, 16.807499999995343]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "73",
+                "OBJECTID": "11284",
+                "FID_": "68",
+                "LONGITUD": -104.245023139,
+                "LATITUD": 19.018344042300001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.245023139012375, 19.018344042250042, 17.099100000006729]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "74",
+                "OBJECTID": "11285",
+                "FID_": "69",
+                "LONGITUD": -104.245236797,
+                "LATITUD": 19.017223454300002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.245236796521013, 19.017223454316138, 20.852100000003702]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "75",
+                "OBJECTID": "11286",
+                "FID_": "70",
+                "LONGITUD": -104.24519745400001,
+                "LATITUD": 19.0167319006,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.245197453617706, 19.016731900612378, 23.332500000004075]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "76",
+                "OBJECTID": "11287",
+                "FID_": "71",
+                "LONGITUD": -104.214736851,
+                "LATITUD": 19.040025977900001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.214736850679259, 19.040025977853908, 14.67269999999553]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "77",
+                "OBJECTID": "11288",
+                "FID_": "72",
+                "LONGITUD": -104.21440456400001,
+                "LATITUD": 19.039709305300001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.214404564201388, 19.039709305256011, 14.399099999995087]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "78",
+                "OBJECTID": "11289",
+                "FID_": "73",
+                "LONGITUD": -104.214070545,
+                "LATITUD": 19.0393827798,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.214070544534053, 19.039382779834398, 14.0913]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "79",
+                "OBJECTID": "11290",
+                "FID_": "74",
+                "LONGITUD": -104.213843719,
+                "LATITUD": 19.0392214108,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.21384371854883, 19.039221410826961, 13.857300000003306]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "80",
+                "OBJECTID": "11291",
+                "FID_": "75",
+                "LONGITUD": -104.279580662,
+                "LATITUD": 19.0977897605,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.279580661779974, 19.097789760465872, 28.591799999994691]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "81",
+                "OBJECTID": "11292",
+                "FID_": "76",
+                "LONGITUD": -104.278578345,
+                "LATITUD": 19.097303082500002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.278578345227643, 19.097303082527581, 29.386199999993551]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "82",
+                "OBJECTID": "11293",
+                "FID_": "77",
+                "LONGITUD": -104.28438024099999,
+                "LATITUD": 19.098847636799999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.28438024061451, 19.098847636780771, 28.98059999999532]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "83",
+                "OBJECTID": "11294",
+                "FID_": "78",
+                "LONGITUD": -104.28323246,
+                "LATITUD": 19.098739435100001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.283232459518231, 19.098739435089175, 27.60899999999674]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "84",
+                "OBJECTID": "11295",
+                "FID_": "79",
+                "LONGITUD": -104.282961398,
+                "LATITUD": 19.098679695400001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.282961397638331, 19.098679695419051, 27.519000000000233]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "85",
+                "OBJECTID": "11296",
+                "FID_": "80",
+                "LONGITUD": -104.267850919,
+                "LATITUD": 19.1053575169,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.267850919393041, 19.105357516855268, 47.287800000005518]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "86",
+                "OBJECTID": "11297",
+                "FID_": "81",
+                "LONGITUD": -104.26253373,
+                "LATITUD": 19.109763098999998,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.262533730177125, 19.109763098956506, 57.468599999992875]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "87",
+                "OBJECTID": "11298",
+                "FID_": "82",
+                "LONGITUD": -104.262203193,
+                "LATITUD": 19.1100843643,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.262203193292294, 19.110084364277359, 58.549799999993411]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "88",
+                "OBJECTID": "11299",
+                "FID_": "83",
+                "LONGITUD": -104.26192947600001,
+                "LATITUD": 19.1104315543,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.261929475743869, 19.110431554330859, 60.48059999999532]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "89",
+                "OBJECTID": "11300",
+                "FID_": "84",
+                "LONGITUD": -104.26170109500001,
+                "LATITUD": 19.1108329244,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.261701095414509, 19.110832924449014, 61.416599999996834]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "90",
+                "OBJECTID": "11301",
+                "FID_": "85",
+                "LONGITUD": -104.261562568,
+                "LATITUD": 19.111169645299999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.26156256838604, 19.111169645334908, 63.118199999997159]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "91",
+                "OBJECTID": "11302",
+                "FID_": "86",
+                "LONGITUD": -104.26066189,
+                "LATITUD": 19.1187978054,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.260661889772706, 19.118797805437318, 65.751000000003842]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "92",
+                "OBJECTID": "11303",
+                "FID_": "87",
+                "LONGITUD": -104.18284690599999,
+                "LATITUD": 18.975317796,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.182846905658067, 18.975317795951117, 6.263399999996182]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "93",
+                "OBJECTID": "11304",
+                "FID_": "88",
+                "LONGITUD": -104.182941466,
+                "LATITUD": 18.975125957700001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.18294146603138, 18.975125957710244, 5.845799999995506]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "94",
+                "OBJECTID": "11305",
+                "FID_": "89",
+                "LONGITUD": -104.182308627,
+                "LATITUD": 18.9751074558,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.182308627132329, 18.975107455797307, 6.088799999997718]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "95",
+                "OBJECTID": "11306",
+                "FID_": "90",
+                "LONGITUD": -104.182366316,
+                "LATITUD": 18.9748949809,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.182366315656893, 18.974894980887996, 6.088799999997718]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "96",
+                "OBJECTID": "11307",
+                "FID_": "91",
+                "LONGITUD": -104.18177525599999,
+                "LATITUD": 18.9748955634,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.181775256217833, 18.974895563365703, 6.088799999997718]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "97",
+                "OBJECTID": "11308",
+                "FID_": "92",
+                "LONGITUD": -104.18061871899999,
+                "LATITUD": 18.974441171599999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.18061871949871, 18.974441171586218, 7.012199999997392]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "98",
+                "OBJECTID": "11309",
+                "FID_": "93",
+                "LONGITUD": -104.170505656,
+                "LATITUD": 18.970254992899999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.170505656206302, 18.970254992913183, 4.015199999994365]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "99",
+                "OBJECTID": "11310",
+                "FID_": "94",
+                "LONGITUD": -104.170826312,
+                "LATITUD": 18.970373437300001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.170826312455162, 18.970373437267533, 4.180800000001909]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "100",
+                "OBJECTID": "11311",
+                "FID_": "95",
+                "LONGITUD": -104.171723532,
+                "LATITUD": 18.970953070499998,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.171723532459282, 18.970953070547633, 5.726999999998952]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "101",
+                "OBJECTID": "11312",
+                "FID_": "96",
+                "LONGITUD": -104.172912638,
+                "LATITUD": 18.9711964354,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.172912638121304, 18.971196435436198, 6.014999999999418]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "102",
+                "OBJECTID": "11313",
+                "FID_": "97",
+                "LONGITUD": -104.17337065700001,
+                "LATITUD": 18.971380916400001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.173370657315104, 18.971380916409867, 6.285000000003492]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "103",
+                "OBJECTID": "11314",
+                "FID_": "98",
+                "LONGITUD": -104.174571773,
+                "LATITUD": 18.971844417100002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.174571773388507, 18.971844417076674, 6.879000000000815]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "104",
+                "OBJECTID": "11315",
+                "FID_": "99",
+                "LONGITUD": -104.17439672099999,
+                "LATITUD": 18.9720003262,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.174396721325508, 18.972000326213834, 7.149000000004889]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "105",
+                "OBJECTID": "11316",
+                "FID_": "100",
+                "LONGITUD": -104.183389275,
+                "LATITUD": 18.975525944899999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.183389275145657, 18.975525944883916, 6.196800000005169]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "106",
+                "OBJECTID": "11317",
+                "FID_": "101",
+                "LONGITUD": -104.183997535,
+                "LATITUD": 18.975547061299999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.183997534818403, 18.9755470613215, 5.692800000004354]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "107",
+                "OBJECTID": "11318",
+                "FID_": "102",
+                "LONGITUD": -104.183922964,
+                "LATITUD": 18.975737902,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.183922964348497, 18.975737901965712, 5.440799999996671]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "108",
+                "OBJECTID": "11319",
+                "FID_": "103",
+                "LONGITUD": -104.184437053,
+                "LATITUD": 18.975716022499999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.184437053371695, 18.975716022452787, 5.339999999996508]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "109",
+                "OBJECTID": "11320",
+                "FID_": "104",
+                "LONGITUD": -104.18448359,
+                "LATITUD": 18.975736341000001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.18448359013334, 18.975736340991915, 5.339999999996508]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "110",
+                "OBJECTID": "11321",
+                "FID_": "105",
+                "LONGITUD": -104.184465739,
+                "LATITUD": 18.975946022500001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.184465738574829, 18.975946022497599, 5.843999999997322]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "111",
+                "OBJECTID": "11322",
+                "FID_": "106",
+                "LONGITUD": -104.192661163,
+                "LATITUD": 18.979164427499999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.192661162838661, 18.979164427454155, 4.92960000000312]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "112",
+                "OBJECTID": "11323",
+                "FID_": "107",
+                "LONGITUD": -104.192684566,
+                "LATITUD": 18.978948691700001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.192684566209408, 18.978948691729663, 4.92960000000312]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "113",
+                "OBJECTID": "11324",
+                "FID_": "108",
+                "LONGITUD": -104.194092502,
+                "LATITUD": 18.979487204000002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.194092502116661, 18.979487204040101, 5.350800000000163]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "114",
+                "OBJECTID": "11325",
+                "FID_": "109",
+                "LONGITUD": -104.195440389,
+                "LATITUD": 18.980018485599999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.195440389400957, 18.98001848560828, 6.123000000006869]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "115",
+                "OBJECTID": "11326",
+                "FID_": "110",
+                "LONGITUD": -104.19686885599999,
+                "LATITUD": 18.980585446300001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.196868856173154, 18.980585446327943, 6.123000000006869]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "116",
+                "OBJECTID": "11327",
+                "FID_": "111",
+                "LONGITUD": -104.19704631899999,
+                "LATITUD": 18.9806563476,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.197046318727516, 18.980656347623448, 6.123000000006869]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "117",
+                "OBJECTID": "11328",
+                "FID_": "112",
+                "LONGITUD": -104.19667658100001,
+                "LATITUD": 18.9807258461,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.196676581128244, 18.980725846084244, 6.474000000001979]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "118",
+                "OBJECTID": "11329",
+                "FID_": "113",
+                "LONGITUD": -104.197321772,
+                "LATITUD": 18.980763554100001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.197321772063646, 18.980763554082259, 6.123000000006869]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "119",
+                "OBJECTID": "11330",
+                "FID_": "114",
+                "LONGITUD": -104.197618031,
+                "LATITUD": 18.980876109800001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.19761803132505, 18.980876109839365, 6.123000000006869]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "120",
+                "OBJECTID": "11331",
+                "FID_": "115",
+                "LONGITUD": -104.19776543,
+                "LATITUD": 18.980940803700001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.197765430214858, 18.980940803700594, 6.123000000006869]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "121",
+                "OBJECTID": "11332",
+                "FID_": "116",
+                "LONGITUD": -104.197871331,
+                "LATITUD": 18.9809811039,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.197871331100615, 18.980981103935552, 6.123000000006869]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "122",
+                "OBJECTID": "11333",
+                "FID_": "117",
+                "LONGITUD": -104.197947876,
+                "LATITUD": 18.9812307077,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.197947876480313, 18.981230707653364, 6.123000000006869]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "123",
+                "OBJECTID": "11334",
+                "FID_": "118",
+                "LONGITUD": -104.198190443,
+                "LATITUD": 18.9811050062,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.198190442720488, 18.981105006153321, 6.123000000006869]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "124",
+                "OBJECTID": "11335",
+                "FID_": "119",
+                "LONGITUD": -104.198292104,
+                "LATITUD": 18.981148390200001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.198292103736961, 18.981148390195717, 6.123000000006869]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "125",
+                "OBJECTID": "11336",
+                "FID_": "120",
+                "LONGITUD": -104.197506183,
+                "LATITUD": 18.981057460399999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.197506182618895, 18.981057460410589, 6.409199999994598]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "126",
+                "OBJECTID": "11337",
+                "FID_": "121",
+                "LONGITUD": -104.199073966,
+                "LATITUD": 18.981670853099999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.199073966440224, 18.981670853062695, 6.558600000003935]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "127",
+                "OBJECTID": "11338",
+                "FID_": "122",
+                "LONGITUD": -104.199145653,
+                "LATITUD": 18.981482488600001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.199145652584519, 18.981482488597159, 6.558600000003935]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "128",
+                "OBJECTID": "11339",
+                "FID_": "123",
+                "LONGITUD": -104.19863726,
+                "LATITUD": 18.9812791614,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.198637259954197, 18.981279161397456, 6.180600000006962]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "129",
+                "OBJECTID": "11340",
+                "FID_": "124",
+                "LONGITUD": -104.19955732299999,
+                "LATITUD": 18.981863644899999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.199557323136645, 18.981863644885593, 6.864600000000792]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "130",
+                "OBJECTID": "11341",
+                "FID_": "125",
+                "LONGITUD": -104.19962268800001,
+                "LATITUD": 18.981666467099998,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.199622688219407, 18.981666467122, 6.864600000000792]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "131",
+                "OBJECTID": "11342",
+                "FID_": "126",
+                "LONGITUD": -104.19994798,
+                "LATITUD": 18.9820181509,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.199947980116249, 18.982018150909592, 6.50460000000021]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "132",
+                "OBJECTID": "11343",
+                "FID_": "127",
+                "LONGITUD": -104.200337318,
+                "LATITUD": 18.981940028899999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.200337318066246, 18.981940028895412, 6.50460000000021]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "133",
+                "OBJECTID": "11344",
+                "FID_": "128",
+                "LONGITUD": -104.201140915,
+                "LATITUD": 18.9822615002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.201140915150248, 18.98226150019234, 6.4326]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "134",
+                "OBJECTID": "11345",
+                "FID_": "129",
+                "LONGITUD": -104.20162602000001,
+                "LATITUD": 18.9826738149,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.201626020106289, 18.982673814911333, 5.712599999998929]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "135",
+                "OBJECTID": "11346",
+                "FID_": "130",
+                "LONGITUD": -104.20170840500001,
+                "LATITUD": 18.982486270900001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.201708404937293, 18.982486270903387, 6.072599999999511]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "136",
+                "OBJECTID": "11347",
+                "FID_": "131",
+                "LONGITUD": -104.20232042400001,
+                "LATITUD": 18.982949345200002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.202320423926636, 18.982949345172209, 5.064599999997881]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "137",
+                "OBJECTID": "11348",
+                "FID_": "132",
+                "LONGITUD": -104.203115365,
+                "LATITUD": 18.983033983199999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.20311536513131, 18.98303398315138, 5.424599999998463]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "138",
+                "OBJECTID": "11349",
+                "FID_": "133",
+                "LONGITUD": -104.203466212,
+                "LATITUD": 18.9833978833,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.203466212165225, 18.983397883325555, 5.064599999997881]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "139",
+                "OBJECTID": "11350",
+                "FID_": "134",
+                "LONGITUD": -104.205236286,
+                "LATITUD": 18.984084183499998,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.205236285892624, 18.984084183525077, 5.856599999999162]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "140",
+                "OBJECTID": "11351",
+                "FID_": "135",
+                "LONGITUD": -104.205777634,
+                "LATITUD": 18.984300366700001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.205777634258567, 18.984300366704101, 5.784599999999045]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "141",
+                "OBJECTID": "11352",
+                "FID_": "136",
+                "LONGITUD": -104.206353572,
+                "LATITUD": 18.984295686500001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.206353572437919, 18.98429568653798, 5.784599999999045]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "142",
+                "OBJECTID": "11353",
+                "FID_": "137",
+                "LONGITUD": -104.20632000800001,
+                "LATITUD": 18.984514132600001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.206320008175169, 18.984514132624412, 5.784599999999045]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "143",
+                "OBJECTID": "11354",
+                "FID_": "138",
+                "LONGITUD": -104.206752024,
+                "LATITUD": 18.984449535100001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.206752024108624, 18.984449535089801, 5.856599999999162]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "144",
+                "OBJECTID": "11355",
+                "FID_": "139",
+                "LONGITUD": -104.207314932,
+                "LATITUD": 18.9846712565,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.207314931701191, 18.984671256465415, 5.568599999998696]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "145",
+                "OBJECTID": "11356",
+                "FID_": "140",
+                "LONGITUD": -104.207416962,
+                "LATITUD": 18.984709159000001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.207416962454943, 18.984709158970769, 5.568599999998696]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "146",
+                "OBJECTID": "11357",
+                "FID_": "141",
+                "LONGITUD": -104.20810013400001,
+                "LATITUD": 18.985209558499999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.208100133607971, 18.985209558514594, 4.776599999997416]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "147",
+                "OBJECTID": "11358",
+                "FID_": "142",
+                "LONGITUD": -104.20847758,
+                "LATITUD": 18.985356971400002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.208477579743516, 18.985356971423105, 4.416599999996834]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "148",
+                "OBJECTID": "11359",
+                "FID_": "143",
+                "LONGITUD": -104.210701036,
+                "LATITUD": 18.9859885272,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.210701036020268, 18.985988527182343, 5.136599999997998]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "149",
+                "OBJECTID": "11360",
+                "FID_": "144",
+                "LONGITUD": -104.212037498,
+                "LATITUD": 18.9866862089,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.212037498243248, 18.986686208940949, 5.208599999998114]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "150",
+                "OBJECTID": "11361",
+                "FID_": "145",
+                "LONGITUD": -104.213856296,
+                "LATITUD": 18.987290083800001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.213856295574757, 18.987290083795877, 4.272599999996601]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "151",
+                "OBJECTID": "11362",
+                "FID_": "146",
+                "LONGITUD": -104.214432053,
+                "LATITUD": 18.987481023299999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.214432053096232, 18.987481023288545, 4.272599999996601]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "152",
+                "OBJECTID": "11363",
+                "FID_": "147",
+                "LONGITUD": -104.21432181199999,
+                "LATITUD": 18.987446571700001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.214321812061996, 18.987446571674084, 4.632599999997183]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "153",
+                "OBJECTID": "11364",
+                "FID_": "148",
+                "LONGITUD": -104.21480291,
+                "LATITUD": 18.987603377500001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.214802909513011, 18.987603377537134, 4.272599999996601]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "154",
+                "OBJECTID": "11365",
+                "FID_": "149",
+                "LONGITUD": -104.21498342700001,
+                "LATITUD": 18.9876692269,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.214983427444878, 18.987669226943058, 4.272599999996601]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "155",
+                "OBJECTID": "11366",
+                "FID_": "150",
+                "LONGITUD": -104.216094814,
+                "LATITUD": 18.988027424799998,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.216094814108558, 18.988027424775318, 4.344599999996717]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "156",
+                "OBJECTID": "11367",
+                "FID_": "151",
+                "LONGITUD": -104.216649226,
+                "LATITUD": 18.988212273799999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.216649226057086, 18.988212273758712, 4.344599999996717]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "157",
+                "OBJECTID": "11368",
+                "FID_": "152",
+                "LONGITUD": -104.216994689,
+                "LATITUD": 18.988325965400001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.216994688643354, 18.988325965401803, 4.344599999996717]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "158",
+                "OBJECTID": "11369",
+                "FID_": "153",
+                "LONGITUD": -104.219082219,
+                "LATITUD": 18.989012578800001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.219082219264351, 18.989012578842559, 4.344599999996717]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "159",
+                "OBJECTID": "11370",
+                "FID_": "154",
+                "LONGITUD": -104.219545489,
+                "LATITUD": 18.989171754600001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.219545489423453, 18.989171754586028, 4.344599999996717]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "160",
+                "OBJECTID": "11371",
+                "FID_": "155",
+                "LONGITUD": -104.219736942,
+                "LATITUD": 18.989236497899999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.219736942022095, 18.989236497860539, 3.984599999996135]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "161",
+                "OBJECTID": "11372",
+                "FID_": "156",
+                "LONGITUD": -104.22051941399999,
+                "LATITUD": 18.989495396399999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.220519414284382, 18.989495396405541, 3.984599999996135]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "162",
+                "OBJECTID": "11373",
+                "FID_": "157",
+                "LONGITUD": -104.231000838,
+                "LATITUD": 18.992600580200001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.231000837916682, 18.992600580241987, 5.510999999998603]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "163",
+                "OBJECTID": "11374",
+                "FID_": "158",
+                "LONGITUD": -104.23034822699999,
+                "LATITUD": 18.992467474400001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.230348226736353, 18.992467474438968, 5.510999999998603]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "164",
+                "OBJECTID": "11375",
+                "FID_": "159",
+                "LONGITUD": -104.229653787,
+                "LATITUD": 18.99226669,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.229653786584805, 18.992266690044016, 5.582999999998719]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "165",
+                "OBJECTID": "11376",
+                "FID_": "160",
+                "LONGITUD": -104.229328459,
+                "LATITUD": 18.992162088200001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.229328459024416, 18.992162088229428, 5.222999999998137]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "166",
+                "OBJECTID": "11377",
+                "FID_": "161",
+                "LONGITUD": -104.227977252,
+                "LATITUD": 18.9917153711,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.227977251541475, 18.99171537105866, 4.862999999997555]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "167",
+                "OBJECTID": "11378",
+                "FID_": "162",
+                "LONGITUD": -104.22781657500001,
+                "LATITUD": 18.991885116799999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.227816574592637, 18.991885116751458, 4.862999999997555]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "168",
+                "OBJECTID": "11379",
+                "FID_": "163",
+                "LONGITUD": -104.227321004,
+                "LATITUD": 18.9917274025,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.227321004358487, 18.991727402487236, 4.862999999997555]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "169",
+                "OBJECTID": "11380",
+                "FID_": "164",
+                "LONGITUD": -104.226121023,
+                "LATITUD": 18.991413324500002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.226121022524438, 18.991413324535372, 4.142999999996391]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "170",
+                "OBJECTID": "11381",
+                "FID_": "165",
+                "LONGITUD": -104.225224815,
+                "LATITUD": 18.991119708199999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.225224815017555, 18.991119708246927, 4.142999999996391]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "171",
+                "OBJECTID": "11382",
+                "FID_": "166",
+                "LONGITUD": -104.224774045,
+                "LATITUD": 18.9909666464,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.224774045340666, 18.99096664636307, 4.142999999996391]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "172",
+                "OBJECTID": "11383",
+                "FID_": "167",
+                "LONGITUD": -104.224465306,
+                "LATITUD": 18.990546184399999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.224465306431583, 18.990546184350652, 4.142999999996391]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "173",
+                "OBJECTID": "11384",
+                "FID_": "168",
+                "LONGITUD": -104.224356746,
+                "LATITUD": 18.990834824299998,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.224356746350566, 18.990834824259501, 4.142999999996391]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "174",
+                "OBJECTID": "11385",
+                "FID_": "169",
+                "LONGITUD": -104.22402537000001,
+                "LATITUD": 18.9903799838,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.224025370015909, 18.990379983770993, 3.782999999995809]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "175",
+                "OBJECTID": "11386",
+                "FID_": "170",
+                "LONGITUD": -104.223884293,
+                "LATITUD": 18.990684783500001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.223884292949492, 18.990684783539873, 4.142999999996391]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "176",
+                "OBJECTID": "11387",
+                "FID_": "171",
+                "LONGITUD": -104.223098557,
+                "LATITUD": 18.990424799,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.223098557004747, 18.990424798966455, 4.142999999996391]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "177",
+                "OBJECTID": "11388",
+                "FID_": "172",
+                "LONGITUD": -104.244256085,
+                "LATITUD": 18.998080668099998,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.244256084883403, 18.998080668116625, 12.840599999995902]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "178",
+                "OBJECTID": "11389",
+                "FID_": "173",
+                "LONGITUD": -104.243409555,
+                "LATITUD": 18.9963581429,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.243409555309015, 18.996358142908779, 12.009000000005472]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "179",
+                "OBJECTID": "11390",
+                "FID_": "174",
+                "LONGITUD": -104.243163954,
+                "LATITUD": 18.996166329000001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.243163954287567, 18.996166329019118, 10.741800000003423]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "180",
+                "OBJECTID": "11391",
+                "FID_": "175",
+                "LONGITUD": -104.234080521,
+                "LATITUD": 18.9931071968,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.234080520801811, 18.993107196837553, 4.753200000006473]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "181",
+                "OBJECTID": "11392",
+                "FID_": "176",
+                "LONGITUD": -104.25488307800001,
+                "LATITUD": 19.001928011099999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.254883077664203, 19.001928011070763, 8.693400000003749]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "182",
+                "OBJECTID": "11393",
+                "FID_": "177",
+                "LONGITUD": -104.22566966300001,
+                "LATITUD": 18.991260209,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.225669663369899, 18.991260209004377, 4.043399999995017]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "183",
+                "OBJECTID": "11394",
+                "FID_": "178",
+                "LONGITUD": -104.22511204200001,
+                "LATITUD": 18.990778155699999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.225112041873615, 18.990778155675514, 4.290599999992992]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "184",
+                "OBJECTID": "11395",
+                "FID_": "179",
+                "LONGITUD": -104.223499218,
+                "LATITUD": 18.9905437187,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.223499218470423, 18.990543718745265, 4.107000000003609]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "185",
+                "OBJECTID": "11396",
+                "FID_": "180",
+                "LONGITUD": -104.223582173,
+                "LATITUD": 18.990217335400001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.223582172853298, 18.990217335409511, 3.61019999999553]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "186",
+                "OBJECTID": "11397",
+                "FID_": "181",
+                "LONGITUD": -104.22313790699999,
+                "LATITUD": 18.990046701800001,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.223137906877838, 18.990046701821505, 3.914999999993597]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "187",
+                "OBJECTID": "11398",
+                "FID_": "182",
+                "LONGITUD": -104.220260103,
+                "LATITUD": 18.9891864947,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.220260102789723, 18.989186494711426, 4.14419999999518]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "188",
+                "OBJECTID": "11399",
+                "FID_": "183",
+                "LONGITUD": -104.219171917,
+                "LATITUD": 18.9888284753,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.219171917480594, 18.988828475321426, 4.06140000000596]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "189",
+                "OBJECTID": "11400",
+                "FID_": "184",
+                "LONGITUD": -104.218332957,
+                "LATITUD": 18.988760681799999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.218332957090468, 18.988760681838908, 4.307400000005146]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "190",
+                "OBJECTID": "11401",
+                "FID_": "185",
+                "LONGITUD": -104.21775321600001,
+                "LATITUD": 18.9885671754,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.217753216206361, 18.988567175396547, 4.509000000005472]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "191",
+                "OBJECTID": "11402",
+                "FID_": "186",
+                "LONGITUD": -104.217204102,
+                "LATITUD": 18.988387434500002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.217204101599293, 18.988387434479375, 4.532999999995809]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "192",
+                "OBJECTID": "11403",
+                "FID_": "187",
+                "LONGITUD": -104.215542762,
+                "LATITUD": 18.987841785299999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.215542762136792, 18.987841785294606, 4.270199999999022]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "193",
+                "OBJECTID": "11404",
+                "FID_": "188",
+                "LONGITUD": -104.214388927,
+                "LATITUD": 18.987249590899999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.214388926524066, 18.987249590948512, 4.244999999995343]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "194",
+                "OBJECTID": "11405",
+                "FID_": "189",
+                "LONGITUD": -104.2125115,
+                "LATITUD": 18.986838256799999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.212511500153155, 18.986838256840329, 5.065799999996671]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "195",
+                "OBJECTID": "11406",
+                "FID_": "190",
+                "LONGITUD": -104.205903986,
+                "LATITUD": 18.984128099399999,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.205903985839129, 18.98412809935369, 5.94539999999688]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "196",
+                "OBJECTID": "11407",
+                "FID_": "191",
+                "LONGITUD": -104.20321954400001,
+                "LATITUD": 18.983285853800002,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.203219544439591, 18.98328585376408, 5.405400000003283]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID_1": "197",
+                "OBJECTID": "11408",
+                "FID_": "192",
+                "LONGITUD": -104.31386955799999,
+                "LATITUD": 19.04281848,
+                "COLOR_1": "76,230,0",
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "6",
+                "LAYER": "CANALETA",
+                "NAME": "CANALETA",
+                "ICONO": "CA.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.31386955811908, 19.042818479969366, 3.004199999995762]
+            }
+        }
+    ]
+}

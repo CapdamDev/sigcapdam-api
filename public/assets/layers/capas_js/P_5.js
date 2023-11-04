@@ -1,8 +1,0 @@
-var json_P_5 = {
-"type": "FeatureCollection",
-"name": "P_5",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "Entity": null, "Handle": null, "ZONIF": "P", "COLOR_1": "17,206,96", "LAYER": "ZONIFICACION PDU 2015", "COMENTARIO": "PISCICOLA", "COLOR_2": "110,110,110", "TRANS_1": "0.75", "TRNAS_2": "1", "_NAME": "P PISCICOLA" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -104.328353600529113, 19.031929682096361, 0.0 ], [ -104.330786045603489, 19.032072982526664, 0.0 ], [ -104.331218185389361, 19.031306571664231, 0.0 ], [ -104.331188019349796, 19.032448389430993, 0.0 ], [ -104.32833599615148, 19.032295623164629, 0.0 ], [ -104.328353600529113, 19.031929682096361, 0.0 ] ] ] } }
-]
-}
