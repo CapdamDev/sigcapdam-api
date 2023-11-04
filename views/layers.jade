@@ -66,7 +66,10 @@ html
                     target: 'map',
                     layers: [
                         new ol.layer.Tile({
-                            source: new ol.source.OSM()
+                            source: new ol.source.BingMaps({
+                                key: 'AvtjE4pF2PZ9I2exWseQRop20mJA7RnIXEIy2IPqc4v9vIS-kw_Q0MNHLQZt4vq6',
+                                imagerySet: 'AerialWithLabels'
+                            })
                         }),
                         new ol.layer.Vector({
                             source: new ol.source.Vector({
@@ -77,7 +80,7 @@ html
                     ],
                     view: new ol.View({
                         center: ol.proj.fromLonLat(centerCoordinates),
-                        zoom: 12
+                        zoom: 16
                     })
                 });
             });
