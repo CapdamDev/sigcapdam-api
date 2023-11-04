@@ -1,0 +1,491 @@
+{
+    "type": "FeatureCollection",
+    "name": "PREDIOS_CON_VARIOS_PPU_13",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [{
+            "type": "Feature",
+            "properties": {
+                "ID_": "072490100018000",
+                "NO_": 0.0,
+                "NOMBRE_DEL": "PATIO DE CONTENEDORES ALPA",
+                "TPO_DE_ACT": "NO, NO, PATIO DE TRANSPORTES LOGISTIC CARGO",
+                "PARCELA": "18 Y 19",
+                "EJIDO": "TAPEIXTLES",
+                "CLAVE_CATA": "072490100018000",
+                "PROPIETARI": "CONTENEDORES ALPA, BLADIMIR ANTONIO RIVAS VALDEZ, V",
+                "CUENTA_CON": "SI, NO",
+                "FECHA_DE_P": "12-sep.-09, 26-sep.-18",
+                "MODIFICACI": "NO, SI",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "NO",
+                "FOLIO": "NO",
+                "LICENCIA_D": "NO",
+                "FOLIO1": "NO",
+                "INCORPORAC": "NO",
+                "FECHA_DE_2": "NO",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "SIN SUBSANAR OBSERVACIONES 30 JUL 2015, SIN SUBSANAR OBSERVACIONES 30 JUL 2015, ACTA 670\/ACTIVA",
+                "APROBACION": "13-mar.-09",
+                "F22": 1.0,
+                "_NAME": "PREDIOS CON VARIOS PPU",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "225,98,38",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.285118482655179, 19.094773297161325],
+                            [-104.285631396242238, 19.093850534854742],
+                            [-104.286564345273121, 19.093938538811834],
+                            [-104.286006264677113, 19.09482986697634],
+                            [-104.285791926874964, 19.094892373131039],
+                            [-104.285373261870262, 19.094803379486113],
+                            [-104.285289131654949, 19.094918342209652],
+                            [-104.285167043010617, 19.094837093677747],
+                            [-104.285108355137154, 19.094795394082354],
+                            [-104.285118482655179, 19.094773297161325]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "072490100004000",
+                "NO_": 0.0,
+                "NOMBRE_DEL": null,
+                "TPO_DE_ACT": "NO, PATIO DE TRANSPORTES QUALITY TRANSPORFLEX, PATIO DE TRANSPORTE TRANKASA, PATIO DE TRANSPORTES AUTO FLETEC GOMEZ LEAL, PATIO DE TRANSPORTES AFN, PATIO DE TRANSPORTES MELPAG, PATIO DE TRANSPORTES TLE",
+                "PARCELA": "4",
+                "EJIDO": "TAPEIXTLES",
+                "CLAVE_CATA": "072490100004000",
+                "PROPIETARI": "JULIAN SUAZO VIDRIO",
+                "CUENTA_CON": "SI, NO",
+                "FECHA_DE_P": "20-oct.-18",
+                "MODIFICACI": "NO",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "NO",
+                "FOLIO": "NO",
+                "LICENCIA_D": "NO",
+                "FOLIO1": "NO",
+                "INCORPORAC": "NO",
+                "FECHA_DE_2": "NO",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "NO, ACTA 678\/ACTIVA, ACTA 679\/ACTIVA, ACTA 680\/ACTIVA, ACTA 682\/ACTIVA, ACTA 684\/ACTIVA, ACTA 683\/ACTIVA",
+                "APROBACION": "10-ago.-18",
+                "F22": 1.0,
+                "_NAME": "PREDIOS CON VARIOS PPU",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "225,98,38",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.284741242122166, 19.096901970474466],
+                            [-104.284345345334444, 19.097077071579974],
+                            [-104.284707491697517, 19.098535763913993],
+                            [-104.284336424542829, 19.098550225020038],
+                            [-104.283885067484519, 19.098533381647048],
+                            [-104.283559141050063, 19.098495612746152],
+                            [-104.283089537741915, 19.098401806697815],
+                            [-104.283381164419978, 19.097248243929624],
+                            [-104.283328606854425, 19.096947709980899],
+                            [-104.283398466374322, 19.096888981691453],
+                            [-104.282935460248225, 19.094390936536783],
+                            [-104.283541196630381, 19.094468917839333],
+                            [-104.284466280587026, 19.094727667530709],
+                            [-104.284890101503834, 19.094802137219169],
+                            [-104.284745547391822, 19.096155229036789],
+                            [-104.284741242122166, 19.096901970474466]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "073295017112000",
+                "NO_": 12.0,
+                "NOMBRE_DEL": "PATIO DE CONTAINERS 2° SECCION",
+                "TPO_DE_ACT": "NO, PATIO DE CARGA Y DESCARGA",
+                "PARCELA": "112",
+                "EJIDO": "CAMPOS",
+                "CLAVE_CATA": "073295017112000",
+                "PROPIETARI": "SALVADOR MUÑOZ MAGAÑA, INMOBILIARIA GRAN PUENTE",
+                "CUENTA_CON": "SI, NO",
+                "FECHA_DE_P": "20-feb.-10",
+                "MODIFICACI": "NO",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "NO",
+                "FOLIO": "NO",
+                "LICENCIA_D": "NO",
+                "FOLIO1": "NO",
+                "INCORPORAC": "NO",
+                "FECHA_DE_2": "NO",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "ACTA 598\/20\/ACTIVA, ACTA 598\/ACTIVA",
+                "APROBACION": "3-dic.-09",
+                "F22": 1.0,
+                "_NAME": "PREDIOS CON VARIOS PPU",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "225,98,38",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.250165949083737, 18.999400580384282],
+                            [-104.250083998987577, 18.999559540175383],
+                            [-104.24993133252589, 18.999485464347373],
+                            [-104.24986294326979, 18.999607524616891],
+                            [-104.250121441190117, 18.99973542684679],
+                            [-104.250187801937003, 18.999611461376386],
+                            [-104.250121740530346, 18.999581016127728],
+                            [-104.250209408997691, 18.999422261140005],
+                            [-104.251634587569939, 19.000083627950058],
+                            [-104.251329815953227, 19.000825452830735],
+                            [-104.251169724691053, 19.001237534303936],
+                            [-104.249419165128984, 19.000162836621008],
+                            [-104.249743395762863, 18.99922331313487],
+                            [-104.250165949083737, 18.999400580384282]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "072695015177000",
+                "NO_": 18.0,
+                "NOMBRE_DEL": null,
+                "TPO_DE_ACT": "ESOR INMOBILIARIA SA DE CV - PATIO DE ACOPIO DE MINERAL, PATIO DE TRANSPORTE Y ALMACENAJE EXPRESS MILAC",
+                "PARCELA": "177 Y 190, 177",
+                "EJIDO": "EL COLOMO Y LA ARENA",
+                "CLAVE_CATA": "072695015177000",
+                "PROPIETARI": "ESOR INMOBILIARIA SA DE CV",
+                "CUENTA_CON": "SI, NO",
+                "FECHA_DE_P": "15-may.-10",
+                "MODIFICACI": "24-jul.-10",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "NO",
+                "FOLIO": "NO",
+                "LICENCIA_D": "NO",
+                "FOLIO1": "NO",
+                "INCORPORAC": "NO",
+                "FECHA_DE_2": "SI",
+                "MUNICIPALI": "4\/30\/2011",
+                "FECHA_DE_3": "SI",
+                "ACTA_CIRCU": "NO, ACTA 541\/ACTIVA",
+                "APROBACION": "SI, NO",
+                "F22": 1.0,
+                "_NAME": "PREDIOS CON VARIOS PPU",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "225,98,38",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.235115985240455, 19.032729880583005],
+                            [-104.237357514882319, 19.032673461569708],
+                            [-104.237264426892679, 19.033600719086532],
+                            [-104.237220857343544, 19.033601533253265],
+                            [-104.235148181977763, 19.03363868124805],
+                            [-104.235115985240455, 19.032729880583005]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "072695015083000",
+                "NO_": 0.0,
+                "NOMBRE_DEL": "NO, MODIFICACION AL PDU PARCELA 83",
+                "TPO_DE_ACT": "PATIO DE TRANSPORTES GENESIS",
+                "PARCELA": "83",
+                "EJIDO": "EL COLOMO Y LA ARENA",
+                "CLAVE_CATA": "072695015083000",
+                "PROPIETARI": "RODRIGO MELGOZA CARBAJAL, J. ANGEL MALDONADO",
+                "CUENTA_CON": "NO, SI",
+                "FECHA_DE_P": "NO, 3-jun.-17",
+                "MODIFICACI": "NO, SI",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "NO",
+                "FOLIO": "NO",
+                "LICENCIA_D": "NO",
+                "FOLIO1": "NO",
+                "INCORPORAC": "NO",
+                "FECHA_DE_2": "NO",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "ACTA 511\/ACTIVA, NO",
+                "APROBACION": "NO",
+                "F22": 1.0,
+                "_NAME": "PREDIOS CON VARIOS PPU",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "225,98,38",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.227133562681786, 19.044142003247213],
+                            [-104.227338435001315, 19.043761155336682],
+                            [-104.229132966576913, 19.044429281644533],
+                            [-104.229180653689937, 19.044447033769707],
+                            [-104.228469602337753, 19.045415161959536],
+                            [-104.226980285201691, 19.044803035582898],
+                            [-104.227133562681786, 19.044142003247213]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "072490100008000",
+                "NO_": 36.0,
+                "NOMBRE_DEL": "TRANSPORTES TRANS NEYNO",
+                "TPO_DE_ACT": "NO, PATIO DE TRANSPORTES NEYNO",
+                "PARCELA": "8",
+                "EJIDO": "TAPEIXTLES",
+                "CLAVE_CATA": "072490100008000",
+                "PROPIETARI": "MARIA HORTENCIA GABRIELA HERRERA ORTEGA, FRANCISCO NEVAREZ HERRERA",
+                "CUENTA_CON": "SI, NO",
+                "FECHA_DE_P": "1-dic.-18",
+                "MODIFICACI": "NO",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "SI",
+                "FOLIO": "UR-030\/2019-PEU",
+                "LICENCIA_D": "SI",
+                "FOLIO1": "UR-074\/2019-LUES",
+                "INCORPORAC": "NO",
+                "FECHA_DE_2": "NO",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "SE EMITIO OFICIO DE OBSERVACIONES 0474\/2018, ACTA 664\/ACTIVA",
+                "APROBACION": "14-sep.-18",
+                "F22": 1.0,
+                "_NAME": "PREDIOS CON VARIOS PPU",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "225,98,38",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.280177244531259, 19.095607405385007],
+                            [-104.28043058617034, 19.095546997055429],
+                            [-104.279889303133885, 19.096586843250076],
+                            [-104.279395134814976, 19.096457994804442],
+                            [-104.279598791593457, 19.095746628482178],
+                            [-104.280177244531259, 19.095607405385007]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "072695015903000",
+                "NO_": 31.0,
+                "NOMBRE_DEL": null,
+                "TPO_DE_ACT": "MULTIMANIOBRAS Y LOGISTICA INTERNACIONAL, PATIO DE ALMACENAJE REFEPA",
+                "PARCELA": "903 FRACCION PARCELA 228",
+                "EJIDO": "EL COLOMO Y LA ARENA",
+                "CLAVE_CATA": "072695015903000",
+                "PROPIETARI": "HUMBERTO ALFREDO CHÁVEZ MALDONADO\/ MEGAN JACKELINE ÁLVAREZ MEZA, HUMBERTO ALFREDO CHAVEZ MALDONADO",
+                "CUENTA_CON": "SI, NO",
+                "FECHA_DE_P": "29-may.-18",
+                "MODIFICACI": "26-sep.-18",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "NO",
+                "FOLIO": "SI",
+                "LICENCIA_D": "UR-PEU-004\/2018, UR-027\/2019-PEU",
+                "FOLIO1": "SI",
+                "INCORPORAC": "UR-25\/2019-LU, UR-029\/2019-LU",
+                "FECHA_DE_2": "SI",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "ACTA 174 Y 554\/PENDIENTE, ACTA 549\/ACTIVA",
+                "APROBACION": "SI",
+                "F22": 1.0,
+                "_NAME": "PREDIOS CON VARIOS PPU",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "225,98,38",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.230214639894427, 19.023693276668467],
+                            [-104.23025929794683, 19.021833037091074],
+                            [-104.23254735025543, 19.021774284200326],
+                            [-104.232443311857267, 19.023717319487215],
+                            [-104.230214639894427, 19.023693276668467]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "072490100008000",
+                "NO_": 36.0,
+                "NOMBRE_DEL": "TRANSPORTES TRANS NEYNO",
+                "TPO_DE_ACT": "NO, PATIO DE TRANSPORTES NEYNO",
+                "PARCELA": "8",
+                "EJIDO": "TAPEIXTLES",
+                "CLAVE_CATA": "072490100008000",
+                "PROPIETARI": "MARIA HORTENCIA GABRIELA HERRERA ORTEGA, FRANCISCO NEVAREZ HERRERA",
+                "CUENTA_CON": "SI, NO",
+                "FECHA_DE_P": "1-dic.-18",
+                "MODIFICACI": "NO",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "SI",
+                "FOLIO": "UR-030\/2019-PEU",
+                "LICENCIA_D": "SI",
+                "FOLIO1": "UR-074\/2019-LUES",
+                "INCORPORAC": "NO",
+                "FECHA_DE_2": "NO",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "SE EMITIO OFICIO DE OBSERVACIONES 0474\/2018, ACTA 664\/ACTIVA",
+                "APROBACION": "14-sep.-18",
+                "F22": 1.0,
+                "_NAME": "PREDIOS CON VARIOS PPU",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "225,98,38",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.28043058617034, 19.095546997055429],
+                            [-104.280177244531259, 19.095607405385007],
+                            [-104.280430923615484, 19.09554634879267],
+                            [-104.28043058617034, 19.095546997055429]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "ID_": "070118556015000",
+                "NO_": 6.0,
+                "NOMBRE_DEL": "PATIO DE CONTENEDORES AMOSA",
+                "TPO_DE_ACT": "NO, PATIO DE RESGUARDO AMOSA",
+                "PARCELA": "56",
+                "EJIDO": "TAPEIXTLES",
+                "CLAVE_CATA": "070118556015000",
+                "PROPIETARI": "AMOSA, ALVARO ALEJANDRO PEÑA NAVARRO",
+                "CUENTA_CON": "SI, NO",
+                "FECHA_DE_P": "16-jul.-05",
+                "MODIFICACI": "NO",
+                "FECHA_DE_1": "NO",
+                "PROYECTO_E": "NO",
+                "FOLIO": "NO",
+                "LICENCIA_D": "NO",
+                "FOLIO1": "NO",
+                "INCORPORAC": "NO",
+                "FECHA_DE_2": "NO",
+                "MUNICIPALI": "NO",
+                "FECHA_DE_3": "NO",
+                "ACTA_CIRCU": "NO, ACTA 688\/ACTIVA",
+                "APROBACION": "2-jul.-05",
+                "F22": 1.0,
+                "_NAME": "PREDIOS CON VARIOS PPU",
+                "LAYER": "ZONA INDUSTRIAL",
+                "COMENTARIO": null,
+                "COLOR_1": "225,98,38",
+                "COLOR_2": "0,0,0",
+                "TRANS_1": "0.6",
+                "TRANS_2": "1"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-104.283261373522947, 19.09686983565469],
+                            [-104.283091568467881, 19.096838274557605],
+                            [-104.282915708300536, 19.096811297716705],
+                            [-104.282738917614793, 19.096781877991617],
+                            [-104.282556187139946, 19.096748368300986],
+                            [-104.282242064946431, 19.096700794589488],
+                            [-104.28199860774167, 19.096680510187422],
+                            [-104.281367272269733, 19.096629529419172],
+                            [-104.281476339597248, 19.096222287257376],
+                            [-104.281677827072443, 19.095378372802703],
+                            [-104.281792632270026, 19.094876192506657],
+                            [-104.281860001151642, 19.094613530838114],
+                            [-104.282662917591551, 19.094427010504482],
+                            [-104.282826333797729, 19.094430808791095],
+                            [-104.283307987706323, 19.096821046249694],
+                            [-104.283261373522947, 19.09686983565469]
+                        ]
+                    ]
+                ]
+            }
+        }
+    ]
+}
