@@ -16,8 +16,15 @@ html
                     label(for='layerSelector')
                         | Select Layer:  
                     select#layerSelector.w-full.mt-2.p-2.bg-gray-700.rounded
-                        option(value='') Selecciona una capa
                         // The options will be populated dynamically using JavaScript
+                div(class="mb-4")
+                    form
+                        select#type.w-full.mt-2.p-2.bg-gray-700.rounded
+                            option(value='') Mover puntos
+                            option(value='Point') Punto
+                            option(value='LineString') Linea
+                            option(value='Polygon') Area
+                            option(value='Circle') Area circular
                 div(class="mb-4")
                     div#mouse-position.custom-mouse-position
                 div(class="mb-4")
@@ -49,10 +56,13 @@ html
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js")
 
         script.
-            var geoJSONDataUrl = 'assets/layers/capas_js/0.json';
+            var geoJSONDataUrl;
             var centerCoordinates = [-104.301939092764954, 19.066318856363417];
             var isEditingEnabled = false;
             var select, modify, map;
+            // Variables para agregar geometrías
+            var typeSelect = document.getElementById('type');
+            var draw, snap; // global so we can remove it later
 
             fetch('/api/v1/layers/all')
                 .then((response) => response.json())
@@ -141,7 +151,7 @@ html
 
                 // Actualiza la capa vectorial del mapa
                 map.getLayers().item(1).setSource(vectorSource);
-                map.getLayers().item(1).setStyle(vectorStyle);
+                //- map.getLayers().item(1).setStyle(vectorStyle);
             }
 
             function addSelectAndModifyInteractions() {
@@ -158,6 +168,50 @@ html
                     features: select.getFeatures() // Solo las características seleccionadas serán modificables
                 });
 
+                map.on('singleclick', function(event) {
+                    if (!isEditingEnabled) {
+                        map.forEachFeatureAtPixel(event.pixel, function(feature) {
+                            var geom = feature.getGeometry();
+                            if (geom instanceof ol.geom.Point) {
+                                var properties = feature.getProperties();
+                                // Implementa aquí tu lógica para mostrar el pop-up
+                                alert('Propiedades: ' + JSON.stringify(properties));
+                                console.log(properties);
+                            }
+                            if(geom instanceof ol.geom.LineString) {
+                                var properties = feature.getProperties();
+                                // Implementa aquí tu lógica para mostrar el pop-up
+                                alert('Propiedades: ' + JSON.stringify(properties));
+                                console.log(properties);
+                            }
+                            if(geom instanceof ol.geom.Polygon) {
+                                var properties = feature.getProperties();
+                                // Implementa aquí tu lógica para mostrar el pop-up
+                                alert('Propiedades: ' + JSON.stringify(properties));
+                                console.log(properties);
+                            }
+                            if(geom instanceof ol.geom.MultiPoint) {
+                                var properties = feature.getProperties();
+                                // Implementa aquí tu lógica para mostrar el pop-up
+                                alert('Propiedades: ' + JSON.stringify(properties));
+                                console.log(properties);
+                            }
+                            if(geom instanceof ol.geom.MultiLineString) {
+                                var properties = feature.getProperties();
+                                // Implementa aquí tu lógica para mostrar el pop-up
+                                alert('Propiedades: ' + JSON.stringify(properties));
+                                console.log(properties);
+                            }
+                            if(geom instanceof ol.geom.MultiPolygon) {
+                                var properties = feature.getProperties();
+                                // Implementa aquí tu lógica para mostrar el pop-up
+                                alert('Propiedades: ' + JSON.stringify(properties));
+                                console.log(properties);
+                            }
+                        });
+                    }
+                });
+
                 // Funcionalidad del botón para editar geometrías
                 $('.editButton').click(function () {
                     if (isEditingEnabled) {
@@ -165,7 +219,8 @@ html
                         isEditingEnabled = false;
                         select.setActive(false);
                         modify.setActive(false);
-                        
+                        map.removeInteraction(select);
+                        map.removeInteraction(modify);
                         $(this).removeClass('bg-red-500');
                         $(this).addClass('bg-blue-500');
                         $(this).text('Editar');
@@ -174,16 +229,31 @@ html
                         isEditingEnabled = true;
                         select.setActive(true);
                         modify.setActive(true);
+                        map.addInteraction(select);
+                        map.addInteraction(modify);
                         $(this).removeClass('bg-blue-500');
                         $(this).addClass('bg-red-500');
                         $(this).text('Terminar edición');
                     }
+
+                    function addInteractions() {
+                        draw = new ol.interaction.Draw({
+                            source: vectorLayer.getSource(),
+                            type: typeSelect.value
+                        });
+                        map.addInteraction(draw);
+                        snap = new ol.interaction.Snap({source: vectorLayer.getSource()});
+                        map.addInteraction(snap);
+                    }
+
+                    typeSelect.onchange = function () {
+                        map.removeInteraction(draw);
+                        map.removeInteraction(snap);
+                        addInteractions();
+                    };
+                    
                 });
                 
-                // Agrega las interacciones al mapa
-                map.addInteraction(select);
-                map.addInteraction(modify);
-
                 //- // Manejo del evento para cuando se termina de modificar una geometría
                 //- modify.on('modifyend', function(event) {
                 //-     // Obtiene el nombre de la capa y lo envia al endpoint para actualizar la geometría
