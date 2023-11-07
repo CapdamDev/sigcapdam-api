@@ -122,12 +122,12 @@ html
                     url: geoJSONDataUrl
                 });
 
-                var vectorStyle = new ol.style.Style({
-                    stroke: new ol.style.Stroke({
-                        color: '#ffcc33',
-                        width: 6
-                    }),
-                });
+                //- var vectorStyle = new ol.style.Style({
+                //-     stroke: new ol.style.Stroke({
+                //-         color: '#ffcc33',
+                //-         width: 6
+                //-     }),
+                //- });
 
                 // Ver la información de la capa seleccionada
                 fetch('/' + geoJSONDataUrl)
@@ -158,22 +158,44 @@ html
                     features: select.getFeatures() // Solo las características seleccionadas serán modificables
                 });
 
+                // Funcionalidad del botón para editar geometrías
+                $('.editButton').click(function () {
+                    if (isEditingEnabled) {
+                        // Deshabilita la edición
+                        isEditingEnabled = false;
+                        select.setActive(false);
+                        modify.setActive(false);
+                        
+                        $(this).removeClass('bg-red-500');
+                        $(this).addClass('bg-blue-500');
+                        $(this).text('Editar');
+                    } else {
+                        // Habilita la edición
+                        isEditingEnabled = true;
+                        select.setActive(true);
+                        modify.setActive(true);
+                        $(this).removeClass('bg-blue-500');
+                        $(this).addClass('bg-red-500');
+                        $(this).text('Terminar edición');
+                    }
+                });
+                
                 // Agrega las interacciones al mapa
                 map.addInteraction(select);
                 map.addInteraction(modify);
 
-                // Manejo del evento para cuando se termina de modificar una geometría
-                modify.on('modifyend', function(event) {
-                    // Obtiene el nombre de la capa y lo envia al endpoint para actualizar la geometría
-                    var layerName = event.features.getArray()[0].getGeometryName();
-                    var geoJSON = new ol.format.GeoJSON();
-                    var geometry = geoJSON.writeGeometry(event.features.getArray()[0].getGeometry());
-                    var data = {
-                        'layerName': layerName,
-                        'geometry': geometry
-                    };
+                //- // Manejo del evento para cuando se termina de modificar una geometría
+                //- modify.on('modifyend', function(event) {
+                //-     // Obtiene el nombre de la capa y lo envia al endpoint para actualizar la geometría
+                //-     var layerName = event.features.getArray()[0].getGeometryName();
+                //-     var geoJSON = new ol.format.GeoJSON();
+                //-     var geometry = geoJSON.writeGeometry(event.features.getArray()[0].getGeometry());
+                //-     var data = {
+                //-         'layerName': layerName,
+                //-         'geometry': geometry
+                //-     };
 
-                });
+                //- });
             }
             
             $('#jstree').jstree({
