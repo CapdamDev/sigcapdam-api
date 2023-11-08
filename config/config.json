@@ -8,15 +8,15 @@
   },
   "test": {
     "username": "root",
-    "password": "root",
-    "database": "node_app_test",
+    "password": "",
+    "database": "sigcapdam-api",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": "root",
-    "database": "node_app_production",
+    "password": "",
+    "database": "sigcapdam-api",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
