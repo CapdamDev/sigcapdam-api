@@ -30,6 +30,8 @@ html
                 div(class="mb-4")
                     button.editButton(class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded")
                         | Editar
+                    button.saveButton(class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2")
+                        | Guardar cambios
                 div(class="mb-4")
                     div#jstree.p-4.bg-gray-800.text-white
                         ul
@@ -251,8 +253,30 @@ html
                         map.removeInteraction(snap);
                         addInteractions();
                     };
-                    
                 });
+
+                $('.saveButton').click(function () {
+                    // Obtiene el nombre de la capa y lo envia al endpoint para actualizar la geometría
+                    var layerName = $('#layerSelector').val();
+                    var geoJSON = new ol.format.GeoJSON();
+                    var features = vectorLayer.getSource().getFeatures();
+                    var data = {
+                        'layerName': layerName,
+                        'features': geoJSON.writeFeatures(features)
+                    };
+
+                    $.ajax({
+                        url: '/api/v1/layers/update',
+                        type: 'POST',
+                        data: JSON.stringify(data),
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        async: false,
+                        success: function (msg) {
+                            alert('Geometría actualizada');
+                        }
+                    });
+                }
                 
                 //- // Manejo del evento para cuando se termina de modificar una geometría
                 //- modify.on('modifyend', function(event) {

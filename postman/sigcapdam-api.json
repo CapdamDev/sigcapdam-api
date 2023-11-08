@@ -1,7 +1,8 @@
 {
 	"info": {
 		"_postman_id": "f714126a-9b66-4a03-b6eb-cf475e99320d",
-		"name": "sigcapdam-api-test",
+		"name": "sigcapdam-api",
+		"description": "Con este archivo se pueden hacer las solicitudes necesarias a las rutas de la API realizadas en el proyecto, solo es necesario dar una revisada a la documentación y hacer las peticiones necesarias.\n\nEn el apartado de variables es necesario ajustar el link de la api al enlace donde se esté ejecutando el proyecto, ya sea en localhost:3000 o la dirección necesaria.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "30573949"
 	},
@@ -18,7 +19,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwibm9tYnJlIjoiRW5yaXF1ZSBkZSBKZXN1cyIsImFwZV9wYXQiOiJPY2hvYSIsImFwZV9tYXQiOiJQcmVjaWFkbyIsImVtYWlsIjoiZW9jaG9hMTFAdWNvbC5teCIsInBhc3N3b3JkIjoiJDJhJDEwJGJ3NXp2TnZJd1FUVVRadVBSNUFpMmVNTEpOUjJETjRFQ1lMazFCQkVaWGxHVkZCUVJOc3VhIiwiaXNBY3RpdmUiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjMtMTAtMjVUMTk6Mzk6MDcuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjMtMTAtMjVUMTk6Mzk6MDcuMDAwWiIsImlhdCI6MTY5ODI2Mjc2MywiZXhwIjoxNzAwODU0NzYzfQ.V05IRdzhAqGgNHtFh-Him6KWc4IK4ecUe1tjdx9MUGs",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
@@ -73,12 +74,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}users/3",
+					"raw": "{{host}}users/1",
 					"host": [
 						"{{host}}users"
 					],
 					"path": [
-						"3"
+						"1"
 					]
 				}
 			},
@@ -127,7 +128,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"role_name\": \"staff\",\n    \"role_description\": \"Staff\"\n}"
+					"raw": "{\n    \"role_name\": \"admin\",\n    \"role_description\": \"System Admin\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}roles",
@@ -410,7 +411,7 @@
 			"response": []
 		},
 		{
-			"name": "Signup",
+			"name": "Register",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -422,10 +423,90 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nombre\": \"Enrique de Jesus\",\n    \"ape_pat\": \"Ochoa\",\n    \"ape_mat\": \"Preciado\",\n    \"email\": \"eochoa11@ucol.mx\",\n    \"password\": \"123tamarindo\",\n    \"isActive\": \"1\"\n}"
+					"raw": "{\n    \"nombre\": \"John\",\n    \"ape_pat\": \"Doe\",\n    \"ape_mat\": \"Doe\",\n    \"email\": \"example@example.com\",\n    \"password\": \"mypassword\",\n    \"isActive\": \"1\"\n}"
 				},
 				"url": {
-					"raw": "localhost:3000/api/v1/auth/signup",
+					"raw": "{{host}}auth/register",
+					"host": [
+						"{{host}}auth"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"example@example.com\",\n    \"password\": \"mypassword\"\n}"
+				},
+				"url": {
+					"raw": "{{api}}auth/login",
+					"host": [
+						"{{api}}auth"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test API de catastro",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNhcGRhbSIsImlhdCI6MTY5MjY1Mzc5NX0.KFcP_21WEnzvdAWF_8augN-a6-j3LYlKZiGpzGmVtdM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.manzanillo.gob.mx:3001/api/predio/private/072004022003000",
+					"protocol": "http",
+					"host": [
+						"api",
+						"manzanillo",
+						"gob",
+						"mx"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"predio",
+						"private",
+						"072004022003000"
+					]
+				},
+				"description": "Los números después de \"/private/XXXXXXXX\" es la clave catastral de un predio sin los guiones medios. Si deseas hacer una solicitud con otra clave catastral asegúrate de que no tenga los guiones medios. NOTA: Se necesita un Bearer Token para hacer la solicitud."
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Layers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/layers/all",
 					"host": [
 						"localhost"
 					],
@@ -433,35 +514,8 @@
 					"path": [
 						"api",
 						"v1",
-						"auth",
-						"signup"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Signin",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"eochoa11@ucol.mx\",\n    \"password\": \"123tamarindo\"\n}"
-				},
-				"url": {
-					"raw": "{{api}}auth/signin",
-					"host": [
-						"{{api}}auth"
-					],
-					"path": [
-						"signin"
+						"layers",
+						"all"
 					]
 				}
 			},
@@ -501,7 +555,7 @@
 		},
 		{
 			"key": "token",
-			"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwibm9tYnJlIjoiRW5yaXF1ZSBkZSBKZXN1cyIsImFwZV9wYXQiOiJPY2hvYSIsImFwZV9tYXQiOiJQcmVjaWFkbyIsImVtYWlsIjoiZW9jaG9hMTFAdWNvbC5teCIsInBhc3N3b3JkIjoiJDJhJDEwJGJ3NXp2TnZJd1FUVVRadVBSNUFpMmVNTEpOUjJETjRFQ1lMazFCQkVaWGxHVkZCUVJOc3VhIiwiaXNBY3RpdmUiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjMtMTAtMjVUMTk6Mzk6MDcuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjMtMTAtMjVUMTk6Mzk6MDcuMDAwWiIsImlhdCI6MTY5ODI2Mjc2MywiZXhwIjoxNzAwODU0NzYzfQ.V05IRdzhAqGgNHtFh-Him6KWc4IK4ecUe1tjdx9MUGs",
+			"value": "",
 			"type": "string"
 		}
 	]
