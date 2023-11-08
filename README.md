@@ -79,10 +79,15 @@ Una vez configurada la base de datos, procedemos a hacer las migraciones
 
 + NOTA: Revisar si los nombres de las tablas están en mayúsculas, si es así, tenemos que ir a migrations/ y cambiar el nombre de cada tabla en minúsculas, y si las tablas están en minúsculas proceder al siguiente paso.
 
-### Importar datos a la base de datos
+### Importar datos base de los seeders
 
-La base de datos necesita importar los datos de dos tablas que se encuentran en sql/ llamados node_permissions.sql y node_roles.sql, importa esos dos archivos para poder utilizar la API a continuación.
+La base de datos tiene que poseer estos datos para poder registrar al primer usuario base, por lo que ejecutaremos los seeders en sequelize:
 
+```bash
+  npx sequelize-cli db:seed:all
+```
+
+Esto proporciona el rol base y permisos base del usuario administrador (root, en este caso, que tiene derecho a todo).
 
 ### Ejecuta el proyecto
 
