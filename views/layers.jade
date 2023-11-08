@@ -16,6 +16,7 @@ html
                     label(for='layerSelector')
                         | Select Layer:  
                     select#layerSelector.w-full.mt-2.p-2.bg-gray-700.rounded
+                        option(value='') Selecciona una capa
                         // The options will be populated dynamically using JavaScript
                 div(class="mb-4")
                     form
@@ -254,42 +255,7 @@ html
                         addInteractions();
                     };
                 });
-
-                $('.saveButton').click(function () {
-                    // Obtiene el nombre de la capa y lo envia al endpoint para actualizar la geometría
-                    var layerName = $('#layerSelector').val();
-                    var geoJSON = new ol.format.GeoJSON();
-                    var features = vectorLayer.getSource().getFeatures();
-                    var data = {
-                        'layerName': layerName,
-                        'features': geoJSON.writeFeatures(features)
-                    };
-
-                    $.ajax({
-                        url: '/api/v1/layers/update',
-                        type: 'POST',
-                        data: JSON.stringify(data),
-                        contentType: 'application/json; charset=utf-8',
-                        dataType: 'json',
-                        async: false,
-                        success: function (msg) {
-                            alert('Geometría actualizada');
-                        }
-                    });
-                }
                 
-                //- // Manejo del evento para cuando se termina de modificar una geometría
-                //- modify.on('modifyend', function(event) {
-                //-     // Obtiene el nombre de la capa y lo envia al endpoint para actualizar la geometría
-                //-     var layerName = event.features.getArray()[0].getGeometryName();
-                //-     var geoJSON = new ol.format.GeoJSON();
-                //-     var geometry = geoJSON.writeGeometry(event.features.getArray()[0].getGeometry());
-                //-     var data = {
-                //-         'layerName': layerName,
-                //-         'geometry': geometry
-                //-     };
-
-                //- });
             }
             
             $('#jstree').jstree({
@@ -303,3 +269,16 @@ html
                 },
                 "plugins": ["checkbox"]
             });
+
+            //- // Manejo del evento para cuando se termina de modificar una geometría
+            //- modify.on('modifyend', function(event) {
+            //-     // Obtiene el nombre de la capa y lo envia al endpoint para actualizar la geometría
+            //-     var layerName = event.features.getArray()[0].getGeometryName();
+            //-     var geoJSON = new ol.format.GeoJSON();
+            //-     var geometry = geoJSON.writeGeometry(event.features.getArray()[0].getGeometry());
+            //-     var data = {
+            //-         'layerName': layerName,
+            //-         'geometry': geometry
+            //-     };
+
+            //- });
