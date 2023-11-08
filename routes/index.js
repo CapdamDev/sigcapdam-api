@@ -26,4 +26,9 @@ router.get('/layers', function(req, res, next) {
   res.render('layers');
 });
 
+router.get('/layers2', function(req, res, next) {
+  res.render('layers2');
+});
+
+
 module.exports = router;
