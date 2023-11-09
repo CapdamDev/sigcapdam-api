@@ -3,157 +3,193 @@ html
     head
         title OpenLayers Map
         link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/ol@v8.1.0/ol.css')
-        link(href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet")
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css")
         include ./includes/head.jade
 
     body(class='font-sans bg-gray-100')
-        div(class="flex h-screen")
-            div(class="bg-gray-800 text-white w-1/5 p-4")
-                h1(class="text-2xl font-semibold mb-4")
-                    | SIGCAPDAM
-                div(class="mb-4")
-                    div#mouse-position.custom-mouse-position
-                div(class="mb-4")
-                    div#jstree.p-4.bg-gray-800.text-white
-                        // JSTree will be dynamically populated here, so no static `ul` or `li` needed
-
-                div(class="mb-4")
-                    button.editButton(class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded")
-                        | Editar
-                    button.saveButton(class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2")
-                        | Guardar cambios
-
-            div(class='w-4/5 ml-1/5')
+        div(class='flex')
+            div(class='w-full ml-1/5 sm:w-full xs:w-full')
                 #map.w-full.h-screen.bg-white.rounded-lg.shadow-md
-                    #mouse-position.custom-mouse-position
+        span.absolute.text-white.text-4xl.top-5.left-4.cursor-pointer(onclick='Openbar()')
+            i.bi.bi-filter-left.px-2.bg-gray-900.rounded-md
+        .sidebar.fixed.top-0.bottom-0.duration-1000.p-2.overflow-y-auto.text-center.bg-gray-900.shadow.h-screen(class='lg:left-0 left-[-300px] w-[300px]')
+            .text-gray-100.text-xl
+                .mt-1.flex.items-center.rounded-md(class='p-2.5')
+                    i.bi.bi-droplet-fill.px-2.py-1.bg-blue-600.rounded-md
+                    h1.ml-3.text-xl.text-gray-200.font-bold(class='text-[15px]') SIGCAPDAM
+                    i.bi.bi-x.ml-20.cursor-pointer(class='lg:hidden' onclick='Openbar()')
+                hr.my-2.text-gray-600
+                div
+                    .mt-3.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer.bg-gray-700(class='p-2.5')
+                        i.bi.bi-search.text-sm
+                        input.ml-4.w-full.bg-transparent(class='text-[15px] focus:outline-none' placeholder='Serach')
+                    .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
+                        i.bi.bi-house-door-fill
+                        span.ml-4.text-gray-200(class='text-[15px]') Home
+                    .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
+                        i.bi.bi-geo-alt-fill
+                        span.ml-4.text-gray-200(class='text-[15px]') Layers
+                    #jstree.leading-7.text-left.text-sm.font-thin.mt-2.mx-auto(class='w-4/5')
+                    .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
+                        i.bi.bi-crosshair2
+                        span.ml-4.text-gray-200(class='text-[15px]') Coordinates
+                        #mouse-position.text-gray-200.pl-2(class='text-[15px]')
+                    hr.my-4.text-gray-600
+                    .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
+                        i.bi.bi-envelope-fill
+                        span.ml-4.text-gray-200(class='text-[15px]') Messages
+                    .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
+                        i.bi.bi-chat-left-text-fill
+                        .flex.justify-between.w-full.items-center(onclick='dropDown()')
+                            span.ml-4.text-gray-200(class='text-[15px]') Chatbox
+                            span#arrow.text-sm.rotate-180
+                                i.bi.bi-chevron-down
+                    #submenu.leading-7.text-left.text-sm.font-thin.mt-2.mx-auto(class='w-4/5')
+                        h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Social
+                        h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Personal
+                        h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Friends
+                    .mt-3.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
+                        i.bi.bi-box-arrow-in-right
+                        span.ml-4.text-gray-200(class='text-[15px]') Logout
+                script(src='https://cdn.jsdelivr.net/npm/ol@v8.1.0/dist/ol.js')
+                include ./includes/footer.jade
+                script(src="https://code.jquery.com/jquery-3.6.0.min.js")
+                script(src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js")
 
+                script.
+                    function dropDown() {
+                        document.querySelector('#submenu').classList.toggle('hidden');
+                        document.querySelector('#arrow').classList.toggle('rotate-0');
+                    }
+                    dropDown()
 
-        script(src='https://cdn.jsdelivr.net/npm/ol@v8.1.0/dist/ol.js')
-        include ./includes/footer.jade
-        script(src="https://code.jquery.com/jquery-3.6.0.min.js")
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js")
+                    function Openbar() {
+                        document.querySelector('.sidebar').classList.toggle('left-[-300px]');
+                    }
 
-        script.
-            var centerCoordinates = [-104.301939092764954, 19.066318856363417];
+                    var centerCoordinates = [-104.301939092764954, 19.066318856363417];
 
-
-            document.addEventListener('DOMContentLoaded', function () {
-                // Inicializar el mapa
-                var map = new ol.Map({
-                    target: 'map',
-                    layers: [
-                        new ol.layer.Tile({
-                            source: new ol.source.OSM()
-                        })
-                    ],
-                    view: new ol.View({
-                        center: ol.proj.fromLonLat(centerCoordinates),
-                        zoom: 14
-                    })
-                });
-
-                // Ver las coordenadas del mouse en el mapa
-                var mousePositionControl = new ol.control.MousePosition({
-                    coordinateFormat: ol.coordinate.createStringXY(4),
-                    projection: 'EPSG:4326',
-                    className: 'custom-mouse-position',
-                    target: document.getElementById('mouse-position'),
-                    undefinedHTML: '&nbsp;'
-                });
-
-                map.addControl(mousePositionControl);
-
-                // Obtener todos los layers
-                fetch('/api/v1/layers/all')
-                    .then((response) => response.json())
-                    .then((layers) => {
-                        let categories = {};
-                        
-                        // Process the layers
-                        layers.forEach(function (layer) {
-                            // Ensure the URL is correct
-                            var geoJsonUrl = 'assets/layers/capas_js/' + layer.name;
-                            var layerSource = new ol.source.Vector({
-                                url: geoJsonUrl,
-                                format: new ol.format.GeoJSON()
-                            });
-
-                            var vectorLayer = new ol.layer.Vector({
-                                source: layerSource,
-                                visible: false // Start with the layer not visible
-                            });
-
-                            if(layer.name) {
-                                vectorLayer.set('name', layer.name);
-                            } else {
-                                vectorLayer.set('name', 'No name');
-                            }
-
-                            map.addLayer(vectorLayer);
-
-                            if(!categories[layer.category]) {
-                                categories[layer.category] = [];
-                            }
-
-                            // Add the layer to the category
-                            categories[layer.category].push({
-                                id: layer.name,
-                                text: layer.name,
-                                state: {
-                                    opened: true,
-                                    selected: false
-                                }
-                            });
+                    document.addEventListener('DOMContentLoaded', function () {
+                        // Inicializar el mapa
+                        var map = new ol.Map({
+                            target: 'map',
+                            layers: [
+                                new ol.layer.Tile({
+                                    source: new ol.source.OSM()
+                                })
+                            ],
+                            view: new ol.View({
+                                center: ol.proj.fromLonLat(centerCoordinates),
+                                zoom: 14
+                            })
                         });
 
-                        // Initialize JSTree
-                        let jstreeData = Object.keys(categories).map(category => {
-                            return {
-                                text: category,
-                                state: {
-                                    opened: true // Open categories by default
-                                },
-                                children: categories[category]
-                            };
+                        // Ver las coordenadas del mouse en el mapa
+                        var mousePositionControl = new ol.control.MousePosition({
+                            coordinateFormat: ol.coordinate.createStringXY(4),
+                            projection: 'EPSG:4326',
+                            className: 'custom-mouse-position',
+                            target: document.getElementById('mouse-position'),
+                            undefinedHTML: '&nbsp;'
                         });
 
-                        $('#jstree').jstree({
-                            'core': {
-                                'data': jstreeData
-                            },
-                            "checkbox": {
-                                "keep_selected_style": false
-                            },
-                            "plugins": ["checkbox"]
-                        }).on('ready.jstree', function () {
-                            // Expand all nodes once the tree is loaded
-                            $('#jstree').jstree('open_all');
-                        }).on('changed.jstree', function (e, data) {
-                            // Get all selected nodes
-                            var selectedNodes = $('#jstree').jstree(true).get_selected();
+                        map.addControl(mousePositionControl);
 
-                            // Get all layers
-                            var layers = map.getLayers().getArray();
-                            var layersToProcess = layers.slice(1);
+                        // Obtener todos los layers
+                        fetch('/api/v1/layers/all')
+                            .then((response) => response.json())
+                            .then((layers) => {
+                                let categories = {};
 
-                            // Loop through all layers
-                            layersToProcess.forEach(function (layer) {
-                                // Get the layer name
-                                var layerName = layer.get('name');
+                                // Process the layers
+                                layers.forEach(function (layer) {
+                                    // Ensure the URL is correct
+                                    var geoJsonUrl = 'assets/layers/capas_js/' + layer.name;
+                                    var layerSource = new ol.source.Vector({
+                                        url: geoJsonUrl,
+                                        format: new ol.format.GeoJSON()
+                                    });
 
-                                // Determine if the current layer's name is in the array of selected nodes
-                                var isSelected = selectedNodes.indexOf(layerName) !== -1;
+                                    var vectorLayer = new ol.layer.Vector({
+                                        source: layerSource,
+                                        visible: false // Start with the layer not visible
+                                    });
 
-                                // Set layer visibility based on whether it's selected
-                                layer.setVisible(isSelected);
+                                    if(layer.name) {
+                                        vectorLayer.set('name', layer.name);
+                                    } else {
+                                        vectorLayer.set('name', 'No name');
+                                    }
+
+                                    map.addLayer(vectorLayer);
+
+                                    if(!categories[layer.category]) {
+                                        categories[layer.category] = [];
+                                    }
+
+                                    // Add the layer to the category
+                                    categories[layer.category].push({
+                                        id: layer.name,
+                                        text: layer.name,
+                                        state: {
+                                            opened: true,
+                                            selected: false
+                                        }
+                                    });
+                                });
+
+                                // Initialize JSTree
+                                let jstreeData = Object.keys(categories).map(category => {
+                                    return {
+                                        text: category,
+                                        state: {
+                                            opened: true // Open categories by default
+                                        },
+                                        children: categories[category]
+                                    };
+                                });
+
+                                $("#jstree").jstree({
+                                    "core": {
+                                        "data": jstreeData,
+                                        "themes": {
+                                            "icons": true,
+                                            "variant": "small",
+                                            "stripes": false,
+                                            "dots": false
+                                        },
+                                    },
+                                    "checkbox": {
+                                        "keep_selected_style": false
+                                    },
+                                    "plugins": ["checkbox", "themes"]
+                                }).on('ready.jstree', function () {
+                                    // Expand all nodes once the tree is loaded
+                                    $('#jstree').jstree('close_all');
+                                }).on('changed.jstree', function (e, data) {
+                                    // Get all selected nodes
+                                    var selectedNodes = $('#jstree').jstree(true).get_selected();
+
+                                    // Get all layers
+                                    var layers = map.getLayers().getArray();
+                                    var layersToProcess = layers.slice(1);
+
+                                    // Loop through all layers
+                                    layersToProcess.forEach(function (layer) {
+                                        // Get the layer name
+                                        var layerName = layer.get('name');
+
+                                        // Determine if the current layer's name is in the array of selected nodes
+                                        var isSelected = selectedNodes.indexOf(layerName) !== -1;
+
+                                        // Set layer visibility based on whether it's selected
+                                        layer.setVisible(isSelected);
+                                    });
+
+                                });
+
+                            })
+                            .catch((error) => {
+                                console.error('Error fetching layers:', error);
                             });
-
-                        });
-
-                    })
-                    .catch((error) => {
-                        console.error('Error fetching layers:', error);
                     });
-            });
-
