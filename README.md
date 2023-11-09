@@ -1,14 +1,9 @@
+# SIGCAPDAM
 
 ![Logo](https://sig.capdam.gob.mx/media/SIGCAPDAM%20LOGO.png)
 
-# SIGCAPDAM
-
 ![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-green?style=for-the-badge)
-![License](https://img.shields.io/badge/License-Apache-blue?style=for-the-badge)
-
-
-
-### Lenguajes
+![License](<https://img.shields.io/badge/License-Apache-blue?style=for-the-bad>
 
 ![HTML](https://img.shields.io/badge/HTML-gray?style=flat-square&logo=html5)
 ![CSS](https://img.shields.io/badge/CSS-gray?style=flat-square&logo=css3)
@@ -22,10 +17,7 @@
 ![MySQL](https://img.shields.io/badge/MySQL-gray?style=flat-square&logo=mysql)
 ![postman](https://img.shields.io/badge/postman-gray?style=flat&logo=postman)
 
-
 Sistema de Información Geográfica CAPDAM, en desarrollo. Departamento de Sistemas e Informática.
-
-
 
 ## Installation
 
@@ -35,13 +27,14 @@ Entra a la carpeta donde desees importar el proyecto, abre una terminal y ejecut
 
 ```bash
     git clone https://github.com/CapdamDev/sigcapdam-api
-    cd sigcapdam
+    cd sigcapdam-api
     npm i
 ```
 
 ### Configuración de la conexión a la Base de Datos
 
 Y ahora tendremos un archivo llamado config.json en config/config.json, donde cambiaremos nuestra conexión a la base de datos (NOTA: Crear la base de datos antes de conectarla, ya que procederemos a hacer las migraciones):
+
 ```code
 {
   "development": {
@@ -67,6 +60,7 @@ Y ahora tendremos un archivo llamado config.json en config/config.json, donde ca
   }
 }
 ```
+
 Deberás cambiar lo que se encuentra dentro de las comillas por la información de tu Base de Datos.
 
 ### Migraciones y base de datos
@@ -97,7 +91,8 @@ Ejecuta el proyecto en modo producción:
     npm start
 ```
 
-Si vas a entrar a desarrollo, ejecutalo de esta forma:
+Si vas a entrar a desarrollo, ejecútalo de esta forma:
+
 ```bash
     nodemon
 ```
@@ -105,9 +100,9 @@ Si vas a entrar a desarrollo, ejecutalo de esta forma:
 ### Uso de la API en POSTMAN
 
 Utilizando POSTMAN, importar la colección de la carpeta postman/sigcapdam-api.json y seguir los pasos para hacer el registro de un usuario.
+
 ## Licencia
 
 [Apache 2.0](https://choosealicense.com/licenses/apache-2.0/)
-
 
 ![Logo](https://pagos.capdam.gob.mx/assets/img/logo.png)
