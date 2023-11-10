@@ -188,62 +188,59 @@ router.delete('/:id', passport.authenticate('jwt', {
     });
 });
 
-// Add Permissions to Role
 router.post('/permissions/:id', passport.authenticate('jwt', {
     session: false
-}), function (req, res) {
-    helper.checkPermission(req.user.role_id, 'role_add').then((rolePerm) => {
+}), async function (req, res) {
+    try {
+        const rolePerm = await helper.checkPermission(req.user.role_id, 'role_add');
+        
         if (!req.body.permissions) {
-            res.status(400).send({
+            return res.status(400).send({
                 msg: 'Please pass permissions.'
-            })
-        } else {
-            Role
-                .findByPk(req.params.id)
-                .then((role) => {
-                    RolePermission.destroy({
-                        where: {
-                            role_id: role.id
-                        }
-                    }).then(_ => {
-                        JSON.parse(req.body.permissions).forEach(function (item, index) {
-                            Permission
-                                .findByPk(item)
-                                .then(async (perm) => {
-                                    await role.addPermissions(perm, {
-                                        through: {
-                                            selfGranted: false
-                                        }
-                                    });
-                                })
-                                .catch((error) => {
-                                    res.status(400).send({
-                                        success: false,
-                                        msg: error
-                                    });
-                                });
-                        });
-                        res.status(200).send({
-                            'message': 'Permissions added'
-                        });
-                    }).catch(err => res.status(400).send({
-                        success: false,
-                        msg: err
-                    }));
-                })
-                .catch((error) => {
-                    res.status(400).send({
-                        success: false,
-                        msg: error
-                    });
-                });
+            });
         }
-    }).catch((error) => {
-        res.status(403).send({
-            success: false,
-            msg: error
+
+        const role = await Role.findByPk(req.params.id);
+
+        if (!role) {
+            return res.status(404).send({
+                msg: 'Role not found.'
+            });
+        }
+
+        await RolePermission.destroy({
+            where: {
+                role_id: role.id
+            }
         });
-    });
+
+        for (const item of req.body.permissions) {
+            const perm = await Permission.findByPk(item);
+
+            if (perm) {
+                await role.addPermissions(perm, {
+                    through: {
+                        selfGranted: false
+                    }
+                });
+            } else {
+                return res.status(400).send({
+                    success: false,
+                    msg: `Permission with id ${item} not found.`
+                });
+            }
+        }
+
+        return res.status(200).send({
+            message: 'Permissions added'
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({
+            success: false,
+            msg: 'Internal server error.'
+        });
+    }
 });
 
 module.exports = router;
