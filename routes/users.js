@@ -96,22 +96,45 @@ router.put('/:id', passport.authenticate('jwt', {
       User
         .findByPk(req.params.id)
         .then((user) => {
-          User.update({
-            nombre: req.body.nombre || user.nombre,
-            ape_pat: req.body.ape_pat || user.ape_pat,
-            ape_mat: req.body.ape_mat || user.ape_mat,
-            email: req.body.email || user.email,
-            isActive: req.body.isActive || user.isActive,
-            role_id: req.body.role_id || user.role_id
-          }, {
-            where: {
-              id: req.params.id
-            }
-          }).then(_ => {
-            res.status(200).send({
-              'message': 'User updated'
-            });
-          }).catch(err => res.status(400).send(err));
+          // Si no se manda password, se mantiene el que ya tiene
+          if (req.body.password.length == 0 || req.body.password == null || req.body.password == undefined || req.body.password == '') {
+            User.update({
+              role_id: req.body.role_id || user.role_id,
+              nombre: req.body.nombre || user.nombre,
+              ape_pat: req.body.ape_pat || user.ape_pat,
+              ape_mat: req.body.ape_mat || user.ape_mat,
+              email: req.body.email || user.email,
+              isActive: req.body.isActive || user.isActive,
+              role_id: req.body.role_id || user.role_id
+            }, {
+              where: {
+                id: req.params.id
+              }
+            }).then(_ => {
+              res.status(200).send({
+                'message': 'User updated sin contraseña'
+              });
+            }).catch(err => res.status(400).send(err));
+          } else{
+            User.update({
+              role_id: req.body.role_id || user.role_id,
+              nombre: req.body.nombre || user.nombre,
+              ape_pat: req.body.ape_pat || user.ape_pat,
+              ape_mat: req.body.ape_mat || user.ape_mat,
+              email: req.body.email || user.email,
+              password: req.body.password || user.password,
+              isActive: req.body.isActive || user.isActive,
+              role_id: req.body.role_id || user.role_id
+            }, {
+              where: {
+                id: req.params.id
+              }
+            }).then(_ => {
+              res.status(200).send({
+                'message': 'User updated con contraseña'
+              });
+            }).catch(err => res.status(400).send(err));
+          }
         })
         .catch((error) => {
           res.status(400).send(error);
