@@ -13,8 +13,8 @@ INSERT INTO permissions(perm_name, perm_description, createdAt, updatedAt) VALUE
 INSERT INTO permissions(perm_name, perm_description, createdAt, updatedAt) VALUES('permissions_get', 'Get Permission', now(), now());
 INSERT INTO permissions(perm_name, perm_description, createdAt, updatedAt) VALUES('permissions_get_all', 'Get All Permission', now(), now());
 INSERT INTO permissions(perm_name, perm_description, createdAt, updatedAt) VALUES('permissions_delete', 'Delete Permission', now(), now());
-INSERT INTO permissions(perm_name, perm_description, createdAt, updatedAt) VALUES('product_add', 'Add Product', now(), now());
-INSERT INTO permissions(perm_name, perm_description, createdAt, updatedAt) VALUES('product_update', 'Update Product', now(), now());
-INSERT INTO permissions(perm_name, perm_description, createdAt, updatedAt) VALUES('product_get', 'Get Product', now(), now());
-INSERT INTO permissions(perm_name, perm_description, createdAt, updatedAt) VALUES('product_get_all', 'Get All Product', now(), now());
-INSERT INTO permissions(perm_name, perm_description, createdAt, updatedAt) VALUES('product_delete', 'Delete Product', now(), now());
+INSERT INTO permissions(perm_name, perm_description, createdAt, updatedAt) VALUES('layer_add', 'Add Product', now(), now());
+INSERT INTO permissions(perm_name, perm_description, createdAt, updatedAt) VALUES('layer_update', 'Update Product', now(), now());
+INSERT INTO permissions(perm_name, perm_description, createdAt, updatedAt) VALUES('layer_get', 'Get Product', now(), now());
+INSERT INTO permissions(perm_name, perm_description, createdAt, updatedAt) VALUES('layer_get_all', 'Get All Product', now(), now());
+INSERT INTO permissions(perm_name, perm_description, createdAt, updatedAt) VALUES('layer_delete', 'Delete Product', now(), now());

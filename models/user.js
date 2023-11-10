@@ -53,6 +53,11 @@ module.exports = (sequelize, DataTypes) => {
       user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
     }
   });
+  User.beforeBulkUpdate(async (user, options) => {
+    if (user.attributes.password) {
+      user.attributes.password = bcrypt.hashSync(user.attributes.password, bcrypt.genSaltSync(10), null);
+    }
+  });
   User.prototype.comparePassword = function (passw, cb) {
     bcrypt.compare(passw, this.password, function (err, isMatch) {
         if (err) {
