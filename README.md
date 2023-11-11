@@ -3,7 +3,7 @@
 ![Logo](https://sig.capdam.gob.mx/media/SIGCAPDAM%20LOGO.png)
 
 ![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-green?style=for-the-badge)
-![License](<https://img.shields.io/badge/License-Apache-blue?style=for-the-bad>)
+![License](https://img.shields.io/badge/License-Apache-blue?style=for-the-badge)
 
 ![HTML](https://img.shields.io/badge/HTML-gray?style=flat-square&logo=html5)
 ![CSS](https://img.shields.io/badge/CSS-gray?style=flat-square&logo=css3)
