@@ -1,5 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const User = require("../models").User;
+const Role = require("../models").Role;
+const Permission = require("../models").Permission;
 const Layer = require("../models").Layer;
 const passport = require("passport");
 require("../config/passport")(passport);
@@ -34,12 +37,20 @@ router.post('/', passport.authenticate('jwt', {
 });
 
 // Consulta todas las layers
-router.get("/all", function (req, res) {
-	Layer.findAll()
-		.then((layer) => res.status(201).send(layer))
-		.catch((error) => {
-			res.status(400).send(error);
-		});
+
+router.get("/all", passport.authenticate("jwt", { session: false }), function (req, res) {
+    helper.checkPermission(req.user.role_id, "layer_get_all").then((rolePerm) => {
+        Layer.findAll()
+            .then((layers) => {
+                // Send the layers as a JSON response to the client
+                res.status(200).json(layers);
+            })
+            .catch((error) => {
+                res.status(500).json({ error: "Internal Server Error" });
+            });
+    }).catch((error) => {
+        res.status(403).json({ error: "Forbidden" });
+    });
 });
 
 // Consulta una layer por nombre
