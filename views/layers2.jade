@@ -3,7 +3,6 @@ html
     head
         title OpenLayers Map
         link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/ol@v8.1.0/ol.css')
-        link(href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet")
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css")
         include ./includes/head.jade
 
@@ -67,20 +66,26 @@ html
             var typeSelect = document.getElementById('type');
             var draw, snap; // global so we can remove it later
 
-            fetch('/api/v1/layers/all')
-                .then((response) => response.json())
-                .then((layers) => {
-                    // Ver la lista de layers almacenadas en la base de datos
-                    layers.forEach(function (layer) {
-                        var option = document.createElement('option');
-                        option.value = layer.name;
-                        option.text = layer.name;
-                        document.getElementById('layerSelector').appendChild(option);
-                    });
-                })
-                .catch((error) => {
-                    console.error('Error fetching layers:', error);
+            // Original code in your client-side script
+            fetch('/api/v1/layers/all', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem('token'),
+                },
+            })
+            .then((response) => response.json())
+            .then((layers) => {
+                layers.forEach(function (layer) {
+                    var option = document.createElement('option');
+                    option.value = layer.name;
+                    option.text = layer.name;
+                    document.getElementById('layerSelector').appendChild(option);
                 });
+            })
+            .catch((error) => {
+                console.error('Error fetching layers:', error);
+            });
 
             // Crea el mapa base para proyectar el mapa
             document.addEventListener('DOMContentLoaded', function () {

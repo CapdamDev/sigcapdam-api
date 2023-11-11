@@ -18,8 +18,7 @@ router.post('/register', function (req, res) {
             }
         }).then((role) => {
             console.log(role.id);
-            User
-            .create({
+            User.create({
                 nombre: req.body.nombre,
                 ape_pat: req.body.ape_pat,
                 ape_mat: req.body.ape_mat,
@@ -39,8 +38,7 @@ router.post('/register', function (req, res) {
 });
 
 router.post('/login', function (req, res) {
-    User
-        .findOne({
+    User.findOne({
             where: {
                 email: req.body.email
             }
@@ -72,6 +70,12 @@ router.post('/login', function (req, res) {
             })
         })
         .catch((error) => res.status(400).send(error));
+});
+
+// Logout route
+router.post('/logout', (req, res) => {
+    res.clearCookie('token');  // Clear the token cookie
+    res.status(200).json({ success: true, message: 'Logout successful' });
 });
 
 module.exports = router;

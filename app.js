@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var https = require('https');
+var fs = require('fs');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -10,7 +12,9 @@ var rolesRouter = require('./routes/roles');
 var permsRouter = require('./routes/permissions');
 var authRouter = require('./routes/auth');
 var layersRouter = require('./routes/layers');
-// var productRouter = require('./routes/products');
+
+var passport = require('passport');
+require('./config/passport')(passport);
 
 var app = express();
 
@@ -29,8 +33,26 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/roles', rolesRouter);
 app.use('/api/v1/permissions', permsRouter);
+
+// Apply the authentication middleware for protected routes
 app.use('/api/v1/layers', layersRouter);
-// app.use('/api/v1/products', productRouter);
+
+// Serve static files from the 'public' directory over HTTPS
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Load SSL certificates
+const privateKey = fs.readFileSync('./certificates/example.com+5-key.pem', 'utf8');
+const certificate = fs.readFileSync('./certificates/example.com+5.pem', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
+
+// Create an HTTPS server
+const httpsServer = https.createServer(credentials, app);
+
+// Start the server on port 3000
+const PORT = 3001;
+httpsServer.listen(PORT, () => {
+  console.log(`Server running on https://localhost:${PORT}`);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
