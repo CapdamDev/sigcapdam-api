@@ -14,16 +14,15 @@ router.post('/', passport.authenticate('jwt', {
 	session: false
 }), function (req, res) {
 	helper.checkPermission(req.user.role_id, 'layer_add').then((rolePerm) => {
-		if (!req.body.name || !req.body.category || !req.body.content) {
+		if (!req.body.name || !req.body.category) {
 			res.status(400).send({
-				msg: 'Please pass name, category and content.'
+				msg: 'Please pass name or category.'
 			})
 		} else {
 			Layer
 				.create({
 					name: req.body.name,
 					category: req.body.category,
-					content: req.body.content
 				})
 				.then((layer) => res.status(201).send(layer))
 				.catch((error) => {

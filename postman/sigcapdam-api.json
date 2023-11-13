@@ -157,7 +157,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"role_id\": 2,\n    \"email\": \"djam002@yopmail.com\",\n    \"password\": \"qqqq1111\",\n    \"fullname\": \"Djam Yop 2\",\n    \"phone\": \"0900990099\"\n}"
+					"raw": "{\n    \"role_id\": 1,\n    \"email\": \"djam002@yopmail.com\",\n    \"password\": \"qqqq1111\",\n    \"fullname\": \"Djam Yop 2\",\n    \"phone\": \"0900990099\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}users",
@@ -186,16 +186,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"permissions\": [16, 17, 18, 19, 20]\n}"
+					"raw": "{\n    \"permissions\": [1] // Aqui debes de poner como numero los permisos que se le van a dar al rol del usuario\n}"
 				},
 				"url": {
-					"raw": "{{host}}roles/permissions/2",
+					"raw": "{{host}}roles/permissions/(id del rol al que quieres darle permissions)",
 					"host": [
 						"{{host}}roles"
 					],
 					"path": [
 						"permissions",
-						"2"
+						"(id del rol al que quieres darle permissions)"
 					]
 				}
 			},
@@ -251,12 +251,12 @@
 					"raw": "{\n    \"role_name\": \"admin\",\n    \"role_description\": \"Admin Application\"\n}"
 				},
 				"url": {
-					"raw": "{{host}}roles/1",
+					"raw": "{{host}}roles/(id del rol que deseas dar update)",
 					"host": [
 						"{{host}}roles"
 					],
 					"path": [
-						"1"
+						"(id del rol que deseas dar update)"
 					]
 				}
 			},
@@ -280,15 +280,15 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"role_id\": 3,\n    \"email\": \"didin@djamware.com\",\n    \"password\": \"qqqq1111\",\n    \"fullname\": \"The Djamware\",\n    \"phone\": \"0998998998\"\n}"
+					"raw": "{\n    \"role_id\": 1,\n    \"nombre\": \"John\",\n    \"ape_pat\": \"Doe\",\n    \"ape_mat\": \"Doe\",\n    \"email\": \"example@example.com\",\n    \"password\": \"mypassword\",\n    \"isActive\": 1\n}"
 				},
 				"url": {
-					"raw": "{{host}}users/4",
+					"raw": "{{host}}users/(id del user al que le deseas hacer update)",
 					"host": [
 						"{{host}}users"
 					],
 					"path": [
-						"4"
+						"(id del user al que le deseas hacer update)"
 					]
 				}
 			},
@@ -312,15 +312,15 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"perm_name\": \"get_products\",\n    \"perm_description\": \"Get List of Products\"\n}"
+					"raw": "{\n    \"perm_name\": \"layer_get\",\n    \"perm_description\": \"Get only one layer\"\n}"
 				},
 				"url": {
-					"raw": "{{host}}permissions/1",
+					"raw": "{{host}}permissions/(id del permiso que deseas darle update)",
 					"host": [
 						"{{host}}permissions"
 					],
 					"path": [
-						"1"
+						"(id del permiso que deseas darle update)"
 					]
 				}
 			},
@@ -343,12 +343,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}roles/1",
+					"raw": "{{host}}roles/(id del rol que deseas borrar)",
 					"host": [
 						"{{host}}roles"
 					],
 					"path": [
-						"1"
+						"(id del rol que deseas borrar)"
 					]
 				}
 			},
@@ -371,12 +371,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}users/2",
+					"raw": "{{host}}users/(id del user que deseas borrar)",
 					"host": [
 						"{{host}}users"
 					],
 					"path": [
-						"2"
+						"(id del user que deseas borrar)"
 					]
 				}
 			},
@@ -399,12 +399,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}permissions/1",
+					"raw": "{{host}}permissions/(id del permission que deseas borrar)",
 					"host": [
 						"{{host}}permissions"
 					],
 					"path": [
-						"1"
+						"(id del permission que deseas borrar)"
 					]
 				}
 			},
@@ -450,7 +450,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"example@example.com\",\n    \"password\": \"mypassword\"\n}"
+					"raw": "{\n    \"email\": \"eochoa11@ucol.mx\",\n    \"password\": \"123tamarindo\"\n}"
 				},
 				"url": {
 					"raw": "{{api}}auth/login",
@@ -555,7 +555,7 @@
 		},
 		{
 			"key": "token",
-			"value": "",
+			"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwibm9tYnJlIjoiRW5yaXF1ZSBkZSBKZXN1cyIsImFwZV9wYXQiOiJPY2hvYSIsImFwZV9tYXQiOiJQcmVjaWFkbyIsImVtYWlsIjoiZW9jaG9hMTFAdWNvbC5teCIsInBhc3N3b3JkIjoiJDJhJDEwJGJ3NXp2TnZJd1FUVVRadVBSNUFpMmVNTEpOUjJETjRFQ1lMazFCQkVaWGxHVkZCUVJOc3VhIiwiaXNBY3RpdmUiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjMtMTAtMjVUMTk6Mzk6MDcuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjMtMTAtMjVUMTk6Mzk6MDcuMDAwWiIsImlhdCI6MTY5OTYzNjU1OCwiZXhwIjoxNzAyMjI4NTU4fQ.6Am8kr3rXvHYa8cfhHoJKIcHjyCaTdQtrVRo7UNoFNY",
 			"type": "string"
 		}
 	]

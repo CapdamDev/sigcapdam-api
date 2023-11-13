@@ -50,10 +50,10 @@ html
                         h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Social
                         h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Personal
                         h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Friends
-                    .mt-3.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
+                    .mt-3.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(id='logoutButton' class='p-2.5 hover:bg-blue-600')
                         i.bi.bi-box-arrow-in-right
+                        button.ml-4.text-gray-200(class='text-[15px]') Logout
                         //- span.ml-4.text-gray-200(class='text-[15px]' ) Logout
-                        button#logoutButton.ml-4.text-gray-200(class='text-[15px]') Logout
                 script(src='https://cdn.jsdelivr.net/npm/ol@v8.1.0/dist/ol.js')
                 include ./includes/footer.jade
                 script(src="https://code.jquery.com/jquery-3.6.0.min.js")
@@ -85,6 +85,9 @@ html
 
                     document.addEventListener('DOMContentLoaded', function () {
                         const loadingSpinner = document.getElementById('loadingSpinner');
+
+
+
                         // Coordenadas que centrarán el mapa al cargar la página
                         var centerCoordinates = [-104.301939092764954, 19.066318856363417];
 
@@ -112,10 +115,20 @@ html
                         });
 
                         map.addControl(mousePositionControl);
+                        
                         if (!localStorage.getItem('token')) {
                             window.location.href = '/login';
                         } else {
 
+                            var permissions = localStorage.getItem('udata');
+                            // Get the typeof permissions variable
+                            console.log(typeof permissions);
+                            // Compose permissions string in array
+                            permissions = permissions.split(',');
+                            // Get the typeof permissions variable
+                            console.log(typeof permissions);
+                            console.log(permissions);
+                            
                             // Obtener todos los layers
                             fetch('/api/v1/layers/all', {
                                 method: 'GET',
