@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2023 a las 21:58:50
+-- Tiempo de generación: 11-11-2023 a las 22:57:46
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -29,25 +29,22 @@ USE `sigcapdam-api`;
 -- Estructura de tabla para la tabla `layers`
 --
 
+DROP TABLE IF EXISTS `layers`;
 CREATE TABLE IF NOT EXISTS `layers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
-  `category` varchar(255) NOT NULL,
+  `category` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `layers`
 --
 
 INSERT INTO `layers` (`id`, `name`, `category`, `createdAt`, `updatedAt`) VALUES
-(1, '3_DE_MAYO_44.json', 'catastro', '2023-10-31 16:22:04', '2023-10-31 16:22:04'),
-(2, '101_0_0.json', 'rutas', '2023-10-31 17:35:55', '2023-10-31 17:35:55'),
-(3, 'POZOS_0.JSON', 'pozos', '2023-10-31 20:21:20', '2023-10-31 20:21:20'),
-(4, 'POZOS_CONAGUA_9.json', 'conagua', '2023-10-31 20:25:26', '2023-10-31 20:25:26'),
-(5, 'POZODEVISITA_12.json', 'visita', '2023-10-31 20:26:28', '2023-10-31 20:26:28');
+(1, '3_DE_MAYO_44.geojson', 'zona', '2023-11-10 19:49:33', '2023-11-10 19:49:33');
 
 -- --------------------------------------------------------
 
@@ -55,6 +52,7 @@ INSERT INTO `layers` (`id`, `name`, `category`, `createdAt`, `updatedAt`) VALUES
 -- Estructura de tabla para la tabla `permissions`
 --
 
+DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE IF NOT EXISTS `permissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `perm_name` varchar(255) NOT NULL,
@@ -70,21 +68,26 @@ CREATE TABLE IF NOT EXISTS `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `perm_name`, `perm_description`, `createdAt`, `updatedAt`) VALUES
-(1, 'user_add', 'Add User', '2023-10-25 13:38:08', '2023-10-25 13:38:08'),
-(2, 'user_update', 'Update User', '2023-10-25 13:38:08', '2023-10-25 13:38:08'),
-(3, 'user_get', 'Get User', '2023-10-25 13:38:08', '2023-10-25 13:38:08'),
-(4, 'user_get_all', 'Get All User', '2023-10-25 13:38:08', '2023-10-25 13:38:08'),
-(5, 'user_delete', 'Delete User', '2023-10-25 13:38:08', '2023-10-25 13:38:08'),
-(6, 'role_add', 'Add Role', '2023-10-25 13:38:08', '2023-10-25 13:38:08'),
-(7, 'role_update', 'Update Role', '2023-10-25 13:38:08', '2023-10-25 13:38:08'),
-(8, 'role_get', 'Get Role', '2023-10-25 13:38:08', '2023-10-25 13:38:08'),
-(9, 'role_get_all', 'Get All Role', '2023-10-25 13:38:08', '2023-10-25 13:38:08'),
-(10, 'role_delete', 'Delete Role', '2023-10-25 13:38:08', '2023-10-25 13:38:08'),
-(11, 'permissions_add', 'Add Permission', '2023-10-25 13:38:08', '2023-10-25 13:38:08'),
-(12, 'permissions_update', 'Update Permission', '2023-10-25 13:38:08', '2023-10-25 13:38:08'),
-(13, 'permissions_get', 'Get Permission', '2023-10-25 13:38:08', '2023-10-25 13:38:08'),
-(14, 'permissions_get_all', 'Get All Permission', '2023-10-25 13:38:08', '2023-10-25 13:38:08'),
-(15, 'permissions_delete', 'Delete Permission', '2023-10-25 13:38:08', '2023-10-25 13:38:08');
+(1, 'user_add', 'Add User', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(2, 'user_update', 'Update User', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(3, 'user_get', 'Get User', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(4, 'user_get_all', 'Get All User', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(5, 'user_delete', 'Delete User', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(6, 'role_add', 'Add Role', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(7, 'role_update', 'Update Role', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(8, 'role_get', 'Get Role', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(9, 'role_get_all', 'Get All Role', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(10, 'role_delete', 'Delete Role', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(11, 'permissions_add', 'Add Permission', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(12, 'permissions_update', 'Update Permission', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(13, 'permissions_get', 'Get Permission', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(14, 'permissions_get_all', 'Get All Permission', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(15, 'permissions_delete', 'Delete Permission', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(16, 'layer_add', 'Add layer', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(17, 'layer_update', 'Update layer', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(18, 'layer_get', 'Get layer', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(19, 'layer_get_all', 'Get all layers', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(20, 'layer_delete', 'Delete layers', '2023-11-10 18:48:41', '2023-11-10 18:48:41');
 
 -- --------------------------------------------------------
 
@@ -92,6 +95,7 @@ INSERT INTO `permissions` (`id`, `perm_name`, `perm_description`, `createdAt`, `
 -- Estructura de tabla para la tabla `rolepermissions`
 --
 
+DROP TABLE IF EXISTS `rolepermissions`;
 CREATE TABLE IF NOT EXISTS `rolepermissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
@@ -99,28 +103,33 @@ CREATE TABLE IF NOT EXISTS `rolepermissions` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `rolepermissions`
 --
 
 INSERT INTO `rolepermissions` (`id`, `role_id`, `perm_id`, `createdAt`, `updatedAt`) VALUES
-(1, 1, 1, '2023-10-25 21:08:52', '2023-10-25 21:08:52'),
-(2, 1, 2, '2023-10-25 21:08:52', '2023-10-25 21:08:52'),
-(3, 1, 3, '2023-10-25 21:08:52', '2023-10-25 21:08:52'),
-(4, 1, 4, '2023-10-25 21:08:52', '2023-10-25 21:08:52'),
-(5, 1, 5, '2023-10-25 21:08:52', '2023-10-25 21:08:52'),
-(6, 1, 6, '2023-10-25 21:08:52', '2023-10-25 21:08:52'),
-(7, 1, 7, '2023-10-25 21:08:52', '2023-10-25 21:08:52'),
-(8, 1, 8, '2023-10-25 21:08:52', '2023-10-25 21:08:52'),
-(9, 1, 9, '2023-10-25 21:08:52', '2023-10-25 21:08:52'),
-(10, 1, 10, '2023-10-25 21:08:52', '2023-10-25 21:08:52'),
-(11, 1, 11, '2023-10-25 21:08:52', '2023-10-25 21:08:52'),
-(12, 1, 12, '2023-10-25 21:08:52', '2023-10-25 21:08:52'),
-(13, 1, 13, '2023-10-25 21:08:52', '2023-10-25 21:08:52'),
-(14, 1, 14, '2023-10-25 21:08:52', '2023-10-25 21:08:52'),
-(15, 1, 15, '2023-10-25 21:08:52', '2023-10-25 21:08:52');
+(1, 1, 1, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(2, 1, 2, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(3, 1, 3, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(4, 1, 4, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(5, 1, 5, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(6, 1, 6, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(7, 1, 7, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(8, 1, 8, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(9, 1, 9, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(10, 1, 10, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(11, 1, 11, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(12, 1, 12, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(13, 1, 13, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(14, 1, 14, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(15, 1, 15, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(16, 1, 16, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(17, 1, 17, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(18, 1, 18, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(19, 1, 19, '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(20, 1, 20, '2023-11-10 18:48:41', '2023-11-10 18:48:41');
 
 -- --------------------------------------------------------
 
@@ -128,6 +137,7 @@ INSERT INTO `rolepermissions` (`id`, `role_id`, `perm_id`, `createdAt`, `updated
 -- Estructura de tabla para la tabla `roles`
 --
 
+DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(255) NOT NULL,
@@ -136,14 +146,15 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `role_name` (`role_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `roles`
 --
 
 INSERT INTO `roles` (`id`, `role_name`, `role_description`, `createdAt`, `updatedAt`) VALUES
-(1, 'admin', 'System Admin ', '2023-10-25 13:38:15', '2023-10-25 13:38:15');
+(1, 'admin', 'System Admin', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(2, 'user', 'Usuario', '2023-11-11 15:51:03', '2023-11-11 15:51:03');
 
 -- --------------------------------------------------------
 
@@ -151,6 +162,7 @@ INSERT INTO `roles` (`id`, `role_name`, `role_description`, `createdAt`, `update
 -- Estructura de tabla para la tabla `sequelizemeta`
 --
 
+DROP TABLE IF EXISTS `sequelizemeta`;
 CREATE TABLE IF NOT EXISTS `sequelizemeta` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`name`),
@@ -162,10 +174,6 @@ CREATE TABLE IF NOT EXISTS `sequelizemeta` (
 --
 
 INSERT INTO `sequelizemeta` (`name`) VALUES
-('20210916024852-create-role.js'),
-('20210916024907-create-permission.js'),
-('20210916025034-create-user.js'),
-('20210916031105-create-role-permission.js'),
 ('20231025202524-create-permission.js'),
 ('20231025202524-create-role-permission.js'),
 ('20231025202524-create-role.js'),
@@ -178,6 +186,7 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 -- Estructura de tabla para la tabla `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
@@ -198,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `nombre`, `ape_pat`, `ape_mat`, `email`, `password`, `isActive`, `createdAt`, `updatedAt`) VALUES
-(1, 1, 'Enrique de Jesus', 'Ochoa', 'Preciado', 'eochoa11@ucol.mx', '$2a$10$bw5zvNvIwQTUTZuPR5Ai2eMLJNR2DN4ECYLk1BBEZXlGVFBQRNsua', 1, '2023-10-25 19:39:07', '2023-10-25 19:39:07');
+(1, 1, 'Enrique', 'Ochoa', 'Preciado', 'eochoa11@ucol.mx', '$2a$10$r94pYsLfVgnB26BkfqqQmOxnFPsqOgfEjm/YnWsq97k/tChB1CcnS', 1, '2023-11-10 18:49:10', '2023-11-11 15:51:57');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
