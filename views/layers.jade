@@ -14,12 +14,12 @@ html
                 #map.w-full.h-screen.bg-white.rounded-lg.shadow-md
         span.absolute.text-white.text-4xl.top-5.left-4.cursor-pointer(onclick='openBar()')
             i.bi.bi-filter-left.px-2.bg-gray-900.rounded-md
-        .sidebar.fixed.top-0.bottom-0.duration-1000.p-2.overflow-y-auto.text-center.bg-gray-900.shadow.h-screen(class='lg:left-0 left-[-300px] w-[300px]')
+        .sidebar.fixed.top-0.bottom-0.duration-3000.p-2.overflow-y-auto.text-center.bg-gray-900.shadow.h-screen(class='lg:translate-y-0 lg:left-0 left-[-300px] w-[300px]')
             .text-gray-100.text-xl
                 .mt-1.flex.items-center.rounded-md(class='p-2.5')
                     i.bi.bi-droplet-fill.px-2.py-1.bg-blue-600.rounded-md
                     h1.ml-3.text-xl.text-gray-200.font-bold(class='text-[15px]') SIGCAPDAM
-                    i.bi.bi-x.ml-20.cursor-pointer(class='lg:hidden' onclick='openBar()')
+                    i.bi.bi-x.ml-20.cursor-pointer(class='xl-hidden lg:hidden md:hidden' onclick='openBar()')
                 hr.my-2.text-gray-600
                 div
                     .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
@@ -87,7 +87,6 @@ html
                         const loadingSpinner = document.getElementById('loadingSpinner');
 
 
-
                         // Coordenadas que centrarán el mapa al cargar la página
                         var centerCoordinates = [-104.301939092764954, 19.066318856363417];
 
@@ -144,7 +143,7 @@ html
                                     // Process the layers
                                     layers.forEach(function (layer) {
                                         // Ensure the URL is correct
-                                        var geoJsonUrl = 'assets/layers/capas_js/' + layer.name;
+                                        var geoJsonUrl = 'assets/layers/capas_js/' + layer.archive;
                                         var layerSource = new ol.source.Vector({
                                             url: geoJsonUrl,
                                             format: new ol.format.GeoJSON()

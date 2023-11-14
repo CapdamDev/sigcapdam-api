@@ -12,6 +12,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      archive: {
+        type: Sequelize.STRING
+      },
       category: {
         type: Sequelize.STRING
       },

@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Layer.init({
     name: DataTypes.STRING,
+    archive: DataTypes.STRING,
     category: DataTypes.STRING
   }, {
     sequelize,
