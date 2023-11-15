@@ -8,7 +8,7 @@ require('../config/passport')(passport);
 const Helper = require('../utils/helper');
 const helper = new Helper();
 
-// Create a new User
+// Register a un nuevo usuario (solo admin)
 router.post('/', passport.authenticate('jwt', {
   session: false
 }), function (req, res) {
@@ -39,7 +39,7 @@ router.post('/', passport.authenticate('jwt', {
   });
 });
 
-// Get List of Users
+// Obtener lista de todos los usuarios
 router.get('/', passport.authenticate('jwt', {
   session: false
 }), function (req, res) {
@@ -67,7 +67,7 @@ router.get('/', passport.authenticate('jwt', {
   });
 });
 
-// Get User by ID
+// Obtener un usuario por ID
 router.get('/:id', passport.authenticate('jwt', {
   session: false
 }), function (req, res) {
@@ -83,7 +83,7 @@ router.get('/:id', passport.authenticate('jwt', {
   });
 });
 
-// Update a User
+// Actualizar un usuario
 router.put('/:id', passport.authenticate('jwt', {
   session: false
 }), function (req, res) {
@@ -145,7 +145,7 @@ router.put('/:id', passport.authenticate('jwt', {
   });
 });
 
-// Delete a User
+// Borra un usuario
 router.delete('/:id', passport.authenticate('jwt', {
   session: false
 }), function (req, res) {
@@ -159,15 +159,22 @@ router.delete('/:id', passport.authenticate('jwt', {
         .findByPk(req.params.id)
         .then((user) => {
           if (user) {
-            User.destroy({
-              where: {
-                id: req.params.id
-              }
-            }).then(_ => {
-              res.status(200).send({
-                'message': 'User eliminado'
+            if (user.role_id === 1) {
+              res.status(403).send({
+                'message': 'You can not delete root user',
+                'success': false
               });
-            }).catch(err => res.status(400).send(err));
+            } else {
+              User.destroy({
+                where: {
+                  id: req.params.id
+                }
+              }).then(_ => {
+                res.status(200).send({
+                  'message': 'User eliminado'
+                });
+              }).catch(err => res.status(400).send(err));
+            }
           } else {
             res.status(404).send({
               'message': 'User no encontrado'

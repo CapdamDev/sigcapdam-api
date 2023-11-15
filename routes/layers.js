@@ -1,4 +1,5 @@
 const express = require("express");
+const fs = require("fs");
 const router = express.Router();
 const User = require("../models").User;
 const Role = require("../models").Role;
@@ -9,7 +10,7 @@ require("../config/passport")(passport);
 const Helper = require("../utils/helper");
 const helper = new Helper();
 
-// Create a new Layer
+// Crear/guardar una layer
 router.post('/', passport.authenticate('jwt', {
 	session: false
 }), function (req, res) {
@@ -19,8 +20,20 @@ router.post('/', passport.authenticate('jwt', {
 				msg: 'Please pass name or category.'
 			})
 		} else {
-			Layer
-				.create({
+			// Crear una carpeta para el icono de la layer
+			try {
+				// check if directory already exists
+				const dir = './public/assets/layer_icons/';
+				if (!fs.existsSync(dir + req.body.category)) {
+					fs.mkdirSync(dir + req.body.category);
+					console.log("Directory is created.");
+				} else {
+					console.log("Directory already exists.");
+				}
+			} catch (err) {
+				console.log(err);
+			}
+			Layer.create({
 					name: req.body.name,
 					archive: req.body.archive,
 					category: req.body.category,
@@ -37,7 +50,6 @@ router.post('/', passport.authenticate('jwt', {
 });
 
 // Consulta todas las layers
-
 router.get("/all", passport.authenticate("jwt", { session: false }), function (req, res) {
     helper.checkPermission(req.user.role_id, "layer_get_all").then((rolePerm) => {
         Layer.findAll()
@@ -53,7 +65,7 @@ router.get("/all", passport.authenticate("jwt", { session: false }), function (r
     });
 });
 
-// Consulta una layer por nombre
+// Consulta una layer por su nombre
 router.get("/:name", function (req, res) {
 	Layer.findOne({
 			where: {
