@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2023 a las 13:19:11
+-- Tiempo de generación: 15-11-2023 a las 13:21:28
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -29,6 +29,7 @@ USE `sigcapdam-api`;
 -- Estructura de tabla para la tabla `layers`
 --
 
+DROP TABLE IF EXISTS `layers`;
 CREATE TABLE IF NOT EXISTS `layers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -37,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `layers` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `layers`
@@ -50,7 +51,13 @@ INSERT INTO `layers` (`id`, `name`, `archive`, `category`, `createdAt`, `updated
 (4, 'PEÑA BLANCA', 'PEABLANCA_2.json', 'POZOS DE CONAGUA', '2023-11-14 16:44:51', '2023-11-14 16:44:51'),
 (5, 'VENUSTIANO CARRANZA', 'VENUSTIANOCARRANZA_02.json', 'POZOS DE CONAGUA', '2023-11-14 16:45:21', '2023-11-14 16:45:21'),
 (6, 'DESCARGAS', 'DESCARGAS_5.json', 'POZOS DE CONAGUA', '2023-11-14 16:45:34', '2023-11-14 16:45:34'),
-(7, 'Contratos', 'COMERCIALIZACION_CONTRATOS_0.json', 'CONTRATOS', '2023-11-14 17:30:34', '2023-11-14 17:30:34');
+(7, 'CONTRATOS', 'COMERCIALIZACION_CONTRATOS_0.json', 'CONTRATOS', '2023-11-14 17:30:34', '2023-11-14 17:30:34'),
+(9, 'ALCANTARILLA', 'ALCANTARILLA_16.json', 'INFRAESTRUCTURA', '2023-11-15 17:52:45', '2023-11-15 17:52:45'),
+(10, 'ALMACENAMIENTO DE AGUA', 'ALMACENAMIENTO_DE_AGUA_16.json', 'INFRAESTRUCTURA', '2023-11-15 18:25:38', '2023-11-15 18:25:38'),
+(11, 'BOCA DE TORMENTA', 'BOCA_DE_TORMENTA_15.json', 'INFRAESTRUCTURA', '2023-11-15 18:29:19', '2023-11-15 18:29:19'),
+(12, 'CAJA DE AGUA', 'CAJA_DE_AGUA_14.json', 'INFRAESTRUCTURA', '2023-11-15 18:30:55', '2023-11-15 18:30:55'),
+(13, 'CANAL', 'CANAL_13.json', 'INFRAESTRUCTURA', '2023-11-15 18:33:17', '2023-11-15 18:33:17'),
+(14, 'CANALETA', 'CANALETA_12.json', 'INFRAESTRUCTURA', '2023-11-15 18:36:28', '2023-11-15 18:36:28');
 
 -- --------------------------------------------------------
 
@@ -58,6 +65,7 @@ INSERT INTO `layers` (`id`, `name`, `archive`, `category`, `createdAt`, `updated
 -- Estructura de tabla para la tabla `permissions`
 --
 
+DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE IF NOT EXISTS `permissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `perm_name` varchar(255) NOT NULL,
@@ -100,6 +108,7 @@ INSERT INTO `permissions` (`id`, `perm_name`, `perm_description`, `createdAt`, `
 -- Estructura de tabla para la tabla `rolepermissions`
 --
 
+DROP TABLE IF EXISTS `rolepermissions`;
 CREATE TABLE IF NOT EXISTS `rolepermissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
@@ -144,6 +153,7 @@ INSERT INTO `rolepermissions` (`id`, `role_id`, `perm_id`, `createdAt`, `updated
 -- Estructura de tabla para la tabla `roles`
 --
 
+DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(255) NOT NULL,
@@ -159,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 --
 
 INSERT INTO `roles` (`id`, `role_name`, `role_description`, `createdAt`, `updatedAt`) VALUES
-(1, 'admin', 'System Root Admin', '2023-11-10 18:48:41', '2023-11-10 18:48:41'),
+(1, 'root', 'Administrador root', '2023-11-10 18:48:41', '2023-11-15 19:08:40'),
 (2, 'usuario', 'Usuario', '2023-11-11 15:51:03', '2023-11-11 15:51:03');
 
 -- --------------------------------------------------------
@@ -168,6 +178,7 @@ INSERT INTO `roles` (`id`, `role_name`, `role_description`, `createdAt`, `update
 -- Estructura de tabla para la tabla `sequelizemeta`
 --
 
+DROP TABLE IF EXISTS `sequelizemeta`;
 CREATE TABLE IF NOT EXISTS `sequelizemeta` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`name`),
@@ -191,6 +202,7 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 -- Estructura de tabla para la tabla `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
@@ -211,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `nombre`, `ape_pat`, `ape_mat`, `email`, `password`, `isActive`, `createdAt`, `updatedAt`) VALUES
-(1, 1, 'Enrique', 'Ochoa', 'Preciado', 'eochoa11@ucol.mx', '$2a$10$r94pYsLfVgnB26BkfqqQmOxnFPsqOgfEjm/YnWsq97k/tChB1CcnS', 1, '2023-11-10 18:49:10', '2023-11-11 15:51:57'),
+(1, 1, 'Sistemas', 'Capdam', 'Manzanillo', 'programacion@capdam.gob.mx', '$2a$10$r94pYsLfVgnB26BkfqqQmOxnFPsqOgfEjm/YnWsq97k/tChB1CcnS', 1, '2023-11-10 18:49:10', '2023-11-11 15:51:57'),
 (2, 2, 'User', 'Demo', 'Demo', 'ex@ex.com', '$2a$10$H6acSLTTwhN8R8qIwG00xuSqW2jpPhlRr4iESDpgSI0Qz/cCW1AfO', 1, '2023-11-13 15:40:34', '2023-11-13 15:41:15');
 COMMIT;
 
