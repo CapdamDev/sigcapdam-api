@@ -9,7 +9,7 @@ require('../config/passport')(passport);
 const Helper = require('../utils/helper');
 const helper = new Helper();
 
-// Create a new Role
+// Crear rol
 router.post('/', passport.authenticate('jwt', {
     session: false
 }), function (req, res) {
@@ -40,7 +40,7 @@ router.post('/', passport.authenticate('jwt', {
     });
 });
 
-// Get List of Roles
+// Obtener lista de todos los roles
 router.get('/', passport.authenticate('jwt', {
     session: false
 }), function (req, res) {
@@ -73,7 +73,7 @@ router.get('/', passport.authenticate('jwt', {
     });
 });
 
-// Get Role by ID
+// Obtener un rol por ID
 router.get('/:id', passport.authenticate('jwt', {
     session: false
 }), function (req, res) {
@@ -100,7 +100,7 @@ router.get('/:id', passport.authenticate('jwt', {
         });
 });
 
-// Update a Role
+// Actualizar un rol
 router.put('/:id', passport.authenticate('jwt', {
     session: false
 }), function (req, res) {
@@ -144,7 +144,7 @@ router.put('/:id', passport.authenticate('jwt', {
     });
 });
 
-// Delete a Role
+// Borra un rol
 router.delete('/:id', passport.authenticate('jwt', {
     session: false
 }), function (req, res) {
@@ -188,12 +188,12 @@ router.delete('/:id', passport.authenticate('jwt', {
     });
 });
 
+// Obtener permisos de un rol
 router.post('/permissions/:id', passport.authenticate('jwt', {
     session: false
 }), async function (req, res) {
     try {
         const rolePerm = await helper.checkPermission(req.user.role_id, 'role_add');
-        
         if (!req.body.permissions) {
             return res.status(400).send({
                 msg: 'Please pass permissions.'
@@ -201,13 +201,11 @@ router.post('/permissions/:id', passport.authenticate('jwt', {
         }
 
         const role = await Role.findByPk(req.params.id);
-
         if (!role) {
             return res.status(404).send({
                 msg: 'Role not found.'
             });
         }
-
         await RolePermission.destroy({
             where: {
                 role_id: role.id
@@ -215,8 +213,8 @@ router.post('/permissions/:id', passport.authenticate('jwt', {
         });
 
         for (const item of req.body.permissions) {
+            
             const perm = await Permission.findByPk(item);
-
             if (perm) {
                 await role.addPermissions(perm, {
                     through: {
@@ -230,7 +228,6 @@ router.post('/permissions/:id', passport.authenticate('jwt', {
                 });
             }
         }
-
         return res.status(200).send({
             message: 'Permissions added'
         });

@@ -16,15 +16,15 @@ html
             i.bi.bi-filter-left.px-2.bg-gray-900.rounded-md
         .sidebar.fixed.top-0.bottom-0.duration-3000.p-2.overflow-y-auto.text-center.bg-gray-900.shadow.h-screen(class='lg:translate-y-0 lg:left-0 left-[-300px] w-[300px]')
             .text-gray-100.text-xl
-                .mt-1.flex.items-center.rounded-md(class='p-2.5')
+                a.mt-1.flex.items-center.rounded-md(class='p-2.5' href='#')
                     i.bi.bi-droplet-fill.px-2.py-1.bg-blue-600.rounded-md
                     h1.ml-3.text-xl.text-gray-200.font-bold(class='text-[15px]') SIGCAPDAM
                     i.bi.bi-x.ml-20.cursor-pointer(class='xl-hidden lg:hidden md:hidden' onclick='openBar()')
                 hr.my-2.text-gray-600
                 div
-                    .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
-                        i.bi.bi-house-door-fill
-                        span.ml-4.text-gray-200(class='text-[15px]') Home
+                    //- .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
+                    //-     i.bi.bi-house-door-fill
+                    //-     span.ml-4.text-gray-200(class='text-[15px]') Home
                     .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
                         i.bi.bi-geo-alt-fill
                         span.ml-4.text-gray-200(class='text-[15px]') Layers
@@ -127,6 +127,17 @@ html
                             // Get the typeof permissions variable
                             console.log(typeof permissions);
                             console.log(permissions);
+
+                                
+                            var iconStyle = new ol.style.Style({
+                                image: new ol.style.Icon({
+                                    anchor: [0.5, 0.5],
+                                    anchorXUnits: 'fraction',
+                                    anchorYUnits: 'fraction',
+                                    src: 'assets/layer_icons/CONTRATOS.png',
+                                    scale: 0.1
+                                }),
+                            });
                             
                             // Obtener todos los layers
                             fetch('/api/v1/layers/all', {
@@ -144,6 +155,18 @@ html
                                     layers.forEach(function (layer) {
                                         // Ensure the URL is correct
                                         var geoJsonUrl = 'assets/layers/capas_js/' + layer.archive;
+
+                                        // Create a new iconStyle for each layer
+                                        var iconStyleForLayer = new ol.style.Style({
+                                            image: new ol.style.Icon({
+                                                anchor: [0.5, 0.5],
+                                                anchorXUnits: 'fraction',
+                                                anchorYUnits: 'fraction',
+                                                src: 'assets/layer_icons/' + layer.category + '/' + layer.name + '.png',
+                                                scale: 1
+                                            }),
+                                        });
+
                                         var layerSource = new ol.source.Vector({
                                             url: geoJsonUrl,
                                             format: new ol.format.GeoJSON()
@@ -151,7 +174,20 @@ html
 
                                         var vectorLayer = new ol.layer.Vector({
                                             source: layerSource,
-                                            visible: false // Start with the layer not visible
+                                            visible: false, // Start with the layer not 
+                                            style: iconStyleForLayer
+                                        });
+
+                                        console.log(layer.name);
+
+                                        var iconStyle = new ol.style.Style({
+                                            image: new ol.style.Icon({
+                                                anchor: [0.5, 0.5],
+                                                anchorXUnits: 'fraction',
+                                                anchorYUnits: 'fraction',
+                                                src: 'assets/layer_icons/' + layer.category + '/' + layer.name + '.png',
+                                                scale: 0.1
+                                            }),
                                         });
 
                                         if(layer.name) {
@@ -161,12 +197,9 @@ html
                                         }
 
                                         // Console log the layer name and features, then console log the AFLUENTE property of each feature
-
                                         layerSource.once('change', function (e) {
                                             if (layerSource.getState() === 'ready') {
-                                                var features = layerSource.getFeatures(function (feature) {
-                                                    console.log(feature.get('AFLUENTE'));
-                                                });
+                                                var features = layerSource.getFeatures();
                                                 console.group('Layers data');
                                                 console.log('Layer name:', layer.name);
                                                 console.log('Features:', features);
@@ -187,10 +220,10 @@ html
                                             categories[layer.category] = [];
                                         }
 
-                                        // Add the layer to the category
+                                        // Add the layer to the category on jsTree
                                         categories[layer.category].push({
                                             id: layer.name,
-                                            text: layer.name,
+                                            text: ' <img src="assets/layer_icons/' + layer.category  + '/' + layer.name + '.png" class="inline-block w-4 h-4"> ' + layer.name,
                                             state: {
                                                 opened: true,
                                                 selected: false
@@ -213,7 +246,7 @@ html
                                         "core": {
                                             "data": jstreeData,
                                             "themes": {
-                                                "icons": true,
+                                                "icons": false,
                                                 "variant": "small",
                                                 "stripes": false,
                                                 "dots": false

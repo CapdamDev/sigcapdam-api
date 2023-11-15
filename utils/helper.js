@@ -1,6 +1,8 @@
 const RolePermission = require('../models').RolePermission;
 const Permission = require('../models').Permission;
 
+// El helper es una clase que nos ayudará a verificar los permisos de los usuarios en las rutas,
+// para que no tengamos que repetir el código en cada ruta, y solo lo llamemos cuando sea necesario.
 class Helper {
     constructor() {}
 
