@@ -24,6 +24,7 @@ html
                             div
                                 label.block.mb-2.text-sm.font-medium.text-gray-900(name='password' class='dark:text-white' for='password') Contraseña
                                 input#password(type='password' name='password' placeholder='••••••••••' class='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500')
+                            div#login-message(class='text-sm text-red-500 font-medium')
                             .flex.items-center.justify-between
                                 .flex.items-start
                                     .flex.items-center.h-5
@@ -66,22 +67,23 @@ html
 
                 const data = await response.json();
                 if (!data.success) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error de credenciales',
-                        text: 'Credenciales incorrectas. Por favor, intenta de nuevo.',
-                    });
+                    const message = document.getElementById('login-message');
+                    message.textContent = 'Credenciales incorrectas. Por favor, intenta de nuevo.';
                 } else {
                     // Handle successful login (redirect or other actions)
-                    Swal.fire({
-                        icon: 'success',
-                        title: '¡Bienvenido!',
-                        text: 'Iniciando sesión...',
-                    }).then(() => {
-                        localStorage.setItem('token', data.token);
-                        localStorage.setItem('udata', data.permissions)
+                    const message = document.getElementById('login-message');
+                    // Estila el div de mensaje de login y cambia el texto a 'Iniciando sesión...', con colores de éxito
+                    message.classList.add('text-green-500', 'font-medium');
+                    message.textContent = 'Iniciando sesión...';
+                    // Guarda el token en el localStorage
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('udata', data.permissions)
+                    // Agrega delay para que se vea el mensaje de login
+                    setTimeout(() => {
                         window.location.href = '/layers';
-                    });
+                    }, 2000);
                 }
+                const loginMessage = document.getElementById('login-message');
+                loginMessage.style.display = 'block';
             });
         });
