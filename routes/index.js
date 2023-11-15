@@ -5,7 +5,7 @@ var router = express.Router();
 
 /* GET de la pagina de inicio */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  res.render('login');
 });
 
 /* GET de la pagina del login */
