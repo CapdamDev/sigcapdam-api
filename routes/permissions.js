@@ -6,7 +6,7 @@ require('../config/passport')(passport);
 const Helper = require('../utils/helper');
 const helper = new Helper();
 
-// Create a new permission
+// Crear permiso
 router.post('/', passport.authenticate('jwt', {
     session: false
 }), function (req, res) {
@@ -32,7 +32,7 @@ router.post('/', passport.authenticate('jwt', {
     });
 });
 
-// Get List of permissions
+// Obtener lista de todos los permisos
 router.get('/', passport.authenticate('jwt', {
     session: false
 }), function (req, res) {
@@ -48,7 +48,7 @@ router.get('/', passport.authenticate('jwt', {
     });
 });
 
-// Update a permission
+// Actualizar un permiso
 router.put('/:id', passport.authenticate('jwt', {
     session: false
 }), function (req, res) {
@@ -83,7 +83,7 @@ router.put('/:id', passport.authenticate('jwt', {
     });
 });
 
-// Delete a permission
+// Borrar un permiso
 router.delete('/:id', passport.authenticate('jwt', {
     session: false
 }), function (req, res) {
