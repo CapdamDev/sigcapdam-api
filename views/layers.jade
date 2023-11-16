@@ -10,53 +10,46 @@ html
         #loadingSpinner(class='fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-white bg-opacity-100 z-50')
             div(class="animate-spin rounded-full border-t-4 border-blue-500 border-solid h-12 w-12")
         div(class='flex')
-            // Map container
             div(class='w-full ml-1/5 sm:w-full xs:w-full')
                 #map.w-full.h-screen.bg-white.rounded-lg.shadow-md
-        // Hamburger menu button
         span.absolute.text-white.text-4xl.top-5.left-4.cursor-pointer(onclick='toggleSidebar()')
             i.bi.bi-filter-left.px-2.bg-gray-900.rounded-md
-        // Sidebar
         .sidebar.fixed.top-0.left-0.duration-300.p-2.overflow-y-auto.text-center.bg-gray-900.shadow.h-screen
             .text-gray-100.text-xl
-                a.mt-1.flex.items-center.rounded-md(class='p-2.5' href='#')
+                a.mt-1.flex.items-center.rounded-md(class='p-2.5')
                     i.bi.bi-droplet-fill.px-2.py-1.bg-blue-600.rounded-md
                     h1.ml-3.text-xl.text-gray-200.font-bold(class='text-[15px]') SIGCAPDAM
                     i.bi.bi-x.ml-20.cursor-pointer(onclick='toggleSidebar()')
-            hr.my-2.text-gray-600
-            div
-                //- .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
-                //-     i.bi.bi-house-door-fill
-                //-     span.ml-4.text-gray-200(class='text-[15px]') Home
-                .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
-                    i.bi.bi-geo-alt-fill
-                    span.ml-4.text-gray-200(class='text-[15px]') Layers
-                .mt-3.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer.bg-gray-700(class='p-2.5')
-                    i.bi.bi-search.text-sm
-                    input.ml-4.w-full.bg-transparent(class='text-[15px] focus:outline-none' placeholder='Buscar capa' id='search' name='search')
-                #jstree.leading-7.text-left.text-sm.font-thin.mt-2.mx-auto(class='w-4/5')
-                .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
-                    i.bi.bi-crosshair2
-                    span.ml-4.text-gray-200(class='text-[15px]') Coordinates
-                    #mouse-position.text-gray-200.pl-2(class='text-[15px]')
-                hr.my-4.text-gray-600
-                .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
-                    i.bi.bi-people-fill
-                    span.ml-4.text-gray-200(class='text-[15px]') Gestionar usuarios
-                .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
-                    i.bi.bi-chat-left-text-fill
-                    .flex.justify-between.w-full.items-center(onclick='toggleDropdown()')
-                        span.ml-4.text-gray-200(class='text-[15px]') Chatbox
-                        span#arrow.text-sm.rotate-180
-                            i.bi.bi-chevron-down
-                #submenu.leading-7.text-left.text-sm.font-thin.mt-2.mx-auto(class='w-4/5')
-                    h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Social
-                    h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Personal
-                    h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Friends
-                .mt-3.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(id='logoutButton' class='p-2.5 hover:bg-blue-600')
-                    i.bi.bi-box-arrow-in-right
-                    button.ml-4.text-gray-200(class='text-[15px]') Logout
-                    //- span.ml-4.text-gray-200(class='text-[15px]' ) Logout
+                hr.my-2.text-gray-600
+                div
+                    .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
+                        i.bi.bi-geo-alt-fill
+                        span.ml-4.text-gray-200(class='text-[15px]') Layers
+                    .mt-3.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer.bg-gray-700(class='p-2.5')
+                        i.bi.bi-search.text-sm
+                        input.ml-4.w-full.bg-transparent(class='text-[15px] focus:outline-none' placeholder='Buscar capa' id='search' name='search')
+                    #jstree.leading-7.text-left.text-sm.font-thin.mt-2.mx-auto(class='w-4/5')
+                    .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
+                        i.bi.bi-crosshair2
+                        span.ml-4.text-gray-200(class='text-[15px]') Coordinates
+                        #mouse-position.text-gray-200.pl-2(class='text-[15px]')
+                    hr.my-4.text-gray-600
+                    .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
+                        i.bi.bi-people-fill
+                        span.ml-4.text-gray-200(class='text-[15px]') Gestionar usuarios
+                    .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
+                        i.bi.bi-chat-left-text-fill
+                        .flex.justify-between.w-full.items-center(onclick='dropDown()')
+                            span.ml-4.text-gray-200(class='text-[15px]') Chatbox
+                            span#arrow.text-sm.rotate-180
+                                i.bi.bi-chevron-down
+                    #submenu.leading-7.text-left.text-sm.font-thin.mt-2.mx-auto(class='w-4/5')
+                        h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Social
+                        h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Personal
+                        h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Friends
+                    .mt-3.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(id='logoutButton' class='p-2.5 hover:bg-blue-600')
+                        i.bi.bi-box-arrow-in-right
+                        button.ml-4.text-gray-200(class='text-[15px]') Logout
                         
                 script(src='https://cdn.jsdelivr.net/npm/ol@v8.1.0/dist/ol.js')
                 include ./includes/footer.jade
