@@ -41,14 +41,18 @@ html
 
             const form = document.getElementById('login-form');
             const loadingSpinner = document.getElementById('loadingSpinner');
+            const message = document.getElementById('login-message');
             // Hide spinner on page load after 2 seconds
             setTimeout(() => {
                 loadingSpinner.style.display = 'none';
             }, 1000);
 
-            if(localStorage.getItem('token')) {
+            if(localStorage.getItem('token') && localStorage.getItem('role_id' === 1)) {
                 window.location.href = '/layers';
-            } else {
+            } else if(localStorage.getItem('token') && localStorage.getItem('role_id' != 1)) {
+                window.location.href = '/layers2';
+            }
+            else {
                 localStorage.clear();
             }
 
@@ -66,6 +70,7 @@ html
                 });
 
                 const data = await response.json();
+
                 if (!data.success) {
                     const message = document.getElementById('login-message');
                     message.textContent = 'Credenciales incorrectas. Por favor, intenta de nuevo.';
@@ -75,13 +80,19 @@ html
                     // Estila el div de mensaje de login y cambia el texto a 'Iniciando sesión...', con colores de éxito
                     message.classList.add('text-green-500', 'font-medium');
                     message.textContent = 'Iniciando sesión...';
-                    // Guarda el token en el localStorage
-                    localStorage.setItem('token', data.token);
-                    localStorage.setItem('udata', data.permissions)
-                    // Agrega delay para que se vea el mensaje de login
-                    setTimeout(() => {
-                        window.location.href = '/layers';
-                    }, 2000);
+                    if(data.role_id === 1) {
+                        localStorage.setItem('role_id', data.role_id);
+                        localStorage.setItem('token', data.token);
+                        setTimeout(() => {
+                            window.location.href = '/layers';
+                        }, 500);
+                    } else {
+                        localStorage.setItem('role_id', data.role_id);
+                        localStorage.setItem('token', data.token);
+                        setTimeout(() => {
+                            window.location.href = '/layers2';
+                        }, 500);
+                    }
                 }
                 const loginMessage = document.getElementById('login-message');
                 loginMessage.style.display = 'block';

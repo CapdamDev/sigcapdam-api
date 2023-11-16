@@ -9,34 +9,34 @@ const Helper = require('../utils/helper');
 const helper = new Helper();
 
 // Register a un nuevo usuario (solo admin)
-router.post('/', passport.authenticate('jwt', {
-  session: false
-}), function (req, res) {
-  helper.checkPermission(req.user.role_id, 'user_add').then((rolePerm) => {
-    if (!req.body.role_id || !req.body.email || !req.body.password || !req.body.nombre) {
+router.post('/', function (req, res) {
+  if (!req.body.email || !req.body.password || !req.body.nombre) {
       res.status(400).send({
-        msg: 'Please pass Role ID, email, password, phone or nombre.'
+          msg: 'Ingresa un nombre o contraseña válidos.'
       })
-    } else {
-      User
-        .create({
-          nombre: req.body.nombre,
-          ape_pat: req.body.ape_pat,
-          ape_mat: req.body.ape_mat,
-          email: req.body.email,
-          password: req.body.password,
-          isActive: req.body.isActive,
-          role_id: req.body.role_id
-        })
-        .then((user) => res.status(201).send(user))
-        .catch((error) => {
-          console.log(error);
+  } else {
+      Role.findOne({
+          where: {
+              role_name: 'usuario'
+          }
+      }).then((role) => {
+          User.create({
+              nombre: req.body.nombre,
+              ape_pat: req.body.ape_pat,
+              ape_mat: req.body.ape_mat,
+              email: req.body.email,
+              password: req.body.password,
+              isActive: req.body.isActive,
+              role_id: role.id
+          })
+          .then((user) => res.status(201).send(user))
+          .catch((error) => {
+              res.status(400).send(error);
+          });
+      }).catch((error) => {
           res.status(400).send(error);
-        });
-    }
-  }).catch((error) => {
-    res.status(403).send(error);
-  });
+      });
+  }
 });
 
 // Obtener lista de todos los usuarios

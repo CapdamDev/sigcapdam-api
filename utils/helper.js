@@ -21,7 +21,7 @@ class Helper {
                         }
                     }).then((rolePermission) => {
                         // console.log(rolePermission);
-                        if(rolePermission) {
+                        if(rolePermission || roleId == 1) {
                             resolve(rolePermission);
                         } else {
                             reject({message: 'Forbidden'});
