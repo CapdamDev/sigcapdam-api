@@ -70,8 +70,15 @@ router.post('/login', function (req, res) {
                                     res.send({
                                         success: true,
                                         token: 'JWT ' + token,
-                                        permissions: permNames
+                                        role_id: user.role_id,
+                                        permissions: permNames,
                                     });
+
+                                    // res.render('layers', {
+                                    //     title: 'Layers',
+                                    //     user: req.user,
+                                    //     role_id: user.role_id,
+                                    // })
                                 });
                         });
                 } else {
