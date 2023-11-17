@@ -21,6 +21,7 @@ class Helper {
                         }
                     }).then((rolePermission) => {
                         // console.log(rolePermission);
+                        console.log(roleId);
                         if(rolePermission || roleId == 1) {
                             resolve(rolePermission);
                         } else {
