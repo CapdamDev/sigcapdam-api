@@ -23,21 +23,21 @@ html
                 hr.my-2.text-gray-600
                 div
                     .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
-                        i.bi.bi-geo-alt-fill
-                        span.ml-4.text-gray-200(class='text-[15px]') Layers
+                        i.bi.bi-crosshair2
+                        span.ml-4.text-gray-200(class='text-[15px]') Coordinates
+                        #mouse-position.text-gray-200.pl-2(class='text-[15px]')
                     .mt-3.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer.bg-gray-700(class='p-2.5')
                         i.bi.bi-search.text-sm
                         input.ml-4.w-full.bg-transparent(class='text-[15px] focus:outline-none' placeholder='Buscar capa' id='search' name='search')
                     #jstree.leading-7.text-left.text-sm.font-thin.mt-2.mx-auto(class='w-4/5')
-                    .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
-                        i.bi.bi-crosshair2
-                        span.ml-4.text-gray-200(class='text-[15px]') Coordinates
-                        #mouse-position.text-gray-200.pl-2(class='text-[15px]')
                     hr.my-4.text-gray-600
+                    .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
+                        i.bi.bi-geo-alt-fill
+                        span.ml-4.text-gray-200(class='text-[15px]') Gestionar capas
                     .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
                         i.bi.bi-people-fill
                         span.ml-4.text-gray-200(class='text-[15px]') Gestionar usuarios
-                    .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
+                    .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600 hidden')
                         i.bi.bi-chat-left-text-fill
                         .flex.justify-between.w-full.items-center(onclick='dropDown()')
                             span.ml-4.text-gray-200(class='text-[15px]') Chatbox
@@ -81,8 +81,8 @@ html
 
 
                     document.addEventListener('DOMContentLoaded', function () {
-                        const loadingSpinner = document.getElementById('loadingSpinner');
 
+                        const loadingSpinner = document.getElementById('loadingSpinner');
 
                         // Coordenadas que centrarán el mapa al cargar la página
                         var centerCoordinates = [-104.301939092764954, 19.066318856363417];
@@ -112,7 +112,7 @@ html
 
                         map.addControl(mousePositionControl);
                         
-                        if (!localStorage.getItem('token')) {
+                        if (!sessionStorage.getItem('token')) {
                             window.location.href = '/login';
                         } else {
                                 
@@ -131,7 +131,7 @@ html
                                 method: 'GET',
                                 headers: {
                                     'Content-Type': 'application/json',
-                                    'Authorization': localStorage.getItem('token'),
+                                    'Authorization': sessionStorage.getItem('token'),
                                 },
                             })
                             .then((response) => response.json())
@@ -141,7 +141,7 @@ html
                                     // Process the layers
                                     layers.forEach(function (layer) {
                                         // Ensure the URL is correct
-                                        var geoJsonUrl = 'assets/layers/capas_js/' + layer.archive;
+                                        var geoJsonUrl = 'assets/layers/capas_js/' + layer.category + '/' + layer.archive;
 
                                         // Create a new iconStyle for each layer
                                         var iconStyleForLayer = new ol.style.Style({
@@ -162,7 +162,33 @@ html
                                         var vectorLayer = new ol.layer.Vector({
                                             source: layerSource,
                                             visible: false, // Start with the layer not 
-                                            style: iconStyleForLayer
+                                            style: function(feature, resolution) {
+                                                // Revisar si el layer es de tipo punto, línea o polígono
+                                                if(feature.getGeometry().getType() === 'Point') {
+                                                    return iconStyleForLayer;
+                                                } else if(feature.getGeometry().getType() === 'LineString') {
+                                                    var color = feature.get('COLOR_1');
+                                                    return new ol.style.Style({
+                                                        // Establecer el valor de color obtenido en el stroke
+                                                        stroke: new ol.style.Stroke({
+                                                            color: 'rgba('+ color +', 0.5)',
+                                                            width: 2
+                                                        })
+                                                    });
+                                                } else if(feature.getGeometry().getType() === 'Polygon') {
+                                                    var color = feature.get('COLOR_1');
+                                                    var color2 = feature.get('COLOR_2');
+                                                    return new ol.style.Style({
+                                                        stroke: new ol.style.Stroke({
+                                                            color: 'rgba('+ color +', 0.5)',
+                                                            width: 2
+                                                        }),
+                                                        fill: new ol.style.Fill({
+                                                            color: 'rgba('+ color2 +', 0.5)'
+                                                        })
+                                                    });
+                                                }
+                                            }
                                         });
 
                                         var iconStyle = new ol.style.Style({
@@ -258,7 +284,6 @@ html
                                             layer.setVisible(isSelected);
                                         });
                                     });
-
                                     loadingSpinner.classList.add('hidden');
                                 })
                                 .catch((error) => {
@@ -269,7 +294,7 @@ html
 
                             // Logout
                             $('#logoutButton').on('click', function () {
-                                localStorage.removeItem('token');
+                                sessionStorage.removeItem('token');
                                 window.location.href = '/login';
                             });
                     });
