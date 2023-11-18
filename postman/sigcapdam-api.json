@@ -111,6 +111,100 @@
 			"response": []
 		},
 		{
+			"name": "Test API de catastro",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNhcGRhbSIsImlhdCI6MTY5MjY1Mzc5NX0.KFcP_21WEnzvdAWF_8augN-a6-j3LYlKZiGpzGmVtdM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.manzanillo.gob.mx:3001/api/predio/private/072004022003000",
+					"protocol": "http",
+					"host": [
+						"api",
+						"manzanillo",
+						"gob",
+						"mx"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"predio",
+						"private",
+						"072004022003000"
+					]
+				},
+				"description": "Los números después de \"/private/XXXXXXXX\" es la clave catastral de un predio sin los guiones medios. Si deseas hacer una solicitud con otra clave catastral asegúrate de que no tenga los guiones medios. NOTA: Se necesita un Bearer Token para hacer la solicitud."
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Layers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://localhost:3001/layers",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"layers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Layers Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"101\",\r\n    \"archive\": \"101_0_0.json\",\r\n    \"category\": \"RUTAS\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}layers/",
+					"host": [
+						"{{host}}layers"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Role Add",
 			"request": {
 				"method": "POST",
@@ -128,7 +222,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"role_name\": \"admin\",\n    \"role_description\": \"System Admin\"\n}"
+					"raw": "{\n    \"role_name\": \"usuario\",\n    \"role_description\": \"Usuario base\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}roles",
@@ -157,7 +251,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"role_id\": 1,\n    \"email\": \"djam002@yopmail.com\",\n    \"password\": \"qqqq1111\",\n    \"fullname\": \"Djam Yop 2\",\n    \"phone\": \"0900990099\"\n}"
+					"raw": "{\n    \"nombre\": \"Enrique\",\n    \"ape_pat\": \"Ochoa\",\n    \"ape_mat\": \"Preciado\",\n    \"email\": \"eochoa11@ucol.mx\",\n    \"password\": \"123tamarindo\",\n    \"isActive\": \"1\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}users",
@@ -186,16 +280,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"permissions\": [1] // Aqui debes de poner como numero los permisos que se le van a dar al rol del usuario\n}"
+					"raw": "{\n    \"permissions\": [2, 18, 19] // Aqui debes de poner como numero los permisos que se le van a dar al rol del usuario\n}"
 				},
 				"url": {
-					"raw": "{{host}}roles/permissions/(id del rol al que quieres darle permissions)",
+					"raw": "{{host}}roles/permissions/2",
 					"host": [
 						"{{host}}roles"
 					],
 					"path": [
 						"permissions",
-						"(id del rol al que quieres darle permissions)"
+						"2"
 					]
 				}
 			},
@@ -248,15 +342,15 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"role_name\": \"admin\",\n    \"role_description\": \"Admin Application\"\n}"
+					"raw": "{\n    \"role_name\": \"root\",\n    \"role_description\": \"Administrador root\"\n}"
 				},
 				"url": {
-					"raw": "{{host}}roles/(id del rol que deseas dar update)",
+					"raw": "{{host}}roles/1",
 					"host": [
 						"{{host}}roles"
 					],
 					"path": [
-						"(id del rol que deseas dar update)"
+						"1"
 					]
 				}
 			},
@@ -327,6 +421,38 @@
 			"response": []
 		},
 		{
+			"name": "Layer update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"3 de Mayo\",\r\n    \"archive\": \"COMERCIALIZACION_CONTRATOS_0.json\",\r\n    \"category\": \"Contratos\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}layers/1",
+					"host": [
+						"{{host}}layers"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Role Delete",
 			"request": {
 				"method": "DELETE",
@@ -371,12 +497,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}users/(id del user que deseas borrar)",
+					"raw": "{{host}}users/1",
 					"host": [
 						"{{host}}users"
 					],
 					"path": [
-						"(id del user que deseas borrar)"
+						"1"
 					]
 				}
 			},
@@ -450,72 +576,15 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"eochoa11@ucol.mx\",\n    \"password\": \"123tamarindo\"\n}"
+					"raw": "{\n    \"email\": \"programacion@capdam.gob.mx\",\n    \"password\": \"123tamarindo\"\n}"
 				},
 				"url": {
-					"raw": "{{api}}auth/login",
+					"raw": "{{host}}auth/login",
 					"host": [
-						"{{api}}auth"
+						"{{host}}auth"
 					],
 					"path": [
 						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Test API de catastro",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNhcGRhbSIsImlhdCI6MTY5MjY1Mzc5NX0.KFcP_21WEnzvdAWF_8augN-a6-j3LYlKZiGpzGmVtdM",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://api.manzanillo.gob.mx:3001/api/predio/private/072004022003000",
-					"protocol": "http",
-					"host": [
-						"api",
-						"manzanillo",
-						"gob",
-						"mx"
-					],
-					"port": "3001",
-					"path": [
-						"api",
-						"predio",
-						"private",
-						"072004022003000"
-					]
-				},
-				"description": "Los números después de \"/private/XXXXXXXX\" es la clave catastral de un predio sin los guiones medios. Si deseas hacer una solicitud con otra clave catastral asegúrate de que no tenga los guiones medios. NOTA: Se necesita un Bearer Token para hacer la solicitud."
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Layers",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:3000/api/v1/layers/all",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"v1",
-						"layers",
-						"all"
 					]
 				}
 			},
@@ -545,12 +614,12 @@
 	"variable": [
 		{
 			"key": "host",
-			"value": "localhost:3000/api/v1/",
+			"value": "https://localhost:3001/api/v1/",
 			"type": "string"
 		},
 		{
 			"key": "api",
-			"value": "localhost:3000/api/v1/",
+			"value": "localhost:3001/api/v1/",
 			"type": "string"
 		},
 		{
