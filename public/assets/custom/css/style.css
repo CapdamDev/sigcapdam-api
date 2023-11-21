@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+/* Add transition to .compact-nav */
+.compact-nav {
+  transition: width 0.4s ease-in-out;
+}
