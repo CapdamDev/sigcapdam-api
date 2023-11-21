@@ -1,22 +1,22 @@
 doctype html
 html
     head
-        title OpenLayers Map
+        title SIGCAPDAM - Capas
         link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/ol@v8.1.0/ol.css')
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css")
         include ./includes/head.jade
         
-        body(class='bg-white dark:bg-gray-900')
-            aside(class='fixed top-0 z-10 ml-[-100%] flex h-screen w-full flex-col justify-between border-r bg-white px-6 pb-3 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] dark:bg-gray-800 dark:border-gray-700')
+        body(class='bg-white dark:bg-gray-900 w-auto h-auto')
+            aside.sidebar#mySidebar(class='fixed top-0 z-10 ml-[-100%] flex h-screen w-full flex-col justify-between border-r bg-white px-5 pb-3 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] dark:bg-gray-800 dark:border-gray-700')
                 div
                     div(class='mx-6 px-6 py-4')
                         a(href='/')
-                            //- img(src='assets/logo.png' alt='Logo' class='w-24 mx-auto')
-                            h1.text-2xl.text-center.text-gray-800 dark:text-gray-200.font-bold SIGCAPDAM
+                            img(src='./assets/img/sigcapdam_clean.png' alt='Logo' class='w-100 mx-auto')
+                            //- h1.text-2xl.text-center.text-white(class='dark:text-gray-900.font-bold') SIGCAPDAM
                     div(class='mt-8 text-center')
-                        img(src="images/second_user.webp" alt="" class="m-auto h-10 w-10 rounded-full object-cover lg:h-28 lg:w-28")
+                        img(src="./assets/img/profile.png" alt="" class="m-auto h-10 w-10 rounded-full object-cover lg:h-28 lg:w-28")
                         h5(class="mt-4 hidden text-xl font-semibold text-gray-600 lg:block dark:text-gray-300") Demo
-                        span(class='hidden text-gray-400 lg:block') Administrador
+                        span#userType(class='hidden text-gray-400 lg:block') User type
                     
                     ul(class='mt-8 space-y-2 tracking-wide')
                         li
@@ -25,7 +25,15 @@ html
                                     path(d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" class="dark:fill-slate-600 fill-current text-cyan-400")
                                     path(d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z" class="fill-current text-cyan-200 group-hover:text-cyan-300")
                                     path(d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z" class="fill-current group-hover:text-sky-300")
-                                span(class="-mr-1 font-medium") Dashboard
+                                span(class="-mr-1 font-medium") Layers
+                        li
+                            a#jstree(class='group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 dark:text-gray-300')
+                                svg(class="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none")
+                                span(class="group-hover:text-gray-700 dark:group-hover:text-gray-50")
+                                    path(d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" class="dark:fill-slate-600 fill-current text-cyan-400")
+                                    path(d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z" class="fill-current text-cyan-200 group-hover:text-cyan-300")
+                                    path(d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z" class="fill-current group-hover:text-sky-300")
+                                
                         li
                             a(href="#" class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 dark:text-gray-300")
                                 svg(xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor")
@@ -57,15 +65,15 @@ html
                                     path(class="fill-current text-gray-600 group-hover:text-cyan-600 dark:group-hover:text-sky-400" fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd")
                                 span(class="group-hover:text-gray-700 dark:group-hover:text-white") Finance
                 .mx-6.flex.items-center.justify-between.border-t.px-6.pt-4(class='dark:border-gray-700')
-                    button(class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 dark:text-gray-300")
+                    button#logoutButton(class="group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 dark:text-gray-300")
                         svg(xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor")
                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1")
                         span(class="group-hover:text-gray-700 dark:group-hover:text-white") Logout
-            div(class="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]")
+            div(class="ml-auto lg:w-[75%] xl:w-[80%] 2xl:w-[85%]")
                 div(class="sticky top-0 h-16 border-b bg-white dark:bg-gray-800 dark:border-gray-700 lg:py-2.5")
                     div(class="flex items-center justify-between space-x-4 px-6 2xl:container")
                         h5(hidden class="text-2xl font-medium text-gray-600 lg:block dark:text-white") SIGCAPDAM
-                        button(class="-mr-2 h-16 w-12 border-r lg:hidden dark:border-gray-700 dark:text-gray-300")
+                        button#toggleSidebar(class="-mr-2 h-16 w-12 border-r lg:hidden dark:border-gray-700 dark:text-gray-300")
                             svg(xmlns="http://www.w3.org/2000/svg" class="my-auto h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor")
                                 path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16")
                         div(class='flex space-x-4')
@@ -84,12 +92,9 @@ html
                             button(aria-label="notification" class="h-10 w-10 rounded-xl border bg-gray-100 active:bg-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:active:bg-gray-800")
                                 svg(xmlns="http://www.w3.org/2000/svg" class="m-auto h-5 w-5 text-gray-600 dark:text-gray-300" viewBox="0 0 20 20" fill="currentColor")
                                     path(d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z")
-                div(class='px-6 pt-6 2xl:container')
-                    div(class="flex h-[80vh] items-center justify-center rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600")
-                        span(class='dark:text-white') Mapa
-
-
-
+                            
+                div
+                    #map(class="flex h-[93vh] items-center justify-center rounded-xl")
 
                 //- #loadingSpinner(class='fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-white bg-opacity-100 z-50')
                 //-     div(class="animate-spin rounded-full border-t-4 border-blue-500 border-solid h-12 w-12")
@@ -111,7 +116,7 @@ html
                 //-                 span.ml-4.text-gray-200(class='text-[15px]') Coordinates
                 //-                 #mouse-position.text-gray-200.pl-2(class='text-[15px]')
                 //-             .mt-3.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer.bg-gray-700(class='p-2.5')
-                //-                 i.bi.bi-search.text-sm
+                //-                 i.bi.bi-search.text-sm=
                 //-                 input.ml-4.w-full.bg-transparent(class='text-[15px] focus:outline-none' placeholder='Buscar capa' id='search' name='search')
                 //-             #jstree.leading-7.text-left.text-sm.font-thin.mt-2.mx-auto(class='w-4/5')
                 //-             hr.my-4.text-gray-600
@@ -140,13 +145,15 @@ html
                 script(src="https://code.jquery.com/jquery-3.6.0.min.js")
                 script(src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js")
                 script.
-                    const sidebar = document.querySelector('.sidebar');
-
-                    window.onload= () => {
-                        setTimeout(() => {
-                            sidebar.style.display = "block";
-                        }, 500);
+                    
+                    // Set the user type
+                    const userType = document.getElementById('userType');
+                    if (sessionStorage.getItem('role_name') === 'root') {
+                        userType.innerHTML = 'Admin';
+                    } else {
+                        userType.innerHTML = 'User';
                     }
+
                     // Script para la barra de buscar del jstree //
                     $(document).ready(function(){
                         $("#search").on("keyup", function() {
@@ -157,25 +164,14 @@ html
                         });
                     })
 
-                    // Script del dropdown manual //
-                    function dropDown() {
-                        document.querySelector('#submenu').classList.toggle('hidden');
-                        document.querySelector('#arrow').classList.toggle('rotate-0');
-                    }
-                    dropDown()
-
-                    // Script para abrir y cerrar la barra lateral responsiva //
-                    function toggleSidebar() {
-                        const sidebar = document.querySelector('.sidebar');
-                        sidebar.classList.toggle('left-[-300px]'); // Aquí se aplica la clase que oculta o muestra la barra lateral
-                    }
-
-
                     document.addEventListener('DOMContentLoaded', function () {
+                        const sidebar = document.getElementById('mySidebar');
+                        const toggleButton = document.getElementById('toggleSidebar');
 
-                        const loadingSpinner = document.getElementById('loadingSpinner');
-
-                        // Coordenadas que centrarán el mapa al cargar la página
+                        toggleButton.addEventListener('click', () => {
+                            sidebar.classList.toggle('-ml-[-100%]');
+                        });
+                                            // Coordenadas que centrarán el mapa al cargar la página
                         var centerCoordinates = [-104.301939092764954, 19.066318856363417];
 
                         // Crear el mapa
@@ -375,11 +371,9 @@ html
                                             layer.setVisible(isSelected);
                                         });
                                     });
-                                    loadingSpinner.classList.add('hidden');
                                 })
                                 .catch((error) => {
                                     console.error('Error fetching layers:', error);
-                                    loadingSpinner.classList.add('hidden');
                                 });
                         }
 

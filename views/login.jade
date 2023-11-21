@@ -82,12 +82,14 @@ html
                     message.textContent = 'Iniciando sesión...';
                     if(data.role_id === 1) {
                         sessionStorage.setItem('role_id', data.role_id);
+                        sessionStorage.setItem('role_name', data.role_name);
                         sessionStorage.setItem('token', data.token);
                         setTimeout(() => {
                             window.location.href = '/layers';
                         }, 500);
                     } else {
                         sessionStorage.setItem('role_id', data.role_id);
+                        sessionStorage.setItem('role_name', data.role_name);
                         sessionStorage.setItem('token', data.token);
                         setTimeout(() => {
                             window.location.href = '/layers2';
