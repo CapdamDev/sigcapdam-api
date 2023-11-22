@@ -5,7 +5,6 @@ html
         link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/ol@v8.1.0/ol.css')
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css")
         include ./includes/head.jade
-
     body(class='bg-white dark:bg-gray-900')
         aside(class='compact-nav fixed group overflow-hidden left-0 top-0 z-10 h-screen w-[calc(3.73rem)] border-r border-gray-300/40 bg-white dark:bg-gray-900 dark:border-gray-700 hover:w-56 hover:shadow-2xl')
             div(class='h-full flex flex-col justify-between')
@@ -20,19 +19,20 @@ html
                                     div(class='w-max flex items-center px-3 gap-4')
                                         svg(class='h-7 w-7' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map-fill" viewBox="0 0 16 16")
                                             path(fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.502.502 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5V.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.498.498 0 0 0-.196 0L5 14.09zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1-.5-.1z")
-                                        span(class='text-white') Layers
+                                        span(class='text-white') SIGCAPDAM
                             li(class='w-max')
                                 a(href='#')
                                     div(class='flex items-center gap-4 px-4 py-3')
-                                        svg(class='h-7 w-7 fill-gray-500 dark:fill-gray-100' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
-                                            path(class='fill-gray-500 dark:fill-gray-100' fillrule='evenodd' cliprule='evenodd' d='M2 5a1 1 0 011-1h14a1 1 0 110 2H3a1 1 0 01-1-1zM2 10a1 1 0 011-1h14a1 1 0 110 2H3a1 1 0 01-1-1zM3 15a1 1 0 100 2h14a1 1 0 100-2H3z')
-                                        span(class='text-gray-600 dark:text-gray-300') Categories
+                                        svg(class='h-7 w-7 fill-gray-500 dark:fill-gray-100' xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pin-map-fill" viewBox="0 0 16 16")
+                                            path(fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8z")
+                                            path(fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z")
+                                        span(class='text-gray-600 dark:text-gray-300') Gest. de capas
                             li(class='w-max')
                                 a(href='#')
                                     div(class='flex items-center gap-4 px-4 py-3')
-                                        svg(class='h-7 w-7 fill-gray-500 dark:fill-gray-100' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
-                                            path(class='fill-gray-500 dark:fill-gray-100' fillrule='evenodd' cliprule='evenodd' d='M2 5a1 1 0 011-1h14a1 1 0 110 2H3a1 1 0 01-1-1zM2 10a1 1 0 011-1h14a1 1 0 110 2H3a1 1 0 01-1-1zM3 15a1 1 0 100 2h14a1 1 0 100-2H3z')
-                                        span(class='text-gray-600 dark:text-gray-300') Categories
+                                        svg(class='h-7 w-7 fill-gray-500 dark:fill-gray-100' xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16")
+                                            path(d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5")
+                                        span(class='text-gray-600 dark:text-gray-300') Gest. usuarios
                             li(class='w-max')
                                 a(href='#')
                                     div(class='flex items-center gap-4 px-4 py-3')
@@ -51,8 +51,8 @@ html
                         div(class='w-max flex items-center gap-4')
                             img(class='w-10 h-10 rounded-full' src='https://avatars.githubusercontent.com/u/31113941?v=4' alt='')
                             div
-                                h6(class='text-gray-600 font-medium dark:text-gray-200') Nombre
-                                span(class='block -mt-0.5 text-xs text-gray-500 dark:text-white') Role
+                                h6#nombre(class='text-gray-600 font-medium dark:text-gray-200') Nombre
+                                span#userType(class='block -mt-0.5 text-xs text-gray-500 dark:text-white') Role
         main.ml-auto(class='w-[calc(100%-3.73rem)]')
             div(class='2xl:w-auto mx-auto space-y-6')
                 div(class='h-16 items-center border border-gray-300/40 dark:border-gray-700 flex justify-between px-6 lg:px-12')
@@ -60,69 +60,22 @@ html
                     div(class='flex items-center')
                         span(class='text-gray-500 dark:text-gray-200') Coordenadas del mouse:
                         span#mouse-position.text-gray-500(class='dark:text-gray-200 ml-2')
-                    span(class='text-left text-white') Text Element 2
+                    span(class='text-left text-white') SIGCAPDAM
 
-                div(class='px-6 lg:px-12')
-                    #map(class='h-96 flex justify-center items-center rounded-2xl border border-dashed border-gray-300/40 dark:border-gray-700')
-                        //- #map(class='w-full h-full bg-gray-100 rounded-2xl')
-                        //- span(class='text-gray-500 dark:text-gray-200') Content
+                div(class='px-6 h-[calc(51rem)]')
+                    #map(class='h-full flex justify-center items-center rounded-2xl border border-dashed border-gray-300/40 dark:border-gray-700')
 
-                        //-     div(class="animate-spin rounded-full border-t-4 border-blue-500 border-solid h-12 w-12")
-                        //- div(class='flex')
-                        //-     div(class='w-full ml-1/5 sm:w-full xs:w-full')
-                        //-         #map.w-full.h-screen.bg-white.rounded-lg.shadow-md
-                        //- span.absolute.text-white.text-4xl.top-5.left-4.cursor-pointer(onclick='toggleSidebar()')
-                        //-     i.bi.bi-filter-left.px-2.bg-gray-900.rounded-md
-                        //- .sidebar.fixed.top-0.left-0.duration-300.p-2.overflow-y-auto.text-center.bg-gray-900.shadow.h-screen
-                        //-     .text-gray-100.text-xl
-                        //-         a.mt-1.flex.items-center.rounded-md(class='p-2.5')
-                        //-             i.bi.bi-droplet-fill.px-2.py-1.bg-blue-600.rounded-md
-                        //-             h1.ml-3.text-xl.text-gray-200.font-bold(class='text-[15px]') SIGCAPDAM
-                        //-             i.bi.bi-x.ml-20.cursor-pointer(onclick='toggleSidebar()')
-                        //-         hr.my-2.text-gray-600
-                        //-         div
-                        //-             .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
-                        //-                 i.bi.bi-crosshair2
-                        //-                 span.ml-4.text-gray-200(class='text-[15px]') Coordinates
-                        //-                 #mouse-position.text-gray-200.pl-2(class='text-[15px]')
-                        //-             .mt-3.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer.bg-gray-700(class='p-2.5')
-                        //-                 i.bi.bi-search.text-sm=
-                        //-                 input.ml-4.w-full.bg-transparent(class='text-[15px] focus:outline-none' placeholder='Buscar capa' id='search' name='search')
-                        //-             #jstree.leading-7.text-left.text-sm.font-thin.mt-2.mx-auto(class='w-4/5')
-                        //-             hr.my-4.text-gray-600
-                        //-             .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
-                        //-                 i.bi.bi-geo-alt-fill
-                        //-                 span.ml-4.text-gray-200(class='text-[15px]') Gestionar capas
-                        //-             .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600')
-                        //-                 i.bi.bi-people-fill
-                        //-                 span.ml-4.text-gray-200(class='text-[15px]') Gestionar usuarios
-                        //-             .mt-2.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(class='p-2.5 hover:bg-blue-600 hidden')
-                        //-                 i.bi.bi-chat-left-text-fill
-                        //-                 .flex.justify-between.w-full.items-center(onclick='dropDown()')
-                        //-                     span.ml-4.text-gray-200(class='text-[15px]') Chatbox
-                        //-                     span#arrow.text-sm.rotate-180
-                        //-                         i.bi.bi-chevron-down
-                        //-             #submenu.leading-7.text-left.text-sm.font-thin.mt-2.mx-auto(class='w-4/5')
-                        //-                 h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Social
-                        //-                 h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Personal
-                        //-                 h1.cursor-pointer.p-2.rounded-md.mt-1(class='hover:bg-gray-700') Friends
-                        //-             .mt-3.flex.items-center.rounded-md.px-4.duration-300.cursor-pointer(id='logoutButton' class='p-2.5 hover:bg-blue-600')
-                        //-                 i.bi.bi-box-arrow-in-right
-                        //-                 button.ml-4.text-gray-200(class='text-[15px]') Logout
+                    //- Make a div to display the JS Tree and search bar, positioned at right, in the middle of the screen, with a button to toggle it open and closed
+                                        
+                    div(class='absolute top-1/2 right-1 transform translate-y-[-50%] px-6 py-4')
+                        input#search(type='text' class='w-full h-full text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none hover:bg-gray-200 dark:hover:bg-gray-700 text-center' placeholder='Buscar capas')
+                        div#jstree(class='flex w-full h-full bg-white py-2')
 
                         include ./includes/footer.jade
                         script(src='https://cdn.jsdelivr.net/npm/ol@v8.1.0/dist/ol.js')
                         script(src="https://code.jquery.com/jquery-3.6.0.min.js")
                         script(src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js")
                         script.
-
-                            // Set the user type
-                            //- const userType = document.getElementById('userType');
-                            //- if (sessionStorage.getItem('role_name') === 'root') {
-                            //-     userType.innerHTML = 'Admin';
-                            //- } else {
-                            //-     userType.innerHTML = 'User';
-                            //- }
 
                             // Script para la barra de buscar del jstree //
                             $(document).ready(function(){
@@ -137,6 +90,7 @@ html
                             document.addEventListener('DOMContentLoaded', function () {
                                     // Coordenadas que centrarán el mapa al cargar la página
                                 var centerCoordinates = [-104.301939092764954, 19.066318856363417];
+                                var token = sessionStorage.getItem('token');
 
                                 // Crear el mapa
                                 var map = new ol.Map({
@@ -163,7 +117,7 @@ html
 
                                 map.addControl(mousePositionControl);
 
-                                if (!sessionStorage.getItem('token')) {
+                                if (!token) {
                                     window.location.href = '/login';
                                 } else {
 
@@ -182,7 +136,7 @@ html
                                         method: 'GET',
                                         headers: {
                                             'Content-Type': 'application/json',
-                                            'Authorization': sessionStorage.getItem('token'),
+                                            'Authorization': token,
                                         },
                                     })
                                     .then((response) => response.json())
@@ -201,7 +155,7 @@ html
                                                         anchorXUnits: 'fraction',
                                                         anchorYUnits: 'fraction',
                                                         src: 'assets/layer_icons/' + layer.category + '/' + layer.name + '.png',
-                                                        scale: 1
+                                                        scale: 0.6
                                                     }),
                                                 });
 
@@ -242,6 +196,12 @@ html
                                                     }
                                                 });
 
+                                                if(layer.name) {
+                                                    vectorLayer.set('name', layer.name);
+                                                } else {
+                                                    vectorLayer.set('name', 'No name');
+                                                }
+
                                                 var iconStyle = new ol.style.Style({
                                                     image: new ol.style.Icon({
                                                         anchor: [0.5, 0.5],
@@ -252,12 +212,6 @@ html
                                                     }),
                                                 });
 
-                                                if(layer.name) {
-                                                    vectorLayer.set('name', layer.name);
-                                                } else {
-                                                    vectorLayer.set('name', 'No name');
-                                                }
-
                                                 //- layerSource.once('change', function (e) {
                                                 //-     if (layerSource.getState() === 'ready') {
                                                 //-         var extent = layerSource.getExtent();
@@ -265,7 +219,9 @@ html
                                                 //-     }
                                                 //- });
 
-                                                map.addLayer(vectorLayer);
+                                                // Get features from the layer (PENDIENTE)
+                                                var features = layerSource.getFeatures();
+                                                console.log(features);
 
                                                 if(!categories[layer.category]) {
                                                     categories[layer.category] = [];
@@ -280,6 +236,8 @@ html
                                                         selected: false
                                                     }
                                                 });
+                                                map.addLayer(vectorLayer);
+
                                             });
 
                                             // Initialize JSTree
