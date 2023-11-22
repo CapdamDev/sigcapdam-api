@@ -40,18 +40,24 @@ app.use('/api/v1/layers', layersRouter);
 // Serve static files from the 'public' directory over HTTPS
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Load SSL certificates
-const privateKey = fs.readFileSync('./certificates/example.com+5-key.pem', 'utf8');
-const certificate = fs.readFileSync('./certificates/example.com+5.pem', 'utf8');
-const credentials = { key: privateKey, cert: certificate };
+// Load SSL certificates if they exist
+let credentials = null;
+const privateKeyPath = './certificates/example.com+5-key.pem';
+const certificatePath = './certificates/example.com+5.pem';
 
-// Create an HTTPS server
-const httpsServer = https.createServer(credentials, app);
+if (fs.existsSync(privateKeyPath) && fs.existsSync(certificatePath)) {
+  const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
+  const certificate = fs.readFileSync(certificatePath, 'utf8');
+  credentials = { key: privateKey, cert: certificate };
+}
 
-// Start the server on port 3000
-const PORT = 3001;
-httpsServer.listen(PORT, () => {
-  console.log(`Server running on https://localhost:${PORT}`);
+// Create an HTTP or HTTPS server based on the presence of certificates
+const server = credentials ? https.createServer(credentials, app) : app;
+
+// Start the server on port 3000 or 3001
+const PORT = credentials ? 3001 : 3001;
+server.listen(PORT, () => {
+  console.log(`Server running on ${credentials ? 'https' : 'http'}://localhost:${PORT}`);
 });
 
 // catch 404 and forward to error handler
