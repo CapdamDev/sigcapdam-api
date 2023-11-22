@@ -67,18 +67,22 @@ router.post('/login', function (req, res) {
                             Permission.findAll({ where: { id: permIds } })
                                 .then(permissions => {
                                     var permNames = permissions.map(p => p.perm_name);
-                                    res.send({
-                                        success: true,
-                                        token: 'JWT ' + token,
-                                        role_id: user.role_id,
-                                        permissions: permNames,
-                                    });
 
-                                    // res.render('layers', {
-                                    //     title: 'Layers',
-                                    //     user: req.user,
-                                    //     role_id: user.role_id,
-                                    // })
+                                    // Fetch role details based on role_id
+                                    Role.findOne({ where: { id: user.role_id } })
+                                        .then(role => {
+                                            res.send({
+                                                success: true,
+                                                token: 'JWT ' + token,
+                                                role_id: user.role_id,
+                                                role_name: role.role_name, // Add role_name to the response
+                                                user_email: user.email,
+                                                permissions: permNames,
+                                            });
+                                        })
+                                        .catch(error => {
+                                            res.status(400).send(error);
+                                        });
                                 });
                         });
                 } else {
