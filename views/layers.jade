@@ -212,12 +212,12 @@ html
                                                     }),
                                                 });
 
-                                                //- layerSource.once('change', function (e) {
-                                                //-     if (layerSource.getState() === 'ready') {
-                                                //-         var extent = layerSource.getExtent();
-                                                //-         map.getView().fit(extent);
-                                                //-     }
-                                                //- });
+                                                layerSource.once('change', function (e) {
+                                                    if (layerSource.getState() === 'ready') {
+                                                        var extent = layerSource.getExtent();
+                                                        map.getView().fit(extent);
+                                                    }
+                                                });
 
                                                 // Get features from the layer (PENDIENTE)
                                                 var features = layerSource.getFeatures();
