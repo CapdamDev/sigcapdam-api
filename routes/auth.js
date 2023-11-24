@@ -98,9 +98,14 @@ router.post('/login', function (req, res) {
 
 // Logout route
 router.post('/logout', (req, res) => {
-    res.clearCookie('token');  // Clear the token cookie
-    res.clearCookie('permissions');
-    res.status(200).json({ success: true, message: 'Logout successful' });
+    res.send({
+        success: true,
+        token: null,
+        role_id: null,
+        role_name: null,
+        user_email: null,
+        permissions: null,
+    })
 });
 
 module.exports = router;
