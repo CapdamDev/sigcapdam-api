@@ -9,5 +9,5 @@ module.exports = {
 		filename: "final.js",
 	},
 	target: "node",
-    externals: ['pg', 'sqlite3', 'tedious', 'pg-hstore'],
+    externals: ['pg', 'sqlite3', 'tedious', 'pg-hstore', 'mysql2'],
 };
