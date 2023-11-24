@@ -297,6 +297,8 @@ html
                                     // Logout
                                     $('#logoutButton').on('click', function () {
                                         sessionStorage.removeItem('token');
+                                        sessionStorage.removeItem('role_id');
+                                        sessionStorage.removeItem('role_name');
                                         window.location.href = '/login';
                                     });
                             });
