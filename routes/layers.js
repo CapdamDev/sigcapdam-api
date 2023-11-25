@@ -3,12 +3,14 @@ const fs = require("fs");
 const router = express.Router();
 const User = require("../models").User;
 const Role = require("../models").Role;
+const Category = require("../models").Category;
 const Permission = require("../models").Permission;
 const Layer = require("../models").Layer;
 const passport = require("passport");
 require("../config/passport")(passport);
 const Helper = require("../utils/helper");
 const helper = new Helper();
+
 
 // Crear/guardar una layer
 router.post('/', passport.authenticate('jwt', {
@@ -49,21 +51,40 @@ router.post('/', passport.authenticate('jwt', {
 	});
 });
 
-// Consulta todas las layers
+// Consulta todas las layers, asocia el numero de la columna category con el nombre que se encuentra en la tabla categories
 router.get("/all", passport.authenticate("jwt", { session: false }), function (req, res) {
     helper.checkPermission(req.user.role_id, "layer_get_all").then((rolePerm) => {
-        Layer.findAll()
+        Layer.findAll({
+            include: [{ model: Category, attributes: ['name'], as: 'categoryData' }]
+        })
             .then((layers) => {
-                // Send the layers as a JSON response to the client
-                res.status(200).json(layers);
+                // layers will contain the associated category data
+                res.json(layers);
             })
             .catch((error) => {
+                console.error(error);
                 res.status(500).json({ error: "Internal Server Error" });
             });
     }).catch((error) => {
+        console.error(error);
         res.status(403).json({ error: "Forbidden" });
     });
 });
+
+// router.get("/all", passport.authenticate("jwt", { session: false }), function (req, res) {
+//     helper.checkPermission(req.user.role_id, "layer_get_all").then((rolePerm) => {
+//         Layer.findAll()
+//             .then((layers) => {
+//                 // Send the layers as a JSON response to the client
+//                 res.status(200).json(layers);
+//             })
+//             .catch((error) => {
+//                 res.status(500).json({ error: "Internal Server Error" });
+//             });
+//     }).catch((error) => {
+//         res.status(403).json({ error: "Forbidden" });
+//     });
+// });
 
 // Consulta una layer por su nombre
 router.get("/:name", function (req, res) {
