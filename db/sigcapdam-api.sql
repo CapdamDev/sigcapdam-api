@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2023 a las 15:45:56
+-- Tiempo de generación: 25-11-2023 a las 09:38:29
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -22,6 +22,21 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `sigcapdam-api` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `sigcapdam-api`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -74,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `perm_name` (`perm_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `permissions`
@@ -162,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `role_name` (`role_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -170,7 +185,8 @@ CREATE TABLE IF NOT EXISTS `roles` (
 
 INSERT INTO `roles` (`id`, `role_name`, `role_description`, `createdAt`, `updatedAt`) VALUES
 (1, 'root', 'System Admin', '2023-11-15 19:23:15', '2023-11-15 19:23:15'),
-(2, 'usuario', 'Usuario base', '2023-11-16 16:26:11', '2023-11-16 16:26:11');
+(2, 'usuario', 'Usuario base', '2023-11-16 16:26:11', '2023-11-16 16:26:11'),
+(3, 'admin', 'System Admin', '2023-11-25 15:11:42', '2023-11-25 15:11:42');
 
 -- --------------------------------------------------------
 
@@ -194,7 +210,8 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 ('20231025202524-create-role-permission.js'),
 ('20231025202524-create-role.js'),
 ('20231025202524-create-user.js'),
-('20231031150143-create-layer.js');
+('20231031150143-create-layer.js'),
+('20231125150452-create-category.js');
 
 -- --------------------------------------------------------
 

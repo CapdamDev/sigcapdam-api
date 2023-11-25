@@ -141,7 +141,7 @@ html
                                             // Process the layers
                                             layers.forEach(function (layer) {
                                                 // Ensure the URL is correct
-                                                var geoJsonUrl = 'assets/layers/capas_js/' + layer.category + '/' + layer.archive;
+                                                var geoJsonUrl = 'assets/layers/capas_js/' + layer.categoryData.name + '/' + layer.archive;
 
                                                 // Create a new iconStyle for each layer
                                                 var iconStyleForLayer = new ol.style.Style({
@@ -149,7 +149,7 @@ html
                                                         anchor: [0.5, 0.5],
                                                         anchorXUnits: 'fraction',
                                                         anchorYUnits: 'fraction',
-                                                        src: 'assets/layer_icons/' + layer.category + '/' + layer.name + '.png',
+                                                        src: 'assets/layer_icons/' + layer.categoryData.name + '/' + layer.name + '.png',
                                                         scale: 0.6
                                                     }),
                                                 });
@@ -202,7 +202,7 @@ html
                                                         anchor: [0.5, 0.5],
                                                         anchorXUnits: 'fraction',
                                                         anchorYUnits: 'fraction',
-                                                        src: 'assets/layer_icons/' + layer.category + '/' + layer.name + '.png',
+                                                        src: 'assets/layer_icons/' + layer.categoryData.name + '/' + layer.name + '.png',
                                                         scale: 0.1
                                                     }),
                                                 });
@@ -218,14 +218,14 @@ html
                                                 var features = layerSource.getFeatures();
                                                 console.log(features);
 
-                                                if(!categories[layer.category]) {
-                                                    categories[layer.category] = [];
+                                                if(!categories[layer.categoryData.name]) {
+                                                    categories[layer.categoryData.name] = [];
                                                 }
 
                                                 // Add the layer to the category on jsTree
-                                                categories[layer.category].push({
+                                                categories[layer.categoryData.name].push({
                                                     id: layer.name,
-                                                    text: ' <img src="assets/layer_icons/' + layer.category  + '/' + layer.name + '.png" class="inline-block w-4 h-4"> ' + layer.name,
+                                                    text: ' <img src="assets/layer_icons/' + layer.categoryData.name  + '/' + layer.name + '.png" class="inline-block w-4 h-4"> ' + layer.name,
                                                     state: {
                                                         opened: true,
                                                         selected: false
