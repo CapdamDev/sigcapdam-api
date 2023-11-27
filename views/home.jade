@@ -115,17 +115,6 @@ html
                                 if (!token) {
                                     window.location.href = '/login';
                                 } else {
-
-                                    var iconStyle = new ol.style.Style({
-                                        image: new ol.style.Icon({
-                                            anchor: [0.5, 0.5],
-                                            anchorXUnits: 'fraction',
-                                            anchorYUnits: 'fraction',
-                                            src: 'assets/layer_icons/CONTRATOS.png',
-                                            scale: 0.1
-                                        }),
-                                    });
-
                                     // Obtener todos los layers
                                     fetch('/api/v1/layers/all', {
                                         method: 'GET',
@@ -142,6 +131,13 @@ html
                                             layers.forEach(function (layer) {
                                                 // Ensure the URL is correct
                                                 var geoJsonUrl = 'assets/layers/capas_js/' + layer.categoryData.name + '/' + layer.archive;
+                                                
+                                                var layerSource = new ol.source.Vector({
+                                                    url: geoJsonUrl,
+                                                    format: new ol.format.GeoJSON()
+                                                });
+
+                                            
 
                                                 // Create a new iconStyle for each layer
                                                 var iconStyleForLayer = new ol.style.Style({
@@ -152,11 +148,6 @@ html
                                                         src: 'assets/layer_icons/' + layer.categoryData.name + '/' + layer.name + '.png',
                                                         scale: 0.6
                                                     }),
-                                                });
-
-                                                var layerSource = new ol.source.Vector({
-                                                    url: geoJsonUrl,
-                                                    format: new ol.format.GeoJSON()
                                                 });
 
                                                 var vectorLayer = new ol.layer.Vector({
@@ -172,7 +163,7 @@ html
                                                                 // Establecer el valor de color obtenido en el stroke
                                                                 stroke: new ol.style.Stroke({
                                                                     color: 'rgba('+ color +', 0.5)',
-                                                                    width: 2
+                                                                    width: 4
                                                                 })
                                                             });
                                                         } else if(feature.getGeometry().getType() === 'Polygon' || feature.getGeometry().getType() === 'MultiPolygon' ) {
@@ -181,10 +172,13 @@ html
                                                             return new ol.style.Style({
                                                                 stroke: new ol.style.Stroke({
                                                                     color: 'rgba('+ color +', 0.5)',
-                                                                    width: 2
+                                                                    width: 20,
+                                                                    scale: 2
                                                                 }),
                                                                 fill: new ol.style.Fill({
-                                                                    color: 'rgba('+ color2 +', 0.5)'
+                                                                    color: 'rgba('+ color2 +', 0.5)',
+                                                                    width: 20,
+                                                                    scale: 2
                                                                 })
                                                             });
                                                         }
@@ -207,17 +201,6 @@ html
                                                     }),
                                                 });
 
-                                                //- layerSource.once('change', function (e) {
-                                                //-     if (layerSource.getState() === 'ready') {
-                                                //-         var extent = layerSource.getExtent();
-                                                //-         map.getView().fit(extent);
-                                                //-     }
-                                                //- });
-
-                                                // Get features from the layer (PENDIENTE)
-                                                var features = layerSource.getFeatures();
-                                                console.log(features);
-
                                                 if(!categories[layer.categoryData.name]) {
                                                     categories[layer.categoryData.name] = [];
                                                 }
@@ -225,12 +208,13 @@ html
                                                 // Add the layer to the category on jsTree
                                                 categories[layer.categoryData.name].push({
                                                     id: layer.name,
-                                                    text: ' <img src="assets/layer_icons/' + layer.categoryData.name  + '/' + layer.name + '.png" class="inline-block w-4 h-4"> ' + layer.name,
+                                                    text: '<img src="assets/layer_icons/' + layer.categoryData.name  + '/' + layer.name + '.png" class="inline-block w-4 h-4"> ' + layer.name,
                                                     state: {
                                                         opened: true,
                                                         selected: false
                                                     }
                                                 });
+                                                
                                                 map.addLayer(vectorLayer);
 
                                             });
