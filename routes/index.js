@@ -28,6 +28,11 @@ router.get('/users_dashboard', function(req, res, next) {
   res.render('users_dashboard');
 });
 
+/* GET settings */
+router.get('/settings', function(req, res, next) {
+  res.render('settings');
+});
+
 // /* GET de la pagina de registro */
 // router.get('/register', function(req, res, next) {
 //   res.render('register');
