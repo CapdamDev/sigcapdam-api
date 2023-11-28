@@ -23,6 +23,11 @@ router.get('/layers_dashboard', function(req, res, next) {
   res.render('layers_dashboard');
 });
 
+/* GET users_dashboard */
+router.get('/users_dashboard', function(req, res, next) {
+  res.render('users_dashboard');
+});
+
 // /* GET de la pagina de registro */
 // router.get('/register', function(req, res, next) {
 //   res.render('register');
