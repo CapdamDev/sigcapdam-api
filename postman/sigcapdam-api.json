@@ -154,19 +154,16 @@
 					{
 						"key": "Authorization",
 						"value": "{{token}}",
-						"type": "text",
-						"disabled": true
+						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "https://localhost:3001/layers",
-					"protocol": "https",
+					"raw": "{{host}}layers/all",
 					"host": [
-						"localhost"
+						"{{host}}layers"
 					],
-					"port": "3001",
 					"path": [
-						"layers"
+						"all"
 					]
 				}
 			},

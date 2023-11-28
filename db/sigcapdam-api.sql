@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-11-2023 a las 09:38:29
+-- Tiempo de generación: 28-11-2023 a las 14:02:34
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -29,14 +29,23 @@ USE `sigcapdam-api`;
 -- Estructura de tabla para la tabla `categories`
 --
 
-DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
+(1, 'POZOS DE CONAGUA', '2023-11-25 15:49:14', '2023-11-25 15:49:14'),
+(2, 'CONTRATOS', '2023-11-25 15:49:14', '2023-11-25 15:49:14'),
+(3, 'INFRAESTRUCTURA', '2023-11-25 15:49:14', '2023-11-25 15:49:14'),
+(4, 'RUTAS', '2023-11-25 15:49:14', '2023-11-25 15:49:14');
 
 -- --------------------------------------------------------
 
@@ -44,7 +53,6 @@ CREATE TABLE IF NOT EXISTS `categories` (
 -- Estructura de tabla para la tabla `layers`
 --
 
-DROP TABLE IF EXISTS `layers`;
 CREATE TABLE IF NOT EXISTS `layers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -60,19 +68,17 @@ CREATE TABLE IF NOT EXISTS `layers` (
 --
 
 INSERT INTO `layers` (`id`, `name`, `archive`, `category`, `createdAt`, `updatedAt`) VALUES
-(1, 'SANTIAGO-SALAGUA', 'SANTIAGOSALAGUA_1.json', 'POZOS DE CONAGUA', '2023-11-14 16:43:52', '2023-11-14 16:43:52'),
-(2, 'JALIPA-TAPEIXTLES', 'JALIPATAPEIXTLES_3.json', 'POZOS DE CONAGUA', '2023-11-14 16:44:17', '2023-11-14 16:44:17'),
-(3, 'EL COLOMO', 'ELCOLOMO_4.json', 'POZOS DE CONAGUA', '2023-11-14 16:44:34', '2023-11-14 16:44:34'),
-(4, 'PEÑA BLANCA', 'PEABLANCA_2.json', 'POZOS DE CONAGUA', '2023-11-14 16:44:51', '2023-11-14 16:44:51'),
-(5, 'VENUSTIANO CARRANZA', 'VENUSTIANOCARRANZA.json', 'POZOS DE CONAGUA', '2023-11-14 16:45:21', '2023-11-14 16:45:21'),
-(6, 'DESCARGAS', 'DESCARGAS.json', 'POZOS DE CONAGUA', '2023-11-14 16:45:34', '2023-11-14 16:45:34'),
-(7, 'CONTRATOS', 'CONTRATOS.json', 'CONTRATOS', '2023-11-14 17:30:34', '2023-11-14 17:30:34'),
-(9, 'ALCANTARILLA', 'ALCANTARILLA_16.json', 'INFRAESTRUCTURA', '2023-11-15 17:52:45', '2023-11-15 17:52:45'),
-(10, 'ALMACENAMIENTO DE AGUA', 'ALMACENAMIENTO_DE_AGUA_16.json', 'INFRAESTRUCTURA', '2023-11-15 18:25:38', '2023-11-15 18:25:38'),
-(11, 'BOCA DE TORMENTA', 'BOCA_DE_TORMENTA_15.json', 'INFRAESTRUCTURA', '2023-11-15 18:29:19', '2023-11-15 18:29:19'),
-(12, 'CAJA DE AGUA', 'CAJA_DE_AGUA_14.json', 'INFRAESTRUCTURA', '2023-11-15 18:30:55', '2023-11-15 18:30:55'),
-(13, 'CANAL', 'CANAL_13.json', 'INFRAESTRUCTURA', '2023-11-15 18:33:17', '2023-11-15 18:33:17'),
-(14, 'CANALETA', 'CANALETA_12.json', 'INFRAESTRUCTURA', '2023-11-15 18:36:28', '2023-11-15 18:36:28');
+(1, 'SANTIAGO-SALAGUA', 'SANTIAGOSALAGUA_1.json', '1', '2023-11-14 16:43:52', '2023-11-14 16:43:52'),
+(2, 'JALIPA-TAPEIXTLES', 'JALIPATAPEIXTLES_3.json', '1', '2023-11-14 16:44:17', '2023-11-14 16:44:17'),
+(3, 'EL COLOMO', 'ELCOLOMO_4.json', '1', '2023-11-14 16:44:34', '2023-11-14 16:44:34'),
+(4, 'PEÑA BLANCA', 'PEABLANCA_2.json', '1', '2023-11-14 16:44:51', '2023-11-14 16:44:51'),
+(5, 'VENUSTIANO CARRANZA', 'VENUSTIANOCARRANZA.json', '1', '2023-11-14 16:45:21', '2023-11-14 16:45:21'),
+(6, 'DESCARGAS', 'DESCARGAS.json', '1', '2023-11-14 16:45:34', '2023-11-14 16:45:34'),
+(7, 'CONTRATOS', 'CONTRATOS.json', '2', '2023-11-14 17:30:34', '2023-11-14 17:30:34'),
+(9, 'ALCANTARILLA', 'ALCANTARILLA_16.json', '3', '2023-11-15 17:52:45', '2023-11-15 17:52:45'),
+(11, 'BOCA DE TORMENTA', 'BOCA_DE_TORMENTA_15.json', '3', '2023-11-15 18:29:19', '2023-11-15 18:29:19'),
+(13, 'CANAL', 'CANAL_13.json', '3', '2023-11-15 18:33:17', '2023-11-15 18:33:17'),
+(14, 'CANALETA', 'CANALETA_12.json', '3', '2023-11-15 18:36:28', '2023-11-15 18:36:28');
 
 -- --------------------------------------------------------
 
@@ -80,7 +86,6 @@ INSERT INTO `layers` (`id`, `name`, `archive`, `category`, `createdAt`, `updated
 -- Estructura de tabla para la tabla `permissions`
 --
 
-DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE IF NOT EXISTS `permissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `perm_name` varchar(255) NOT NULL,
@@ -123,7 +128,6 @@ INSERT INTO `permissions` (`id`, `perm_name`, `perm_description`, `createdAt`, `
 -- Estructura de tabla para la tabla `rolepermissions`
 --
 
-DROP TABLE IF EXISTS `rolepermissions`;
 CREATE TABLE IF NOT EXISTS `rolepermissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
@@ -168,7 +172,6 @@ INSERT INTO `rolepermissions` (`id`, `role_id`, `perm_id`, `createdAt`, `updated
 -- Estructura de tabla para la tabla `roles`
 --
 
-DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(255) NOT NULL,
@@ -177,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `role_name` (`role_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -194,7 +197,6 @@ INSERT INTO `roles` (`id`, `role_name`, `role_description`, `createdAt`, `update
 -- Estructura de tabla para la tabla `sequelizemeta`
 --
 
-DROP TABLE IF EXISTS `sequelizemeta`;
 CREATE TABLE IF NOT EXISTS `sequelizemeta` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`name`),
@@ -219,7 +221,6 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 -- Estructura de tabla para la tabla `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
