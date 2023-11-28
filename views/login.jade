@@ -1,9 +1,9 @@
 doctype html
-html
+html(lang='es')
     include ./includes/head.jade
     link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/ol@v8.1.0/ol.css')
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css")
-    title Iniciar sesion
+    title Iniciar sesión
     body(class='bg-gray-900')
         #loadingSpinner(class='fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-white bg-opacity-100 z-50')
             div(class="animate-spin rounded-full border-t-4 border-blue-500 border-solid h-12 w-12")
@@ -20,18 +20,18 @@ html
                         form.space-y-4(name='login-form' id='login-form' class='md:space-y-6' method='POST')
                             div
                                 label.block.mb-2.text-sm.font-medium.text-gray-900(for='email' class='dark:text-white') Correo
-                                input#email(type='email' name='email' class='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500')
+                                input#email(type='email' name='email' class='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500')
                             div
                                 label.block.mb-2.text-sm.font-medium.text-gray-900(name='password' class='dark:text-white' for='password') Contraseña
-                                input#password(type='password' name='password' placeholder='••••••••••' class='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500')
+                                input#password(type='password' name='password' placeholder='••••••••••' class='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500')
                             div#login-message(class='text-sm text-red-500 font-medium')
                             .flex.items-center.justify-between
                                 .flex.items-start
                                     .flex.items-center.h-5
-                                        input#remember(type='checkbox' class='w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800' aria-describedby='remember')
+                                        input#remember(type='checkbox' class='w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-sky-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-sky-600 dark:ring-offset-gray-800' aria-describedby='remember')
                                     .ml-3.text-sm
                                         label.text-gray-500(for='remember' class='dark:text-gray-300') Mantener la sesión iniciada
-                            button.w-full.text-white.bg-primary-600.font-medium.rounded-lg.text-sm.px-5.text-center(type='submit' class='bg-gray-700 dark:bg-gray-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-primary-300 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800') Entrar
+                            button.w-full.text-white.bg-primary-600.font-medium.rounded-lg.text-sm.px-5.text-center(type='submit' class='bg-gray-700  hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-sky-300 py-2.5 dark:bg-sky-600 dark:hover:bg-primary-700 dark:focus:ring-sky-800') Entrar
     include ./includes/footer.jade
     script(src='https://cdn.jsdelivr.net/npm/ol@v8.1.0/dist/ol.js')
     script(src="https://code.jquery.com/jquery-3.6.0.min.js")

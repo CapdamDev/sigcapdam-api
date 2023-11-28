@@ -1,5 +1,5 @@
 doctype html
-html
+html(lang='es')
     head
         title SIGCAPDAM - Gestión de capas
         include ./includes/head.jade
@@ -10,18 +10,18 @@ html
             div(class='h-full flex flex-col justify-between')
                 div
                     div(class='h-16 border-b border-gray-300/40 dark:border-gray-700 flex items-center justify-center')
-                        a(href='#' class='block w-max px-2.5')
+                        a(href='home' class='block w-max px-2.5')
                             img(class='w-auto h-10 rounded-full' src='./assets/img/profile.png' alt='')
                     div(class='mt-6')
                         ul(class='px-1 -ml-px space-y-4 font-medium tracking-wide')
                             li(class='w-max')
-                                a(href='/home')
+                                a(href='home')
                                     div(class='flex items-center gap-4 px-4 py-3')
                                         svg(class='h-7 w-7 fill-gray-500 dark:fill-gray-100' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map-fill" viewBox="0 0 16 16")
                                             path(fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.502.502 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5V.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.498.498 0 0 0-.196 0L5 14.09zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1-.5-.1z")
                                         span(class='text-white') SIGCAPDAM
                             li(class='w-max space-y-4 group-hover:w-full')
-                                a(href='#' class='block py-3 w-[52px] rounded-full bg-sky-500 group-hover:w-full')
+                                a(href='layers_dashboard' class='block py-3 w-[52px] rounded-full bg-sky-500 group-hover:w-full')
                                     div(class='w-max flex items-center px-3 gap-4')
                                         svg(class='h-7 w-7 fill-gray-500 dark:fill-gray-100' xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pin-map-fill" viewBox="0 0 16 16")
                                             path(fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8z")
@@ -34,11 +34,11 @@ html
                                             path(d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5")
                                         span(class='text-gray-600 dark:text-gray-300') Gest. usuarios
                             li(class='w-max')
-                                a(href='#')
+                                a(href='settings')
                                     div(class='flex items-center gap-4 px-4 py-3')
-                                        svg(class='h-7 w-7 fill-gray-500 dark:fill-gray-100' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
-                                            path(class='fill-gray-500 dark:fill-gray-100' fillrule='evenodd' cliprule='evenodd' d='M2 5a1 1 0 011-1h14a1 1 0 110 2H3a1 1 0 01-1-1zM2 10a1 1 0 011-1h14a1 1 0 110 2H3a1 1 0 01-1-1zM3 15a1 1 0 100 2h14a1 1 0 100-2H3z')
-                                        span(class='text-gray-600 dark:text-gray-300') Categories
+                                        svg(xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-7 w-7 fill-gray-500 dark:fill-gray-100 bi bi-gear-fill" viewBox="0 0 16 16")
+                                            path(d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z")
+                                        span(class='text-gray-600 dark:text-gray-300') Configuración
                             li(class='w-max')
                                 a(href='#')
                                     div#logoutButton(class='flex items-center gap-4 px-4 py-3')
@@ -101,9 +101,9 @@ html
                                                 h6(class="mb-3 text-sm font-medium text-gray-900 dark:text-white") Category
                                                 ul(class="space-y-2 text-sm" aria-labelledby="filterDropdownButton")
                                                     li(class="flex items-center")
-                                                        input(id="apple" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500")
+                                                        input(id="apple" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500")
                                                         label(for="apple" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100") Apple
-                                div(class="overflox-x-auto")
+                                div(class="overflow-x-auto")
                                     table(class="w-full text-sm text-left text-gray-500 dark:text-gray-400")
                                         thead(class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400")
                                             tr
@@ -172,7 +172,7 @@ html
                                                     svg(class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
                                                         path(fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd")
                     //- End Section
-                    div(id="createProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
+                    div(id="createProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
                         div(class="relative p-4 w-full max-w-2xl max-h-full")
                             div(class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
                                 div(class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600")
@@ -185,16 +185,16 @@ html
                                     div(class="grid gap-4 mb-4 sm:grid-cols-2")
                                         div
                                             label(for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Layer
-                                            input(type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="")
+                                            input(type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Type product name" required="")
                                         div
                                             label(for="brand", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Brand
-                                            input(type="text", name="brand", id="brand", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", placeholder="Product brand", required="")
+                                            input(type="text", name="brand", id="brand", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500", placeholder="Product brand", required="")
                                         div
                                             label(for="price", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Price
-                                            input(type="number", name="price", id="price", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", placeholder="$2999", required="")
+                                            input(type="number", name="price", id="price", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500", placeholder="$2999", required="")
                                         div
                                             label(for="category", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Category
-                                            select(id="category", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500")
+                                            select(id="category", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
                                                 option(selected="") Select category
                                                 option(value="TV") TV/Monitors
                                                 option(value="PC") PC
@@ -202,12 +202,12 @@ html
                                                 option(value="PH") Phones
                                         div(class="sm:col-span-2")
                                             label(for="description", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Description
-                                            textarea(id="description", rows="4", class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", placeholder="Write product description here")
-                                        button(type="submit", class="text-white inline-flex items-center bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-primary-800")
+                                            textarea(id="description", rows="4", class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500", placeholder="Write product description here")
+                                        button(type="submit", class="text-white inline-flex items-center bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800")
                                             svg(class="mr-1 -ml-1 w-6 h-6", fill="currentColor", viewbox="0 0 20 20", xmlns="http://www.w3.org/2000/svg")
                                                 path(fill-rule="evenodd", d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z", clip-rule="evenodd")
                                             | Add new product
-                    div(id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
+                    div(id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
                         div(class="relative p-4 w-full max-w-2xl max-h-full")
                             div(class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
                                 div(class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:dark-border-gray-600")
@@ -220,30 +220,30 @@ html
                                     div(class="grid gap-4 mb-4 sm:grid-cols-2")
                                         div
                                             label(for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Name
-                                            input(type="text" name="name" id="name" value="iPad Air Gen 5th Wi-Fi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Ex. Apple iMac 27&ldquo;")
+                                            input(type="text" name="name" id="name" value="iPad Air Gen 5th Wi-Fi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Ex. Apple iMac 27&ldquo;")
                                         div
                                             label(for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Brand
-                                            input(type="text" name="brand" id="brand" value="Google" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Ex. Apple")
+                                            input(type="text" name="brand" id="brand" value="Google" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Ex. Apple")
                                         div
                                             label(for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Price
-                                            input(type="number" value="399" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$299")
+                                            input(type="number" value="399" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="$299")
                                         div
                                             label(for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Category
-                                            select(id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500")
+                                            select(id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
                                                 option(value="TV") TV/Monitors
                                                 option(value="PC") PC
                                                 option(value="GA") Gaming/Console
                                                 option(value="PH") Phones
                                         div(class="sm:col-span-2")
                                             label(for="description", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Description
-                                            textarea(id="description", rows="5", class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", placeholder="Write a description...") Standard glass, 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, 16GB 2666MHz DDR4 memory, Radeon Pro 5500 XT with 8GB of GDDR6 memory, 256GB SSD storage, Gigabit Ethernet, Magic Mouse 2, Magic Keyboard - US
+                                            textarea(id="description", rows="5", class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500", placeholder="Write a description...") Standard glass, 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, 16GB 2666MHz DDR4 memory, Radeon Pro 5500 XT with 8GB of GDDR6 memory, 256GB SSD storage, Gigabit Ethernet, Magic Mouse 2, Magic Keyboard - US
                                         div(class="flex items-center space-x-4")
-                                            button(type="submit" class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-primary-800") Update product
+                                            button(type="submit" class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800") Update product
                                             button(type="button" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900")
                                                 svg(class="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
                                                     path(fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd")
                                                 | Delete product
-                    div(id="readProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
+                    div(id="readProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
                         div(class="relative p-4 w-full max-w-xl max-h-full")
                             div(class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
                                 div(class="flex justify-between mb-4 rounded-t sm:mb-5")
@@ -262,7 +262,7 @@ html
                                         dd(class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400") Computers
                                 div(class="flex justify-between items-center")
                                     div(class="flex items-center space-x-3 sm:space-x-4")
-                                        button(type="button" class="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800")
+                                        button(type="button" class="text-white inline-flex items-center bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800")
                                             svg(aria-hidden="true" class="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
                                                 path(d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z")
                                                 path(fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd")
@@ -272,7 +272,7 @@ html
                                         svg(aria-hidden="true" class="w-5 h-5 mr-1.5 -ml-1" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
                                             path(fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd")
                                         | Delete
-                    div(id="deleteModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
+                    div(id="deleteModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
                         div(class="relative p-4 w-full max-w-md max-h-full")
                             div(class="relative p-4 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
                                 button(type="button" class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="deleteModal")
