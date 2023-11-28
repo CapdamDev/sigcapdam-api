@@ -64,7 +64,7 @@ html(lang='es')
                     #map(class='h-full flex justify-center items-center rounded-2xl border border-dashed border-gray-300/40 dark:border-gray-700')
 
                     //- Make a div to display the JS Tree and search bar, positioned at right, in the middle of the screen, with a button to toggle it open and closed
-                                        
+
                     div(class='absolute top-1/2 right-1 transform translate-y-[-50%] px-6 py-4')
                         input#search(type='text' class='w-full h-full text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none hover:bg-gray-200 dark:hover:bg-gray-700 text-center' placeholder='Buscar capas')
                         div#jstree(class='flex w-full h-full bg-white py-2')
@@ -83,7 +83,7 @@ html(lang='es')
                             })
 
                             document.addEventListener('DOMContentLoaded', function () {
-                                    // Coordenadas que centrarán el mapa al cargar la página
+                                // Coordenadas que centrarán el mapa al cargar la página
                                 var centerCoordinates = [-104.301939092764954, 19.066318856363417];
                                 var token = sessionStorage.getItem('token');
 
@@ -131,13 +131,13 @@ html(lang='es')
                                             layers.forEach(function (layer) {
                                                 // Ensure the URL is correct
                                                 var geoJsonUrl = 'assets/layers/capas_js/' + layer.categoryData.name + '/' + layer.archive;
-                                                
+
                                                 var layerSource = new ol.source.Vector({
                                                     url: geoJsonUrl,
                                                     format: new ol.format.GeoJSON()
                                                 });
 
-                                            
+
 
                                                 // Create a new iconStyle for each layer
                                                 var iconStyleForLayer = new ol.style.Style({
@@ -214,7 +214,7 @@ html(lang='es')
                                                         selected: false
                                                     }
                                                 });
-                                                
+
                                                 map.addLayer(vectorLayer);
 
                                             });
