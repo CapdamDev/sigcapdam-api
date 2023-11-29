@@ -52,23 +52,18 @@ router.post('/', passport.authenticate('jwt', {
 });
 
 // Consulta todas las layers, asocia el numero de la columna category con el nombre que se encuentra en la tabla categories
-router.get("/all", passport.authenticate("jwt", { session: false }), function (req, res) {
-    helper.checkPermission(req.user.role_id, "layer_get_all").then((rolePerm) => {
-        Layer.findAll({
-            include: [{ model: Category, attributes: ['name'], as: 'categoryData' }]
-        })
-            .then((layers) => {
-                // layers will contain the associated category data
-                res.json(layers);
-            })
-            .catch((error) => {
-                console.error(error);
-                res.status(500).json({ error: "Internal Server Error" });
-            });
-    }).catch((error) => {
-        console.error(error);
-        res.status(403).json({ error: "Forbidden" });
-    });
+router.get("/all", function (req, res) {
+		Layer.findAll({
+			include: [{ model: Category, attributes: ['name'], as: 'categoryData' }]
+		})
+			.then((layers) => {
+				// layers will contain the associated category data
+				res.json(layers);
+			})
+			.catch((error) => {
+				console.error(error);
+				res.status(500).json({ error: "Internal Server Error" });
+			});
 });
 
 // router.get("/all", passport.authenticate("jwt", { session: false }), function (req, res) {

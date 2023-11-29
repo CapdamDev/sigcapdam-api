@@ -1,7 +1,8 @@
 doctype html
 html(lang='es')
     head
-        title SIGCAPDAM - Capas
+        block content
+            title SIGCAPDAM - Capas !{token}
         include ./includes/head.jade
     body(class='bg-white dark:bg-gray-900')
         aside(class='compact-nav fixed group overflow-hidden left-0 top-0 z-10 h-screen w-[calc(3.73rem)] border-r border-gray-300/40 bg-white dark:bg-gray-900 dark:border-gray-700 hover:w-56 hover:shadow-2xl')
@@ -59,6 +60,8 @@ html(lang='es')
                         span(class='text-gray-500 dark:text-gray-200') Coordenadas del mouse:
                         span#mouse-position.text-gray-500(class='dark:text-gray-200 ml-2')
                     span(class='text-left text-white') SIGCAPDAM
+                    block content
+                        h1(class='text-3xl font-bold text-gray-900 dark:text-white') #{user}
 
                 div(class='px-6 h-[calc(51rem)]')
                     #map(class='h-full flex justify-center items-center rounded-2xl border border-dashed border-gray-300/40 dark:border-gray-700')
@@ -112,9 +115,6 @@ html(lang='es')
 
                                 map.addControl(mousePositionControl);
 
-                                if (!token) {
-                                    window.location.href = '/login';
-                                } else {
                                     // Obtener todos los layers
                                     fetch('/api/v1/layers/all', {
                                         method: 'GET',
@@ -277,7 +277,6 @@ html(lang='es')
                                         .catch((error) => {
                                             console.error('Error fetching layers:', error);
                                         });
-                                }
 
                                     // Logout
                                     $('#logoutButton').on('click', function () {
