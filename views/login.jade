@@ -47,15 +47,7 @@ html(lang='es')
                 loadingSpinner.style.display = 'none';
             }, 1000);
 
-            if(localStorage.getItem('token') && localStorage.getItem('role_id' === 1)) {
-                window.location.href = '/layers';
-            } else if(localStorage.getItem('token') && localStorage.getItem('role_id' != 1)) {
-                window.location.href = '/layers2';
-            }
-            else {
-                localStorage.clear();
-            }
-
+            // In your login view script
             form.addEventListener('submit', async function (event) {
                 event.preventDefault();
                 const email = document.getElementById('email').value;
@@ -71,32 +63,26 @@ html(lang='es')
 
                 const data = await response.json();
 
-                if (!data.success) {
+                if (response.status === 401) {
+                    // Handle unauthorized (401) status
                     const message = document.getElementById('login-message');
                     message.textContent = 'Credenciales incorrectas. Por favor, intenta de nuevo.';
-                } else {
-                    // Handle successful login (redirect or other actions)
+                } else if (response.status === 200) {
+                    // Handle successful login (200) status
                     const message = document.getElementById('login-message');
                     // Estila el div de mensaje de login y cambia el texto a 'Iniciando sesión...', con colores de éxito
                     message.classList.add('text-green-500', 'font-medium');
                     message.textContent = 'Iniciando sesión...';
-                    if(data.role_id === 1) {
-                        sessionStorage.setItem('role_id', data.role_id);
-                        sessionStorage.setItem('role_name', data.role_name);
-                        sessionStorage.setItem('token', data.token);
-                        setTimeout(() => {
-                            window.location.href = '/home';
-                        }, 500);
-                    } else {
-                        sessionStorage.setItem('role_id', data.role_id);
-                        sessionStorage.setItem('role_name', data.role_name);
-                        sessionStorage.setItem('token', data.token);
-                        setTimeout(() => {
-                            window.location.href = '/layers2';
-                        }, 500);
-                    }
+
+                    // Extract data from the JSON response
+                    const { token, role_id, role_name, user_email, permissions } = data;
+                    
+                    // Redirect to the home page or perform other actions
+                    window.location.href = `/home?token=${token}&role_id=${role_id}&role_name=${role_name}&user_email=${user_email}&permissions=${permissions}`;
                 }
+                
                 const loginMessage = document.getElementById('login-message');
                 loginMessage.style.display = 'block';
             });
+
         });
