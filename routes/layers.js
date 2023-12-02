@@ -10,7 +10,7 @@ const passport = require("passport");
 require("../config/passport")(passport);
 const Helper = require("../utils/helper");
 const helper = new Helper();
-
+const cookieParser = require("cookie-parser");
 
 // Crear/guardar una layer
 router.post('/', passport.authenticate('jwt', {
@@ -51,35 +51,32 @@ router.post('/', passport.authenticate('jwt', {
 	});
 });
 
-// Consulta todas las layers, asocia el numero de la columna category con el nombre que se encuentra en la tabla categories
-router.get("/all", function (req, res) {
+router.get("/all", passport.authenticate("jwt", {
+	session: false
+}), function (req, res) {
+	helper.checkPermission(req.user.role_id, "layer_get_all").then((rolePerm) => {
 		Layer.findAll({
-			include: [{ model: Category, attributes: ['name'], as: 'categoryData' }]
-		})
+				include: [{
+					model: Category,
+					attributes: ['name'],
+					as: 'categoryData'
+				}]
+			})
 			.then((layers) => {
-				// layers will contain the associated category data
-				res.json(layers);
+				// Send the layers as a JSON response to the client
+				res.status(200).json(layers);
 			})
 			.catch((error) => {
-				console.error(error);
-				res.status(500).json({ error: "Internal Server Error" });
+				res.status(500).json({
+					error: "Internal Server Error"
+				});
 			});
+	}).catch((error) => {
+		res.status(403).json({
+			error: "Forbidden"
+		});
+	});
 });
-
-// router.get("/all", passport.authenticate("jwt", { session: false }), function (req, res) {
-//     helper.checkPermission(req.user.role_id, "layer_get_all").then((rolePerm) => {
-//         Layer.findAll()
-//             .then((layers) => {
-//                 // Send the layers as a JSON response to the client
-//                 res.status(200).json(layers);
-//             })
-//             .catch((error) => {
-//                 res.status(500).json({ error: "Internal Server Error" });
-//             });
-//     }).catch((error) => {
-//         res.status(403).json({ error: "Forbidden" });
-//     });
-// });
 
 // Consulta una layer por su nombre
 router.get("/:name", function (req, res) {
@@ -95,17 +92,19 @@ router.get("/:name", function (req, res) {
 });
 
 // Actualiza los datos generales de la layer
-router.put("/:id", passport.authenticate("jwt", { session: false }), function (req, res) {
+router.put("/:id", passport.authenticate("jwt", {
+	session: false
+}), function (req, res) {
 	helper.checkPermission(req.user.role_id, "layer_update").then((rolePerm) => {
 		Layer.update({
-			name: req.body.name,
-			archive: req.body.archive,
-			category: req.body.category
-		}, {
-			where: {
-				id: req.params.id,
-			},
-		})
+				name: req.body.name,
+				archive: req.body.archive,
+				category: req.body.category
+			}, {
+				where: {
+					id: req.params.id,
+				},
+			})
 			.then((layer) => res.status(201).send({
 				data: "success",
 			}))
@@ -113,7 +112,9 @@ router.put("/:id", passport.authenticate("jwt", { session: false }), function (r
 				res.status(400).send(error);
 			});
 	}).catch((error) => {
-		res.status(403).json({ error: "Forbidden" });
+		res.status(403).json({
+			error: "Forbidden"
+		});
 	});
 });
 

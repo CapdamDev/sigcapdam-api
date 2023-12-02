@@ -17,7 +17,7 @@ html(lang='es')
                     .p-6.space-y-4(class='md:space-y-6 sm:p-8')
                         h1.text-xl.font-bold.leading-tight.tracking-tight.text-gray-900(class='md:text-2xl dark:text-white')
                             | Iniciar sesión
-                        form.space-y-4(name='login-form' id='login-form' class='md:space-y-6' method='POST')
+                        form.space-y-4(name='login-form' id='login-form' class='md:space-y-6' action='/api/v1/auth/login' method='POST')
                             div
                                 label.block.mb-2.text-sm.font-medium.text-gray-900(for='email' class='dark:text-white') Correo
                                 input#email(type='email' name='email' class='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500')
@@ -42,47 +42,51 @@ html(lang='es')
             const form = document.getElementById('login-form');
             const loadingSpinner = document.getElementById('loadingSpinner');
             const message = document.getElementById('login-message');
+            const data = sessionStorage.getItem('data');
+
             // Hide spinner on page load after 2 seconds
             setTimeout(() => {
                 loadingSpinner.style.display = 'none';
             }, 1000);
 
-            // In your login view script
             form.addEventListener('submit', async function (event) {
-                event.preventDefault();
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-                // Make an Ajax POST request to your login route
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
                 const response = await fetch('/api/v1/auth/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email, password }),
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
                 });
 
                 const data = await response.json();
 
-                if (response.status === 401) {
-                    // Handle unauthorized (401) status
-                    const message = document.getElementById('login-message');
-                    message.textContent = 'Credenciales incorrectas. Por favor, intenta de nuevo.';
-                } else if (response.status === 200) {
-                    // Handle successful login (200) status
-                    const message = document.getElementById('login-message');
-                    // Estila el div de mensaje de login y cambia el texto a 'Iniciando sesión...', con colores de éxito
-                    message.classList.add('text-green-500', 'font-medium');
-                    message.textContent = 'Iniciando sesión...';
+                if (response.ok) {
+                // Handle successful login
+                const message = document.getElementById('login-message');
+                message.classList.add('text-green-500', 'font-medium');
+                message.textContent = 'Iniciando sesión...';
 
-                    // Extract data from the JSON response
-                    const { token, role_id, role_name, user_email, permissions } = data;
-                    
-                    // Redirect to the home page or perform other actions
-                    window.location.href = `/home?token=${token}&role_id=${role_id}&role_name=${role_name}&user_email=${user_email}&permissions=${permissions}`;
+                // Redirect to the home page immediately
+                window.location.href = '/home';
+                } else {
+                // Handle non-OK responses (e.g., 401 Unauthorized)
+                const errorMessage = await response.json();
+                throw new Error(errorMessage.message || 'Error during login.');
                 }
-                
-                const loginMessage = document.getElementById('login-message');
-                loginMessage.style.display = 'block';
+            } catch (error) {
+                // Handle unexpected errors
+                console.error(error);
+                const message = document.getElementById('login-message');
+                message.textContent = 'Error during login. Please try again.';
+            }
+
+            const loginMessage = document.getElementById('login-message');
+            loginMessage.style.display = 'block';
             });
 
         });
