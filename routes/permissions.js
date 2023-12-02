@@ -23,7 +23,6 @@ router.post('/', passport.authenticate('jwt', {
                 })
                 .then((perm) => res.status(201).send(perm))
                 .catch((error) => {
-                    console.log(error);
                     res.status(400).send(error);
                 });
         }

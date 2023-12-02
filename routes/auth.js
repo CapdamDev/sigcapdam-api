@@ -25,7 +25,6 @@ router.post("/register", function (req, res) {
 			},
 		})
 			.then((role) => {
-				console.log(role.id);
 				User.create({
 					nombre: req.body.nombre,
 					ape_pat: req.body.ape_pat,

@@ -146,17 +146,6 @@ html(lang='es')
                 //-         width: 6
                 //-     }),
                 //- });
-
-                // Ver la información de la capa seleccionada
-                fetch('/' + geoJSONDataUrl)
-                    .then((response) => response.json())
-                    .then((data) => {
-                        console.log(data);
-                    })
-                    .catch((error) => {
-                        console.error('Error fetching GeoJSON data:', error);
-                    });
-
                 // Actualiza la capa vectorial del mapa
                 map.getLayers().item(1).setSource(vectorSource);
                 //- map.getLayers().item(1).setStyle(vectorStyle);
@@ -184,37 +173,31 @@ html(lang='es')
                                 var properties = feature.getProperties();
                                 // Implementa aquí tu lógica para mostrar el pop-up
                                 alert('Propiedades: ' + JSON.stringify(properties));
-                                console.log(properties);
                             }
                             if(geom instanceof ol.geom.LineString) {
                                 var properties = feature.getProperties();
                                 // Implementa aquí tu lógica para mostrar el pop-up
                                 alert('Propiedades: ' + JSON.stringify(properties));
-                                console.log(properties);
                             }
                             if(geom instanceof ol.geom.Polygon) {
                                 var properties = feature.getProperties();
                                 // Implementa aquí tu lógica para mostrar el pop-up
                                 alert('Propiedades: ' + JSON.stringify(properties));
-                                console.log(properties);
                             }
                             if(geom instanceof ol.geom.MultiPoint) {
                                 var properties = feature.getProperties();
                                 // Implementa aquí tu lógica para mostrar el pop-up
                                 alert('Propiedades: ' + JSON.stringify(properties));
-                                console.log(properties);
                             }
                             if(geom instanceof ol.geom.MultiLineString) {
                                 var properties = feature.getProperties();
                                 // Implementa aquí tu lógica para mostrar el pop-up
                                 alert('Propiedades: ' + JSON.stringify(properties));
-                                console.log(properties);
                             }
                             if(geom instanceof ol.geom.MultiPolygon) {
                                 var properties = feature.getProperties();
                                 // Implementa aquí tu lógica para mostrar el pop-up
                                 alert('Propiedades: ' + JSON.stringify(properties));
-                                console.log(properties);
                             }
                         });
                     }
