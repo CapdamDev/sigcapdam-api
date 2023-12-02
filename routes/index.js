@@ -5,7 +5,6 @@ var Layer = require('../models').Layer;
 var Category = require('../models').Category;
 var cookieParser = require('cookie-parser');
 
-// Utiliza el middleware cookie-parser para analizar las cookies
 router.use(cookieParser());
 
 // Middleware para procesar las cookies
@@ -37,7 +36,7 @@ router.get('/home', async function(req, res, next) {
 router.get('/layers_dashboard', async function (req, res, next) {
   const cookies = req.parsedCookies;
 
-  if(!token){
+  if(!cookies.token){
     res.redirect('/login');
   } else{
       try {
@@ -55,8 +54,7 @@ router.get('/layers_dashboard', async function (req, res, next) {
           res.send('Error: Could not fetch layers data');
         }
         else{
-          // res.send(layers);
-          res.render('layers_dashboard', { layers });
+          res.render('layers_dashboard', { layers, cookies });
         }
       } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });

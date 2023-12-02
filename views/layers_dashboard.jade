@@ -267,46 +267,7 @@ html(lang='es')
 
             script.
                 
-                //- document.addEventListener('DOMContentLoaded', function () {
-                //-     var token = sessionStorage.getItem('token');
-                //-     if(!token){
-                //-         window.location.href = '/login';
-                //- });
-                //-     var token = sessionStorage.getItem('token');
+                document.addEventListener('DOMContentLoaded', function () {
 
-                //-     if (!token) {
-                //-         window.location.href = '/login';
-                //-     } else {
-                //-         // Obtener todos los layers
-                //-         fetch('/api/v1/layers/all', {
-                //-             method: 'GET',
-                //-             headers: {
-                //-                 'Content-Type': 'application/json',
-                //-                 'Authorization': token,
-                //-             },
-                //-         })
-                //-         .then(response => response.json())
-                //-             .then(data => {
-                //-                 var tbody = document.getElementById('layersTable');
-                //-                 tbody.innerHTML = '';
-
-                //-                 data.forEach(function(data){
-                //-                     console.log(data);
-                //-                     // Create an HTML string for each row using template literals
-                //-                     var rowHTML = `
-                //-                         <tr class="border-b dark:border-gray-700">
-                //-                             <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">${data.name}</th>
-                //-                             <td class="px-4 py-3 text-sm font-medium">${data.archive}</td>
-                //-                             <td class="px-4 py-3 text-sm font-medium">${data.categoryData.name}</td>
-                //-                         </tr>
-                //-                     `;
-
-                //-                     // Append the HTML string to the tbody
-                //-                     tbody.insertAdjacentHTML('beforeend', rowHTML);
-                //-                 });
-                //-         }).catch(error => {
-                //-             console.log(error);
-                //-         });
-                //-     }
-                //- });
+                });
 
