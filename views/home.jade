@@ -59,9 +59,13 @@ html(lang='es')
                     div(class='flex items-center')
                         span(class='text-gray-500 dark:text-gray-200') Coordenadas del mouse:
                         span#mouse-position.text-gray-500(class='dark:text-gray-200 ml-2')
-                    span(class='text-left text-white') SIGCAPDAM
-                    block content
-                        h1(class='text-3xl font-bold text-gray-900 dark:text-white') #{user}
+                    if cookies.role_name === 'root'
+                        span(class='text-left text-white') SIGCAPDAM Max ADM
+                    else if cookies.role_name === 'admin'
+                        span(class='text-left text-white') SIGCAPDAM !{cookies.role_name}
+                    else if cookies.role_name === 'user'
+                        span(class='text-left text-white') SIGCAPDAM !{cookies.role_name}
+
 
                 div(class='px-6 h-[calc(51rem)]')
                     #map(class='h-full flex justify-center items-center rounded-2xl border border-dashed border-gray-300/40 dark:border-gray-700')
@@ -120,7 +124,7 @@ html(lang='es')
                                         method: 'GET',
                                         headers: {
                                             'Content-Type': 'application/json',
-                                            'Authorization': token,
+                                            'Authorization': '!{cookies.token}',
                                         },
                                     })
                                     .then((response) => response.json())
@@ -278,11 +282,22 @@ html(lang='es')
                                             console.error('Error fetching layers:', error);
                                         });
 
-                                    // Logout
-                                    $('#logoutButton').on('click', function () {
-                                        sessionStorage.removeItem('token');
-                                        sessionStorage.removeItem('role_id');
-                                        sessionStorage.removeItem('role_name');
-                                        window.location.href = '/login';
-                                    });
-                            });
+                                        // Logout button click handler
+                                        $('#logoutButton').on('click', function () {
+                                            // Fetch to the API logout endpoint
+                                            fetch('/api/v1/auth/logout', {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json'                                                },
+                                            }).then(response => {
+                                                if (response.ok) {
+                                                    console.log('Logout successful');
+                                                    window.location.href = '/';
+                                                } else {
+                                                    throw new Error('Logout failed.');
+                                                }
+                                            }).catch(error => {
+                                                console.error('Error during logout:', error);
+                                            });
+                                        });
+                                });
