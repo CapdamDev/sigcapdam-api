@@ -11,6 +11,10 @@ module.exports = {
       role_id: {
         type: Sequelize.INTEGER
       },
+      profilePic: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       nombre: {
         type: Sequelize.STRING,
         allowNull: false,
