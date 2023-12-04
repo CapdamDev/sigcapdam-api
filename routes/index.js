@@ -18,12 +18,22 @@ router.use(function(req, res, next) {
 
 /* GET de la pagina de inicio */
 router.get('/', async function(req, res, next) {
-  res.render('login');
+  const cookies = req.parsedCookies;
+  if(!cookies.token){
+    res.render('login');
+  } else{
+    res.redirect('home');
+  }
 });
 
 /* GET de la pagina del login */
 router.get('/login', async function(req, res, next) {
-  res.render('login');
+  const cookies = req.parsedCookies;
+  if(!cookies.token){
+    res.render('login');
+  } else{
+    res.redirect('home');
+  }
 });
 
 /* GET de las layers en el home */

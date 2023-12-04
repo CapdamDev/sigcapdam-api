@@ -82,9 +82,11 @@ router.post("/login", function (req, res) {
 									Role.findOne({ where: { id: user.role_id } })
 										.then((role) => {
 											res.cookie("role_id", user.role_id);
+											res.cookie("user_id", user.id);
 											res.cookie("role_name", role.role_name); // Assuming user.role_name is accessible
 											res.cookie("user_email", user.email);
 											res.cookie("user_name", user.nombre);
+											res.cookie("profilePic", user.profilePic);
 											res.send({ success: true });
 										})
 										.catch((error) => {
