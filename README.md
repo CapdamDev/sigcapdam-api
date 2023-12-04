@@ -22,7 +22,7 @@
 
 Sistema de Información Geográfica CAPDAM, en desarrollo. Departamento de Sistemas e Informática.
 
-## Installation
+## Instalación
 
 Instalación de proyecto
 
