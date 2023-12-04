@@ -48,10 +48,11 @@ html(lang='es')
                 div(class='py-4 px-2 border-t border-gray-300/40 dark:border-gray-700')
                     a(href='#')
                         div(class='w-max flex items-center gap-4')
-                            img(class='w-10 h-10 rounded-full' src='https://avatars.githubusercontent.com/u/31113941?v=4' alt='')
+                            -let src = "./assets/users/profilePic/" + cookies.user_id + "/" + cookies.profilePic 
+                            img(class='w-10 h-10 rounded-full' src=`${src}`  alt='')
                             div
-                                h6#nombre(class='text-gray-600 font-medium dark:text-gray-200') Nombre
-                                span#userType(class='block -mt-0.5 text-xs text-gray-500 dark:text-white') Role
+                                h6#nombre(class='text-gray-600 font-medium dark:text-gray-200') !{cookies.user_name}
+                                span#userType(class='block -mt-0.5 text-xs text-gray-500 dark:text-white') !{cookies.role_name}
         main.ml-auto(class='w-[calc(100%-3.73rem)]')
             div(class='2xl:w-auto mx-auto space-y-6')
                 div(class='h-16 items-center border border-gray-300/40 dark:border-gray-700 flex justify-between px-6 lg:px-12')
@@ -60,14 +61,14 @@ html(lang='es')
                         span(class='text-gray-500 dark:text-gray-200') Coordenadas del mouse:
                         span#mouse-position.text-gray-500(class='dark:text-gray-200 ml-2')
                     if cookies.role_name === 'root'
-                        span(class='text-left text-white') SIGCAPDAM Max ADM
+                        span(class='text-left text-white') SIGCAPDAM | Administrador
                     else if cookies.role_name === 'admin'
                         span(class='text-left text-white') SIGCAPDAM !{cookies.role_name}
                     else if cookies.role_name === 'user'
                         span(class='text-left text-white') SIGCAPDAM !{cookies.role_name}
 
 
-                div(class='px-6 h-[calc(51rem)]')
+                div(class='px-6 h-[calc(54rem)]')
                     #map(class='h-full flex justify-center items-center rounded-2xl border border-dashed border-gray-300/40 dark:border-gray-700')
 
                     //- Make a div to display the JS Tree and search bar, positioned at right, in the middle of the screen, with a button to toggle it open and closed
@@ -140,8 +141,6 @@ html(lang='es')
                                                     url: geoJsonUrl,
                                                     format: new ol.format.GeoJSON()
                                                 });
-
-
 
                                                 // Create a new iconStyle for each layer
                                                 var iconStyleForLayer = new ol.style.Style({
@@ -288,7 +287,8 @@ html(lang='es')
                                             fetch('/api/v1/auth/logout', {
                                                 method: 'POST',
                                                 headers: {
-                                                    'Content-Type': 'application/json'                                                },
+                                                    'Content-Type': 'application/json'
+                                                },
                                             }).then(response => {
                                                 if (response.ok) {
                                                     window.location.href = '/';
