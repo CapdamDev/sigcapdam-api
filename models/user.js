@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
   };
   User.init({
     role_id: DataTypes.INTEGER,
+    profilePic: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     nombre: {
       type: DataTypes.STRING,
       allowNull: false,
