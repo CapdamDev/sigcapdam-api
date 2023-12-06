@@ -31,12 +31,11 @@ router.get('/', async function(req, res, next) {
 /* GET de la pagina del login */
 router.get('/login', async function(req, res, next) {
   const cookies = req.parsedCookies;
-  const url = req.originalUrl;
 
   if(!cookies.token){
     res.render('login');
   } else{
-    res.redirect('home', { cookies, url });
+    res.redirect('home');
   }
 });
 
@@ -93,7 +92,13 @@ router.get('/users_dashboard', async function(req, res, next) {
 
 /* GET settings */
 router.get('/settings', async function(req, res, next) {
-  res.render('settings');
+  const cookies = req.parsedCookies;
+  const url = req.originalUrl;
+  if(!cookies.token){
+    res.redirect('/login');
+  } else{
+    res.render('settings', { cookies, url });
+  }
 });
 
 // /* GET de la pagina de registro */
