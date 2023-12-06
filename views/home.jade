@@ -14,10 +14,8 @@ html(lang='es')
                     div(class='flex items-center')
                         span(class='text-gray-500 dark:text-gray-200') Coordenadas del mouse:
                         span#mouse-position.text-gray-500(class='dark:text-gray-200 ml-2')
-                    if cookies.role_name === 'root'
+                    if cookies.role_name === 'admin'
                         span(class='text-left text-white') SIGCAPDAM | Administrador
-                    else if cookies.role_name === 'admin'
-                        span(class='text-left text-white') SIGCAPDAM !{url}
                     else if cookies.role_name === 'user'
                         span(class='text-left text-white') SIGCAPDAM !{cookies.role_name}
                         

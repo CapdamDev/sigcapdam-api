@@ -1,0 +1,19 @@
+doctype html
+html(lang='es')
+    head
+        title SIGCAPDAM - Gestión de capas
+        include ./includes/head.jade
+        link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/ol@v8.1.0/ol.css')
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css")
+    body(class='bg-white dark:bg-gray-900')
+        include ./includes/sidebar.jade
+        block content
+        main.ml-auto(class='w-[calc(100%-3.73rem)]')
+            div(class='2xl:w-auto mx-auto space-y-6')
+                div(class='h-16 items-center border border-gray-300/40 dark:border-gray-700 flex justify-between px-6 lg:px-12')
+                    //- Coordenadas del mouse
+                    div(class='flex items-center text-xl')
+                        span(class='text-gray-500 dark:text-gray-200') Gestión de capas
+                    span(class='text-left text-white') SIGCAPDAM !{url}
+    
+    include ./includes/footer.jade
