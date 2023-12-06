@@ -19,32 +19,39 @@ router.use(function(req, res, next) {
 /* GET de la pagina de inicio */
 router.get('/', async function(req, res, next) {
   const cookies = req.parsedCookies;
+  const url = req.originalUrl;
+
   if(!cookies.token){
     res.render('login');
   } else{
-    res.redirect('home');
+    res.redirect('home', { cookies, url });
   }
 });
 
 /* GET de la pagina del login */
 router.get('/login', async function(req, res, next) {
   const cookies = req.parsedCookies;
+  const url = req.originalUrl;
+
   if(!cookies.token){
     res.render('login');
   } else{
-    res.redirect('home');
+    res.redirect('home', { cookies, url });
   }
 });
 
 /* GET de las layers en el home */
 router.get('/home', async function(req, res, next) {
   const cookies = req.parsedCookies;
-  res.render('home', { cookies } );
+  const url = '/home';
+
+  res.render('home', { cookies, url } );
 });
 
 /* GET layers_dashboard */
 router.get('/layers_dashboard', async function (req, res, next) {
   const cookies = req.parsedCookies;
+  const url = req.originalUrl;
 
   if(!cookies.token){
     res.redirect('/login');
@@ -64,7 +71,7 @@ router.get('/layers_dashboard', async function (req, res, next) {
           res.send('Error: Could not fetch layers data');
         }
         else{
-          res.render('layers_dashboard', { layers, cookies });
+          res.render('layers_dashboard', { layers, cookies, url });
         }
       } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
@@ -74,7 +81,14 @@ router.get('/layers_dashboard', async function (req, res, next) {
 
 /* GET users_dashboard */
 router.get('/users_dashboard', async function(req, res, next) {
-  res.render('users_dashboard');
+  const cookies = req.parsedCookies;
+  const url = req.originalUrl;
+
+  if(!cookies.token){
+    res.redirect('/login');
+  } else{
+    res.render('users_dashboard', { cookies, url });
+  }
 });
 
 /* GET settings */
