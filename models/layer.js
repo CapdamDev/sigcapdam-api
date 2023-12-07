@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     archive: DataTypes.STRING,
     category: DataTypes.INTEGER, // Assuming category is an integer (foreign key)
+    icono: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Layer',

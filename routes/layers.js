@@ -78,18 +78,27 @@ router.get("/all", passport.authenticate("jwt", {
 	});
 });
 
-// Consulta una layer por su nombre
-router.get("/:name", function (req, res) {
-	Layer.findOne({
-			where: {
-				name: req.params.name,
-			},
-		})
-		.then((layer) => res.status(201).send(layer))
-		.catch((error) => {
-			res.status(400).send(error);
-		});
-});
+// Consulta una layer por su id
+router.get(
+	"/:id",
+	passport.authenticate("jwt", {
+		session: false,
+	}),
+	function (req, res) {
+		helper
+			.checkPermission(req.user.role_id, "layer_get")
+			.then((rolePerm) => {
+				Layer.findByPk(req.params.id)
+					.then((layer) => res.status(200).send(layer))
+					.catch((error) => {
+						res.status(400).send(error);
+					});
+			})
+			.catch((error) => {
+				res.status(403).send(error);
+			});
+	}
+);
 
 // Actualiza los datos generales de la layer
 router.put("/:id", passport.authenticate("jwt", {
@@ -99,7 +108,8 @@ router.put("/:id", passport.authenticate("jwt", {
 		Layer.update({
 				name: req.body.name,
 				archive: req.body.archive,
-				category: req.body.category
+				category: req.body.category,
+				icono: req.body.icono,
 			}, {
 				where: {
 					id: req.params.id,
