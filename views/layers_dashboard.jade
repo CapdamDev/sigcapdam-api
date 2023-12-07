@@ -187,6 +187,37 @@ html(lang='es')
             script.
                 
                 document.addEventListener('DOMContentLoaded', function () {
-
+                    // Logout button click handler
+                    $('#logoutButton').on('click', function () {
+                        // Fetch to the API logout endpoint
+                        fetch('/api/v1/auth/logout', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                // Display SweetAlert for successful logout
+                                return Swal.fire({
+                                    title: "Logout Successful",
+                                    text: "You have been logged out successfully.",
+                                    icon: "success",
+                                });
+                            } else {
+                                // If the response is not OK, reject the promise
+                                throw new Error('Logout failed.');
+                            }
+                        })
+                        .then(() => {
+                            // Redirect to the home page after handling the response
+                            window.location.href = '/';
+                        })
+                        .catch(error => {
+                            // Handle errors, including failed logout
+                            console.error('Error during logout:', error);
+                            Swal.fire("Logout Failed", "There was an error during logout.", "error");
+                        });
+                    });
                 });
 

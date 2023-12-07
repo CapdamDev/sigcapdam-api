@@ -44,7 +44,11 @@ router.get('/home', async function(req, res, next) {
   const cookies = req.parsedCookies;
   const url = '/home';
 
-  res.render('home', { cookies, url } );
+  if(!cookies.token){
+    res.redirect('/login');
+  } else {
+    res.render('home', { cookies, url })
+  }
 });
 
 /* GET layers_dashboard */
