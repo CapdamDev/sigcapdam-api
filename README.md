@@ -64,7 +64,7 @@ Y ahora tendremos un archivo llamado config.json en config/config.json, donde ca
 }
 ```
 
-Deberás cambiar lo que se encuentra dentro de las comillas por la información de tu Base de Datos.
+Deberás cambiar lo que se encuentra dentro de las comillas por la información de tu base de datos.
 
 ### Migraciones y base de datos
 
