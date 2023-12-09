@@ -10,6 +10,7 @@ var rolesRouter = require('./routes/roles');
 var permsRouter = require('./routes/permissions');
 var authRouter = require('./routes/auth');
 var layersRouter = require('./routes/layers');
+var categoriesRouter = require('./routes/categories');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/roles', rolesRouter);
 app.use('/api/v1/permissions', permsRouter);
 app.use('/api/v1/layers', layersRouter);
+app.use('/api/v1/categories', categoriesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
