@@ -11,6 +11,8 @@ require("../config/passport")(passport);
 const Helper = require("../utils/helper");
 const helper = new Helper();
 const cookieParser = require("cookie-parser");
+const multer = require("multer");
+
 
 // Crear/guardar una layer
 router.post('/', passport.authenticate('jwt', {
@@ -22,25 +24,43 @@ router.post('/', passport.authenticate('jwt', {
 				msg: 'Please pass name or category.'
 			})
 		} else {
-			// Crear una carpeta para el icono de la layer
-			try {
-				// check if directory already exists
-				const dir = './public/assets/layer_icons/';
-				if (!fs.existsSync(dir + req.body.category)) {
-					fs.mkdirSync(dir + req.body.category);
-					console.log("Directory is created.");
-				} else {
-					console.log("Directory already exists.");
-				}
-			} catch (err) {
-				console.log(err);
-			}
-			Layer.create({
-					name: req.body.name,
-					archive: req.body.archive,
-					category: req.body.category,
+
+			// Get the category name based on the ID
+			Category.findByPk(req.body.category)
+				.then((category) => {
+					if (!category) {
+						res.status(400).send({
+							msg: 'Invalid category ID.'
+						});
+					} else {
+						// Create a directory for the category icon
+						try {
+							// Check if directory already exists
+							const dir = './public/assets/layer_icons/';
+							const categoryDir = dir + category.name;
+							if (!fs.existsSync(categoryDir)) {
+								fs.mkdirSync(categoryDir);
+								console.log("Directory is created.");
+							} else {
+								console.log("Directory already exists.");
+							}
+						} catch (err) {
+							console.log(err);
+						}
+
+						Layer.create({
+								name: req.body.name,
+								archive: req.body.archive,
+								category: req.body.category,
+								icono: req.body.icono
+							})
+							.then((layer) => res.status(201).send(layer))
+							.catch((error) => {
+								console.log(error);
+								res.status(400).send(error);
+							});
+					}
 				})
-				.then((layer) => res.status(201).send(layer))
 				.catch((error) => {
 					console.log(error);
 					res.status(400).send(error);
