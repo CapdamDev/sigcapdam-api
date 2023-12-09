@@ -14,7 +14,7 @@ html(lang='es')
                     //- Coordenadas del mouse
                     div(class='flex items-center text-xl')
                         span(class='text-gray-500 dark:text-gray-200') Gestión de capas
-                    span(class='text-left text-white') SIGCAPDAM !{url}
+                    span(class='text-left text-white') SIGCAPDAM
                     
                 div(class='px-6 h-[calc(51rem)]')
                     //- CRUD para gestionar las capas cargadas
@@ -36,21 +36,24 @@ html(lang='es')
                                                 path(clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z")
                                             | Cargar capas
                                 div(class="overflow-x-auto")
-                                    table(class="w-full text-sm text-left text-gray-500 dark:text-gray-400")
+                                    table#layersTable(class="w-full text-sm text-left text-gray-500 dark:text-gray-400")
                                         thead(class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400")
                                             tr
+                                                th(scope="col" class="px-6 py-4") #
                                                 th(scope="col" class="px-6 py-4") Nombre
-                                                th(scope="col" class="px-4 py-4") Archivo 
                                                 th(scope="col" class="px-4 py-4") Categoría
-                                                //- th(scope="col" class="px-4 py-4") Description
+                                                th(scope="col" class="px-4 py-4") Archivo
+                                                th(scope="col" class="px-4 py-4") Icono
                                                 th(scope="col" class="px-4 py-4")
                                                     span(class="sr-only") Actions
                                             tbody(id="layersTable")
                                                 each layer in layers
                                                     tr(class="border-b dark:border-gray-700")
-                                                        th(id="layerName" scope="row" class="px-6 py-3 fond-medium text-gray-900 whitespace-nowrap dark:text-white")= layer.name
-                                                        td(id="layerArchive" class="px-4 py-3 text-sm font-medium")= layer.archive
+                                                        th(id="layerId" scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white")= layer.id
+                                                        th(id="layerName" scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white")= layer.name
                                                         td(id="layerCategory" class="px-4 py-3 text-sm font-medium")= layer.categoryData.name
+                                                        td(id="layerArchive" class="px-4 py-3 text-sm font-medium")= layer.archive
+                                                        td(id="layerArchive" class="px-4 py-3 text-sm font-medium")= layer.icono
                                                         //- td(class="px-4 py-3 max-w-[12rem] truncate") What is a product description? A product description describes a product.
                                                         td(class="px-4 py-3 flex items-center justify-end")
                                                             button(id="#{layer.name}-dropdown-button" data-dropdown-toggle="#{layer.name}-dropdown" class="inline-flex items-center text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 p-1.5 dark:hover-bg-gray-800 text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" type="button")
@@ -106,32 +109,29 @@ html(lang='es')
                                         svg(aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
                                             path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
                                         span(class="sr-only") Close
-                                form(action="#")
+                                form(name='createProductModalForm' id='create-form' class='md:space-y-6' action='/api/v1/layers/' method='POST' enctype='multipart/form-data')
                                     div(class="grid gap-4 mb-4 sm:grid-cols-2")
                                         div
-                                            label(for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Capa
+                                            label(for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Nombre
                                             input(type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Nombre de la capa" required="")
-                                        div
-                                            label(for="brand", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Nombre
-                                            input(type="text", name="brand", id="brand", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500", placeholder="Product brand", required="")
-                                        div
-                                            label(for="price", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Archivo
-                                            input(type="number", name="price", id="price", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500", placeholder="$2999", required="")
                                         div
                                             label(for="category", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Categoria
                                             select(id="category", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
                                                 option(selected="") Select category
-                                                option(value="TV") TV/Monitors
-                                                option(value="PC") PC
-                                                option(value="GA") Gaming/Console
-                                                option(value="PH") Phones
+                                                each category in categories
+                                                    option(value=category.id)= category.name
+
                                         div(class="sm:col-span-2")
-                                            label(for="description", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Description
-                                            textarea(id="description", rows="4", class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500", placeholder="Descripción de la capa")
-                                        button(type="submit", class="text-white inline-flex items-center bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800")
-                                            svg(class="mr-1 -ml-1 w-6 h-6", fill="currentColor", viewbox="0 0 20 20", xmlns="http://www.w3.org/2000/svg")
-                                                path(fill-rule="evenodd", d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z", clip-rule="evenodd")
-                                            | Agregar nueva capa
+                                            label(for="archive" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Archivo JSON
+                                            input(type="file" id="archive" accept=".json, .geojson" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Capa JSON")
+                                        div(class="sm:col-span-2")
+                                            label(for="icono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Icono
+                                            input(type="file" id="icono" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Icono en PNG o JPG")
+                                        div(class="sm:col-span-2 items-center text-center")
+                                            button(type="submit" class="text-white inline-flex items-center bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800")
+                                                svg(class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
+                                                    path(fill-rule="evenodd", d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z", clip-rule="evenodd")
+                                                | Agregar nueva capa
                     div(id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
                         div(class="relative p-4 w-full max-w-2xl max-h-full")
                             div(class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
@@ -145,7 +145,7 @@ html(lang='es')
                                     div(class="grid gap-4 mb-4 sm:grid-cols-2")
                                         div
                                             label(for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Name
-                                            input(type="text" name="name" id="name" value="iPad Air Gen 5th Wi-Fi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Ex. Apple iMac 27&ldquo;")
+                                            input(type="text" name="name" id="layerIdInput" value="iPad Air Gen 5th Wi-Fi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Ex. Apple iMac 27&ldquo;")
                                         div
                                             label(for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Brand
                                             input(type="text" name="brand" id="brand" value="Google" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Ex. Apple")
@@ -184,79 +184,93 @@ html(lang='es')
                                     button(type="submit" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900") Yes, I'm sure
             include ./includes/footer.jade
 
-            script.
-                
-                document.addEventListener('DOMContentLoaded', function () {
-                    // Logout button click handler
-                    $('#logoutButton').on('click', function () {
-                        // Fetch to the API logout endpoint
-                        fetch('/api/v1/auth/logout', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                        })
-                        .then(response => {
-                            if (response.ok) {
-                                // Display SweetAlert for successful logout
-                                return Swal.fire({
-                                    title: "Logout Successful",
-                                    text: "You have been logged out successfully.",
-                                    icon: "success",
-                                });
-                            } else {
-                                // If the response is not OK, reject the promise
-                                throw new Error('Logout failed.');
-                            }
-                        })
-                        .then(() => {
-                            // Redirect to the home page after handling the response
-                            window.location.href = '/';
-                        })
-                        .catch(error => {
-                            // Handle errors, including failed logout
-                            console.error('Error during logout:', error);
-                            Swal.fire("Logout Failed", "There was an error during logout.", "error");
-                        });
-                    });
+                script.
 
-                    // Edit modal layer functionality
-                    $('#updateProductModal').on('show.bs.modal', function (event) {
-                        // Get the button that triggered the modal
-                        const button = $(event.relatedTarget);
-                        // Extract info from data-bs-* attributes
-                        const layerId = button.data('layer-id');
-                        // Fetch to the API layer endpoint
-                        fetch(`/api/v1/layers/${layerId}`, {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                        })
-                        .then(response => {
-                            if (response.ok) {
-                                // Return the response as JSON
-                                return response.json();
-                            } else {
-                                // If the response is not OK, reject the promise
-                                throw new Error('Layer not found.');
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const createForm = document.getElementById('create-form');
+                        const updateForm = document.getElementById('update-form');
+                        const deleteModal = document.getElementById('deleteModal');
+
+
+                        createForm.addEventListener('submit', async function (event) {
+                            event.preventDefault();
+
+                            const name = document.getElementById('name').value;
+                            const category = document.getElementById('category').value;
+
+                            const archive = document.getElementById('archive');
+                            const archiveFileName = archive.files[0].name;
+
+                            // Get the name and extension only
+                            const icono = document.getElementById('icono');
+                            const iconoFileName = icono.files[0].name;
+
+                            try{
+                                const response = await fetch('/api/v1/layers', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Authorization': '!{cookies.token}',
+                                    },
+                                    body: JSON.stringify({
+                                        name,
+                                        category,
+                                        archive: archiveFileName,
+                                        icono: iconoFileName,
+                                    }),
+                                });
+
+                                const data = await response.json();
+
+                                if (response.ok) {
+                                    Swal.fire({
+                                        title: "Capa creada",
+                                        text: "La capa ha sido creada correctamente.",
+                                        icon: "success",
+                                        showConfirmButton: true, // Wait for user confirmation
+                                    }).then(() => {
+                                        window.location.reload();
+                                    });
+                                } else {
+                                    throw new Error(data.message);
+                                }
+                            } catch (error) {
+                                console.error('Error:', error);
+                                Swal.fire("Error", error.message, "error");
                             }
                         })
-                        .then(layer => {
-                            // Update the modal with the layer info
-                            $('#updateProductModal #name').val(layer.name);
-                            $('#updateProductModal #brand').val(layer.brand);
-                            $('#updateProductModal #price').val(layer.price);
-                            $('#updateProductModal #category').val(layer.category);
-                            $('#updateProductModal #description').val(layer.description);
-                            // Update the modal form action
-                            $('#updateProductModal form').attr('action', `/api/v1/layers/${layerId}`);
-                        })
-                        .catch(error => {
-                            // Handle errors, including failed logout
-                            console.error('Error during layer fetch:', error);
-                            Swal.fire("Layer not found", "The layer you are trying to edit does not exist.", "error");
+
+                        // Logout button click handler
+                        $('#logoutButton').on('click', function () {
+                            // Fetch to the API logout endpoint
+                            fetch('/api/v1/auth/logout', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                            })
+                            .then(response => {
+                                if (response.ok) {
+                                    // Display SweetAlert for successful logout
+                                    return Swal.fire({
+                                        title: "Logout Successful",
+                                        text: "You have been logged out successfully.",
+                                        icon: "success",
+                                    });
+                                } else {
+                                    // If the response is not OK, reject the promise
+                                    throw new Error('Logout failed.');
+                                }
+                            })
+                            .then(() => {
+                                // Redirect to the home page after handling the response
+                                window.location.href = '/';
+                            })
+                            .catch(error => {
+                                // Handle errors, including failed logout
+                                console.error('Error during logout:', error);
+                                Swal.fire("Logout Failed", "There was an error during logout.", "error");
+                            });
                         });
                     });
-                });
 

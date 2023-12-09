@@ -70,11 +70,20 @@ router.get('/layers_dashboard', async function (req, res, next) {
         });
         const layers = await response.json();
 
+        const response2 = await fetch('http://localhost:3000/api/v1/categories/all', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': cookies.token,
+          },
+        });
+        const categories = await response2.json();
+
         if(!layers){
           res.send('Error: Could not fetch layers data');
         }
         else{
-          res.render('layers_dashboard', { layers, cookies, url });
+          res.render('layers_dashboard', { layers, cookies, url, categories });
         }
       } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
