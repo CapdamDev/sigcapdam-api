@@ -13,6 +13,17 @@ const helper = new Helper();
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
 
+// Multer object creation
+const storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, "/public/assets/layer_icons/ICONOSTEST");
+	},
+	filename: function (req, file, cb) {
+		cb(null, file.originalname);
+	},
+})
+
+const upload = multer({ storage: storage });
 
 // Crear/guardar una layer
 router.post('/', passport.authenticate('jwt', {
@@ -52,7 +63,8 @@ router.post('/', passport.authenticate('jwt', {
 								name: req.body.name,
 								archive: req.body.archive,
 								category: req.body.category,
-								icono: req.body.icono
+								icono: req.body.icono,
+								isActive: 1,
 							})
 							.then((layer) => res.status(201).send(layer))
 							.catch((error) => {
@@ -76,6 +88,9 @@ router.get("/all", passport.authenticate("jwt", {
 }), function (req, res) {
 	helper.checkPermission(req.user.role_id, "layer_get_all").then((rolePerm) => {
 		Layer.findAll({
+				where: {
+					isActive: true
+				},
 				include: [{
 					model: Category,
 					attributes: ['name'],
@@ -130,6 +145,31 @@ router.put("/:id", passport.authenticate("jwt", {
 				archive: req.body.archive,
 				category: req.body.category,
 				icono: req.body.icono,
+			}, {
+				where: {
+					id: req.params.id,
+				},
+			})
+			.then((layer) => res.status(201).send({
+				data: "success",
+			}))
+			.catch((error) => {
+				res.status(400).send(error);
+			});
+	}).catch((error) => {
+		res.status(403).json({
+			error: "Forbidden"
+		});
+	});
+});
+
+// Elimina una layer
+router.delete("/:id", passport.authenticate("jwt", {
+	session: false
+}), function (req, res) {
+	helper.checkPermission(req.user.role_id, "layer_delete").then((rolePerm) => {
+		Layer.update({
+				isActive: false,
 			}, {
 				where: {
 					id: req.params.id,

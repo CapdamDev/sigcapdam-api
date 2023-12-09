@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     archive: DataTypes.STRING,
     category: DataTypes.INTEGER, // Assuming category is an integer (foreign key)
     icono: DataTypes.STRING,
+    isActive: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'Layer',
