@@ -149,11 +149,8 @@ html(lang='es')
                                         div
                                             label(for="category", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Category
                                             select(id="category", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
-                                                option(selected="") Select category
-                                                option(value="TV") TV/Monitors
-                                                option(value="PC") PC
-                                                option(value="GA") Gaming/Console
-                                                option(value="PH") Phones
+                                                for category in categories
+                                                    option(value=category.id) #{category.name}
                                         div(class="sm:col-span-2")
                                             label(for="description", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Description
                                             textarea(id="description", rows="4", class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500", placeholder="Write product description here")
@@ -184,10 +181,8 @@ html(lang='es')
                                         div
                                             label(for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Category
                                             select(id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
-                                                option(value="TV") TV/Monitors
-                                                option(value="PC") PC
-                                                option(value="GA") Gaming/Console
-                                                option(value="PH") Phones
+                                                for category in categories
+                                                    option(value=category.id) #{category.name}
                                         div(class="sm:col-span-2")
                                             label(for="description", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Description
                                             textarea(id="description", rows="5", class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500", placeholder="Write a description...") Standard glass, 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, 16GB 2666MHz DDR4 memory, Radeon Pro 5500 XT with 8GB of GDDR6 memory, 256GB SSD storage, Gigabit Ethernet, Magic Mouse 2, Magic Keyboard - US
