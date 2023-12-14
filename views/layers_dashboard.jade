@@ -9,6 +9,9 @@ html(lang='es')
             .dataTables_wrapper .dataTables_length select{
                 width: 5rem;
             }
+            .dataTables_length{
+                margin-left: 2rem;
+            }
     body(class='bg-white dark:bg-gray-900')
         include ./includes/sidebar.jade
         block content
@@ -44,7 +47,7 @@ html(lang='es')
                                             tr(class="border-b dark:border-gray-700")
                                                 th(id="layerId" scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white" value="1") ID
                                                 td(id="layerName" class="px-4 py-3 text-sm font-medium") Nombre
-                                                td(id="layerCategory" class="px-4 py-3 text-sm font-medium") Categoria
+                                                td(id="layerCategory" class="px-4 py-3 text-sm font-medium") Categoría
                                                 td(class="px-4 py-3 flex items-center justify-end")
                                                     button(id="example-dropdown-button" data-dropdown-toggle="example-dropdown" class="inline-flex items-center text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 p-1.5 dark:hover-bg-gray-800 text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" type="button")
                                                         svg(class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
@@ -78,7 +81,7 @@ html(lang='es')
                                                             label(for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Nombre
                                                             input(type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Nombre de la capa" required="")
                                                         div
-                                                            label(for="categoriesCreate", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Categoria
+                                                            label(for="categoriesCreate", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Categoría
                                                             select(id="categoriesCreate", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
                                                                 for category in categories
                                                                     option(value=category.id)= category.name

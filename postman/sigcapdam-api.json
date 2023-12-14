@@ -148,6 +148,36 @@
 		},
 		{
 			"name": "Get All Layers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}layers/all",
+					"host": [
+						"{{host}}layers"
+					],
+					"path": [
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Layer by ID",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -158,12 +188,77 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}layers/all",
+					"raw": "{{host}}layers/:id",
 					"host": [
 						"{{host}}layers"
 					],
 					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Categories",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}categories/all",
+					"host": [
+						"{{host}}categories"
+					],
+					"path": [
 						"all"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Category by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}categories/:id",
+					"host": [
+						"{{host}}categories"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
 					]
 				}
 			},
@@ -182,7 +277,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"101\",\r\n    \"archive\": \"101_0_0.json\",\r\n    \"category\": \"RUTAS\"\r\n}",
+					"raw": "{\r\n    \"name\": \"101\",\r\n    \"archive\": \"101_0_0.json\",\r\n    \"category\": \"1\",\r\n    \"icono\": \"icono.png\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -310,7 +405,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"perm_name\": \"get_products\",\n    \"perm_description\": \"Get List of Products\"\n}"
+					"raw": "{\n    \"perm_name\": \"category_delete\",\n    \"perm_description\": \"Delete category\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}permissions",
@@ -318,6 +413,14 @@
 						"{{host}}permissions"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Category",
+			"request": {
+				"method": "POST",
+				"header": []
 			},
 			"response": []
 		},
@@ -430,7 +533,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"3 de Mayo\",\r\n    \"archive\": \"COMERCIALIZACION_CONTRATOS_0.json\",\r\n    \"category\": \"Contratos\"\r\n}",
+					"raw": "{\r\n    \"name\": \"SANTIAGO-SALAGUA\",\r\n    \"archive\": \"SANTIAGOSALAGUA_1.json\",\r\n    \"category\": \"1\",\r\n    \"icono\": \"SANTIAGO-SALAGUA.png\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -438,12 +541,18 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}layers/1",
+					"raw": "{{host}}layers/:id",
 					"host": [
 						"{{host}}layers"
 					],
 					"path": [
-						"1"
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
 					]
 				}
 			},
@@ -534,6 +643,35 @@
 			"response": []
 		},
 		{
+			"name": "Layer Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}layers/:id",
+					"host": [
+						"{{host}}layers"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "34"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Register",
 			"request": {
 				"method": "POST",
@@ -611,17 +749,17 @@
 	"variable": [
 		{
 			"key": "host",
-			"value": "https://localhost:3001/api/v1/",
+			"value": "https://localhost:3000/api/v1/",
 			"type": "string"
 		},
 		{
 			"key": "api",
-			"value": "localhost:3001/api/v1/",
+			"value": "localhost:3000/api/v1/",
 			"type": "string"
 		},
 		{
 			"key": "token",
-			"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwibm9tYnJlIjoiRW5yaXF1ZSBkZSBKZXN1cyIsImFwZV9wYXQiOiJPY2hvYSIsImFwZV9tYXQiOiJQcmVjaWFkbyIsImVtYWlsIjoiZW9jaG9hMTFAdWNvbC5teCIsInBhc3N3b3JkIjoiJDJhJDEwJGJ3NXp2TnZJd1FUVVRadVBSNUFpMmVNTEpOUjJETjRFQ1lMazFCQkVaWGxHVkZCUVJOc3VhIiwiaXNBY3RpdmUiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjMtMTAtMjVUMTk6Mzk6MDcuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjMtMTAtMjVUMTk6Mzk6MDcuMDAwWiIsImlhdCI6MTY5OTYzNjU1OCwiZXhwIjoxNzAyMjI4NTU4fQ.6Am8kr3rXvHYa8cfhHoJKIcHjyCaTdQtrVRo7UNoFNY",
+			"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwicHJvZmlsZVBpYyI6InByb2ZpbGUucG5nIiwibm9tYnJlIjoiUHJvZ3JhbWFjaW9uIiwiYXBlX3BhdCI6IkNhcGRhbSIsImFwZV9tYXQiOiJNYW56YW5pbGxvIiwiZW1haWwiOiJwcm9ncmFtYWNpb25AY2FwZGFtLmdvYi5teCIsInBhc3N3b3JkIjoiJDJiJDEwJFMuS1p2VHNWbjVTRkd5U3dZMVB0T2VhTmYvRzFQeHM5NDNycTBrQmZpLkd2QTh4T3ZtSHVPIiwiaXNBY3RpdmUiOnRydWUsImNyZWF0ZWRBdCI6bnVsbCwidXBkYXRlZEF0IjpudWxsLCJpYXQiOjE3MDIwNDM4NjIsImV4cCI6MTcwNDYzNTg2Mn0.D8dpOhDSppid1GCmdhIVojKHhLPGVj9lOpfNJJjpNkE",
 			"type": "string"
 		}
 	]
