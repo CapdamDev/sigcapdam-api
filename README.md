@@ -29,7 +29,7 @@ Instalación de proyecto
 Entra a la carpeta donde desees importar el proyecto, abre una terminal y ejecuta lo siguiente:
 
 ```bash
-    git clone https://github.com/CapdamDev/sigcapdam'api
+    git clone https://github.com/CapdamDev/sigcapdam-api
     cd sigcapdam
     npm i
 ```
