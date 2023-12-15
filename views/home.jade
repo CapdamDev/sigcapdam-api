@@ -83,7 +83,7 @@ html(lang='es')
                                             // Process the layers
                                             layers.forEach(function (layer) {
                                                 // Ensure the URL is correct
-                                                var geoJsonUrl = 'assets/layers/capas_js/' + layer.categoryData.name + '/' + layer.archive;
+                                                var geoJsonUrl = 'assets/layers/' + layer.categoryData.name + '/' + layer.archive;
 
                                                 var layerSource = new ol.source.Vector({
                                                     url: geoJsonUrl,
@@ -96,7 +96,7 @@ html(lang='es')
                                                         anchor: [0.5, 0.5],
                                                         anchorXUnits: 'fraction',
                                                         anchorYUnits: 'fraction',
-                                                        src: 'assets/layer_icons/' + layer.categoryData.name + '/' + layer.name + '.png',
+                                                        src: 'assets/layers/' + layer.categoryData.name + '/' + layer.icono,
                                                         scale: 0.6
                                                     }),
                                                 });
@@ -147,7 +147,7 @@ html(lang='es')
                                                         anchor: [0.5, 0.5],
                                                         anchorXUnits: 'fraction',
                                                         anchorYUnits: 'fraction',
-                                                        src: 'assets/layer_icons/' + layer.categoryData.name + '/' + layer.name + '.png',
+                                                        src: 'assets/layers/' + layer.categoryData.name + '/' + layer.icono,
                                                         scale: 0.1
                                                     }),
                                                 });
@@ -159,7 +159,7 @@ html(lang='es')
                                                 // Add the layer to the category on jsTree
                                                 categories[layer.categoryData.name].push({
                                                     id: layer.name,
-                                                    text: '<img src="assets/layer_icons/' + layer.categoryData.name  + '/' + layer.name + '.png" class="inline-block w-4 h-4"> ' + layer.name,
+                                                    text: '<img src="assets/layers/' + layer.categoryData.name  + '/' + layer.icono + '" class="inline-block w-4 h-4"> ' + layer.name,
                                                     state: {
                                                         opened: true,
                                                         selected: false
