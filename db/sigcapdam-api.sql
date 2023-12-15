@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-12-2023 a las 21:55:32
+-- Tiempo de generación: 15-12-2023 a las 20:01:00
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -63,22 +63,23 @@ CREATE TABLE IF NOT EXISTS `layers` (
   `icono` varchar(255) DEFAULT NULL,
   `isActive` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `layers`
 --
 
 INSERT INTO `layers` (`id`, `name`, `archive`, `category`, `createdAt`, `updatedAt`, `icono`, `isActive`) VALUES
-(1, 'SANTIAGO-SALAGUA', 'SANTIAGOSALAGUA_1.json', '1', '2023-11-14 16:43:52', '2023-12-11 18:04:32', 'SANTIAGO-SALAGUA.png', 1),
-(2, 'JALIPA-TAPEIXTLES', 'JALIPATAPEIXTLES_3.json', '1', '2023-11-14 16:44:17', '2023-12-11 17:47:17', NULL, 1),
-(3, 'EL COLOMO', 'ELCOLOMO_4.json', '1', '2023-11-14 16:44:34', '2023-12-11 16:09:50', NULL, 1),
-(4, 'PEÑA BLANCA', 'PEABLANCA_2.json', '1', '2023-11-14 16:44:51', '2023-11-14 16:44:51', NULL, 1),
-(5, 'VENUSTIANO CARRANZA', 'VENUSTIANOCARRANZA.json', '1', '2023-11-14 16:45:21', '2023-11-14 16:45:21', NULL, 1),
-(6, 'DESCARGAS', 'DESCARGAS.json', '1', '2023-11-14 16:45:34', '2023-12-11 18:16:49', NULL, 1),
-(7, 'CONTRATOS', 'CONTRATOS.json', '2', '2023-11-14 17:30:34', '2023-12-11 18:16:44', NULL, 1),
-(9, 'ALCANTARILLA', 'ALCANTARILLA_16.json', '3', '2023-11-15 17:52:45', '2023-12-11 18:16:39', NULL, 1),
-(11, 'BOCA DE TORMENTA', 'BOCA_DE_TORMENTA_15.json', '3', '2023-11-15 18:29:19', '2023-12-11 18:13:39', NULL, 1);
+(1, 'SANTIAGO-SALAGUA', 'SANTIAGO-SALAGUA.json', '1', '2023-11-14 16:43:52', '2023-12-11 18:04:32', 'SANTIAGO-SALAGUA.png', 1),
+(2, 'JALIPA-TAPEIXTLES', 'JALIPA-TAPEIXTLES.json', '1', '2023-11-14 16:44:17', '2023-12-11 17:47:17', 'JALIPA-TAPEIXTLES.png', 1),
+(3, 'EL COLOMO', 'EL COLOMO.json', '1', '2023-11-14 16:44:34', '2023-12-11 16:09:50', 'EL COLOMO.png', 1),
+(4, 'PEÑA BLANCA', 'PEÑA BLANCA.json', '1', '2023-11-14 16:44:51', '2023-11-14 16:44:51', 'PEÑA BLANCA.png', 1),
+(5, 'VENUSTIANO CARRANZA', 'VENUSTIANO CARRANZA.json', '1', '2023-11-14 16:45:21', '2023-11-14 16:45:21', 'VENUSTIANO CARRANZA.png', 1),
+(6, 'DESCARGAS', 'DESCARGAS.json', '1', '2023-11-14 16:45:34', '2023-12-11 18:16:49', 'DESCARGAS.png', 1),
+(7, 'CONTRATOS', 'CONTRATOS.json', '2', '2023-11-14 17:30:34', '2023-12-11 18:16:44', 'CONTRATOS.png', 1),
+(8, 'ALCANTARILLA', 'ALCANTARILLA,json', '3', '2023-11-15 17:52:45', '2023-12-11 18:16:39', 'ALCANTARILLA.png', 1),
+(9, 'BOCA DE TORMENTA', 'BOCA DE TORMENTA.json', '3', '2023-11-15 18:29:19', '2023-12-11 18:13:39', 'BOCA DE TORMENTA.png', 1),
+(10, 'Demo', 'Demo.json', '1', '2023-12-15 18:11:52', '2023-12-15 18:11:52', 'Demo.png', 1);
 
 -- --------------------------------------------------------
 

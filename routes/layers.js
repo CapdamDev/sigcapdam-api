@@ -15,8 +15,8 @@ const multer = require("multer");
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		// Use the req.body.category as ID to find the category name
-		cb(null, "./public/assets/layer_icons/TEST/");
+		// Get the category name to be used to save the files in the correct category folder
+		cb(null, "./public/assets/layers/POZOS DE CONAGUA");
 	},
 	filename: function (req, file, cb) {
 		// Use the req.body.name as the filename (you may want to sanitize it)
