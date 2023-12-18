@@ -1,12 +1,17 @@
-const express = require('express');
+const express = require("express");
+const fs = require("fs");
 const router = express.Router();
-const User = require('../models').User;
-const Role = require('../models').Role;
-const Permission = require('../models').Permission;
-const passport = require('passport');
-require('../config/passport')(passport);
-const Helper = require('../utils/helper');
+const User = require("../models").User;
+const Role = require("../models").Role;
+const Category = require("../models").Category;
+const Permission = require("../models").Permission;
+const Layer = require("../models").Layer;
+const passport = require("passport");
+require("../config/passport")(passport);
+const Helper = require("../utils/helper");
 const helper = new Helper();
+const cookieParser = require("cookie-parser");
+const multer = require("multer");
 
 // Register a un nuevo usuario (solo admin)
 router.post('/', function (req, res) {
@@ -66,6 +71,44 @@ router.get('/', passport.authenticate('jwt', {
     res.status(403).send(error);
   });
 });
+
+router.get("/all",
+	passport.authenticate("jwt", {
+		session: false,
+	}),
+	function (req, res) {
+		helper
+			.checkPermission(req.user.role_id, "user_get_all")
+			.then((rolePerm) => {
+				User.findAll({
+					where: {
+						isActive: true,
+					},
+          include: [
+            {
+              model: Role,
+              attributes: ["role_name"],
+              as: "roleData",
+            },
+          ]
+				})
+					.then((users) => {
+						// Send the users as a JSON response to the client
+						res.status(200).json(users);
+					})
+					.catch((error) => {
+						res.status(500).json({
+							error: "Internal Server Error",
+						});
+					});
+			})
+			.catch((error) => {
+				res.status(403).json({
+					error: "Forbidden",
+				});
+			});
+	}
+);
 
 // Obtener un usuario por ID
 router.get('/:id', passport.authenticate('jwt', {
