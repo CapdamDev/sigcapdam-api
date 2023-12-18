@@ -47,8 +47,9 @@ const cpUpload = upload.fields([
 	{ name: "archive", maxCount: 1 },
 ]);
 
-router.post(
-	"/",
+
+// Agrega una nueva layer
+router.post("/",
 	passport.authenticate("jwt", { session: false }),
 	cpUpload,
 	(req, res) => {
