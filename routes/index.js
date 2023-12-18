@@ -99,7 +99,25 @@ router.get('/users_dashboard', async function(req, res, next) {
   if(!cookies.token){
     res.redirect('/login');
   } else{
-    res.render('users_dashboard', { cookies, url });
+    try{
+      const response = await fetch('http://localhost:3000/api/v1/users/all', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': cookies.token,
+        },
+      });
+      const users = await response.json();
+
+      if(!users){
+        res.send(404);
+      }
+      else{
+        res.render('users_dashboard', { users, cookies, url });
+      }
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
   }
 });
 
