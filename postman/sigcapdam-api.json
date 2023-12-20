@@ -265,6 +265,63 @@
 			"response": []
 		},
 		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}users/all",
+					"host": [
+						"{{host}}users"
+					],
+					"path": [
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Layer Exist",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}layers/:category/:name",
+					"host": [
+						"{{host}}layers"
+					],
+					"path": [
+						":category",
+						":name"
+					],
+					"variable": [
+						{
+							"key": "category",
+							"value": "1"
+						},
+						{
+							"key": "name",
+							"value": "SANTIAGO-SALAGUA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Layers Add",
 			"request": {
 				"method": "POST",
