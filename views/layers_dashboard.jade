@@ -16,6 +16,11 @@ html(lang='es')
                 margin-right: 1rem;
                 margin-bottom: 1rem;
             }
+            #layersTable_wrapper{
+                margin-top: .7rem;
+                margin-bottom: .5rem;
+            }
+
     body(class='bg-white dark:bg-gray-900')
         include ./includes/sidebar.jade
         block content
@@ -23,21 +28,18 @@ html(lang='es')
             div(class='2xl:w-auto mx-auto space-y-6')
                 div(class='h-16 items-center border border-gray-300/40 dark:border-gray-700 flex justify-between px-6 lg:px-12')
                     //- Coordenadas del mouse
-                    div(class='flex items-center text-xl')
+                    div(class='flex items-center lg:text-xl md:text-md sm:text-sm')
                         span(class='text-gray-500 dark:text-gray-200') Gestión de capas
-                    span(class='text-left text-white') SIGCAPDAM
-                div(class='px-6 h-[calc(51rem)]')
+                    //- span(class='text-left text-white') SIGCAPDAM
+                    button(type="button" id="createProductModalButton" data-modal-target="createProductModal" data-modal-toggle="createProductModal" class="flex items-center justify-center text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-full text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-700 focus:outline-none dark:focus:ring-sky-800")
+                                svg(class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true")
+                                    path(clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z")
+                                | Nueva
+                div(class='px-6 h-[calc(55rem)]')
                     //- CRUD para gestionar las capas cargadas
-                    section(class="px-3 h-full w-full rounded-2xl bg-gray-50 dark:bg-gray-900 antialiased")
+                    section(class="px-3 h-auto w-full rounded-2xl bg-gray-50 dark:bg-gray-900 antialiased")
                         div(class="w-full h-full")
                             div(class="bg-white dark:bg-gray-800 shadow-md sm:rounded-lg overflow-hidden w-full h-full")
-                                div(class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4")
-                                    div(class="w-full md:w-1/2")
-                                    div(class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0")
-                                        button(type="button" id="createProductModalButton" data-modal-target="createProductModal" data-modal-toggle="createProductModal" class="flex items-center justify-center text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded7-lg text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-700 focus:outline-none dark:focus:ring-sky-800 rounded")
-                                            svg(class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true")
-                                                path(clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z")
-                                            | Nueva capa
                                 div(class="h-full overflow-x-auto w-full")
                                     table#layersTable.display(class="table text-sm text-left text-gray-500 dark:text-gray-400 w-full flex-nowrap overflow-auto" style="width: 100% !important;")
                                         thead(class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400")
@@ -145,7 +147,7 @@ html(lang='es')
             include ./includes/footer.jade
 
                 script.
-
+                
                     // Receive the JSON data from API get response from server side (layers)
                     const layers = !{JSON.stringify(layers)};
                     console.log(layers);
@@ -187,40 +189,65 @@ html(lang='es')
                             const icono = document.getElementById('icono').files[0];
 
                             try {
-                                const formData = new FormData();
-                                formData.append('name', name);
-                                formData.append('category', category);
-                                formData.append('archive', archive);
-                                formData.append('icono', icono);
+                                try {
+                                    const formData = new FormData();
+                                    formData.append('name', name);
+                                    formData.append('category', category);
+                                    formData.append('archive', archive);
+                                    formData.append('icono', icono);
 
-                                const response = await fetch('/api/v1/layers', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Authorization': '!{cookies.token}',
-                                    },
-                                    body: formData,
-                                });
-
-                                const data = await response.json();
-
-                                if (response.ok) {
-                                    Swal.fire({
-                                        title: "Capa creada",
-                                        text: "La capa ha sido creada correctamente.",
-                                        icon: "success",
-                                        showConfirmButton: true,
-                                    }).then(() => {
-                                        window.location.reload();
+                                    // Construct the URL with the actual values for name and category
+                                    const checkLayer = await fetch(`/api/v1/layers/${encodeURIComponent(category)}/${encodeURIComponent(name)}`, {
+                                        method: 'GET',
+                                        headers: {
+                                            'Authorization': '!{cookies.token}',
+                                        },
                                     });
-                                } else {
-                                    throw new Error(data.message);
+
+                                    if (checkLayer.status === 404) {
+                                        console.log("Error, capa existe")
+                                        Swal.fire("Error", "A layer with the same name and category already exists.", "error");
+                                        throw new Error("A layer with the same name and category already exists.");
+                                    }
+
+                                    const checkLayerData = await checkLayer.json();
+
+                                    const response = await fetch('/api/v1/layers/', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Authorization': '!{cookies.token}',
+                                        },
+                                        body: formData,
+                                    });
+
+                                    // Make a loop in formData to log in to the console the data
+                                    for (const [key, value] of formData.entries()) {
+                                        console.log(key, value);
+                                    }
+
+                                    const data = await response.json();
+
+                                    if (response.ok) {
+                                        Swal.fire({
+                                            title: "Capa creada",
+                                            text: "La capa ha sido creada correctamente.",
+                                            icon: "success",
+                                            showConfirmButton: true,
+                                        }).then(() => {
+                                            window.location.reload();
+                                        });
+                                    } else {
+                                        throw new Error(data.message);
+                                    }
+                                } catch (error) {
+                                    console.error('Error:', error);
+                                    Swal.fire("Error", error.message, "error");
                                 }
                             } catch (error) {
                                 console.error('Error:', error);
                                 Swal.fire("Error", error.message, "error");
                             }
                         });
-
 
                         // Delete layer
                         $(document).on("click", "#deleteModalButton", function() {
@@ -279,8 +306,6 @@ html(lang='es')
                                 }
                             });
                         });
-
-
 
                         // Logout button click handler
                         $('#logoutButton').on('click', function () {
