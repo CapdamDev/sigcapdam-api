@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-12-2023 a las 20:01:00
+-- Tiempo de generación: 20-12-2023 a las 21:01:39
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `layers` (
   `icono` varchar(255) DEFAULT NULL,
   `isActive` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `layers`
@@ -78,8 +78,7 @@ INSERT INTO `layers` (`id`, `name`, `archive`, `category`, `createdAt`, `updated
 (6, 'DESCARGAS', 'DESCARGAS.json', '1', '2023-11-14 16:45:34', '2023-12-11 18:16:49', 'DESCARGAS.png', 1),
 (7, 'CONTRATOS', 'CONTRATOS.json', '2', '2023-11-14 17:30:34', '2023-12-11 18:16:44', 'CONTRATOS.png', 1),
 (8, 'ALCANTARILLA', 'ALCANTARILLA,json', '3', '2023-11-15 17:52:45', '2023-12-11 18:16:39', 'ALCANTARILLA.png', 1),
-(9, 'BOCA DE TORMENTA', 'BOCA DE TORMENTA.json', '3', '2023-11-15 18:29:19', '2023-12-11 18:13:39', 'BOCA DE TORMENTA.png', 1),
-(10, 'Demo', 'Demo.json', '1', '2023-12-15 18:11:52', '2023-12-15 18:11:52', 'Demo.png', 1);
+(9, 'BOCA DE TORMENTA', 'BOCA DE TORMENTA.json', '3', '2023-11-15 18:29:19', '2023-12-11 18:13:39', 'BOCA DE TORMENTA.png', 1);
 
 -- --------------------------------------------------------
 
