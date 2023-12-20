@@ -114,6 +114,9 @@ router.post("/logout", (req, res) => {
 	res.clearCookie("role_id");
 	res.clearCookie("role_name");
 	res.clearCookie("user_email");
+	res.clearCookie("user_id");
+	res.clearCookie("user_name");
+	res.clearCookie("profilePic");
 	// Send JSON to confirm delete
 	res.status(200).redirect("/");
 });
