@@ -15,21 +15,9 @@ const multer = require("multer");
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		// Get the category name to be used to save the files in the correct category folder
-		Category.findByPk(req.body.category).then((category) => {
-			if (!category) {
-				console.log("Categoria invalida.")
-				res.status(400).send({
-					msg: "Invalid category ID.",
-				});
-			} else {
-				// Set the directory to store the files using the ./public/assets/layers/category.name folder
-				console.log()
-				const dir = "./public/assets/layers/";
-				const categoryDir = dir + category.name;
-				cb(null, categoryDir);
-			}
-		});
+			// Set the directory to store the files using the ./public/assets/layers/category.name folder
+			const dir = "./public/assets/layers/";
+			cb(null, dir);
 	},
 	filename: function (req, file, cb) {
 		// Use the req.body.name as the filename (you may want to sanitize it)
@@ -61,48 +49,48 @@ router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (re
 					console.log("FILES: ", req.files);
 
 					Category.findByPk(req.body.category)
-						.then((category) => {
-							if (!category) {
-								res.status(400).send({
-									msg: "Invalid category ID.",
-								});
-							} else {
-								// Create a directory for the category icon
-								try {
-									// Check if directory already exists
-									const dir = "./public/assets/layer_icons/";
-									const categoryDir = dir + category.name;
-									if (!fs.existsSync(categoryDir)) {
-										fs.mkdirSync(categoryDir);
-										console.log("Directory is created.");
-									} else {
-										console.log("Directory already exists.");
-									}
-								} catch (err) {
-									console.log(err);
+					.then((category) => {
+						if (!category) {
+							res.status(400).send({
+								msg: "Invalid category ID.",
+							});
+						} else {
+							// Create a directory for the category icon
+							try {
+								// Check if directory already exists
+								const dir = "./public/assets/layer_icons/";
+								const categoryDir = dir + category.name;
+								if (!fs.existsSync(categoryDir)) {
+									fs.mkdirSync(categoryDir);
+									console.log("Directory is created.");
+								} else {
+									console.log("Directory already exists.");
 								}
-
-								const archiveFileName = req.files["archive"][0].filename;
-								const iconoFileName = req.files["icono"][0].filename;
-
-								Layer.create({
-									name: req.body.name,
-									archive: archiveFileName,
-									category: req.body.category,
-									icono: iconoFileName,
-									isActive: 1,
-								})
-								.then((layer) => res.status(201).send(layer))
-								.catch((error) => {
-									console.log(error);
-									res.status(400).send(error);
-								});
+							} catch (err) {
+								console.log(err);
 							}
-						})
-						.catch((error) => {
-							console.log(error);
-							res.status(400).send(error);
-						});
+
+							const archiveFileName = req.files["archive"][0].filename;
+							const iconoFileName = req.files["icono"][0].filename;
+
+							Layer.create({
+								name: req.body.name,
+								archive: archiveFileName,
+								category: req.body.category,
+								icono: iconoFileName,
+								isActive: 1,
+							})
+							.then((layer) => res.status(201).send(layer))
+							.catch((error) => {
+								console.log(error);
+								res.status(400).send(error);
+							});
+						}
+					})
+					.catch((error) => {
+						console.log(error);
+						res.status(400).send(error);
+					});
 				}
 			})
 			.catch((error) => {
@@ -110,74 +98,6 @@ router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (re
 			});
 	}
 );
-
-// Agrega una nueva layer
-// router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (req, res) => {
-// 		helper.checkPermission(req.user.role_id, "layer_add")
-// 			.then((rolePerm) => {
-// 				if (!req.body.name || !req.body.category) {
-// 					res.status(400).send({
-// 						msg: "Please pass name or category.",
-// 					});
-// 				} else {
-// 					// Get the category name based on the ID
-// 					console.log("DATA: ", req.body);
-// 					console.log("FILES: ", req.files);
-
-// 					Category.findByPk(req.body.category)
-// 						.then((category) => {
-// 							if (!category) {
-// 								res.status(400).send({
-// 									msg: "Invalid category ID.",
-// 								});
-// 							} else {
-// 								// Create a directory for the category icon
-// 								try {
-// 									// Check if directory already exists
-// 									const dir = "./public/assets/layer_icons/";
-// 									const categoryDir = dir + category.name;
-// 									if (!fs.existsSync(categoryDir)) {
-// 										fs.mkdirSync(categoryDir);
-// 										console.log("Directory is created.");
-// 									} else {
-// 										console.log("Directory already exists.");
-// 									}
-// 								} catch (err) {
-// 									console.log(err);
-// 								}
-
-// 								const archiveFileName = req.files["archive"][0].filename;
-// 								const iconoFileName = req.files["icono"][0].filename;
-
-// 								console.log("DATA: ", req.body);
-// 								console.log("FILES: ", req.files);
-
-// 								Layer.create({
-// 									name: req.body.name,
-// 									archive: archiveFileName,
-// 									category: req.body.category,
-// 									icono: iconoFileName,
-// 									isActive: 1,
-// 								})
-// 									.then((layer) => res.status(201).send(layer))
-// 									.catch((error) => {
-// 										console.log(error);
-// 										res.status(400).send(error);
-// 									});
-// 							}
-// 						})
-// 						.catch((error) => {
-// 							console.log(error);
-// 							res.status(400).send(error);
-// 						});
-// 				}
-// 			})
-// 			.catch((error) => {
-// 				res.status(403).send(error);
-// 			});
-// 	}
-// );
-
 
 // Consulta una layer por su nombre y categoría
 
@@ -187,7 +107,6 @@ router.get("/:category/:name", passport.authenticate("jwt", { session: false }),
 		const layer = await Layer.findOne({
 			where: {
 				name: req.params.name,
-				category: req.params.category,
 			},
 		});
 		if (layer) {
@@ -255,7 +174,16 @@ router.get(
 			.checkPermission(req.user.role_id, "layer_get")
 			.then((rolePerm) => {
 				Layer.findByPk(req.params.id)
-					.then((layer) => res.status(200).send(layer))
+					.then((layer) => {
+						if (!layer) {
+							res.status(404).json({
+								success: false,
+								error: "Layer not found",
+							});
+						} else {
+							res.status(200).json(layer);
+						}
+					})
 					.catch((error) => {
 						res.status(400).send(error);
 					});
@@ -266,29 +194,51 @@ router.get(
 	}
 );
 
-// Actualiza los datos generales de la layer
-router.put(
-	"/:id",
-	passport.authenticate("jwt", {
-		session: false,
-	}),
-	function (req, res) {
-		helper
-			.checkPermission(req.user.role_id, "layer_update")
-			.then((rolePerm) => {
-				Layer.update(
-					{
-						name: req.body.name,
-						archive: req.body.archive,
-						category: req.body.category,
-						icono: req.body.icono,
-					},
-					{
-						where: {
-							id: req.params.id,
-						},
+
+router.put("/:id", passport.authenticate("jwt", { session: false }), cpUpload, (req, res) => {
+	helper.checkPermission(req.user.role_id, "layer_update")
+	.then((rolePerm) => {
+
+		Category.findByPk(req.body.category)
+		.then((category) => {
+			if(!category) {
+				res.status(400).send({
+					msg: "Invalid category ID.",
+				});
+			} else {
+				Layer.findByPk(req.body.layerId)
+				.then((layer) => {
+					const archiveFileName = req.files["archive"] ? req.files["archive"][0].filename : layer.archive;
+					const iconoFileName = req.files["icono"] ? req.files["icono"][0].filename : layer.icono;
+
+					console.log("------------------------");
+					console.log("DATA: ", req.body);
+					console.log("FILES: ", req.files);
+					console.log("------------------------");
+
+					if(!archiveFileName || !iconoFileName) {
+						console.log("No se enviaron archivos, se utlizaran los mismos de la base de datos");
 					}
-				)
+					else {
+						console.log("Se enviaron archivos, se utilizaran los nuevos");
+					}
+
+					// Before update, check if exist a layer with the same name and category, if exist, doesn't update
+
+
+					Layer.update(
+						{
+							name: req.body.name,
+							archive: archiveFileName,
+							category: req.body.category,
+							icono: iconoFileName,
+						},
+						{
+							where: {
+								id: req.params.id,
+							},
+						}
+					)
 					.then((layer) =>
 						res.status(201).send({
 							data: "success",
@@ -297,14 +247,12 @@ router.put(
 					.catch((error) => {
 						res.status(400).send(error);
 					});
-			})
-			.catch((error) => {
-				res.status(403).json({
-					error: "Forbidden",
-				});
-			});
-	}
-);
+				})
+			}
+		})
+	})
+});
+
 
 router.delete(
 	"/:id",
@@ -339,7 +287,6 @@ router.delete(
 					error: "Forbidden",
 				});
 			});
-	}
-);
+});
 
 module.exports = router;
