@@ -5,7 +5,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     return Promise.all([
       queryInterface.addColumn(
-        'layers',
+        'Layers',
         'icono',
         {
           type: Sequelize.STRING,
@@ -17,7 +17,7 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
     return Promise.all([
-      queryInterface.removeColumn('layers', 'icono'),
+      queryInterface.removeColumn('Layers', 'icono'),
     ])
   }
 };
