@@ -31,7 +31,7 @@ module.exports = {
     }
   },
 
-  down(queryInterface, Sequelize) {
-    // Your existing down seed code here
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete('Users', null, {});
   }
 };
