@@ -41,7 +41,7 @@ router.get("/all", passport.authenticate("jwt", {
     session: false
 }), function (req, res) {
     helper.checkPermission(req.user.role_id, "category_get_all").then((rolePerm) => {
-        Category.findAll({
+            Category.findAll({
                 include: [{
                     model: Layer,
                     as: "layers"
