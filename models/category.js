@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here from layer to category
       Category.hasMany(models.Layer, {
-        foreignKey: 'id',
         as: 'layers',
+        foreignKey: 'category',
       });
     }
   }
