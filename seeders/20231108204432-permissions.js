@@ -122,6 +122,36 @@ module.exports = {
                 perm_description: 'Delete Product',
                 createdAt: new Date(),
                 updatedAt: new Date()
+            },
+            {
+                perm_name: 'category_add',
+                perm_description: 'Add Category',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                perm_name: 'category_update',
+                perm_description: 'Update Category',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                perm_name: 'category_get',
+                perm_description: 'Get Category',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                perm_name: 'category_get_all',
+                perm_description: 'Get All Categories',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                perm_name: 'category_delete',
+                perm_description: 'Delete Category',
+                createdAt: new Date(),
+                updatedAt: new Date()
             }
         ], {});
     },
