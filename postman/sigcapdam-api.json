@@ -165,11 +165,16 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{host}}layers/all",
+					"raw": "http://localhost:3000/api/v1/layers/all",
+					"protocol": "http",
 					"host": [
-						"{{host}}layers"
+						"localhost"
 					],
+					"port": "3000",
 					"path": [
+						"api",
+						"v1",
+						"layers",
 						"all"
 					]
 				}
@@ -212,16 +217,21 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{token}}",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwicHJvZmlsZVBpYyI6InByb2ZpbGUucG5nIiwibm9tYnJlIjoiUHJvZ3JhbWFjaW9uIiwiYXBlX3BhdCI6IkNhcGRhbSIsImFwZV9tYXQiOiJNYW56YW5pbGxvIiwiZW1haWwiOiJwcm9ncmFtYWNpb25AY2FwZGFtLmdvYi5teCIsInBhc3N3b3JkIjoiJDJiJDEwJHI1ZVJiNG9CZmhxZzdQSGtVS25hby45cHRFN2JVeUxaLjBUbmhMazN1ZzlqMU5NQmFHeEF5IiwiaXNBY3RpdmUiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjMtMTItMjNUMTg6Mjg6NDcuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjMtMTItMjNUMTg6Mjg6NDcuMDAwWiIsImlhdCI6MTcwMzYwMjA3NCwiZXhwIjoxNzA2MTk0MDc0fQ.wKXfS4khPjbWXvGyQZ2yCdnVoHI_HGp9AK2euYlGJAU",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{host}}categories/all",
+					"raw": "http://localhost:3000/api/v1/categories/all",
+					"protocol": "http",
 					"host": [
-						"{{host}}categories"
+						"localhost"
 					],
+					"port": "3000",
 					"path": [
+						"api",
+						"v1",
+						"categories",
 						"all"
 					],
 					"query": [
@@ -474,10 +484,39 @@
 			"response": []
 		},
 		{
-			"name": "Add Category",
+			"name": "Category add",
 			"request": {
 				"method": "POST",
-				"header": []
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"CARTOGRAFIA MUNICIPAL\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/categories/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"categories",
+						""
+					]
+				}
 			},
 			"response": []
 		},
@@ -590,7 +629,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"SANTIAGO-SALAGUA\",\r\n    \"archive\": \"SANTIAGOSALAGUA_1.json\",\r\n    \"category\": \"1\",\r\n    \"icono\": \"SANTIAGO-SALAGUA.png\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Demo2\",\r\n    \"archive\": \"Demo2.json\",\r\n    \"category\": \"1\",\r\n    \"icono\": \"Demo2.png\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -608,7 +647,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": ""
+							"value": "11"
 						}
 					]
 				}
@@ -806,7 +845,7 @@
 	"variable": [
 		{
 			"key": "host",
-			"value": "https://localhost:3000/api/v1/",
+			"value": "http://localhost:3000/api/v1/",
 			"type": "string"
 		},
 		{
@@ -816,7 +855,7 @@
 		},
 		{
 			"key": "token",
-			"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwicHJvZmlsZVBpYyI6InByb2ZpbGUucG5nIiwibm9tYnJlIjoiUHJvZ3JhbWFjaW9uIiwiYXBlX3BhdCI6IkNhcGRhbSIsImFwZV9tYXQiOiJNYW56YW5pbGxvIiwiZW1haWwiOiJwcm9ncmFtYWNpb25AY2FwZGFtLmdvYi5teCIsInBhc3N3b3JkIjoiJDJiJDEwJFMuS1p2VHNWbjVTRkd5U3dZMVB0T2VhTmYvRzFQeHM5NDNycTBrQmZpLkd2QTh4T3ZtSHVPIiwiaXNBY3RpdmUiOnRydWUsImNyZWF0ZWRBdCI6bnVsbCwidXBkYXRlZEF0IjpudWxsLCJpYXQiOjE3MDIwNDM4NjIsImV4cCI6MTcwNDYzNTg2Mn0.D8dpOhDSppid1GCmdhIVojKHhLPGVj9lOpfNJJjpNkE",
+			"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwicHJvZmlsZVBpYyI6InByb2ZpbGUucG5nIiwibm9tYnJlIjoiUHJvZ3JhbWFjaW9uIiwiYXBlX3BhdCI6IkNhcGRhbSIsImFwZV9tYXQiOiJNYW56YW5pbGxvIiwiZW1haWwiOiJwcm9ncmFtYWNpb25AY2FwZGFtLmdvYi5teCIsInBhc3N3b3JkIjoiJDJiJDEwJHI1ZVJiNG9CZmhxZzdQSGtVS25hby45cHRFN2JVeUxaLjBUbmhMazN1ZzlqMU5NQmFHeEF5IiwiaXNBY3RpdmUiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjMtMTItMjNUMTg6Mjg6NDcuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjMtMTItMjNUMTg6Mjg6NDcuMDAwWiIsImlhdCI6MTcwMzYwMjA3NCwiZXhwIjoxNzA2MTk0MDc0fQ.wKXfS4khPjbWXvGyQZ2yCdnVoHI_HGp9AK2euYlGJAU",
 			"type": "string"
 		}
 	]
