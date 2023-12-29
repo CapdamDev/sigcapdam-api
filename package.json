@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "npx pm2 start ./bin/www",
+    "dev": "npx pm2-dev ./bin/www",
     "watch": "nodemon --ext js,html,css,jade,pug --ignore public/ ./bin/www",
     "build": "webpack"
   },
@@ -13,6 +14,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-fileupload": "^1.4.3",
@@ -40,6 +42,7 @@
     "webpack-cli": "^5.1.4"
   },
   "devDependencies": {
+    "pm2": "^5.3.0",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
   }

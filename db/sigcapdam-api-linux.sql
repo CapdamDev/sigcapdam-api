@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-12-2023 a las 20:52:11
+-- Tiempo de generación: 28-12-2023 a las 19:02:36
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `Layers` (
   `icono` varchar(255) DEFAULT NULL,
   `isActive` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Layers`
@@ -81,7 +81,19 @@ INSERT INTO `Layers` (`id`, `name`, `archive`, `category`, `createdAt`, `updated
 (6, 'DESCARGAS', 'DESCARGAS.json', '1', '2023-11-14 16:45:34', '2023-12-11 18:16:49', 'DESCARGAS.png', 1),
 (7, 'CONTRATOS', 'CONTRATOS.json', '2', '2023-11-14 17:30:34', '2023-12-11 18:16:44', 'CONTRATOS.png', 1),
 (8, 'ALCANTARILLA', 'ALCANTARILLA,json', '3', '2023-11-15 17:52:45', '2023-12-11 18:16:39', 'ALCANTARILLA.png', 1),
-(9, 'BOCA DE TORMENTA', 'BOCA DE TORMENTA.json', '3', '2023-11-15 18:29:19', '2023-12-11 18:13:39', 'BOCA DE TORMENTA.png', 1);
+(9, 'BOCA DE TORMENTA', 'BOCA DE TORMENTA.json', '3', '2023-11-15 18:29:19', '2023-12-27 16:49:12', 'BOCA DE TORMENTA.png', 1),
+(10, '101', '101.json', '4', '2023-12-28 14:58:56', '2023-12-28 14:58:56', '101.png', 1),
+(11, '102', '102.json', '4', '2023-12-28 15:00:31', '2023-12-28 15:00:31', '102.png', 1),
+(12, '103', '103.json', '4', '2023-12-28 15:01:52', '2023-12-28 15:01:52', '103.png', 1),
+(13, '104', '104.json', '4', '2023-12-28 15:03:00', '2023-12-28 15:03:00', '104.png', 1),
+(14, '105', '105.json', '4', '2023-12-28 15:54:55', '2023-12-28 15:54:55', '105.png', 1),
+(15, '106', '106.json', '4', '2023-12-28 15:55:08', '2023-12-28 15:55:08', '106.png', 1),
+(16, '107', '107.json', '4', '2023-12-28 15:55:23', '2023-12-28 15:55:23', '107.png', 1),
+(17, '108', '108.json', '4', '2023-12-28 15:56:16', '2023-12-28 15:56:16', '108.png', 1),
+(18, '111', '111.json', '4', '2023-12-28 15:56:32', '2023-12-28 15:56:32', '111.png', 1),
+(19, '200', '200.json', '4', '2023-12-28 16:44:17', '2023-12-28 16:44:17', '200.png', 1),
+(21, 'Demo2', 'Demo.json', '1', '2023-12-28 17:36:47', '2023-12-28 17:37:16', 'Demo.png', 1),
+(22, '201', '201.json', '4', '2023-12-28 18:02:11', '2023-12-28 18:02:11', '201.png', 1);
 
 -- --------------------------------------------------------
 
