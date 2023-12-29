@@ -3,12 +3,20 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
+require('dotenv').config();
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'production';
-const config = require(__dirname + '/../config/config.json')[env];
-const db = {};
 
-// Este archivo se encarga de leer todos los modelos de la carpeta models y los carga en la variable db para poder usarlos en el resto de la aplicación.
+// Fetch database configuration from environment variables
+const config = {
+  username: process.env.DB_USERNAME || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_DATABASE || 'sigcapdam-apis',
+  host: process.env.DB_HOST || '127.0.0.1',
+  dialect: process.env.DB_DIALECT || 'mysql',
+};
+
+const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
