@@ -299,6 +299,4 @@ router.delete(
 			});
 });
 
-// Delete layer by name
-
 module.exports = router;
