@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-12-2023 a las 19:02:36
+-- Tiempo de generación: 29-12-2023 a las 19:01:26
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -16,7 +16,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
 
 --
 -- Base de datos: `sigcapdam-api`
@@ -81,7 +80,7 @@ INSERT INTO `Layers` (`id`, `name`, `archive`, `category`, `createdAt`, `updated
 (5, 'VENUSTIANO CARRANZA', 'VENUSTIANO CARRANZA.json', '1', '2023-11-14 16:45:21', '2023-11-14 16:45:21', 'VENUSTIANO CARRANZA.png', 1),
 (6, 'DESCARGAS', 'DESCARGAS.json', '1', '2023-11-14 16:45:34', '2023-12-11 18:16:49', 'DESCARGAS.png', 1),
 (7, 'CONTRATOS', 'CONTRATOS.json', '2', '2023-11-14 17:30:34', '2023-12-11 18:16:44', 'CONTRATOS.png', 1),
-(8, 'ALCANTARILLA', 'ALCANTARILLA,json', '3', '2023-11-15 17:52:45', '2023-12-11 18:16:39', 'ALCANTARILLA.png', 1),
+(8, 'ALCANTARILLA', 'ALCANTARILLA.json', '3', '2023-11-15 17:52:45', '2023-12-11 18:16:39', 'ALCANTARILLA.png', 1),
 (9, 'BOCA DE TORMENTA', 'BOCA DE TORMENTA.json', '3', '2023-11-15 18:29:19', '2023-12-27 16:49:12', 'BOCA DE TORMENTA.png', 1),
 (10, '101', '101.json', '4', '2023-12-28 14:58:56', '2023-12-28 14:58:56', '101.png', 1),
 (11, '102', '102.json', '4', '2023-12-28 15:00:31', '2023-12-28 15:00:31', '102.png', 1),

@@ -85,4 +85,29 @@ router.get("/:id", passport.authenticate("jwt", {
     });
 });
 
+// Delete a category by id
+router.delete("/:id", passport.authenticate("jwt", {
+    session: false
+}), function (req, res) {
+    helper.checkPermission(req.user.role_id, "category_delete").then((rolePerm) => {
+        Category.findByPk(req.params.id)
+            .then((category) => {
+                if (!category) {
+                    return res.status(400).send({
+                        msg: "Category Not Found"
+                    });
+                }
+                return category
+                    .destroy()
+                    .then(() => res.status(200).send({
+                        msg: "Category deleted successfully."
+                    }))
+                    .catch((error) => res.status(400).send(error));
+            })
+            .catch((error) => res.status(400).send(error));
+    }).catch((error) => {
+        res.status(403).send(error);
+    });
+});
+
 module.exports = router;
