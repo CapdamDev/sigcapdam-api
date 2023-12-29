@@ -9,7 +9,7 @@ router.use(cookieParser());
 
 // Middleware para procesar las cookies
 router.use(function(req, res, next) {
-  // Accede a las cookies y almacenalas en el objeto req para que estén disponibles en todas las rutas
+  // Accede a las cookies y almacénalas en el objeto req para que estén disponibles en todas las rutas
   req.parsedCookies = req.cookies;
   next();
 });
