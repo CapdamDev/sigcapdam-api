@@ -18,7 +18,7 @@ html(lang='es')
                         span(class='text-left text-white') SIGCAPDAM | Administrador
                     else if cookies.role_name === 'user'
                         span(class='text-left text-white') SIGCAPDAM !{cookies.role_name}
-                        
+
                 div(class='px-6 h-[calc(54rem)]')
                     #map(class='h-full flex justify-center items-center rounded-2xl border border-dashed border-gray-300/40 dark:border-gray-700')
                     div(class='absolute top-1/2 right-1 transform translate-y-[-50%] px-6 py-4')
@@ -228,37 +228,4 @@ html(lang='es')
                                         .catch((error) => {
                                             console.error('Error fetching layers:', error);
                                         });
-
-                                    // Logout button click handler
-                                    $('#logoutButton').on('click', function () {
-                                        // Fetch to the API logout endpoint
-                                        fetch('/api/v1/auth/logout', {
-                                            method: 'POST',
-                                            headers: {
-                                                'Content-Type': 'application/json'
-                                            },
-                                        })
-                                        .then(response => {
-                                            if (response.ok) {
-                                                // Display SweetAlert for successful logout
-                                                return Swal.fire({
-                                                    title: "Logout Successful",
-                                                    text: "You have been logged out successfully.",
-                                                    icon: "success",
-                                                });
-                                            } else {
-                                                // If the response is not OK, reject the promise
-                                                throw new Error('Logout failed.');
-                                            }
-                                        })
-                                        .then(() => {
-                                            // Redirect to the home page after handling the response
-                                            window.location.href = '/';
-                                        })
-                                        .catch(error => {
-                                            // Handle errors, including failed logout
-                                            console.error('Error during logout:', error);
-                                            Swal.fire("Logout Failed", "There was an error during logout.", "error");
-                                        });
-                                    });
                                 });

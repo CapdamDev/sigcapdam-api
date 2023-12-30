@@ -12,6 +12,7 @@ const Helper = require("../utils/helper");
 const helper = new Helper();
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
+const { Op } = require("sequelize");
 
 // Register a un nuevo usuario (solo admin)
 router.post('/', function (req, res) {
@@ -26,13 +27,14 @@ router.post('/', function (req, res) {
           }
       }).then((role) => {
           User.create({
+              role_id: role.id,
+              profilePic:req.body.profilePic,
               nombre: req.body.nombre,
               ape_pat: req.body.ape_pat,
               ape_mat: req.body.ape_mat,
               email: req.body.email,
               password: req.body.password,
-              isActive: req.body.isActive,
-              role_id: role.id
+              isActive: 1
           })
           .then((user) => res.status(201).send(user))
           .catch((error) => {
@@ -42,34 +44,6 @@ router.post('/', function (req, res) {
           res.status(400).send(error);
       });
   }
-});
-
-// Obtener lista de todos los usuarios
-router.get('/', passport.authenticate('jwt', {
-  session: false
-}), function (req, res) {
-  helper.checkPermission(req.user.role_id, 'user_get_all').then((rolePerm) => {
-    User
-      .findAll({
-        include: [
-          { 
-            model: Role,
-            include: [
-              {
-                model: Permission,
-                as: 'permissions'
-              }
-            ]
-          }
-        ]
-      })
-      .then((users) => res.status(200).send(users))
-      .catch((error) => {
-        res.status(400).send(error);
-      });
-  }).catch((error) => {
-    res.status(403).send(error);
-  });
 });
 
 router.get("/all",
@@ -82,6 +56,9 @@ router.get("/all",
 			.then((rolePerm) => {
 				User.findAll({
 					where: {
+            role_id: {
+              [Op.gt]: 1,
+            },
 						isActive: true,
 					},
           include: [
