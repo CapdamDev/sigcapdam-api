@@ -39,6 +39,8 @@ const cpUpload = upload.fields([
 router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (req, res) => {
 		helper.checkPermission(req.user.role_id, "layer_add")
 			.then((rolePerm) => {
+				const archiveFileName = req.files["archive"][0].filename;
+				const iconoFileName = req.files["icono"][0].filename;
 				if (!req.body.name || !req.body.category) {
 					res.status(400).send({
 						msg: "Please pass name or category.",
@@ -46,10 +48,6 @@ router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (re
 					console.log("No se recibio nada");
 				} else {
 					// Get the category name based on the ID
-					console.log("DATA: ", req.body);
-					console.log("FILES: ", req.files);
-					console.log("Buscando layer");
-					console.log("================");
 
 					Category.findByPk(req.body.category)
 					.then((category) => {
@@ -57,13 +55,8 @@ router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (re
 							res.status(400).send({
 								msg: "Invalid category ID.",
 							});
-							console.log("================");
-							console.log(category);
-							console.log("================");
 						} else {
 							// Create a directory for the category icon
-							console.log("================");
-							console.log("Creando directorio");
 							try {
 								// Check if directory already exists
 								const dir = "./public/assets/layer_icons/";
@@ -77,11 +70,6 @@ router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (re
 							} catch (err) {
 								console.log(err);
 							}
-
-							const archiveFileName = req.files["archive"][0].filename;
-							const iconoFileName = req.files["icono"][0].filename;
-							console.log("================");
-							console.log("Creando layer");
 							
 							Layer.create({
 								name: req.body.name,
