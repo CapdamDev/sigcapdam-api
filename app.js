@@ -24,8 +24,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cors({ origin: 'http://localhost:3000' }));
+app.use((req, res, next) => { res.header("Access-Control-Allow-Origin", "http://localhost:3000"); 
+  res.header( "Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization" ); 
+  next(); 
+});
 
 app.use('/', indexRouter);
 app.use('/api/v1/auth', authRouter);
