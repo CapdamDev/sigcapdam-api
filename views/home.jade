@@ -68,18 +68,34 @@ html(lang='es')
                         include ./includes/footer.jade
                         script.
 
-                            function showContainer(containerId) {
-                                var contenedorClaveCatastro = document.getElementById("contenedor_clavecatastro");
-                                var contenedorContrato = document.getElementById("contenedor_contrato");
+                            // Coordenadas que centrarán el mapa al cargar la página
+                            var centerCoordinates = [-104.301939092764954, 19.066318856363417];
+                            var token = sessionStorage.getItem('token');
 
-                                if (containerId === "contenedor_clavecatastro") {
-                                    contenedorClaveCatastro.classList.remove("hidden");
-                                    contenedorContrato.classList.add("hidden");
-                                } else if (containerId === "contenedor_contrato") {
-                                    contenedorClaveCatastro.classList.add("hidden");
-                                    contenedorContrato.classList.remove("hidden");
-                                }
-                            }
+                            // Crear el mapa
+                            var map = new ol.Map({
+                                target: 'map',
+                                layers: [
+                                    new ol.layer.Tile({
+                                        source: new ol.source.OSM() // OpenStreetMap
+                                    })
+                                ],
+                                view: new ol.View({
+                                    center: ol.proj.fromLonLat(centerCoordinates),
+                                    zoom: 14
+                                })
+                            });
+
+                            // Ver las coordenadas del mouse en el mapa
+                            var mousePositionControl = new ol.control.MousePosition({
+                                coordinateFormat: ol.coordinate.createStringXY(4),
+                                projection: 'EPSG:4326',
+                                className: 'custom-mouse-position',
+                                target: document.getElementById('mouse-position'),
+                                undefinedHTML: '&nbsp;'
+                            });
+
+                            map.addControl(mousePositionControl);
 
                             // Script para buscar por clave catastral //
                             function buscarDomicilio() {
@@ -95,18 +111,70 @@ html(lang='es')
 
                                 if (claveCatastral != "") {
                                     fetch(`https://corsproxy.io/?https://digecat.manzanillo.gob.mx/index.php/Exteriror/mapa_clave_catastro_simple_detalles?do1=${claveCatastral}`)
-                                        .then(response => {
-                                            if (!response.ok) {
-                                                throw new Error(`Network response was not ok: ${response.statusText}`);
-                                            }
-                                            return response.json();
-                                        })
-                                        .then(data => {
-                                            console.log(data);
-                                        })
-                                        .catch(error => {
-                                            console.error('Error during fetch:', error);
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error(`Network response was not ok: ${response.statusText}`);
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(data => {
+                                        // 07 20 04 022 003 000
+                                        console.log(data);
+                                        console.log(data[0].poligono[0].poligono_testo);
+
+                                        // Extract the coordinates from data[0].poligono[0].poligono_testo
+                                        const polygonStr = data[0].poligono[0].poligono_testo;
+                                        const coordinates = polygonStr.match(/-?\d+\.\d+/g);
+                                        const parsedCoordinates = coordinates.map(coord => parseFloat(coord));
+
+                                        console.log('Solo coordenadas: ', parsedCoordinates);
+
+                                        // Create an array of coordinate pairs from the flat array
+                                        const coordinatePairs = [];
+                                        for (let i = 0; i < parsedCoordinates.length; i += 2) {
+                                            coordinatePairs.push([parsedCoordinates[i], parsedCoordinates[i + 1]]);
+                                        }
+
+                                        console.log('Coordenadas por pares:', coordinatePairs);
+
+                                        // Transform coordinates from EPSG:4326 to the map's projection
+                                        const transformedCoordinates = coordinatePairs.map(coord => ol.proj.transform(coord, 'EPSG:4326', map.getView().getProjection()));
+
+                                        // Show the polygon on the map
+                                        var polygon = new ol.geom.Polygon([transformedCoordinates]);
+                                        var feature = new ol.Feature(polygon);
+                                        var vectorSource = new ol.source.Vector({
+                                            features: [feature]
                                         });
+                                        var vectorLayer = new ol.layer.Vector({
+                                            source: vectorSource,
+                                            style: new ol.style.Style({
+                                                stroke: new ol.style.Stroke({
+                                                    color: 'rgba(255, 0, 0, 0.5)',
+                                                    width: 4
+                                                }),
+                                                fill: new ol.style.Fill({
+                                                    color: 'rgba(255, 0, 0, 0.2)'
+                                                })
+                                            })
+                                        });
+                                        map.addLayer(vectorLayer);
+
+                                        // Go to the transformed coordinates
+                                        map.getView().fit(polygon, map.getSize());
+
+                                        // Show the popup
+                                        var popup = new ol.Overlay.Popup();
+                                        map.addOverlay(popup);
+                                        popup.show(transformedCoordinates[0], 
+                                        '<div class="text-center"><h1 class="text-2xl font-bold">Clave Catastral</h1><p class="text-sm">Colonia: ' + data[0].colonia + '</p><p class="text-sm">Localidad: ' + data[0].localidad + '</p><p class="text-sm">Zona: ' + data[0].zona + '</p><p class="text-sm">Titular: ' + data[0].titlenombre + '</p><p class="text-sm">Clave cat: ' + data[0].clavecat2 + '</p><p class="text-sm">Uso: ' + data[0].uso_propiedad + '</p></div>');
+
+                                        
+
+                                    })
+                                    .catch(error => {
+                                        console.error('Error during fetch:', error);
+                                    });
                                 }
                             }
 
@@ -121,193 +189,178 @@ html(lang='es')
                             })
 
                             document.addEventListener('DOMContentLoaded', function () {
-                                // Coordenadas que centrarán el mapa al cargar la página
-                                var centerCoordinates = [-104.301939092764954, 19.066318856363417];
-                                var token = sessionStorage.getItem('token');
 
-                                // Crear el mapa
-                                var map = new ol.Map({
-                                    target: 'map',
-                                    layers: [
-                                        new ol.layer.Tile({
-                                            source: new ol.source.OSM() // OpenStreetMap
-                                        })
-                                    ],
-                                    view: new ol.View({
-                                        center: ol.proj.fromLonLat(centerCoordinates),
-                                        zoom: 14
-                                    })
-                                });
+                                // Obtener todos los layers
+                                fetch('/api/v1/layers/all', {
+                                    method: 'GET',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Authorization': '!{cookies.token}',
+                                    },
+                                })
+                                .then((response) => response.json())
+                                    .then((layers) => {
+                                        let categories = {};
 
-                                // Ver las coordenadas del mouse en el mapa
-                                var mousePositionControl = new ol.control.MousePosition({
-                                    coordinateFormat: ol.coordinate.createStringXY(4),
-                                    projection: 'EPSG:4326',
-                                    className: 'custom-mouse-position',
-                                    target: document.getElementById('mouse-position'),
-                                    undefinedHTML: '&nbsp;'
-                                });
+                                        // Process the layers
+                                        layers.forEach(function (layer) {
+                                            // Ensure the URL is correct
+                                            var geoJsonUrl = 'assets/layers/' + layer.archive;
 
-                                map.addControl(mousePositionControl);
+                                            var layerSource = new ol.source.Vector({
+                                                url: geoJsonUrl,
+                                                format: new ol.format.GeoJSON()
+                                            });
 
-                                    // Obtener todos los layers
-                                    fetch('/api/v1/layers/all', {
-                                        method: 'GET',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'Authorization': '!{cookies.token}',
-                                        },
-                                    })
-                                    .then((response) => response.json())
-                                        .then((layers) => {
-                                            let categories = {};
+                                            // Create a new iconStyle for each layer
+                                            var iconStyleForLayer = new ol.style.Style({
+                                                image: new ol.style.Icon({
+                                                    anchor: [0.5, 0.5],
+                                                    anchorXUnits: 'fraction',
+                                                    anchorYUnits: 'fraction',
+                                                    src: 'assets/layers/' + layer.icono,
+                                                    scale: 0.6
+                                                }),
+                                            });
 
-                                            // Process the layers
-                                            layers.forEach(function (layer) {
-                                                // Ensure the URL is correct
-                                                var geoJsonUrl = 'assets/layers/' + layer.archive;
-
-                                                var layerSource = new ol.source.Vector({
-                                                    url: geoJsonUrl,
-                                                    format: new ol.format.GeoJSON()
-                                                });
-
-                                                // Create a new iconStyle for each layer
-                                                var iconStyleForLayer = new ol.style.Style({
-                                                    image: new ol.style.Icon({
-                                                        anchor: [0.5, 0.5],
-                                                        anchorXUnits: 'fraction',
-                                                        anchorYUnits: 'fraction',
-                                                        src: 'assets/layers/' + layer.icono,
-                                                        scale: 0.6
-                                                    }),
-                                                });
-
-                                                var vectorLayer = new ol.layer.Vector({
-                                                    source: layerSource,
-                                                    visible: false, // Start with the layer not 
-                                                    style: function(feature, resolution) {
-                                                        // Revisar si el layer es de tipo punto, línea o polígono
-                                                        if(feature.getGeometry().getType() === 'Point' || feature.getGeometry().getType() === 'MultiPoint') {
-                                                            return iconStyleForLayer;
-                                                        } else if(feature.getGeometry().getType() === 'LineString' || feature.getGeometry().getType() === 'MultiLineString') {
-                                                            var color = feature.get('COLOR_1');
-                                                            return new ol.style.Style({
-                                                                // Establecer el valor de color obtenido en el stroke
-                                                                stroke: new ol.style.Stroke({
-                                                                    color: 'rgba('+ color +', 0.5)',
-                                                                    width: 4
-                                                                })
-                                                            });
-                                                        } else if(feature.getGeometry().getType() === 'Polygon' || feature.getGeometry().getType() === 'MultiPolygon' ) {
-                                                            var color = feature.get('COLOR_1');
-                                                            var color2 = feature.get('COLOR_2');
-                                                            return new ol.style.Style({
-                                                                stroke: new ol.style.Stroke({
-                                                                    color: 'rgba('+ color +', 0.5)',
-                                                                    width: 4,
-                                                                    scale: 2
-                                                                }),
-                                                                fill: new ol.style.Fill({
-                                                                    color: 'rgba('+ color +', 0.2)',
-                                                                    width: 4,
-                                                                    scale: 2
-                                                                })
-                                                            });
-                                                        }
+                                            var vectorLayer = new ol.layer.Vector({
+                                                source: layerSource,
+                                                visible: false, // Start with the layer not 
+                                                style: function(feature, resolution) {
+                                                    // Revisar si el layer es de tipo punto, línea o polígono
+                                                    if(feature.getGeometry().getType() === 'Point' || feature.getGeometry().getType() === 'MultiPoint') {
+                                                        return iconStyleForLayer;
+                                                    } else if(feature.getGeometry().getType() === 'LineString' || feature.getGeometry().getType() === 'MultiLineString') {
+                                                        var color = feature.get('COLOR_1');
+                                                        return new ol.style.Style({
+                                                            // Establecer el valor de color obtenido en el stroke
+                                                            stroke: new ol.style.Stroke({
+                                                                color: 'rgba('+ color +', 0.5)',
+                                                                width: 4
+                                                            })
+                                                        });
+                                                    } else if(feature.getGeometry().getType() === 'Polygon' || feature.getGeometry().getType() === 'MultiPolygon' ) {
+                                                        var color = feature.get('COLOR_1');
+                                                        var color2 = feature.get('COLOR_2');
+                                                        return new ol.style.Style({
+                                                            stroke: new ol.style.Stroke({
+                                                                color: 'rgba('+ color +', 0.5)',
+                                                                width: 4,
+                                                                scale: 2
+                                                            }),
+                                                            fill: new ol.style.Fill({
+                                                                color: 'rgba('+ color +', 0.2)',
+                                                                width: 4,
+                                                                scale: 2
+                                                            })
+                                                        });
                                                     }
-                                                });
-
-                                                if(layer.name) {
-                                                    vectorLayer.set('name', layer.name);
-                                                } else {
-                                                    vectorLayer.set('name', 'No name');
                                                 }
-
-                                                var iconStyle = new ol.style.Style({
-                                                    image: new ol.style.Icon({
-                                                        anchor: [0.5, 0.5],
-                                                        anchorXUnits: 'fraction',
-                                                        anchorYUnits: 'fraction',
-                                                        src: 'assets/layers/' + layer.icono,
-                                                        scale: 0.1
-                                                    }),
-                                                });
-
-                                                if(!categories[layer.categoryData.name]) {
-                                                    categories[layer.categoryData.name] = [];
-                                                }
-
-                                                // Add the layer to the category on jsTree
-                                                categories[layer.categoryData.name].push({
-                                                    id: layer.name,
-                                                    text: '<img src="assets/layers/' + layer.icono + '" class="inline-block w-4 h-4"> ' + layer.name,
-                                                    state: {
-                                                        opened: true,
-                                                        selected: false
-                                                    }
-                                                });
-
-                                                map.addLayer(vectorLayer);
-
                                             });
 
-                                            // Initialize JSTree
-                                            let jstreeData = Object.keys(categories).map(category => {
-                                                return {
-                                                    text: category,
-                                                    state: {
-                                                        opened: true // Open categories by default
-                                                    },
-                                                    children: categories[category]
-                                                };
+                                            if(layer.name) {
+                                                vectorLayer.set('name', layer.name);
+                                            } else {
+                                                vectorLayer.set('name', 'No name');
+                                            }
+
+                                            var iconStyle = new ol.style.Style({
+                                                image: new ol.style.Icon({
+                                                    anchor: [0.5, 0.5],
+                                                    anchorXUnits: 'fraction',
+                                                    anchorYUnits: 'fraction',
+                                                    src: 'assets/layers/' + layer.icono,
+                                                    scale: 0.1
+                                                }),
                                             });
 
-                                            $("#jstree").jstree({
-                                                "core": {
-                                                    "data": jstreeData,
-                                                    "themes": {
-                                                        "theme": "default",
-                                                        "icons": false,
-                                                        "variant": "small",
-                                                        "stripes": false,
-                                                        "dots": false
-                                                    },
-                                                },
-                                                "checkbox": {
-                                                    "keep_selected_style": false
-                                                },
-                                                "plugins": ["checkbox", "themes", "search"],
-                                                "search": {
-                                                    "case_sensitive": false,
-                                                    "show_only_matches": true
+                                            if(!categories[layer.categoryData.name]) {
+                                                categories[layer.categoryData.name] = [];
+                                            }
+
+                                            // Add the layer to the category on jsTree
+                                            categories[layer.categoryData.name].push({
+                                                id: layer.name,
+                                                text: '<img src="assets/layers/' + layer.icono + '" class="inline-block w-4 h-4"> ' + layer.name,
+                                                state: {
+                                                    opened: true,
+                                                    selected: false
                                                 }
-                                            }).on('ready.jstree', function () {
-                                                // Close all nodes once the tree is loaded
-                                                var to = false;
-                                                $('#jstree').jstree('close_all');
-                                            }).on('changed.jstree', function (e, data) {
-                                                // Get all selected nodes
-                                                var selectedNodes = $('#jstree').jstree(true).get_selected();
-
-                                                // Get all layers
-                                                var layers = map.getLayers().getArray();
-                                                var layersToProcess = layers.slice(1);
-
-                                                // Loop through all layers
-                                                layersToProcess.forEach(function (layer) {
-                                                    // Get the layer name
-                                                    var layerName = layer.get('name');
-
-                                                    // Determine if the current layer's name is in the array of selected nodes
-                                                    var isSelected = selectedNodes.indexOf(layerName) !== -1;
-
-                                                    // Set layer visibility based on whether it's selected
-                                                    layer.setVisible(isSelected);
-                                                });
                                             });
-                                        })
-                                        .catch((error) => {
-                                            console.error('Error fetching layers:', error);
+
+                                            map.addLayer(vectorLayer);
+
                                         });
+
+                                        // Initialize JSTree
+                                        let jstreeData = Object.keys(categories).map(category => {
+                                            return {
+                                                text: category,
+                                                state: {
+                                                    opened: true // Open categories by default
+                                                },
+                                                children: categories[category]
+                                            };
+                                        });
+
+                                        $("#jstree").jstree({
+                                            "core": {
+                                                "data": jstreeData,
+                                                "themes": {
+                                                    "theme": "default",
+                                                    "icons": false,
+                                                    "variant": "small",
+                                                    "stripes": false,
+                                                    "dots": false
+                                                },
+                                            },
+                                            "checkbox": {
+                                                "keep_selected_style": false
+                                            },
+                                            "plugins": ["checkbox", "themes", "search"],
+                                            "search": {
+                                                "case_sensitive": false,
+                                                "show_only_matches": true
+                                            }
+                                        }).on('ready.jstree', function () {
+                                            // Close all nodes once the tree is loaded
+                                            var to = false;
+                                            $('#jstree').jstree('close_all');
+                                        }).on('changed.jstree', function (e, data) {
+                                            // Get all selected nodes
+                                            var selectedNodes = $('#jstree').jstree(true).get_selected();
+
+                                            // Get all layers
+                                            var layers = map.getLayers().getArray();
+                                            var layersToProcess = layers.slice(1);
+
+                                            // Loop through all layers
+                                            layersToProcess.forEach(function (layer) {
+                                                // Get the layer name
+                                                var layerName = layer.get('name');
+
+                                                // Determine if the current layer's name is in the array of selected nodes
+                                                var isSelected = selectedNodes.indexOf(layerName) !== -1;
+
+                                                // Set layer visibility based on whether it's selected
+                                                layer.setVisible(isSelected);
+                                            });
+                                        });
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error fetching layers:', error);
+                                    });
                                 });
+
+                            function showContainer(containerId) {
+                                var contenedorClaveCatastro = document.getElementById("contenedor_clavecatastro");
+                                var contenedorContrato = document.getElementById("contenedor_contrato");
+
+                                if (containerId === "contenedor_clavecatastro") {
+                                    contenedorClaveCatastro.classList.remove("hidden");
+                                    contenedorContrato.classList.add("hidden");
+                                } else if (containerId === "contenedor_contrato") {
+                                    contenedorClaveCatastro.classList.add("hidden");
+                                    contenedorContrato.classList.remove("hidden");
+                                }
+                            }
