@@ -117,13 +117,12 @@ html(lang='es')
                                         }
                                         return response.json();
                                     })
-                                    .then(data => {
-                                        // 07 20 04 022 003 000
-                                        console.log(data);
-                                        console.log(data[0].poligono[0].poligono_testo);
+                                    .then(data1 => {
+                                        console.log(data1);
+                                        console.log(data1[0].poligono[0].poligono_testo);
 
-                                        // Extract the coordinates from data[0].poligono[0].poligono_testo
-                                        const polygonStr = data[0].poligono[0].poligono_testo;
+                                        // Extract the coordinates from data1[0].poligono[0].poligono_testo
+                                        const polygonStr = data1[0].poligono[0].poligono_testo;
                                         const coordinates = polygonStr.match(/-?\d+\.\d+/g);
                                         const parsedCoordinates = coordinates.map(coord => parseFloat(coord));
 
@@ -160,16 +159,36 @@ html(lang='es')
                                         });
                                         map.addLayer(vectorLayer);
 
-                                        // Go to the transformed coordinates
-                                        map.getView().fit(polygon, map.getSize());
+                                        // Go to the transformed coordinates with a specific zoom level
+                                        map.getView().fit(polygon, { size: map.getSize(), padding: [50, 50, 50, 50], maxZoom: 18 });
 
-                                        // Show the popup
-                                        var popup = new ol.Overlay.Popup();
-                                        map.addOverlay(popup);
-                                        popup.show(transformedCoordinates[0], 
-                                        '<div class="text-center"><h1 class="text-2xl font-bold">Clave Catastral</h1><p class="text-sm">Colonia: ' + data[0].colonia + '</p><p class="text-sm">Localidad: ' + data[0].localidad + '</p><p class="text-sm">Zona: ' + data[0].zona + '</p><p class="text-sm">Titular: ' + data[0].titlenombre + '</p><p class="text-sm">Clave cat: ' + data[0].clavecat2 + '</p><p class="text-sm">Uso: ' + data[0].uso_propiedad + '</p></div>');
-
-                                        
+                                        // https://pagos.capdam.gob.mx/connections/api.php?CveCat=072004022003000
+                                        // Get the data from the API using the data[0].clavecat
+                                        fetch(`https://pagos.capdam.gob.mx/connections/api.php?CveCat=${data1[0].clavecat}`)
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error(`Network response was not ok: ${response.statusText}`);
+                                            }
+                                            return response.json();
+                                        })
+                                        // Save the response from pagos API in data2
+                                        .then(data2 => {
+                                            console.log(data2);
+                                            // Show the popup
+                                            var popup = new ol.Overlay.Popup();
+                                            map.addOverlay(popup);
+                                            popup.show(transformedCoordinates[0], 
+                                            '<div class="text-center">\
+                                                <h1 class="text-2xl font-bold">Clave Catastral: </h1>\
+                                                <p class="text-sm">Colonia: ' + data1[0].colonia + '</p>\
+                                                <p class="text-sm">Localidad: ' + data1[0].localidad + '</p>\
+                                                <p class="text-sm">Zona: ' + data1[0].zona + '</p>\
+                                                <p class="text-sm">Titular: ' + data1[0].titlenombre + '</p>\
+                                                <p class="text-sm">Clave cat: ' + data1[0].clavecat2 + '</p>\
+                                                <p class="text-sm">Uso: ' + data1[0].uso_propiedad + '</p>\
+                                                <p class="text-sm">Contrato: ' + data2.anual[0].contrato + '</p>\
+                                            </div>');
+                                        })
 
                                     })
                                     .catch(error => {
