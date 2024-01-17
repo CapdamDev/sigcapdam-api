@@ -56,7 +56,7 @@ html(lang='es')
 
                             div(class='justify-center items-center dark:bg-white bg-gray-900 border-0 py-2 hidden' id='contenedor_contrato')
                                 div(class='items-center justify-center text-center w-full border-0')
-                                    input(type='text' class='text-center text-gray-600 dark:text-black bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1' placeholder='No. Contrato')
+                                    input(type='text' class='text-center text-gray-600 dark:text-white bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1' placeholder='No. Contrato' id='contratoAgua')
                             
                             //- Button to send the form and submit to search the claveCatastral or contrato 07 20 04 022 003 000
                             div(class='flex justify-center items-center dark:bg-white bg-gray-900 border-0 py-2')
@@ -108,8 +108,20 @@ html(lang='es')
                                 var subpredio = document.getElementById("subpredio").value;
                                 var claveCatastral = mun + local + zona + manza + predio + subpredio;
                                 console.log(claveCatastral);
+                                var contratoAgua = document.getElementById("contratoAgua").value;
+                                console.log(contratoAgua);
 
-                                if (claveCatastral != "") {
+                                if (claveCatastral !="" && claveCatastral.length < 15) {
+                                    // Make a sweet alert message
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'La clave catastral debe tener 15 dígitos',
+                                    })
+                                }
+
+                                // Only when ClaveCatastral is available and has 15 digits, if not, don't do anything
+                                else if (claveCatastral != "" && claveCatastral >= 15) {
                                     fetch(`https://corsproxy.io/?https://digecat.manzanillo.gob.mx/index.php/Exteriror/mapa_clave_catastro_simple_detalles?do1=${claveCatastral}`)
                                     .then(response => {
                                         if (!response.ok) {
@@ -190,6 +202,93 @@ html(lang='es')
                                             </div>');
                                         })
 
+                                    })
+                                    .catch(error => {
+                                        console.error('Error during fetch:', error);
+                                    });
+                                }
+
+                                else if(contratoAgua != ""){
+                                    fetch(`https://pagos.capdam.gob.mx/connections/api.php?Contrato=${contratoAgua}`)
+                                    // Now we make an inverse search, we get the data from the API using the contratoAgua
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error(`Network response was not ok: ${response.statusText}`);
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(data1 => {
+                                        console.log(data1);
+                                        console.log(data1.bimestral[0].CveCat);
+
+                                        // Now we get the data from the API using the data1.bimestral[0].CveCat
+                                        fetch(`https://corsproxy.io/?https://digecat.manzanillo.gob.mx/index.php/Exteriror/mapa_clave_catastro_simple_detalles?do1=${data1.bimestral[0].CveCat}`)
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error(`Network response was not ok: ${response.statusText}`);
+                                            }
+                                            return response.json();
+                                        })
+                                        .then(data2 => {
+                                            console.log(data2);
+                                            console.log(data2[0].poligono[0].poligono_testo);
+
+                                            // Extract the coordinates from data2[0].poligono[0].poligono_testo
+                                            const polygonStr = data2[0].poligono[0].poligono_testo;
+                                            const coordinates = polygonStr.match(/-?\d+\.\d+/g);
+                                            const parsedCoordinates = coordinates.map(coord => parseFloat(coord));
+
+                                            console.log('Solo coordenadas: ', parsedCoordinates);
+
+                                            // Create an array of coordinate pairs from the flat array
+                                            const coordinatePairs = [];
+                                            for (let i = 0; i < parsedCoordinates.length; i += 2) {
+                                                coordinatePairs.push([parsedCoordinates[i], parsedCoordinates[i + 1]]);
+                                            }
+
+                                            console.log('Coordenadas por pares:', coordinatePairs);
+
+                                            // Transform coordinates from EPSG:4326 to the map's projection
+                                            const transformedCoordinates = coordinatePairs.map(coord => ol.proj.transform(coord, 'EPSG:4326', map.getView().getProjection()));
+
+                                            // Show the polygon on the map
+                                            var polygon = new ol.geom.Polygon([transformedCoordinates]);
+                                            var feature = new ol.Feature(polygon);
+                                            var vectorSource = new ol.source.Vector({
+                                                features: [feature]
+                                            });
+                                            var vectorLayer = new ol.layer.Vector({
+                                                source: vectorSource,
+                                                style: new ol.style.Style({
+                                                    stroke: new ol.style.Stroke({
+                                                        color: 'rgba(255, 0, 0, 0.5)',
+                                                        width: 4
+                                                    }),
+                                                    fill: new ol.style.Fill({
+                                                        color: 'rgba(255, 0, 0, 0.2)'
+                                                    })
+                                                })
+                                            });
+                                            map.addLayer(vectorLayer);
+
+                                            // Go to the transformed coordinates with a specific zoom level
+                                            map.getView().fit(polygon, { size: map.getSize(), padding: [50, 50, 50, 50], maxZoom: 18 });
+
+                                            // Show the popup
+                                            var popup = new ol.Overlay.Popup();
+                                            map.addOverlay(popup);
+                                            popup.show(transformedCoordinates[0],
+                                            '<div class="text-center">\
+                                                <h1 class="text-2xl font-bold">Clave Catastral: </h1>\
+                                                <p class="text-sm">Colonia: ' + data2[0].colonia + '</p>\
+                                                <p class="text-sm">Localidad: ' + data2[0].localidad + '</p>\
+                                                <p class="text-sm">Zona: ' + data2[0].zona + '</p>\
+                                                <p class="text-sm">Titular: ' + data2[0].titlenombre + '</p>\
+                                                <p class="text-sm">Clave cat: ' + data2[0].clavecat2 + '</p>\
+                                                <p class="text-sm">Uso: ' + data2[0].uso_propiedad + '</p>\
+                                                <p class="text-sm">Contrato: ' + data1.bimestral[0].numcontrato + '</p>\
+                                            </div>');
+                                        })
                                     })
                                     .catch(error => {
                                         console.error('Error during fetch:', error);
