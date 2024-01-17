@@ -209,6 +209,14 @@ html(lang='es')
                                 }
 
                                 else if(contratoAgua != ""){
+                                    // Clear existing vector layers and popups
+                                    map.getLayers().forEach(layer => {
+                                        if (layer instanceof ol.layer.Vector) {
+                                            map.removeLayer(layer);
+                                        }
+                                    });
+                                    map.getOverlays().clear();
+
                                     fetch(`https://pagos.capdam.gob.mx/connections/api.php?Contrato=${contratoAgua}`)
                                     // Now we make an inverse search, we get the data from the API using the contratoAgua
                                     .then(response => {
@@ -288,6 +296,7 @@ html(lang='es')
                                                 <p class="text-sm">Uso: ' + data2[0].uso_propiedad + '</p>\
                                                 <p class="text-sm">Contrato: ' + data1.bimestral[0].numcontrato + '</p>\
                                             </div>');
+
                                         })
                                     })
                                     .catch(error => {
