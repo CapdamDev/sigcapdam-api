@@ -60,12 +60,24 @@ router.post("/login", function (req, res) {
 
 			user.comparePassword(req.body.password, (err, isMatch) => {
 				if (isMatch && !err) {
+					var rememberMe = req.body.rememberMe;
+					console.log(rememberMe);
+
+					var expires;
+
+					if(rememberMe === false) {
+						expires = 30;
+					}
+					else {
+						expires = 86400 * 30;
+					}
+
 					var token = jwt.sign(
 						JSON.parse(JSON.stringify(user)),
 						"nodeauthsecret",
 						{
 							// expiresIn: 86400 * 30,
-							expiresIn: 30,
+							expiresIn: expires,
 						}
 					);
 
