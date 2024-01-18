@@ -64,7 +64,8 @@ router.post("/login", function (req, res) {
 						JSON.parse(JSON.stringify(user)),
 						"nodeauthsecret",
 						{
-							expiresIn: 86400 * 30,
+							// expiresIn: 86400 * 30,
+							expiresIn: 30,
 						}
 					);
 
