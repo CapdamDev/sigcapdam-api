@@ -154,9 +154,15 @@ router.get(
 					});
 			})
 			.catch((error) => {
-				res.status(403).json({
-					error: "Forbidden",
-				});
+				if (error.status === 401) {
+					res.status(401).json({
+						error: "Unauthorized",
+					});
+				} else {
+					res.status(403).json({
+						error: "Forbidden",
+					});
+				}
 			});
 	}
 );

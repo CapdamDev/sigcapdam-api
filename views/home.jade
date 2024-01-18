@@ -340,11 +340,36 @@ html(lang='es')
                                         'Authorization': '!{cookies.token}',
                                     },
                                 })
-                                .then((response) => response.json())
-                                    .then((layers) => {
-                                        let categories = {};
+                                .then((response) => {
+                                    if (response.status === 401) {
+                                        Swal.fire({
+                                            title: 'Error',
+                                            text: 'Vuelve a iniciar sesión',
+                                            icon: 'error',
+                                            confirmButtonText: 'OK'
+                                        }).then(() => {
+                                            fetch('api/v1/auth/logout', {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json'
+                                                },
+                                            })
+                                            .then(response => {
+                                                if (response.ok) {
+                                                    window.location.href = '/';
+                                                } else {
+                                                    throw new Error('Logout failed.');
+                                                }
+                                            })
+                                        });
+                                    } else {
+                                        return response.json();
+                                    }
+                                })
+                                .then((layers) => {
+                                    let categories = {};
 
-                                        // Process the layers
+                                    // Process the layers
                                         layers.forEach(function (layer) {
                                             // Ensure the URL is correct
                                             var geoJsonUrl = 'assets/layers/' + layer.archive;
