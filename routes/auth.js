@@ -66,10 +66,10 @@ router.post("/login", function (req, res) {
 					var expires;
 
 					if(rememberMe === false) {
-						expires = 30;
+						expires = 60 * 30; // 30 minutes from now
 					}
 					else {
-						expires = 86400 * 30;
+						expires = 86400 * 30; // 86400 minutes from now, expires in one month
 					}
 
 					var token = jwt.sign(
