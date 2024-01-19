@@ -1,23 +1,28 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
+/**
+ * Representa un modelo de categoría.
+ * @class
+ * @extends Model
+ */
   class Category extends Model {
-
     static associate(models) {
-      // define association here from layer to category
+      // Define la asociación aquí desde la capa hasta la categoría
       Category.hasMany(models.Layer, {
-        as: 'layers',
-        foreignKey: 'category',
+        as: "layers",
+        foreignKey: "category",
       });
     }
   }
-  Category.init({
-    name: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Category',
-  });
+  Category.init(
+    {
+      name: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "Category",
+    }
+  );
   return Category;
 };

@@ -30,8 +30,8 @@ script.
             }
         })
         .then(() => {
-            // Redirect to the home page after handling the response
-            window.location.href = '/';
+            // Reload the page
+            window.location.reload();
         })
         .catch(error => {
             // Handle errors, including failed logout
