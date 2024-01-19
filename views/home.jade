@@ -122,6 +122,15 @@ html(lang='es')
 
                                 // Only when ClaveCatastral is available and has 15 digits, if not, don't do anything
                                 else if (claveCatastral != "" && claveCatastral >= 15) {
+                                    
+                                    // Clear existing vector layers and popups
+                                    map.getLayers().forEach(layer => {
+                                        if (layer instanceof ol.layer.Vector) {
+                                            map.removeLayer(layer);
+                                        }
+                                    });
+                                    map.getOverlays().clear();
+
                                     fetch(`https://corsproxy.io/?https://digecat.manzanillo.gob.mx/index.php/Exteriror/mapa_clave_catastro_simple_detalles?do1=${claveCatastral}`)
                                     .then(response => {
                                         if (!response.ok) {
@@ -130,9 +139,10 @@ html(lang='es')
                                         return response.json();
                                     })
                                     .then(data1 => {
+                                        var poligono_testo = data1[0].poligono[0].poligono_testo;
                                         console.log(data1);
-                                        console.log(data1[0].poligono[0].poligono_testo);
-                                        if(data1[0].poligono[0].poligono_testo == null){
+                                        console.log(poligono_testo);
+                                        if(poligono_testo == null || poligono_testo == "" || poligono_testo == undefined){
                                             Swal.fire({
                                                 icon: 'error',
                                                 title: 'Oops...',
@@ -140,8 +150,8 @@ html(lang='es')
                                             })
                                         }
 
-                                        // Extract the coordinates from data1[0].poligono[0].poligono_testo
-                                        const polygonStr = data1[0].poligono[0].poligono_testo;
+                                        // Extract the coordinates from poligono_testo
+                                        const polygonStr = poligono_testo;
                                         const coordinates = polygonStr.match(/-?\d+\.\d+/g);
                                         const parsedCoordinates = coordinates.map(coord => parseFloat(coord));
 
@@ -236,7 +246,7 @@ html(lang='es')
                                     .then(data1 => {
                                         console.log(data1);
                                         console.log(data1.bimestral[0].CveCat);
-                                        if(data1.bimestral[0].CveCat == null || data1.bimestral[0].CveCat == "" || data1.bimestral[0].CveCat == undefined){
+                                        if(data1.bimestral[0].CveCat == null || data1.bimestral[0].CveCat == "" || data1.bimestral[0].CveCat == undefined || data1.bimestral[0].CveCat == "000000000000000"){
                                             Swal.fire({
                                                 icon: 'error',
                                                 title: 'Oops...',
