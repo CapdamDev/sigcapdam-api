@@ -10,29 +10,29 @@ const Helper = require('../utils/helper');
 const helper = new Helper();
 
 // Crear rol
-router.post('/', passport.authenticate('jwt', {
-    session: false
-}), function (req, res) {
-    helper.checkPermission(req.user.role_id, 'role_add').then((rolePerm) => {
+router.post('/', passport.authenticate('jwt', { session: false }), function (req, res) {
+    helper.checkPermission(req.user.role_id, 'role_add')
+    .then((rolePerm) => {
         if (!req.body.role_name || !req.body.role_description) {
             res.status(400).send({
                 msg: 'Please pass Role name or description.'
             })
-        } else {
-            Role
-                .create({
-                    role_name: req.body.role_name,
-                    role_description: req.body.role_description
-                })
-                .then((role) => res.status(201).send(role))
-                .catch((error) => {
-                    res.status(400).send({
-                        success: false,
-                        msg: error
-                    });
+        } 
+        else {
+            Role.create({
+                role_name: req.body.role_name,
+                role_description: req.body.role_description
+            })
+            .then((role) => res.status(201).send(role))
+            .catch((error) => {
+                res.status(400).send({
+                    success: false,
+                    msg: error
                 });
+            });
         }
-    }).catch((error) => {
+    })
+    .catch((error) => {
         res.status(403).send({
             success: false,
             msg: error
@@ -41,29 +41,29 @@ router.post('/', passport.authenticate('jwt', {
 });
 
 // Obtener lista de todos los roles
-router.get('/', passport.authenticate('jwt', {
-    session: false
-}), function (req, res) {
-    helper.checkPermission(req.user.role_id, 'role_get_all').then((rolePerm) => {
+router.get('/', passport.authenticate('jwt', { session: false }), function (req, res) {
+    helper.checkPermission(req.user.role_id, 'role_get_all')
+    .then((rolePerm) => {
         Role.findAll({
-                include: [{
-                        model: Permission,
-                        as: 'permissions',
-                    },
-                    {
-                        model: User,
-                        as: 'users',
-                    }
-                ]
-            })
-            .then((roles) => res.status(200).send(roles))
-            .catch((error) => {
-                res.status(400).send({
-                    success: false,
-                    msg: error
-                });
+            include: [{
+                    model: Permission,
+                    as: 'permissions',
+                },
+                {
+                    model: User,
+                    as: 'users',
+                }
+            ]
+        })
+        .then((roles) => res.status(200).send(roles))
+        .catch((error) => {
+            res.status(400).send({
+                success: false,
+                msg: error
             });
-    }).catch((error) => {
+        });
+    })
+    .catch((error) => {
         res.status(403).send({
             success: false,
             msg: error
@@ -72,67 +72,61 @@ router.get('/', passport.authenticate('jwt', {
 });
 
 // Obtener un rol por ID
-router.get('/:id', passport.authenticate('jwt', {
-    session: false
-}), function (req, res) {
-    helper.checkPermission(req.user.role_id, 'role_get').then((rolePerm) => {
-
-    }).catch((error) => {
-        res.status(403).send(error);
-    });
-    Role
-        .findByPk(
-            req.params.id, {
-                include: {
-                    model: Permission,
-                    as: 'permissions',
-                }
+router.get('/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
+    helper.checkPermission(req.user.role_id, 'role_get')
+    .then((rolePerm) => {
+        Role.findByPk(req.params.id, {
+            include: {
+                model: Permission,
+                as: 'permissions',
             }
-        )
-        .then((roles) => res.status(200).send(roles))
+        })
+        .then((role) => res.status(200).send(role))
         .catch((error) => {
             res.status(400).send({
                 success: false,
                 msg: error
             });
         });
+    })
+    .catch((error) => {
+        res.status(403).send(error);
+    });
 });
 
 // Actualizar un rol
-router.put('/:id', passport.authenticate('jwt', {
-    session: false
-}), function (req, res) {
+router.put('/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
     helper.checkPermission(req.user.role_id, 'role_update').then((rolePerm) => {
         if (!req.params.id || !req.body.role_name || !req.body.role_description) {
             res.status(400).send({
                 msg: 'Please pass Role ID, name or description.'
             })
-        } else {
-            Role
-                .findByPk(req.params.id)
-                .then((role) => {
-                    Role.update({
-                        role_name: req.body.role_name || role.role_name,
-                        role_description: req.body.role_description || role.role_description
-                    }, {
-                        where: {
-                            id: req.params.id
-                        }
-                    }).then(_ => {
-                        res.status(200).send({
-                            'message': 'Role updated'
-                        });
-                    }).catch(err => res.status(400).send({
-                        success: false,
-                        msg: err
-                    }));
-                })
-                .catch((error) => {
-                    res.status(400).send({
-                        success: false,
-                        msg: error
+        } 
+        else {
+            Role.findByPk(req.params.id)
+            .then((role) => {
+                Role.update({
+                    role_name: req.body.role_name || role.role_name,
+                    role_description: req.body.role_description || role.role_description
+                }, {
+                    where: {
+                        id: req.params.id
+                    }
+                }).then(_ => {
+                    res.status(200).send({
+                        'message': 'Role updated'
                     });
+                }).catch(err => res.status(400).send({
+                    success: false,
+                    msg: err
+                }));
+            })
+            .catch((error) => {
+                res.status(400).send({
+                    success: false,
+                    msg: error
                 });
+            });
         }
     }).catch((error) => {
         res.status(403).send({
@@ -143,42 +137,42 @@ router.put('/:id', passport.authenticate('jwt', {
 });
 
 // Borra un rol
-router.delete('/:id', passport.authenticate('jwt', {
-    session: false
-}), function (req, res) {
-    helper.checkPermission(req.user.role_id, 'role_delete').then((rolePerm) => {
+router.delete('/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
+    helper.checkPermission(req.user.role_id, 'role_delete')
+    .then((rolePerm) => {
         if (!req.params.id) {
             res.status(400).send({
                 msg: 'Please pass role ID.'
             })
-        } else {
-            Role
-                .findByPk(req.params.id)
-                .then((role) => {
-                    if (role) {
-                        Role.destroy({
-                            where: {
-                                id: req.params.id
-                            }
-                        }).then(_ => {
-                            res.status(200).send({
-                                'message': 'Role deleted'
-                            });
-                        }).catch(err => res.status(400).send(err));
-                    } else {
-                        res.status(404).send({
-                            'message': 'Role not found'
+        } 
+        else {
+            Role.findByPk(req.params.id)
+            .then((role) => {
+                if (role) {
+                    Role.destroy({
+                        where: {
+                            id: req.params.id
+                        }
+                    }).then(_ => {
+                        res.status(200).send({
+                            'message': 'Role deleted'
                         });
-                    }
-                })
-                .catch((error) => {
-                    res.status(400).send({
-                        success: false,
-                        msg: error
+                    }).catch(err => res.status(400).send(err));
+                } else {
+                    res.status(404).send({
+                        'message': 'Role not found'
                     });
+                }
+            })
+            .catch((error) => {
+                res.status(400).send({
+                    success: false,
+                    msg: error
                 });
+            });
         }
-    }).catch((error) => {
+    })
+    .catch((error) => {
         res.status(403).send({
             success: false,
             msg: error
@@ -187,9 +181,7 @@ router.delete('/:id', passport.authenticate('jwt', {
 });
 
 // Obtener permisos de un rol
-router.post('/permissions/:id', passport.authenticate('jwt', {
-    session: false
-}), async function (req, res) {
+router.post('/permissions/:id', passport.authenticate('jwt', { session: false }), async function (req, res) {
     try {
         const rolePerm = await helper.checkPermission(req.user.role_id, 'role_add');
         if (!req.body.permissions) {
@@ -229,7 +221,8 @@ router.post('/permissions/:id', passport.authenticate('jwt', {
         return res.status(200).send({
             message: 'Permissions added'
         });
-    } catch (error) {
+    } 
+    catch (error) {
         console.error(error);
         return res.status(500).send({
             success: false,

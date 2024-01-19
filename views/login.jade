@@ -1,13 +1,11 @@
 doctype html
 html(lang='es')
     include ./includes/head.jade
-    link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/ol@v8.1.0/ol.css')
-    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css")
     title Iniciar sesión
     body(class='bg-gray-900')
         #loadingSpinner(class='fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-white bg-opacity-100 z-50')
             div(class="animate-spin rounded-full border-t-4 border-blue-500 border-solid h-12 w-12")
-        section.bg-gray-50(class='dark:bg-gray-900')
+        section.bg-gray-50(class='dark:bg-gray-900' id='login' style='display: none;')
             .flex.flex-col.items-center.justify-center.px-6.py-8.mx-auto(class='bg-gray-900 dark:bg-gray-700 md:h-screen lg:py-0')
                 a.flex.items-center.mb-6.text-2xl.font-semibold.text-gray-900(href='#' class='dark:text-white')
                     img.w-8.h-8.mr-2(src='/assets/img/capdam.ico' alt='logo')
@@ -33,63 +31,57 @@ html(lang='es')
                                         label.text-gray-500(for='remember' class='dark:text-gray-300') Mantener la sesión iniciada
                             button.w-full.text-white.bg-primary-600.font-medium.rounded-lg.text-sm.px-5.text-center(type='submit' class='bg-gray-700  hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-sky-300 py-2.5 dark:bg-sky-600 dark:hover:bg-primary-700 dark:focus:ring-sky-800') Entrar
     include ./includes/footer.jade
-    script(src='https://cdn.jsdelivr.net/npm/ol@v8.1.0/dist/ol.js')
-    script(src="https://code.jquery.com/jquery-3.6.0.min.js")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js")
     script.
-        document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('login-form');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const message = document.getElementById('login-message');
+        const data = sessionStorage.getItem('data');
 
-            const form = document.getElementById('login-form');
-            const loadingSpinner = document.getElementById('loadingSpinner');
-            const message = document.getElementById('login-message');
-            const data = sessionStorage.getItem('data');
-
-            // Hide spinner on page load after 2 seconds
-            setTimeout(() => {
-                loadingSpinner.style.display = 'none';
+        // Hide spinner on page load after 2 seconds
+        setTimeout(() => {
+            loadingSpinner.style.display = 'none';
+            login.style.display = 'block';
             }, 1000);
 
-            form.addEventListener('submit', async function (event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const rememberMe = document.getElementById('rememberMe').checked;
-            
-            console.log(email, password, rememberMe);
+        form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const rememberMe = document.getElementById('rememberMe').checked;
+        
+        console.log(email, password, rememberMe);
 
-            try {
-                const response = await fetch('/api/v1/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+        try {
+            const response = await fetch('/api/v1/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
                 body: JSON.stringify({ email, password, rememberMe }),
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                // Handle successful login
-                const message = document.getElementById('login-message');
-                message.classList.add('text-green-500', 'font-medium');
-                message.textContent = 'Iniciando sesión...';
-
-                // Redirect to the home page immediately
-                window.location.href = '/home';
-                } else {
-                // Handle non-OK responses (e.g., 401 Unauthorized)
-                const errorMessage = await response.json();
-                throw new Error(errorMessage.message || 'Error during login.');
-                }
-            } catch (error) {
-                // Handle unexpected errors
-                console.error(error);
-                const message = document.getElementById('login-message');
-                message.textContent = 'Error during login. Please try again.';
-            }
-
-            const loginMessage = document.getElementById('login-message');
-            loginMessage.style.display = 'block';
             });
 
+            const data = await response.json();
+
+            if (response.ok) {
+            // Handle successful login
+            const message = document.getElementById('login-message');
+            message.classList.add('text-green-500', 'font-medium');
+            message.textContent = 'Iniciando sesión...';
+
+            // Redirect to the home page immediately
+            window.location.href = '/home';
+            } else {
+            // Handle non-OK responses (e.g., 401 Unauthorized)
+            const errorMessage = await response.json();
+            throw new Error(errorMessage.message || 'Error during login.');
+            }
+        } catch (error) {
+            // Handle unexpected errors
+            console.error(error);
+            const message = document.getElementById('login-message');
+            message.textContent = 'Error during login. Please try again.';
+        }
+
+        const loginMessage = document.getElementById('login-message');
+        loginMessage.style.display = 'block';
         });

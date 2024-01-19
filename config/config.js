@@ -1,3 +1,5 @@
+// Configuración del ORM Sequelize para el uso en el servidor
+
 const { Sequelize } = require("sequelize");
 
 const sequelize = new Sequelize({
