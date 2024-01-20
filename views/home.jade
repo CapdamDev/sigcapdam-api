@@ -14,18 +14,24 @@ html(lang='es')
                     div(class='flex items-center')
                         span(class='text-gray-500 dark:text-gray-200') Coordenadas del mouse:
                         span#mouse-position.text-gray-500(class='dark:text-gray-200 ml-2')
-                    if cookies.role_name === 'admin'
-                        span(class='text-left text-white') SIGCAPDAM | Administrador
-                    else if cookies.role_name === 'user'
-                        span(class='text-left text-white') SIGCAPDAM !{cookies.role_name}
+                    //- if cookies.role_name === 'root'
+                    //-     span(class='text-left text-white') Administrador
+                    //- else if cookies.role_name === 'user'
+                    //-     span(class='text-left text-white') SIGCAPDAM !{cookies.role_name}
 
+                    
                 div(class='px-6 h-[calc(55rem)]')
                     #map(class='h-full flex flex-row justify-center items-center border border-dashed border-gray-300/40 dark:border-gray-700')
+                    
+                div(class='absolute top-1/4 right-1 transform translate-y-[-50%] px-6 py-4')
+                        button(class='w-8 h-8 text-white bg-gray-900 border-0 py-2 focus:outline-none hover:bg-gray-600 rounded text-xs' onclick='toggleRightPanel()')
+                            i(class='fas fa-eye-slash' id='rightPanelIcon')
 
                     div(class='absolute top-1/2 right-1 transform translate-y-[-50%] px-6 py-4' id='right-panel')
                         div.flex.w-full.text-white.border-0.py-2.text-center.items-center(class='dark:text-white dark:bg-gray-800 focus:outline-none')
                             span.mx-auto BUSCAR PREDIO POR
                         div(class='w-auto h-auto dark:bg-white bg-gray-900 border-0 py-2 flex justify-center')
+
                             div(class="flex items-center me-4 ml-2")
                                 input(id="inline-radio" type="radio" value="" name="inline-radio-group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onclick='showContainer("contenedor_clavecatastro");' checked)
                                 label(for="inline-radio" class="ms-2 text-sm font-medium text-gray-900 dark:text-black") Clave Catastral
@@ -36,22 +42,22 @@ html(lang='es')
                             div(class='flex justify-center items-center dark:bg-white bg-gray-900 border-0 py-2' id='contenedor_clavecatastro')
                                 div(class='p-[0.2rem]')
                                     label(for='mun' class='block text-center text-white dark:text-black text-xs') Mun.:
-                                    input(type='text' class='text-center text-gray-600 dark:text-white bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1 text-xs' style='width: 2.8rem;' maxlength='2' id='mun')
+                                    input(type='text' class='text-center text-gray-600 dark:text-white bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1 text-xs pr-0 pl-0' style='width: 2rem;' maxlength='2' id='mun')
                                 div(class='p-[0.2rem]')
                                     label(for='local' class='block text-center text-white dark:text-black text-xs') Local:
-                                    input(type='text' class='text-center text-gray-600 dark:text-white bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1 text-xs' style='width: 2.8rem;' maxlength='2' id='local')
+                                    input(type='text' class='text-center text-gray-600 dark:text-white bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1 text-xs pr-0 pl-0' style='width: 2rem;' maxlength='2' id='local')
                                 div(class='p-[0.2rem]')
                                     label(for='zona' class='block text-center text-white dark:text-black text-xs') Zona:
-                                    input(type='text' class='text-center text-gray-600 dark:text-white bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1 text-xs' style='width: 2.8rem;' maxlength='2' id='zona')
+                                    input(type='text' class='text-center text-gray-600 dark:text-white bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1 text-xs pr-0 pl-0' style='width: 2rem;' maxlength='2' id='zona')
                                 div(class='p-[0.2rem]')
                                     label(for='manza.' class='block text-center text-white dark:text-black text-xs') Manza.:
-                                    input(type='text' class='text-center text-gray-600 dark:text-white bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1 text-xs' style='width: 2.8rem;' maxlength='3' id='manza')
+                                    input(type='text' class='text-center text-gray-600 dark:text-white bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1 text-xs pr-0 pl-0' style='width: 2rem;' maxlength='3' id='manza')
                                 div(class='p-[0.2rem]')
                                     label(for='predio:' class='block text-center text-white dark:text-black text-xs') Predio:
-                                    input(type='text' class='text-center text-gray-600 dark:text-white bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1 text-xs' style='width: 2.8rem;' maxlength='3' id='predio')
+                                    input(type='text' class='text-center text-gray-600 dark:text-white bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1 text-xs pr-0 pl-0' style='width: 2rem;' maxlength='3' id='predio')
                                 div(class='p-[0.2rem]')
                                     label(for='subpredio:' class='block text-center text-white dark:text-black text-xs') Subpred:
-                                    input(type='text' class='text-center text-gray-600 dark:text-white bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1 text-xs' style='width: 2.8rem;' maxlength='3' id='subpredio')
+                                    input(type='text' class='text-center text-gray-600 dark:text-white bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1 text-xs pr-0 pl-0' style='width: 2rem;' maxlength='3' id='subpredio')
 
 
                             div(class='justify-center items-center dark:bg-white bg-gray-900 border-0 py-2 hidden' id='contenedor_contrato')
@@ -122,7 +128,7 @@ html(lang='es')
 
                                 // Only when ClaveCatastral is available and has 15 digits, if not, don't do anything
                                 else if (claveCatastral != "" && claveCatastral >= 15) {
-                                    
+
                                     // Clear existing vector layers and popups
                                     map.getLayers().forEach(layer => {
                                         if (layer instanceof ol.layer.Vector) {
@@ -137,16 +143,16 @@ html(lang='es')
                                             throw new Error(`Network response was not ok: ${response.statusText}`);
                                         }
                                         return response.json()
-                                            .then(data2 => {
-                                                if (data2.length === 0) {
-                                                    Swal.fire({
-                                                        icon: 'error',
-                                                        title: 'Sin datos',
-                                                        text: 'No se encontró información sobre la clave catastral proporcionada',
-                                                    });
-                                                }
-                                                return data2;
-                                            });
+                                        .then(data2 => {
+                                            if (data2.length === 0) {
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    title: 'Sin datos',
+                                                    text: 'No se encontró información sobre la clave catastral proporcionada',
+                                                });
+                                            }
+                                            return data2;
+                                        });
                                     })
                                     .then(data1 => {
                                         var poligono_testo = data1[0].poligono[0].poligono_testo;
@@ -229,6 +235,10 @@ html(lang='es')
                                                 <p class="text-sm">Contrato: ' + data2.anual[0].contrato + '</p>\
                                             </div>');
                                         })
+
+                                        // Clean variables
+                                        mun, local, zona, manza, predio, subpredio = "";
+                                        contratoAgua = "";
 
                                     })
                                     .catch(error => {
@@ -333,6 +343,10 @@ html(lang='es')
                                                 <p class="text-sm">Uso: ' + data2[0].uso_propiedad + '</p>\
                                                 <p class="text-sm">Contrato: ' + data1.bimestral[0].numcontrato + '</p>\
                                             </div>');
+
+                                            // And clean variables
+                                            mun, local, zona, manza, predio, subpredio = "";
+                                            contratoAgua = "";
 
                                         })
                                     })
@@ -548,9 +562,27 @@ html(lang='es')
                                 if (containerId === "contenedor_clavecatastro") {
                                     contenedorClaveCatastro.classList.remove("hidden");
                                     contenedorContrato.classList.add("hidden");
+                                    // Clear the input
+                                    document.getElementById("contratoAgua").value = "";
                                 } 
                                 else if (containerId === "contenedor_contrato") {
                                     contenedorClaveCatastro.classList.add("hidden");
                                     contenedorContrato.classList.remove("hidden");
+                                    // Clear the input
+                                    document.getElementById("mun").value = "";
+                                    document.getElementById("local").value = "";
+                                    document.getElementById("zona").value = "";
+                                    document.getElementById("manza").value = "";
+                                    document.getElementById("predio").value = "";
+                                    document.getElementById("subpredio").value = "";
                                 }
+                            }
+                                
+                            function toggleRightPanel() {
+                                var rightPanel = document.getElementById('right-panel');
+                                rightPanel.classList.toggle('hidden');
+
+                                var rightPanelIcon = document.getElementById('rightPanelIcon');
+                                rightPanelIcon.classList.toggle('fa-eye-slash');
+                                rightPanelIcon.classList.toggle('fa-eye');
                             }
