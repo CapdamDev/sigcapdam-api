@@ -19,8 +19,8 @@ html(lang='es')
                     else if cookies.role_name === 'user'
                         span(class='text-left text-white') SIGCAPDAM !{cookies.role_name}
 
-                div(class='px-6 h-[calc(50rem)]')
-                    #map(class='h-full flex flex-row justify-center items-center rounded-2xl border border-dashed border-gray-300/40 dark:border-gray-700')
+                div(class='px-6 h-[calc(55rem)]')
+                    #map(class='h-full flex flex-row justify-center items-center border border-dashed border-gray-300/40 dark:border-gray-700')
 
                     div(class='absolute top-1/2 right-1 transform translate-y-[-50%] px-6 py-4' id='right-panel')
                         div.flex.w-full.text-white.border-0.py-2.text-center.items-center(class='dark:text-white dark:bg-gray-800 focus:outline-none')
@@ -111,7 +111,7 @@ html(lang='es')
                                 var contratoAgua = document.getElementById("contratoAgua").value;
                                 console.log(contratoAgua);
 
-                                if (claveCatastral !="" && claveCatastral.length < 15) {
+                                if (claveCatastral != "" && claveCatastral.length < 15) {
                                     // Make a sweet alert message
                                     Swal.fire({
                                         icon: 'error',
@@ -136,7 +136,17 @@ html(lang='es')
                                         if (!response.ok) {
                                             throw new Error(`Network response was not ok: ${response.statusText}`);
                                         }
-                                        return response.json();
+                                        return response.json()
+                                            .then(data2 => {
+                                                if (data2.length === 0) {
+                                                    Swal.fire({
+                                                        icon: 'error',
+                                                        title: 'Sin datos',
+                                                        text: 'No se encontró información sobre la clave catastral proporcionada',
+                                                    });
+                                                }
+                                                return data2;
+                                            });
                                     })
                                     .then(data1 => {
                                         var poligono_testo = data1[0].poligono[0].poligono_testo;
@@ -227,6 +237,7 @@ html(lang='es')
                                 }
 
                                 else if(contratoAgua != ""){
+                                    
                                     // Clear existing vector layers and popups
                                     map.getLayers().forEach(layer => {
                                         if (layer instanceof ol.layer.Vector) {
@@ -236,6 +247,7 @@ html(lang='es')
                                     map.getOverlays().clear();
 
                                     fetch(`https://pagos.capdam.gob.mx/connections/api.php?Contrato=${contratoAgua}`)
+
                                     // Now we make an inverse search, we get the data from the API using the contratoAgua
                                     .then(response => {
                                         if (!response.ok) {
@@ -536,7 +548,8 @@ html(lang='es')
                                 if (containerId === "contenedor_clavecatastro") {
                                     contenedorClaveCatastro.classList.remove("hidden");
                                     contenedorContrato.classList.add("hidden");
-                                } else if (containerId === "contenedor_contrato") {
+                                } 
+                                else if (containerId === "contenedor_contrato") {
                                     contenedorClaveCatastro.classList.add("hidden");
                                     contenedorContrato.classList.remove("hidden");
                                 }
