@@ -3,8 +3,6 @@ html(lang='es')
     head
         title SIGCAPDAM - Gestión de capas
         include ./includes/head.jade
-        link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/ol@v8.1.0/ol.css')
-        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css")
         style(type="text/css").
             .dataTables_wrapper .dataTables_length select{
                 width: 5rem;
@@ -16,6 +14,11 @@ html(lang='es')
                 margin-right: 1rem;
                 margin-bottom: 1rem;
             }
+            #usersTable_wrapper{
+                margin-top: .7rem;
+                margin-bottom: .5rem;
+            }
+
     body(class='bg-white dark:bg-gray-900')
         include ./includes/sidebar.jade
         block content
@@ -34,7 +37,7 @@ html(lang='es')
                                 div(class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4")
                                     div(class="w-full md:w-1/2")
                                     div(class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0")
-                                        button(type="button" id="createProductModalButton" data-modal-target="createProductModal" data-modal-toggle="createProductModal" class="flex items-center justify-center text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded7-lg text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-700 focus:outline-none dark:focus:ring-sky-800 rounded")
+                                        button(type="button" id="createUserModalButton" data-modal-target="createUserModal" data-modal-toggle="createUserModal" class="flex items-center justify-center text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded7-lg text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-700 focus:outline-none dark:focus:ring-sky-800 rounded")
                                             svg(class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true")
                                                 path(clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z")
                                             | Nuevo user 
@@ -74,7 +77,7 @@ html(lang='es')
                                             div(class="relative p-4 w-full max-w-2xl max-h-full")
                                                 div(class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
                                                     div(class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600")
-                                                        h3(class="text-lg font-semibold text-gray-900 dark:text-white") Nueva capa
+                                                        h3(class="text-lg font-semibold text-gray-900 dark:text-white") Nuevo usuario
                                                         button(type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-target="createUserModal" data-modal-toggle="createUserModal")
                                                             svg(aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
                                                                 path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
@@ -82,19 +85,32 @@ html(lang='es')
                                                     form(name='createUserModalForm' id='create-form' class='md:space-y-6' action='/api/v1/users/' method='POST' enctype='multipart/form-data')
                                                         div(class="grid gap-4 mb-4 sm:grid-cols-2")
                                                             div
-                                                                label(for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Nombre
-                                                                input(type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Nombre de la capa" required="")
+                                                                label(for="nombre" class='block mb-2 text-sm font-medium text-gray-900 dark:text-white') Nombre
+                                                                input(type="text" name="nombre" id="nombre" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Nombre del usuario" required="")
                                                             div
-                                                                label(for="categoriesCreate", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Categoría
-                                                                select(id="categoriesCreate", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
-                                                                    //- for category in categories
-                                                                    //-     option(value=category.id)= category.name
+                                                                label(for="apellidoPat", class='block mb-2 text-sm font-medium text-gray-900 dark:text-white') Apellido Paterno
+                                                                input(type="text" name="apellidoPat" id="apellidoPat" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Apellido paterno del usuario" required="")
+                                                            div
+                                                                label(for="apellidoMat", class='block mb-2 text-sm font-medium text-gray-900 dark:text-white') Apellido Materno
+                                                                input(type="text" name="apellidoMat" id="apellidoMat" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Apellido materno del usuario" required="")
+                                                            div
+                                                                label(for="rolCreate", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Rol
+                                                                select(id="rolCreate", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
+                                                                    for role in roles
+                                                                        option(value=role.id)= role.role_description
+
                                                             div(class="sm:col-span-2")
-                                                                label(for="archive" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Archivo JSON
-                                                                input(type="file" id="archive" accept=".json, .geojson" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Capa JSON")
+                                                                label(for="email", class='block mb-2 text-sm font-medium text-gray-900 dark:text-white') Email
+                                                                input(type="email" name="email" id="email" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Email del usuario" required="")
+
                                                             div(class="sm:col-span-2")
-                                                                label(for="icono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Icono
-                                                                input(type="file" id="icono" accept=".png, .jpg" name="icono" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Icono en PNG o JPG")
+                                                                label(for="password", class='block mb-2 text-sm font-medium text-gray-900 dark:text-white') Contraseña
+                                                                input(type="password" name="password" id="password" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Contraseña del usuario" required="")
+
+                                                            div(class="sm:col-span-2")
+                                                                label(for="profilePic" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Foto de perfil
+                                                                input(type="file" id="profilePic" accept=".png, .jpg" name="profilePic" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Icono en PNG o JPG")
+                                                            
                                                             div(class="sm:col-span-2 items-center text-center")
                                                                 button(type="submit" class="text-white inline-flex items-center bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800")
                                                                     svg(class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
@@ -150,3 +166,34 @@ html(lang='es')
                                                         button(type="submit" id="confirmDelete" value="" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900") Sí, borrar
 
             include ./includes/footer.jade
+
+            script.
+                // Receive the JSON data from API response from server side (users)
+                const users = !{JSON.stringify(users)};
+
+                $(document).ready(function(){
+                    const table = new DataTable('#usersTable', {
+                        responsive: true,
+                        pageLength: 20,
+                        lengthMenu: [ [20, 40, 60, 100, -1], [20, 40, 60, 100, "All"] ],
+                        scrollX: true,
+                        scrollY: true,
+                        scrollCollapse: true,
+                        language: {
+                            url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+                        },
+                        columnDefs: [ { className: "dt-center", "targets": "_all" } ],
+                    });
+
+                    // Add single row selection to the table
+                    $('#usersTable tbody').on('click', 'tr', function(){
+                        if($(this).hasClass('selected')){
+                            $(this).removeClass('selected');
+                        } else {
+                            table.$('tr.selected').removeClass('selected');
+                            $(this).addClass('selected');
+                        }
+                    });
+                });
+
+                
