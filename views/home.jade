@@ -247,6 +247,15 @@ html(lang='es')
                                 }
 
                                 else if(contratoAgua != ""){
+
+                                    // If contratoAgua is 0, don't do anything
+                                    if(contratoAgua == 0){
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Oops...',
+                                            text: 'El número de contrato no puede ser 0',
+                                        })
+                                    }
                                     
                                     // Clear existing vector layers and popups
                                     map.getLayers().forEach(layer => {
