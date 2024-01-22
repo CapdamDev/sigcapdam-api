@@ -23,7 +23,7 @@ router.get("/", async function (req, res, next) {
 	if (!cookies.token) {
 		res.render("login");
 	} 
-  else {
+	else {
 		res.redirect("home", { cookies, url });
 	}
 });
@@ -35,7 +35,7 @@ router.get("/login", async function (req, res, next) {
 	if (!cookies.token) {
 		res.render("login");
 	} 
-  else {
+	else {
 		res.redirect("home");
 	}
 });
@@ -48,7 +48,7 @@ router.get("/home", async function (req, res, next) {
 	if (!cookies.token) {
 		res.redirect("/login");
 	} 
-  else {
+	else {
 		res.header("Cache-Control", "no-cache, no-store, must-revalidate");
 		res.header("Pragma", "no-cache");
 		res.render("home", { cookies, url });
@@ -63,7 +63,7 @@ router.get("/layers_dashboard", async function (req, res, next) {
 	if (!cookies.token) {
 		res.redirect("/login");
 	} 
-  else {
+	else {
 		try {
 			// Fetch layers data from the API endpoint
 			const response = await fetch("http://localhost:3000/api/v1/layers/all", {
@@ -90,7 +90,7 @@ router.get("/layers_dashboard", async function (req, res, next) {
 			if (!layers) {
 				res.send("Error: Could not fetch layers data");
 			} 
-      else {
+			else {
 				res.header("Cache-Control", "no-cache, no-store, must-revalidate");
 				res.header("Pragma", "no-cache");
 				res.render("layers_dashboard", { layers, cookies, url, categories });
@@ -109,7 +109,7 @@ router.get("/users_dashboard", async function (req, res, next) {
 	if (!cookies.token) {
 		res.redirect("/login");
 	} 
-  else {
+	else {
 		try {
 			const response = await fetch("http://localhost:3000/api/v1/users/all", {
 				method: "GET",
@@ -120,13 +120,22 @@ router.get("/users_dashboard", async function (req, res, next) {
 			});
 			const users = await response.json();
 
+			const response2 = await fetch("http://localhost:3000/api/v1/roles", {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: cookies.token,
+				},
+			});
+			const roles = await response2.json();
+
 			if (!users) {
 				res.send(404);
 			} 
-      else {
+			else {
 				res.header("Cache-Control", "no-cache, no-store, must-revalidate");
 				res.header("Pragma", "no-cache");
-				res.render("users_dashboard", { users, cookies, url });
+				res.render("users_dashboard", { users, cookies, url, roles });
 			}
 		} catch (error) {
 			res.status(500).json({ error: "Internal Server Error" });
@@ -141,7 +150,7 @@ router.get("/settings", async function (req, res, next) {
 	if (!cookies.token) {
 		res.redirect("/login");
 	} 
-  else {
+	else {
 		res.header("Cache-Control", "no-cache, no-store, must-revalidate");
 		res.header("Pragma", "no-cache");
 		res.render("settings", { cookies, url });
