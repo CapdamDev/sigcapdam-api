@@ -74,11 +74,11 @@ router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (re
 								icono: iconoFileName,
 								isActive: 1,
 							})
-								.then((layer) => res.status(201).send(layer))
-								.catch((error) => {
-									console.log(error);
-									res.status(400).send(error);
-								});
+							.then((layer) => res.status(201).send(layer))
+							.catch((error) => {
+								console.log(error);
+								res.status(400).send(error);
+							});
 						}
 					})
 					.catch((error) => {
@@ -90,8 +90,7 @@ router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (re
 			.catch((error) => {
 				res.status(403).send(error);
 			});
-	}
-);
+});
 
 // Consulta una layer por su nombre y categoría
 

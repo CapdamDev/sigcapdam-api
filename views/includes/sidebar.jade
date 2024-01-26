@@ -52,7 +52,7 @@ aside(class='compact-nav fixed group overflow-hidden left-0 top-0 z-10 h-screen 
         div(class='py-4 px-2 border-t border-gray-300/40 dark:border-gray-700')
             a(href='#')
                 div(class='w-max flex items-center gap-4')
-                    -let src = "./assets/users/profilePic/" + cookies.user_id + "/" + cookies.profilePic 
+                    -let src = "./assets/users/pictures/profile.png"
                     img(class='w-10 h-10 rounded-full' src=`${src}`  alt='')
                     div
                         h6#nombre(class='text-gray-600 font-medium dark:text-gray-200') !{cookies.user_name}

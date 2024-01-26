@@ -20,7 +20,7 @@ class Helper {
                             perm_id: perm.id
                         }
                     }).then((rolePermission) => {
-                        if(rolePermission || roleId === 1) {
+                        if(rolePermission) {
                             resolve(rolePermission);
                         } else {
                             reject({message: 'Forbidden'});
