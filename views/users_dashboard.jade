@@ -1,7 +1,7 @@
 doctype html
 html(lang='es')
     head
-        title SIGCAPDAM - Gestión de capas
+        title SIGCAPDAM - Usuarios
         include ./includes/head.jade
         style(type="text/css").
             .dataTables_wrapper .dataTables_length select{
@@ -13,6 +13,7 @@ html(lang='es')
             .dataTables_filter{
                 margin-right: 1rem;
                 margin-bottom: 1rem;
+                margin-left: 1rem;
             }
             #usersTable_wrapper{
                 margin-top: .7rem;
@@ -26,47 +27,39 @@ html(lang='es')
             div(class='2xl:w-auto mx-auto space-y-6')
                 div(class='h-16 items-center border border-gray-300/40 dark:border-gray-700 flex justify-between px-6 lg:px-12')
                     //- Coordenadas del mouse
-                    div(class='flex items-center text-xl')
-                        span(class='text-gray-500 dark:text-gray-200') Gestión de capas
-                    span(class='text-left text-white') SIGCAPDAM
-                div(class='px-6 h-[calc(51rem)]')
+                    div(class='flex items-center lg:text-xl md:text-md sm:text-sm')
+                        span(class='text-gray-500 dark:text-gray-200') Gestión de usuarios
+                    //- span(class='text-left text-white') SIGCAPDAM
+                    button(type="button" id="createUserModalButton" data-modal-target="createUserModal" data-modal-toggle="createUserModal" class="flex items-center justify-center text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-full text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-700 focus:outline-none dark:focus:ring-sky-800")
+                                svg(class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true")
+                                    path(clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z")
+                                | Nuevo usuario
+                div(class='px-6 h-[calc(55rem)]')
                     //- CRUD para gestionar las capas cargadas
-                    section(class="px-3 h-full w-full rounded-2xl bg-gray-50 dark:bg-gray-900 antialiased")
+                    section(class="px-3 h-auto w-full rounded-2xl bg-gray-50 dark:bg-gray-900 antialiased")
                         div(class="w-full h-full")
                             div(class="bg-white dark:bg-gray-800 shadow-md sm:rounded-lg overflow-hidden w-full h-full")
-                                div(class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4")
-                                    div(class="w-full md:w-1/2")
-                                    div(class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0")
-                                        button(type="button" id="createUserModalButton" data-modal-target="createUserModal" data-modal-toggle="createUserModal" class="flex items-center justify-center text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded7-lg text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-700 focus:outline-none dark:focus:ring-sky-800 rounded")
-                                            svg(class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true")
-                                                path(clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z")
-                                            | Nuevo user 
                                 div(class="h-full overflow-x-auto w-full")
                                     table#usersTable.display(class="table text-sm text-left text-gray-500 dark:text-gray-400 w-full flex-nowrap overflow-auto" style="width: 100% !important;")
                                         thead(class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400")
                                             tr
                                                 th(scope="col" class="px-6 py-4") #
-                                                th(scope="col" class="px-6 py-4") Rol
                                                 th(scope="col" class="px-6 py-4") Nombre
                                                 th(scope="col" class="px-6 py-4") Email
-                                                th(scope="col" class="px-6 py-4") Status
+                                                th(scope="col" class="px-6 py-4") Rol
                                                 th(scope="col" class="px-6 py-4") Acciones
                                                     span(class="sr-only") Actions
                                         tbody(id="usersTbody")
                                             each user in users
-                                                if user.isActive === true
-                                                    - user.isActive = "Activo"
-                                                else
-                                                    - user.isActive = "Inactivo"
+                                                - let src = "./assets/users/pictures/profile.png"
                                                 tr(class="border-b dark:border-gray-700")
-                                                    th(id="userId" scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white" value=user.name)=user.id
-                                                    td(id="userRole" class="px-6 py-3 text-sm font-medium")=user.roleData.role_name
-                                                    td(id="userName" class="px-6 py-3 text-sm font-medium")=user.nombre
-                                                    td(id="userEmail" class="px-4 py-3 text-sm font-medium")=user.email
-                                                    td(id="userStatus" class="px-4 py-3 text-sm font-medium")=user.isActive
-                                                    td(id="userActions" class="px-4 py-3 items-center")
+                                                    th(id="userId" scope="row" class="px-3 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white" value=user.id)=user.id
+                                                    td(id="userName" scope="row" class="px-4 py-3 text-sm font-medium" value=user.name)=user.name
+                                                    td(id="userEmail" scope="row" class="px-4 py-3 text-sm font-medium" value=user.email)=user.email
+                                                    td(id="userCategory" scope="row" class="px-4 py-3 text-sm font-medium" value=user.role_id)=user.roleData.role_description
+                                                    td(id="userActions" scope="row" class="px-4 py-3 items-center")
                                                         div(class="space-x-2")
-                                                                button(class=" hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200" type="button" data-modal-target="updateUserModal" data-modal-toggle="updateUserModal")
+                                                                button(class=" hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200" type="button" data-modal-target="updateUserModal" data-modal-toggle="updateUserModal" id="updateModalButton" value=user.id)
                                                                     svg(svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true")
                                                                         path(d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z")
                                                                         path(fill-rule="evenodd" clip-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z")
@@ -77,79 +70,75 @@ html(lang='es')
                                             div(class="relative p-4 w-full max-w-2xl max-h-full")
                                                 div(class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
                                                     div(class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600")
-                                                        h3(class="text-lg font-semibold text-gray-900 dark:text-white") Nuevo usuario
+                                                        h3(class="text-lg font-semibold text-gray-900 dark:text-white") Nueva capa
                                                         button(type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-target="createUserModal" data-modal-toggle="createUserModal")
                                                             svg(aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
                                                                 path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
                                                             span(class="sr-only") Close
-                                                    form(name='createUserModalForm' id='create-form' class='md:space-y-6' action='/api/v1/users/' method='POST' enctype='multipart/form-data')
+                                                    form(name='createUserModalForm' id='create-form' class='md:space-y-6' action='/api/v1/users/' method='POST' enctype='multipart/form-data' autocomplete="off")
                                                         div(class="grid gap-4 mb-4 sm:grid-cols-2")
                                                             div
-                                                                label(for="nombre" class='block mb-2 text-sm font-medium text-gray-900 dark:text-white') Nombre
-                                                                input(type="text" name="nombre" id="nombre" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Nombre del usuario" required="")
+                                                                label(for="name" class='block mb-2 text-sm font-medium text-gray-900 dark:text-white') Nombre
+                                                                input(type="text" name="name" id="name" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ry-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Nombre del usuario")
                                                             div
-                                                                label(for="apellidoPat", class='block mb-2 text-sm font-medium text-gray-900 dark:text-white') Apellido Paterno
-                                                                input(type="text" name="apellidoPat" id="apellidoPat" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Apellido paterno del usuario" required="")
+                                                                label(for="ape_pat", class='block mb-2 text-sm font-medium text-gray-900 dark:text-white') Apellido Paterno
+                                                                input(type="text" name="ape_pat" id="ape_pat" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Apellido paterno del usuario")
                                                             div
-                                                                label(for="apellidoMat", class='block mb-2 text-sm font-medium text-gray-900 dark:text-white') Apellido Materno
-                                                                input(type="text" name="apellidoMat" id="apellidoMat" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Apellido materno del usuario" required="")
+                                                                label(for="ape_mat", class='block mb-2 text-sm font-medium text-gray-900 dark:text-white') Apellido Materno
+                                                                input(type="text" name="ape_mat" id="ape_mat" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Apellido materno del usuario")
                                                             div
-                                                                label(for="rolCreate", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Rol
-                                                                select(id="rolCreate", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
+                                                                label(for="role_id", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Rol
+                                                                select(id="role_id" name="role_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
                                                                     for role in roles
-                                                                        option(value=role.id)= role.role_description
+                                                                        option(value=role.id id='role_id')= role.role_description
 
                                                             div(class="sm:col-span-2")
                                                                 label(for="email", class='block mb-2 text-sm font-medium text-gray-900 dark:text-white') Email
-                                                                input(type="email" name="email" id="email" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Email del usuario" required="")
+                                                                input(type="email" name="email" id="email" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="ejemplo@correo.com" autocomplete="new-password")
 
                                                             div(class="sm:col-span-2")
                                                                 label(for="password", class='block mb-2 text-sm font-medium text-gray-900 dark:text-white') Contraseña
-                                                                input(type="password" name="password" id="password" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Contraseña del usuario" required="")
-
-                                                            div(class="sm:col-span-2")
-                                                                label(for="profilePic" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Foto de perfil
-                                                                input(type="file" id="profilePic" accept=".png, .jpg" name="profilePic" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Icono en PNG o JPG")
+                                                                input(type="password" name="password" id="password" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="••••••••••" autocomplete="new-password")
                                                             
                                                             div(class="sm:col-span-2 items-center text-center")
                                                                 button(type="submit" class="text-white inline-flex items-center bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800")
                                                                     svg(class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
                                                                         path(fill-rule="evenodd", d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z", clip-rule="evenodd")
-                                                                    | Agregar nueva capa
+                                                                    | Agregar usuario
                                         div(id="updateUserModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
                                             div(class="relative p-4 w-full max-w-2xl max-h-full")
                                                 div(class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
                                                     div(class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:dark-border-gray-600")
-                                                        h3(class="text-lg font-semibold text-gray-900 dark:text-white") Update product
+                                                        h3(class="text-lg font-semibold text-gray-900 dark:text-white") Actualizar usuario
                                                         button(type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateUserModal")
                                                             svg(aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
                                                                 path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
                                                             span(class="sr-only") Close
-                                                    form(action="#")
-                                                        div(class="grid gap-4 mb-4 sm:grid-cols-2")
+                                                    form(name="updateUserModalForm" id="update-form" action="/api/v1/users/" method="PUT" enctype="multipart/form-data")
+                                                        div(class="grid gap-4 mb-4 sm:grid-cols-2" id="userUpdateId")
                                                             div
-                                                                label(for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Name
-                                                                input(type="text" name="name" id="layerIdInput" value="iPad Air Gen 5th Wi-Fi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Ex. Apple iMac 27&ldquo;")
+                                                                label(for="updateNameInput" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Nombre
+                                                                input(type="text" name="updateNameInput" id="updateNameInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
                                                             div
-                                                                label(for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Brand
-                                                                input(type="text" name="brand" id="brand" value="Google" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Ex. Apple")
+                                                                label(for="updateApePatInput" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Apellido Paterno
+                                                                input(type="text" name="updateApePatInput" id="updateApePatInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
                                                             div
-                                                                label(for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Price
-                                                                input(type="number" value="399" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="$299")
+                                                                label(for="updateApeMatInput" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Apellido Materno
+                                                                input(type="text" name="updateApeMatInput" id="updateApeMatInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
                                                             div
-                                                                label(for="categoriesUpdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Category
-                                                                select(id="categoriesUpdate", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
-                                                                    //- each category in categories
-                                                                    //-     option(value=category.id)= category.name
+                                                                label(for="rolesUpdate", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Rol
+                                                                select(id="rolesUpdate" name="rolesUpdate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
+                                                                    each role in roles
+                                                                        option(value=role.id id='rolesUpdate')= role.role_description
                                                             div(class="sm:col-span-2")
-                                                                label(for="description", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Description
-                                                                textarea(id="description", rows="5", class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500", placeholder="Write a description...") Standard glass, 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, 16GB 2666MHz DDR4 memory, Radeon Pro 5500 XT with 8GB of GDDR6 memory, 256GB SSD storage, Gigabit Ethernet, Magic Mouse 2, Magic Keyboard - US
+                                                                label(for="updateEmailInput", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Email
+                                                                input(type="email" name="updateEmailInput" id="updateEmailInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" autocomplete="new-password")
+                                                            div(class="sm:col-span-2")
+                                                                label(for="updatePasswordInput", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Contraseña
+                                                                input(type="password" name="updatePasswordInput" id="updatePasswordInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="•••••••••••••")
+
                                                             div(class="flex items-center space-x-4")
-                                                                button(type="submit" class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800") Update product
-                                                                button(type="button" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900")
-                                                                    svg(class="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
-                                                                        path(fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd")
-                                                                    | Delete product
+                                                                button(type="submit" class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800") Actualizar
                                         div(id="deleteModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
                                             div(class="relative p-4 w-full max-w-md max-h-full")
                                                 div(class="relative p-4 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
@@ -159,41 +148,194 @@ html(lang='es')
                                                         span(class="sr-only") Close
                                                     svg(class="text-gray-400 dark:text-gray-500 w-11 h-11 mb-3.5 mx-auto" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
                                                         path(fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd")
-                                                    p(id="showId" class="mb-4 text-gray-500 dark:text-gray-300") Estás seguro de borrar esta publicación? Esta acción no se puede deshacer.
+                                                    p(id="showId" class="mb-4 text-gray-500 dark:text-gray-300") ¿Estás seguro de borrar esta capa? Esta acción no se puede deshacer.
                                                     div(class="flex justify-center items-center space-x-4")
                                                         button(data-modal-toggle="deleteModal" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-sky-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-sky-800")
                                                             | Cancel
-                                                        button(type="submit" id="confirmDelete" value="" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900") Sí, borrar
+                                                        button(type="submit" id="confirmDelete" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900") Sí, borrar
 
             include ./includes/footer.jade
 
-            script.
-                // Receive the JSON data from API response from server side (users)
-                const users = !{JSON.stringify(users)};
-
-                $(document).ready(function(){
-                    const table = new DataTable('#usersTable', {
-                        responsive: true,
-                        pageLength: 20,
-                        lengthMenu: [ [20, 40, 60, 100, -1], [20, 40, 60, 100, "All"] ],
-                        scrollX: true,
-                        scrollY: true,
-                        scrollCollapse: true,
-                        language: {
-                            url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
-                        },
-                        columnDefs: [ { className: "dt-center", "targets": "_all" } ],
-                    });
-
-                    // Add single row selection to the table
-                    $('#usersTable tbody').on('click', 'tr', function(){
-                        if($(this).hasClass('selected')){
-                            $(this).removeClass('selected');
-                        } else {
-                            table.$('tr.selected').removeClass('selected');
-                            $(this).addClass('selected');
-                        }
-                    });
-                });
-
+                script.
                 
+                    // Receive the JSON data from API get response from server side (users)
+                    const users = !{JSON.stringify(users)};
+
+                    $(document).ready(function(){
+                        const table = new DataTable('#usersTable', {
+                            responsive: true,
+                            pageLength: 20,
+                            lengthMenu: [ [20, 40, 60, 100, -1], [20, 40, 60, 100, "All"] ],
+                            scrollX: true,
+                            scrollY: true,
+                            scrollCollapse: true,
+                            language: {
+                                url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+                            },
+                            columnDefs: [ { className: "dt-center", "targets": "_all" } ],
+                        });
+
+                        // Add single row selection to the table
+                        $('#usersTable tbody').on('click', 'tr', function () {
+                            if ($(this).hasClass('selected')) {
+                                $(this).removeClass('selected');
+                            } else {
+                                table.$('tr.selected').removeClass('selected');
+                                $(this).addClass('selected');
+                            }
+                        });
+                    });
+
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const createForm = document.getElementById('create-form');
+                        const updateForm = document.getElementById('update-form');
+                        const deleteModal = document.getElementById('deleteModal');
+
+                        createForm.addEventListener('submit', async function (event) {
+                            event.preventDefault();
+
+                            try {
+                                const name = document.getElementById('name').value;
+                                const ape_pat = document.getElementById('ape_pat').value;
+                                const ape_mat = document.getElementById('ape_mat').value;
+                                const role_id = document.getElementById('role_id').value;
+                                const email = document.getElementById('email').value;
+                                const password = document.getElementById('password').value;
+
+                                const body = {
+                                    name: name,
+                                    ape_pat: ape_pat,
+                                    ape_mat: ape_mat,
+                                    role_id: role_id,
+                                    email: email,
+                                    password: password
+                                };
+
+                                const response = await fetch('/api/v1/users/new', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Authorization': '!{cookies.token}',
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(body)
+                                });
+
+                                const data = await response.json();
+
+                                if (response.ok) {
+                                    Swal.fire({
+                                        title: "Registrado",
+                                        text: "Usuario creado correctamente.",
+                                        icon: "success",
+                                        showConfirmButton: true,
+                                    }).then(() => {
+                                        window.location.reload();
+                                    });
+                                } else {
+                                    throw new Error(data.message);
+                                }
+                            } catch (error) {
+                                console.error('Error:', error);
+                                Swal.fire("Error", error.message, "error");
+                            }
+                        });
+
+                        $(document).on("click", "#updateModalButton", function() {
+                            const userId = $(this).val();
+                            const userData = users.find(user => user.id == userId);
+
+                            // Set the user data to the update form
+                            $("#updateNameInput").val(userData.name);
+                            $("#updateApePatInput").val(userData.ape_pat);
+                            $("#updateApeMatInput").val(userData.ape_mat);
+                            $("#updateEmailInput").val(userData.email);
+                            //- $("#updatePasswordInput").val(userData.password);
+                            $("#rolesUpdate").val(userData.role_id);
+
+                            // Update the information sending to the API
+                            updateForm.addEventListener('submit', async function (event) {
+                                event.preventDefault();
+
+                                try {
+                                    const name = document.getElementById('updateNameInput').value;
+                                    const ape_pat = document.getElementById('updateApePatInput').value;
+                                    const ape_mat = document.getElementById('updateApeMatInput').value;
+                                    const role_id = document.getElementById('rolesUpdate').value;
+                                    const email = document.getElementById('updateEmailInput').value;
+                                    const password = document.getElementById('updatePasswordInput').value;
+
+                                    const body = JSON.stringify({
+                                        name: name,
+                                        ape_pat: ape_pat,
+                                        ape_mat: ape_mat,
+                                        email: email,
+                                        password: password,
+                                        role_id: role_id
+                                    });
+
+                                    const response = await fetch(`/api/v1/users/${userId}`, {
+                                        method: 'PUT',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Authorization': '!{cookies.token}',
+                                        },
+                                        body: body,
+                                    });
+
+                                    const data = await response.json();
+
+                                    if (response.ok) {
+                                        Swal.fire({
+                                            title: "Actualizado",
+                                            text: "Usuario actualizado correctamente.",
+                                            icon: "success",
+                                            showConfirmButton: true,
+                                        }).then(() => {
+                                            window.location.reload();
+                                        });
+                                    } else {
+                                        throw new Error(data.message);
+                                    }
+                                } catch (error) {
+                                    console.error('Error:', error);
+                                    Swal.fire("Error", error.message, "error");
+                                }
+                            });
+                        });
+
+                        // Delete user
+                        $(document).on("click", "#deleteModalButton", function() {
+                            const userId = $(this).val();
+                            $("#confirmDelete").val(userId);
+
+                            $("#confirmDelete").on("click", async function() {
+                                try {
+                                    const response = await fetch(`/api/v1/users/${userId}`, {
+                                        method: 'DELETE',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Authorization': '!{cookies.token}',
+                                        },
+                                    });
+
+                                    const data = await response.json();
+                                    if (response.ok) {
+                                        Swal.fire({
+                                            title: "Eliminado",
+                                            text: "Usuario eliminado correctamente.",
+                                            icon: "success",
+                                            showConfirmButton: true,
+                                        }).then(() => {
+                                            window.location.reload();
+                                        });
+                                    } else {
+                                        throw new Error(data.message);
+                                    }
+                                } catch (error) {
+                                    console.error('Error:', error);
+                                    Swal.fire("Error", error.message, "error");
+                                }
+                            });
+                        })
+                    });
+

@@ -120,7 +120,7 @@ router.get("/users_dashboard", async function (req, res, next) {
 			});
 			const users = await response.json();
 
-			const response2 = await fetch("http://localhost:3000/api/v1/roles", {
+			const response2 = await fetch("http://localhost:3000/api/v1/roles/all", {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",

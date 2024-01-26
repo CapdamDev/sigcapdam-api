@@ -8,6 +8,8 @@ const passport = require('passport');
 require('../config/passport')(passport);
 const Helper = require('../utils/helper');
 const helper = new Helper();
+const { Op } = require("sequelize");
+
 
 // Crear rol
 router.post('/', passport.authenticate('jwt', { session: false }), function (req, res) {
@@ -41,10 +43,15 @@ router.post('/', passport.authenticate('jwt', { session: false }), function (req
 });
 
 // Obtener lista de todos los roles
-router.get('/', passport.authenticate('jwt', { session: false }), function (req, res) {
+router.get('/all', passport.authenticate('jwt', { session: false }), function (req, res) {
     helper.checkPermission(req.user.role_id, 'role_get_all')
     .then((rolePerm) => {
         Role.findAll({
+            where: {
+                id: {
+                    [Op.gt]: 1  // Exclude role with ID 1
+                }
+            },
             include: [{
                     model: Permission,
                     as: 'permissions',
@@ -70,6 +77,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), function (req,
         });
     });
 });
+
 
 // Obtener un rol por ID
 router.get('/:id', passport.authenticate('jwt', { session: false }), function (req, res) {

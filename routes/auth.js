@@ -10,9 +10,9 @@ const session = require("express-session");
 // Archivo de login y registro de usuarios
 
 router.post("/register", function (req, res) {
-	if (!req.body.email || !req.body.password || !req.body.nombre) {
+	if (!req.body.email || !req.body.password || !req.body.name) {
 		res.status(400).send({
-			msg: "Ingresa un nombre o contraseña válidos.",
+			msg: "Ingresa un name o contraseña válidos.",
 		});
 	} 
 	else {
@@ -23,13 +23,14 @@ router.post("/register", function (req, res) {
 		})
 		.then((role) => {
 			User.create({
-				nombre: req.body.nombre,
+				name: req.body.name,
 				ape_pat: req.body.ape_pat,
 				ape_mat: req.body.ape_mat,
 				email: req.body.email,
 				password: req.body.password,
 				isActive: req.body.isActive,
 				role_id: role.id,
+				picture: req.body.picture,
 			})
 			.then((user) => res.status(201).send(user))
 			.catch((error) => {
@@ -95,8 +96,8 @@ router.post("/login", function (req, res) {
 									res.cookie("user_id", user.id);
 									res.cookie("role_name", role.role_name); // Suponiendo que user.role_name es accesible
 									res.cookie("user_email", user.email);
-									res.cookie("user_name", user.nombre);
-									res.cookie("profilePic", user.profilePic);
+									res.cookie("user_name", user.name);
+									res.cookie("picture", user.picture);
 									res.send({ success: true });
 								})
 								.catch((error) => {
@@ -127,7 +128,7 @@ router.post("/logout", (req, res) => {
 	res.clearCookie("user_email");
 	res.clearCookie("user_id");
 	res.clearCookie("user_name");
-	res.clearCookie("profilePic");
+	res.clearCookie("picture");
 	// Enviar JSON para confirmar la eliminación
 	res.status(200).redirect("/login");
 });
