@@ -4,6 +4,7 @@
 
 ![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-green?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+[![wakatime](https://wakatime.com/badge/user/5057d2e2-9cb7-4be1-9d6f-e738aff7455a/project/018b680c-adf5-430c-bbe1-1deb06468618.svg?style=for-the-badge)](https://wakatime.com/badge/user/5057d2e2-9cb7-4be1-9d6f-e738aff7455a/project/018b680c-adf5-430c-bbe1-1deb06468618)
 
 Sistema de Información Geográfica CAPDAM, en desarrollo. Departamento de Sistemas e Informática.
 
