@@ -113,9 +113,7 @@ html(lang='es')
                                 var predio = document.getElementById("predio").value;
                                 var subpredio = document.getElementById("subpredio").value;
                                 var claveCatastral = mun + local + zona + manza + predio + subpredio;
-                                console.log(claveCatastral);
                                 var contratoAgua = document.getElementById("contratoAgua").value;
-                                console.log(contratoAgua);
 
                                 if (claveCatastral != "" && claveCatastral.length < 15) {
                                     // Make a sweet alert message
@@ -156,8 +154,8 @@ html(lang='es')
                                     })
                                     .then(data1 => {
                                         var poligono_testo = data1[0].poligono[0].poligono_testo;
+                                        console.log("<-------- Datos de la API del Ayuntamiento -------->")
                                         console.log(data1);
-                                        console.log(poligono_testo);
                                         if(poligono_testo == null || poligono_testo == "" || poligono_testo == undefined){
                                             Swal.fire({
                                                 icon: 'error',
@@ -171,15 +169,11 @@ html(lang='es')
                                         const coordinates = polygonStr.match(/-?\d+\.\d+/g);
                                         const parsedCoordinates = coordinates.map(coord => parseFloat(coord));
 
-                                        console.log('Solo coordenadas: ', parsedCoordinates);
-
                                         // Create an array of coordinate pairs from the flat array
                                         const coordinatePairs = [];
                                         for (let i = 0; i < parsedCoordinates.length; i += 2) {
                                             coordinatePairs.push([parsedCoordinates[i], parsedCoordinates[i + 1]]);
                                         }
-
-                                        console.log('Coordenadas por pares:', coordinatePairs);
 
                                         // Transform coordinates from EPSG:4326 to the map's projection
                                         const transformedCoordinates = coordinatePairs.map(coord => ol.proj.transform(coord, 'EPSG:4326', map.getView().getProjection()));
@@ -218,6 +212,7 @@ html(lang='es')
                                         })
                                         // Save the response from pagos API in data2
                                         .then(data2 => {
+                                            console.log("<-------- Datos de la API de CAPDAM -------->")
                                             console.log(data2);
 
                                             // Show the popup
@@ -275,8 +270,9 @@ html(lang='es')
                                         return response.json();
                                     })
                                     .then(data1 => {
+
+                                        console.log("<-------- Datos de la API de CAPDAM -------->")
                                         console.log(data1);
-                                        console.log(data1.bimestral[0].CveCat);
                                         if(data1.bimestral[0].CveCat == null || data1.bimestral[0].CveCat == "" || data1.bimestral[0].CveCat == undefined || data1.bimestral[0].CveCat == "000000000000000"){
                                             Swal.fire({
                                                 icon: 'error',
@@ -294,23 +290,19 @@ html(lang='es')
                                             return response.json();
                                         })
                                         .then(data2 => {
+                                            console.log("<-------- Datos de la API del Ayuntamiento -------->")
                                             console.log(data2);
-                                            console.log(data2[0].poligono[0].poligono_testo);
 
                                             // Extract the coordinates from data2[0].poligono[0].poligono_testo
                                             const polygonStr = data2[0].poligono[0].poligono_testo;
                                             const coordinates = polygonStr.match(/-?\d+\.\d+/g);
                                             const parsedCoordinates = coordinates.map(coord => parseFloat(coord));
 
-                                            console.log('Solo coordenadas: ', parsedCoordinates);
-
                                             // Create an array of coordinate pairs from the flat array
                                             const coordinatePairs = [];
                                             for (let i = 0; i < parsedCoordinates.length; i += 2) {
                                                 coordinatePairs.push([parsedCoordinates[i], parsedCoordinates[i + 1]]);
                                             }
-
-                                            console.log('Coordenadas por pares:', coordinatePairs);
 
                                             // Transform coordinates from EPSG:4326 to the map's projection
                                             const transformedCoordinates = coordinatePairs.map(coord => ol.proj.transform(coord, 'EPSG:4326', map.getView().getProjection()));
@@ -343,7 +335,9 @@ html(lang='es')
                                             map.addOverlay(popup);
                                             popup.show(transformedCoordinates[0],
                                             '<div class="text-center">\
-                                                <h1 class="text-2xl font-bold">Clave Catastral: </h1>\
+                                                <h1 class="text-2xl font-bold">Información del domicilio</h1>\
+                                                <p class="text-sm">Contrato: '+ data1.bimestral[0].numcontrato +'</p>\
+                                                <p class="text-sm">Medidor: ' + data1.bimestral[0].Medidor + '</p>\
                                                 <p class="text-sm">Colonia: ' + data2[0].colonia + '</p>\
                                                 <p class="text-sm">Localidad: ' + data2[0].localidad + '</p>\
                                                 <p class="text-sm">Zona: ' + data2[0].zona + '</p>\
