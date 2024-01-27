@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 10-01-2024 a las 17:11:53
+-- Tiempo de generación: 27-01-2024 a las 20:16:04
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `Layers` (
   `icono` varchar(255) DEFAULT NULL,
   `isActive` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=175 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Layers`
@@ -307,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `RolePermissions` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `RolePermissions`
@@ -333,7 +333,32 @@ INSERT INTO `RolePermissions` (`id`, `role_id`, `perm_id`, `createdAt`, `updated
 (17, 1, 17, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
 (18, 1, 18, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
 (19, 1, 19, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(20, 1, 20, '2023-12-23 18:28:47', '2023-12-23 18:28:47');
+(20, 1, 20, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(21, 1, 21, '2024-01-22 16:46:00', '2024-01-22 16:46:00'),
+(22, 1, 22, '2024-01-22 16:46:00', '2024-01-22 16:46:00'),
+(23, 1, 23, '2024-01-22 16:46:00', '2024-01-22 16:46:00'),
+(24, 1, 24, '2024-01-22 16:46:00', '2024-01-22 16:46:00'),
+(25, 1, 25, '2024-01-22 16:46:35', '2024-01-22 16:46:35'),
+(26, 2, 16, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
+(27, 2, 17, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
+(28, 2, 17, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
+(29, 2, 18, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
+(30, 2, 19, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
+(31, 2, 20, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
+(32, 2, 21, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
+(33, 2, 22, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
+(34, 2, 23, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
+(35, 2, 24, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
+(36, 2, 25, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
+(37, 2, 1, '2024-01-22 16:51:40', '2024-01-22 16:52:50'),
+(38, 2, 2, '2024-01-22 16:51:40', '2024-01-22 16:52:50'),
+(39, 2, 3, '2024-01-22 16:51:40', '2024-01-22 16:52:50'),
+(40, 2, 4, '2024-01-22 16:51:40', '2024-01-22 16:52:50'),
+(41, 2, 5, '2024-01-22 16:51:40', '2024-01-22 16:52:50'),
+(42, 3, 18, '2024-01-22 16:55:40', '2024-01-22 16:55:40'),
+(43, 3, 19, '2024-01-22 16:55:40', '2024-01-22 16:55:40'),
+(44, 3, 23, '2024-01-22 16:55:40', '2024-01-22 16:55:40'),
+(45, 3, 24, '2024-01-22 16:55:40', '2024-01-22 16:55:40');
 
 -- --------------------------------------------------------
 
@@ -357,9 +382,9 @@ CREATE TABLE IF NOT EXISTS `Roles` (
 --
 
 INSERT INTO `Roles` (`id`, `role_name`, `role_description`, `createdAt`, `updatedAt`) VALUES
-(1, 'root', 'System Admin', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(2, 'admin', 'System Administrator', '2023-12-26 18:41:59', '2023-12-26 18:41:59'),
-(3, 'usuario', 'System user', '2023-12-26 18:42:11', '2023-12-26 18:42:11');
+(1, 'root', 'Root', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(2, 'admin', 'Admin', '2023-12-26 18:41:59', '2023-12-26 18:41:59'),
+(3, 'usuario', 'Usuario', '2023-12-26 18:42:11', '2023-12-26 18:42:11');
 
 -- --------------------------------------------------------
 
@@ -398,8 +423,8 @@ DROP TABLE IF EXISTS `Users`;
 CREATE TABLE IF NOT EXISTS `Users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
-  `profilePic` varchar(255) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
+  `picture` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `ape_pat` varchar(255) NOT NULL,
   `ape_mat` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -409,15 +434,14 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Users`
 --
 
-INSERT INTO `Users` (`id`, `role_id`, `profilePic`, `nombre`, `ape_pat`, `ape_mat`, `email`, `password`, `isActive`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `Users` (`id`, `role_id`, `picture`, `name`, `ape_pat`, `ape_mat`, `email`, `password`, `isActive`, `createdAt`, `updatedAt`) VALUES
 (1, 1, 'profile.png', 'Programacion', 'Capdam', 'Manzanillo', 'programacion@capdam.gob.mx', '$2b$10$r5eRb4oBfhqg7PHkUKnao.9ptE7bUyLZ.0TnhLk3ug9j1NMBaGxAy', 1, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(2, 3, 'profile.png', 'Enrique', 'Ochoa', 'Preciado', 'eochoa11@ucol.mx', '$2a$10$Q.v//7egc3.INQNsRdrDY.quNS0JIfWHx2cpDSkiV00MXG.237GzO', 1, '2023-12-30 15:01:00', '2023-12-30 15:01:00'),
 (3, 2, 'profile.png', 'Admin', 'Capdam', 'Manzanillo', 'admin@capdam.gob.mx', '$2a$10$4MR/DHpgKOEfeI5VmoyCqusxYqWdQ5Rd4G10pChfkyK6Y5Ai8WaHO', 1, '2023-12-30 15:03:42', '2023-12-30 15:03:42');
 COMMIT;
 
