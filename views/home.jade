@@ -14,20 +14,29 @@ html(lang='es')
                     div(class='flex items-center')
                         span(class='text-gray-500 dark:text-gray-200') Coordenadas del mouse:
                         span#mouse-position.text-gray-500(class='dark:text-gray-200 ml-2')
-                    //- if cookies.role_name === 'root'
-                    //-     span(class='text-left text-white') Administrador
-                    //- else if cookies.role_name === 'user'
-                    //-     span(class='text-left text-white') SIGCAPDAM !{cookies.role_name}
 
-                    
                 div(class='px-6 h-[calc(55rem)]')
                     #map(class='h-full flex flex-row justify-center items-center border border-dashed border-gray-300/40 dark:border-gray-700')
                     
-                div(class='absolute top-1/4 right-1 transform translate-y-[-50%] px-6 py-4')
+                div(class='absolute top-32 right-1 transform translate-y-[-50%] px-6 py-4')
                         button(class='w-8 h-8 text-white bg-gray-900 border-0 py-2 focus:outline-none hover:bg-gray-600 rounded text-xs' onclick='toggleRightPanel()')
                             i(class='fas fa-eye-slash' id='rightPanelIcon')
 
                     div(class='absolute top-1/2 right-1 transform translate-y-[-50%] px-6 py-4' id='right-panel')
+                    
+                        //- Select to change the map type
+                        div.flex.w-full.text-white.border-0.py-2.text-center.items-center(class='dark:text-white dark:bg-gray-800 focus:outline-none')
+                            span.mx-auto Tipo de mapa
+
+                        div(class='flex justify-center items-center dark:bg-white bg-gray-900 border-0 py-2')
+                            select(id='map-type' class='w-60 h-8 text-white bg-gray-900 border-0 py-2 pl-4 focus:outline-none hover:bg-gray-600 rounded text-xs')
+                                option(value='Hybrid') Hybrid
+                                option(value='OSM') OpenStreetMap
+                                option(value='Roadmap') Roadmap
+                                option(value='Terrain') Terrain
+                                option(value='AlteredRoadmap') Altered Roadmap
+                                option(value='SatelliteOnly') Satellite Only
+
                         div.flex.w-full.text-white.border-0.py-2.text-center.items-center(class='dark:text-white dark:bg-gray-800 focus:outline-none')
                             span.mx-auto BUSCAR PREDIO POR
                         div(class='w-auto h-auto dark:bg-white bg-gray-900 border-0 py-2 flex justify-center')
@@ -75,22 +84,54 @@ html(lang='es')
                         script.
 
                             // Coordenadas que centrarán el mapa al cargar la página
-                            var centerCoordinates = [-104.301939092764954, 19.066318856363417];
+                            var centerCoordinates = [-104.3470, 19.1149];
                             var token = sessionStorage.getItem('token');
+
+                            const AllTiles = {
+                                OSM: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                Roadmap: 'http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}',
+                                Terrain: 'http://mt0.google.com/vt/lyrs=p&hl=en&x={x}&y={y}&z={z}',
+                                AlteredRoadmap: 'http://mt0.google.com/vt/lyrs=r&hl=en&x={x}&y={y}&z={z}',
+                                SatelliteOnly: 'http://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}',
+                                Hybrid: 'http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}',
+                            }
+
+                            const initialLayer = 'Hybrid';
+                            const initialSource = new ol.source.XYZ({
+                                url: AllTiles[initialLayer],
+                                crossOrigin: 'Anonymous',
+                            });
 
                             // Crear el mapa
                             var map = new ol.Map({
                                 target: 'map',
                                 layers: [
                                     new ol.layer.Tile({
-                                        source: new ol.source.OSM() // OpenStreetMap
+                                        source: initialSource,
                                     })
                                 ],
                                 view: new ol.View({
                                     center: ol.proj.fromLonLat(centerCoordinates),
-                                    zoom: 14
+                                    zoom: 18,
+                                    maxZoom: 18,
+                                    minZoom: 16.5,
                                 })
                             });
+
+                            const mapTypeSelector = document.getElementById('map-type');
+                            mapTypeSelector.addEventListener('change', function () {
+                                const selectedLayer = mapTypeSelector.value;
+                                const selectedSource = new ol.source.XYZ({
+                                    url: AllTiles[selectedLayer],
+                                    crossOrigin: 'Anonymous',
+                                });
+                                map.getLayers().setAt(0, new ol.layer.Tile({
+                                    source: selectedSource,
+                                }));
+                            });
+
+                            const tileLayer = map.getLayers().item(0);
+                            tileLayer.setSource(initialSource);
 
                             // Ver las coordenadas del mouse en el mapa
                             var mousePositionControl = new ol.control.MousePosition({
