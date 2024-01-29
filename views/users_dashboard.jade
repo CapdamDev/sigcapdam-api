@@ -135,7 +135,7 @@ html(lang='es')
                                                                 input(type="email" name="updateEmailInput" id="updateEmailInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" autocomplete="new-password")
                                                             div(class="sm:col-span-2")
                                                                 label(for="updatePasswordInput", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Contraseña
-                                                                input(type="password" name="updatePasswordInput" id="updatePasswordInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="•••••••••••••")
+                                                                input(type="password" name="updatePasswordInput" id="updatePasswordInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="(Sin cambios)" autocomplete="new-password")
 
                                                             div(class="flex items-center space-x-4")
                                                                 button(type="submit" class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800") Actualizar
@@ -222,16 +222,26 @@ html(lang='es')
 
                                 const data = await response.json();
 
-                                if (response.ok) {
+                                if(response.status === 400) {
+                                    // Swal of user already exists
                                     Swal.fire({
-                                        title: "Registrado",
+                                        title: "Error",
+                                        text: "El correo ya se encuentra registrado.",
+                                        icon: "error",
+                                        showConfirmButton: true,
+                                    });
+                                }
+                                else if(response.ok) {
+                                    Swal.fire({
+                                        title: "Creado",
                                         text: "Usuario creado correctamente.",
                                         icon: "success",
                                         showConfirmButton: true,
                                     }).then(() => {
                                         window.location.reload();
                                     });
-                                } else {
+                                }
+                                else {
                                     throw new Error(data.message);
                                 }
                             } catch (error) {

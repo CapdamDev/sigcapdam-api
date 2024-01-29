@@ -49,8 +49,6 @@ router.get("/home", async function (req, res, next) {
 		res.redirect("/login");
 	} 
 	else {
-		res.header("Cache-Control", "no-cache, no-store, must-revalidate");
-		res.header("Pragma", "no-cache");
 		res.render("home", { cookies, url });
 	}
 });
@@ -91,8 +89,6 @@ router.get("/layers_dashboard", async function (req, res, next) {
 				res.send("Error: Could not fetch layers data");
 			} 
 			else {
-				res.header("Cache-Control", "no-cache, no-store, must-revalidate");
-				res.header("Pragma", "no-cache");
 				res.render("layers_dashboard", { layers, cookies, url, categories });
 			}
 		} catch (error) {
@@ -133,8 +129,6 @@ router.get("/users_dashboard", async function (req, res, next) {
 				res.send(404);
 			} 
 			else {
-				res.header("Cache-Control", "no-cache, no-store, must-revalidate");
-				res.header("Pragma", "no-cache");
 				res.render("users_dashboard", { users, cookies, url, roles });
 			}
 		} catch (error) {
@@ -144,16 +138,27 @@ router.get("/users_dashboard", async function (req, res, next) {
 });
 
 /* GET settings */
-router.get("/settings", async function (req, res, next) {
+router.get("/more", async function (req, res, next) {
 	const cookies = req.parsedCookies;
 	const url = req.originalUrl;
 	if (!cookies.token) {
 		res.redirect("/login");
 	} 
 	else {
-		res.header("Cache-Control", "no-cache, no-store, must-revalidate");
-		res.header("Pragma", "no-cache");
 		res.render("settings", { cookies, url });
+	}
+});
+
+/* GET de la main page */
+router.get("/main", async function (req, res, next) {
+	const cookies = req.parsedCookies;
+	const url = req.originalUrl;
+
+	if (!cookies.token) {
+		res.redirect("/login");
+	}
+	else {
+		res.render("index", { cookies, url });
 	}
 });
 
