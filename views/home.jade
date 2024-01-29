@@ -113,8 +113,8 @@ html(lang='es')
                                 view: new ol.View({
                                     center: ol.proj.fromLonLat(centerCoordinates),
                                     zoom: 18,
-                                    maxZoom: 18,
-                                    minZoom: 16.5,
+                                    //- maxZoom: 18,
+                                    //- minZoom: 16.5,
                                 })
                             });
 
@@ -374,18 +374,43 @@ html(lang='es')
                                             // Show the popup
                                             var popup = new ol.Overlay.Popup();
                                             map.addOverlay(popup);
+                                            if(data1.bimestral[0].Drenaje === '1'){
+                                                data1.bimestral[0].Drenaje = 'SI';
+                                            }
+                                            else if(data1.bimestral[0].Drenaje === '0' || data1.bimestral[0].Drenaje === '' || data1.bimestral[0].Drenaje === null || data1.bimestral[0].Drenaje === undefined){
+                                                data1.bimestral[0].Drenaje = 'NO';
+                                            }
+
+                                            // Format data2[0].valtotal to MXN currency
+                                            var formatter = new Intl.NumberFormat('es-MX', {
+                                                style: 'currency',
+                                                currency: 'MXN',
+                                            });
+                                            data2[0].valtotal = formatter.format(data2[0].valtotal);
+
                                             popup.show(transformedCoordinates[0],
                                             '<div class="text-center">\
                                                 <h1 class="text-2xl font-bold">Información del domicilio</h1>\
+                                                <h2 class="text-1xl font-bold">Dirección general de Catastro Manzanillo</h2>\
+                                                <p class="text-sm">Fecha de registro: ' + data2[0].fechaa + '</p>\
+                                                <p class="text-sm">Tarjeta: ' + data2[0].tarjeta + '</p>\
+                                                <p class="text-sm">Última actualización: ' + data2[0].fechamod + '</p>\
+                                                <p class="text-sm">Predial sin multas: ' + data2[0].total_esperado_anual_anterior + '</p>\
+                                                <p class="text-sm">Año pagado: ' + data2[0].pr_uejep + '</p>\
+                                                <p class="text-sm">Bimestre pagado: ' + data2[0].pr_bimp + '</p>\
+                                                <h2 class="text-1xl font-bold">Nomenclatura</h2>\
+                                                <h2 class="text-1xl font-bold">Datos CAPDAM</h2>\
                                                 <p class="text-sm">Contrato: '+ data1.bimestral[0].numcontrato +'</p>\
-                                                <p class="text-sm">Medidor: ' + data1.bimestral[0].Medidor + '</p>\
-                                                <p class="text-sm">Colonia: ' + data2[0].colonia + '</p>\
-                                                <p class="text-sm">Localidad: ' + data2[0].localidad + '</p>\
-                                                <p class="text-sm">Zona: ' + data2[0].zona + '</p>\
-                                                <p class="text-sm">Titular: ' + data2[0].titlenombre + '</p>\
-                                                <p class="text-sm">Clave cat: ' + data2[0].clavecat2 + '</p>\
+                                                <p class="text-sm">Cuenta: '+ data1.bimestral[0].Medidor +'</p>\
+                                                <p class="text-sm">Nombre: '+ data1.bimestral[0].StatusToma +'</p>\
+                                                <p class="text-sm">Drenaje: '+ data1.bimestral[0].Drenaje +'</p>\
+                                                <p class="text-sm">Clave catastral: '+ data1.bimestral[0].Tarifa +'</p>\
                                                 <p class="text-sm">Uso: ' + data2[0].uso_propiedad + '</p>\
-                                                <p class="text-sm">Contrato: ' + data1.bimestral[0].numcontrato + '</p>\
+                                                <p class="text-sm">Dirección: ' + data1.bimestral[0].Calle + ', ' + data1.bimestral[0].Colonia + '</p>\
+                                                <h2 class="text-1xl font-bold">Superficies</h2>\
+                                                <p class="text-sm">Terreno: '+ data2[0].supterr +' m²</p>\
+                                                <p class="text-sm">Construcción: '+ data2[0].supcon +' m²</p>\
+                                                <p class="text-sm">Valor cat.: '+ data2[0].valtotal +'</p>\
                                             </div>');
 
                                             // And clean variables
