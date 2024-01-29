@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const { Op } = require("sequelize");
 
-// Register a un nuevo usuario (solo admin)
+// Register a un nuevo usuario (cuando es nuevo y no tiene token de acceso), se le asigna el rol de usuario por defecto
 // router.post('/', passport.authenticate("jwt", { session: false }), function (req, res) {
 //   if (!req.body.email || !req.body.password || !req.body.name) {
 //       res.status(400).send({
@@ -25,7 +25,7 @@ const { Op } = require("sequelize");
 //       })
 //       .then((role) => {
 //           User.create({
-//               role_id: req.body.role_id,
+//               role_id: 3,
 //               picture: "profile.png",
 //               name: req.body.name,
 //               ape_pat: req.body.ape_pat,
@@ -49,17 +49,6 @@ const { Op } = require("sequelize");
 router.post("/new", passport.authenticate("jwt", { session: false }), (req, res) => {
   helper.checkPermission(req.user.role_id, "user_add")
   .then((rolePerm) => {
-    // See the response from the middleware
-    console.log("------------ Body ------------");
-    console.log(req.body);
-    console.log("------------ Files ------------");
-    console.log(req.file);
-
-    // console.log(req.file.filename);
-    // const pictureFileName = req.file.filename;
-    // console.log(pictureFileName);
-    // console.log(pictureFileName);
-    // Log all req.body fields
     
       if (!req.body.email || !req.body.password) {
         res.status(400).send({
@@ -67,21 +56,40 @@ router.post("/new", passport.authenticate("jwt", { session: false }), (req, res)
         });
         console.log("No se recibió nada");
       } else {
-        User.create({
-          role_id: req.body.role_id,
-          picture: "profile.png", //pictureFileName,
-          name: req.body.name,
-          ape_pat: req.body.ape_pat,
-          ape_mat: req.body.ape_mat,
-          email: req.body.email,
-          password: req.body.password,
-          isActive: "1",
+
+        // Check if user already exists with same email
+        User.findOne({
+          where: {
+            email: req.body.email,
+          },
         })
-          .then((user) => res.status(201).send(user))
-          .catch((error) => {
-            console.log(error);
-            res.status(400).send(error);
-          });
+        .then((user) => {
+          if (user) {
+            return res.status(400).send({
+              msg: "Ya existe un usuario con ese correo.",
+            });
+          } else {
+            // Data is valid and new user can be registered
+            User.create({
+              role_id: req.body.role_id,
+              picture: "profile.png", //pictureFileName,
+              name: req.body.name,
+              ape_pat: req.body.ape_pat,
+              ape_mat: req.body.ape_mat,
+              email: req.body.email,
+              password: req.body.password,
+              isActive: "1",
+            })
+              .then((user) => res.status(201).send(user))
+              .catch((error) => {
+                console.log(error);
+                res.status(400).send(error);
+              });
+          }
+        })
+        .catch((error) => {
+          res.status(403).send(error);
+        });
       }
     })
     .catch((error) => {
