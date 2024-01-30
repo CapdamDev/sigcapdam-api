@@ -95,6 +95,7 @@ router.post("/login", function (req, res) {
 									res.cookie("role_id", user.role_id);
 									res.cookie("user_id", user.id);
 									res.cookie("role_name", role.role_name); // Suponiendo que user.role_name es accesible
+									res.cookie("role_description", role.role_description);
 									res.cookie("user_email", user.email);
 									res.cookie("user_name", user.name);
 									res.cookie("picture", user.picture);

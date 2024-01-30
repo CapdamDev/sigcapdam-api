@@ -6,14 +6,24 @@ case url
         - verify = false, verify2 = true, verify3 = false, verify4 = false
     when '/users_dashboard'
         - verify = false, verify2 = false, verify3 = true, verify4 = false
-    when '/settings'
+    when '/more'
         - verify = false, verify2 = false, verify3 = false, verify4 = true
+
 aside(class='compact-nav fixed group overflow-hidden left-0 top-0 z-10 h-screen w-[calc(3.73rem)] border-r border-gray-300/40 bg-white dark:bg-gray-900 dark:border-gray-700 hover:w-56 hover:shadow-2xl')
     div(class='h-full flex flex-col justify-between')
         div
-            div(class='h-16 border-b border-gray-300/40 dark:border-gray-700 flex items-center justify-center')
-                a(href='home' class='block w-max px-2.5')
-                    img(class='w-auto h-10 rounded-full' src='./assets/img/profile.png' alt='')
+            //- div(class='h-16 border-b border-gray-300/40 dark:border-gray-700 flex items-center justify-center')
+            //- div(class='py-4 px-2 border-t border-gray-300/40 dark:border-gray-700')
+            div(class='py-4 px-2 border-b border-gray-300/40 dark:border-gray-700')
+                a(href='#')
+                    div(class='w-max flex items-center gap-4')
+                        -let src = "./assets/users/pictures/profile.png"
+                        img(class='w-10 h-10 rounded-full' src=`${src}`  alt='')
+                        div
+                            h6#nombre(class='text-gray-600 font-medium dark:text-gray-200') !{cookies.user_name}
+                            span#userType(class='block -mt-0.5 text-xs text-gray-500 dark:text-white') !{cookies.role_description}
+                //- a(href='home' class='block w-max px-2.5')
+                //-     img(class='w-auto h-10 rounded-full' src='./assets/img/profile.png' alt='')
             div(class='mt-6')
                 ul(class='px-1 -ml-px space-y-4 font-medium tracking-wide')
                     li(class=verify ? 'w-max space-y-4 group-hover:w-full' : 'w-max')
@@ -49,11 +59,3 @@ aside(class='compact-nav fixed group overflow-hidden left-0 top-0 z-10 h-screen 
                                     path(fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0z")
                                     path(fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z")
                                 span(class='text-white') Logout
-        div(class='py-4 px-2 border-t border-gray-300/40 dark:border-gray-700')
-            a(href='#')
-                div(class='w-max flex items-center gap-4')
-                    -let src = "./assets/users/pictures/profile.png"
-                    img(class='w-10 h-10 rounded-full' src=`${src}`  alt='')
-                    div
-                        h6#nombre(class='text-gray-600 font-medium dark:text-gray-200') !{cookies.user_name}
-                        span#userType(class='block -mt-0.5 text-xs text-gray-500 dark:text-white') !{cookies.role_name}

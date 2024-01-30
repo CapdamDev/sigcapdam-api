@@ -2,16 +2,16 @@ doctype html
 html(lang='es')
     include ./includes/head.jade
     title Iniciar sesión
+
     body(class='bg-gray-900')
         #loadingSpinner(class='fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-white bg-opacity-100 z-50')
             div(class="animate-spin rounded-full border-t-4 border-blue-500 border-solid h-12 w-12")
         section.bg-gray-50(class='dark:bg-gray-900' id='login' style='display: none;')
-            .flex.flex-col.items-center.justify-center.px-6.py-8.mx-auto(class='bg-gray-900 dark:bg-gray-700 md:h-screen lg:py-0')
+            .flex.flex-col.items-center.justify-center.px-6.py-8.mx-auto(class='bg-gray-900 dark:bg-gray-900 md:h-screen lg:py-0')
                 a.flex.items-center.mb-6.text-2xl.font-semibold.text-gray-900(href='#' class='dark:text-white')
                     img.w-8.h-8.mr-2(src='/assets/img/capdam.ico' alt='logo')
-                    p.text-white
-                        | SIGCAPDAM
-                .w-full.bg-white.rounded-lg.shadow(class='dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700')
+                    p.text-white | SIGCAPDAM
+                div.w-full(class='md:max-w-md.bg-white.rounded-lg.shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700')
                     .p-6.space-y-4(class='md:space-y-6 sm:p-8')
                         h1.text-xl.font-bold.leading-tight.tracking-tight.text-gray-900(class='md:text-2xl dark:text-white')
                             | Iniciar sesión
@@ -27,9 +27,10 @@ html(lang='es')
                                 .flex.items-start
                                     .flex.items-center.h-5
                                         input(type='checkbox' class='w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-sky-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-sky-600 dark:ring-offset-gray-800' aria-describedby='remember' id="rememberMe" name="rememberMe")
-                                    .ml-3.text-sm
-                                        label.text-gray-500(for='remember' class='dark:text-gray-300') Mantener la sesión iniciada
+                                .ml-3.text-sm
+                                    label.text-gray-500(for='remember' class='dark:text-gray-300') Mantener la sesión iniciada
                             button.w-full.text-white.bg-primary-600.font-medium.rounded-lg.text-sm.px-5.text-center(type='submit' class='bg-gray-700  hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-sky-300 py-2.5 dark:bg-sky-600 dark:hover:bg-primary-700 dark:focus:ring-sky-800') Entrar
+
     include ./includes/footer.jade
     script.
         const form = document.getElementById('login-form');
@@ -48,7 +49,7 @@ html(lang='es')
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const rememberMe = document.getElementById('rememberMe').checked;
-        
+
         console.log(email, password, rememberMe);
 
         try {
