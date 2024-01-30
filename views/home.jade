@@ -240,7 +240,7 @@ html(lang='es')
                                         map.addLayer(vectorLayer);
 
                                         // Go to the transformed coordinates with a specific zoom level
-                                        map.getView().fit(polygon, { size: map.getSize(), padding: [50, 50, 50, 50], maxZoom: 18 });
+                                        map.getView().fit(polygon, { size: map.getSize(), padding: [50, 50, 50, 50], maxZoom: 20 });
 
                                         // https://pagos.capdam.gob.mx/connections/api.php?CveCat=072004022003000
                                         // Get the data from the API using the data[0].clavecat
@@ -259,16 +259,47 @@ html(lang='es')
                                             // Show the popup
                                             var popup = new ol.Overlay.Popup();
                                             map.addOverlay(popup);
+
+                                            if(data2.bimestral[0].Drenaje === '1'){
+                                                data2.bimestral[0].Drenaje = 'SI';
+                                            }
+                                            else if(data2.bimestral[0].Drenaje === '0' || data2.bimestral[0].Drenaje === '' || data2.bimestral[0].Drenaje === null || data2.bimestral[0].Drenaje === undefined){
+                                                data2.bimestral[0].Drenaje = 'NO';
+                                            }
+
+                                            // Format data2[0].valtotal to MXN currency
+                                            var formatter = new Intl.NumberFormat('es-MX', {
+                                                style: 'currency',
+                                                currency: 'MXN',
+                                            });
+                                            data1[0].valtotal = formatter.format(data1[0].valtotal);
+                                            data1[0].total_esperado_anual_anterior = formatter.format(data1[0].total_esperado_anual_anterior);
+
                                             popup.show(transformedCoordinates[0], 
                                             '<div class="text-center">\
-                                                <h1 class="text-2xl font-bold">Clave Catastral: </h1>\
-                                                <p class="text-sm">Colonia: ' + data1[0].colonia + '</p>\
-                                                <p class="text-sm">Localidad: ' + data1[0].localidad + '</p>\
-                                                <p class="text-sm">Zona: ' + data1[0].zona + '</p>\
-                                                <p class="text-sm">Titular: ' + data1[0].titlenombre + '</p>\
-                                                <p class="text-sm">Clave cat: ' + data1[0].clavecat2 + '</p>\
+                                                <h1 class="text-2xl font-bold">Información del domicilio</h1>\
+                                                <h2 class="text-1xl font-bold">---------- Dirección general de Catastro Manzanillo ----------</h2>\
+                                                <p class="text-sm">Clave catastral: ' + data1[0].clavecat2 + '</p>\
+                                                <p class="text-sm">Fecha de registro: ' + data1[0].fechaa + '</p>\
+                                                <p class="text-sm">Tarjeta: ' + data1[0].tarjeta + '</p>\
+                                                <p class="text-sm">Última actualización: ' + data1[0].fechamod + '</p>\
+                                                <p class="text-sm">Predial sin multas: ' + data1[0].total_esperado_anual_anterior + '</p>\
+                                                <p class="text-sm">Año pagado: ' + data1[0].pr_uejep + '</p>\
+                                                <p class="text-sm">Bimestre pagado: ' + data1[0].pr_bimp + '</p>\
+                                                <h2 class="text-1xl font-bold">---------- Nomenclatura ----------</h2>\
+                                                <p class="text-sm">Dirección: ' + data1[0].calle +', '+ data2.bimestral[0].Colonia +'</p>\
                                                 <p class="text-sm">Uso: ' + data1[0].uso_propiedad + '</p>\
-                                                <p class="text-sm">Contrato: ' + data2.anual[0].contrato + '</p>\
+                                                <h2 class="text-1xl font-bold">---------- Datos CAPDAM ----------</h2>\
+                                                <p class="text-sm">Contrato: '+ data2.bimestral[0].numcontrato +'</p>\
+                                                <p class="text-sm">Usuario: '+ data2.bimestral[0].NombreUsuario +'</p>\
+                                                <p class="text-sm">Cuenta: '+ data2.bimestral[0].Medidor +'</p>\
+                                                <p class="text-sm">Nombre: '+ data2.bimestral[0].StatusToma +'</p>\
+                                                <p class="text-sm">Drenaje: '+ data2.bimestral[0].Drenaje +'</p>\
+                                                <p class="text-sm">Tarifa: '+ data2.bimestral[0].Tarifa +'</p>\
+                                                <h2 class="text-1xl font-bold">---------- Superficies ----------</h2>\
+                                                <p class="text-sm">Terreno: '+ data1[0].supterr +' m²</p>\
+                                                <p class="text-sm">Construcción: '+ data1[0].supcon +' m²</p>\
+                                                <p class="text-sm">Valor cat.: '+ data1[0].valtotal +'</p>\
                                             </div>');
                                         })
 
@@ -366,14 +397,16 @@ html(lang='es')
                                                     })
                                                 })
                                             });
+
                                             map.addLayer(vectorLayer);
 
                                             // Go to the transformed coordinates with a specific zoom level
-                                            map.getView().fit(polygon, { size: map.getSize(), padding: [50, 50, 50, 50], maxZoom: 18 });
+                                            map.getView().fit(polygon, { size: map.getSize(), padding: [50, 50, 50, 50], maxZoom: 20 });
 
                                             // Show the popup
                                             var popup = new ol.Overlay.Popup();
                                             map.addOverlay(popup);
+
                                             if(data1.bimestral[0].Drenaje === '1'){
                                                 data1.bimestral[0].Drenaje = 'SI';
                                             }
@@ -387,27 +420,30 @@ html(lang='es')
                                                 currency: 'MXN',
                                             });
                                             data2[0].valtotal = formatter.format(data2[0].valtotal);
+                                            data2[0].total_esperado_anual_anterior = formatter.format(data2[0].total_esperado_anual_anterior);
 
                                             popup.show(transformedCoordinates[0],
                                             '<div class="text-center">\
                                                 <h1 class="text-2xl font-bold">Información del domicilio</h1>\
-                                                <h2 class="text-1xl font-bold">Dirección general de Catastro Manzanillo</h2>\
+                                                <h2 class="text-1xl font-bold">---------- Dirección general de Catastro Manzanillo ----------</h2>\
+                                                <p class="text-sm">Clave catastral: ' + data2[0].clavecat2 + '</p>\
                                                 <p class="text-sm">Fecha de registro: ' + data2[0].fechaa + '</p>\
                                                 <p class="text-sm">Tarjeta: ' + data2[0].tarjeta + '</p>\
                                                 <p class="text-sm">Última actualización: ' + data2[0].fechamod + '</p>\
                                                 <p class="text-sm">Predial sin multas: ' + data2[0].total_esperado_anual_anterior + '</p>\
                                                 <p class="text-sm">Año pagado: ' + data2[0].pr_uejep + '</p>\
                                                 <p class="text-sm">Bimestre pagado: ' + data2[0].pr_bimp + '</p>\
-                                                <h2 class="text-1xl font-bold">Nomenclatura</h2>\
-                                                <h2 class="text-1xl font-bold">Datos CAPDAM</h2>\
+                                                <h2 class="text-1xl font-bold">---------- Nomenclatura ----------</h2>\
+                                                <p class="text-sm">Dirección: ' + data2[0].calle +', ' + data1.bimestral[0].Colonia +'</p>\
+                                                <p class="text-sm">Uso: ' + data2[0].uso_propiedad + '</p>\
+                                                <h2 class="text-1xl font-bold">---------- Datos CAPDAM ----------</h2>\
                                                 <p class="text-sm">Contrato: '+ data1.bimestral[0].numcontrato +'</p>\
+                                                <p class="text-sm">Usuario: '+ data1.bimestral[0].NombreUsuario +'</p>\
                                                 <p class="text-sm">Cuenta: '+ data1.bimestral[0].Medidor +'</p>\
                                                 <p class="text-sm">Nombre: '+ data1.bimestral[0].StatusToma +'</p>\
                                                 <p class="text-sm">Drenaje: '+ data1.bimestral[0].Drenaje +'</p>\
-                                                <p class="text-sm">Clave catastral: '+ data1.bimestral[0].Tarifa +'</p>\
-                                                <p class="text-sm">Uso: ' + data2[0].uso_propiedad + '</p>\
-                                                <p class="text-sm">Dirección: ' + data1.bimestral[0].Calle + ', ' + data1.bimestral[0].Colonia + '</p>\
-                                                <h2 class="text-1xl font-bold">Superficies</h2>\
+                                                <p class="text-sm">Tarifa: '+ data1.bimestral[0].Tarifa +'</p>\
+                                                <h2 class="text-1xl font-bold">---------- Superficies ----------</h2>\
                                                 <p class="text-sm">Terreno: '+ data2[0].supterr +' m²</p>\
                                                 <p class="text-sm">Construcción: '+ data2[0].supcon +' m²</p>\
                                                 <p class="text-sm">Valor cat.: '+ data2[0].valtotal +'</p>\
