@@ -138,7 +138,7 @@ router.get("/users_dashboard", async function (req, res, next) {
 });
 
 /* GET settings */
-router.get("/more", async function (req, res, next) {
+router.get("/settings", async function (req, res, next) {
 	const cookies = req.parsedCookies;
 	const url = req.originalUrl;
 	if (!cookies.token) {
@@ -161,6 +161,39 @@ router.get("/main", async function (req, res, next) {
 		res.render("index", { cookies, url });
 	}
 });
+
+
+/* GET de la pagina de settings/categories */
+router.get("/settings/categories", async function (req, res, next) {
+	const cookies = req.parsedCookies;
+	const url = req.originalUrl;
+
+	if (!cookies.token) {
+		res.redirect("/login");
+	} 
+	else {
+		try {
+			const response = await fetch("http://localhost:3000/api/v1/categories/all", {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: cookies.token,
+				},
+			});
+			const categories = await response.json();
+
+			if (!categories) {
+				res.send(404);
+			} 
+			else {
+				res.render("settings/categories", { categories, cookies, url });
+			}
+		} catch (error) {
+			res.status(500).json({ error: "Internal Server Error" });
+		}
+	}
+});
+
 
 // /* GET de la pagina de registro */
 // router.get('/register', function(req, res, next) {
