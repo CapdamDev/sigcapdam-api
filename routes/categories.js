@@ -52,7 +52,16 @@ router.get("/all", passport.authenticate("jwt", {
                     },
                 ],
             })
-                .then((categories) => res.status(200).send(categories))
+                .then((categories) => {
+                    const categoriesWithTotalLayers = categories.map(category => {
+                        const totalLayers = category.layers.length;
+                        return {
+                            ...category.toJSON(),
+                            totalLayers
+                        };
+                    });
+                    res.status(200).send(categoriesWithTotalLayers);
+                })
                 .catch((error) => {
                     console.log(error);
                     res.status(400).send(error);
@@ -89,6 +98,44 @@ router.get(
                             });
                         }
                         return res.status(200).send(category);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        res.status(400).send(error);
+                    });
+            })
+            .catch((error) => {
+                res.status(403).send(error);
+            });
+    }
+);
+
+// Actualizar una categoría por id
+router.put(
+    "/:id",
+    passport.authenticate("jwt", {
+        session: false,
+    }),
+    function (req, res) {
+        helper
+            .checkPermission(req.user.role_id, "category_update")
+            .then((rolePerm) => {
+                Category.findByPk(req.params.id)
+                    .then((category) => {
+                        if (!category) {
+                            return res.status(404).send({
+                                msg: "Categoría no encontrada",
+                            });
+                        }
+                        return category
+                            .update({
+                                name: req.body.name || category.name,
+                            })
+                            .then(() => res.status(200).send(category))
+                            .catch((error) => {
+                                console.log(error);
+                                res.status(400).send(error);
+                            });
                     })
                     .catch((error) => {
                         console.log(error);
