@@ -24,9 +24,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}roles",
+					"raw": "{{host}}roles/all",
 					"host": [
 						"{{host}}roles"
+					],
+					"path": [
+						"all"
 					]
 				}
 			},
@@ -49,9 +52,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}users",
+					"raw": "{{host}}users/all",
 					"host": [
 						"{{host}}users"
+					],
+					"path": [
+						"all"
 					]
 				}
 			},
@@ -69,17 +75,23 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "{{token}}",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwicGljdHVyZSI6InByb2ZpbGUucG5nIiwibmFtZSI6IlByb2dyYW1hY2lvbiIsImFwZV9wYXQiOiJDYXBkYW0iLCJhcGVfbWF0IjoiTWFuemFuaWxsbyIsImVtYWlsIjoicHJvZ3JhbWFjaW9uQGNhcGRhbS5nb2IubXgiLCJwYXNzd29yZCI6IiQyYiQxMCRyNWVSYjRvQmZocWc3UEhrVUtuYW8uOXB0RTdiVXlMWi4wVG5oTGszdWc5ajFOTUJhR3hBeSIsImlzQWN0aXZlIjp0cnVlLCJjcmVhdGVkQXQiOiIyMDIzLTEyLTIzVDE4OjI4OjQ3LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEyLTIzVDE4OjI4OjQ3LjAwMFoiLCJpYXQiOjE3MDYxODk2MDEsImV4cCI6MTcwODc4MTYwMX0.uGeJOIKhnXAXu6YpTn2xFdCWlzE7-21ny1ZAGdsPklw",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{host}}users/1",
+					"raw": "{{host}}users/:id",
 					"host": [
 						"{{host}}users"
 					],
 					"path": [
-						"1"
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
 					]
 				}
 			},
@@ -165,16 +177,11 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/v1/layers/all",
-					"protocol": "http",
+					"raw": "{{host}}layers/all",
 					"host": [
-						"localhost"
+						"{{host}}layers"
 					],
-					"port": "3000",
 					"path": [
-						"api",
-						"v1",
-						"layers",
 						"all"
 					]
 				}
@@ -217,21 +224,16 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwicHJvZmlsZVBpYyI6InByb2ZpbGUucG5nIiwibm9tYnJlIjoiUHJvZ3JhbWFjaW9uIiwiYXBlX3BhdCI6IkNhcGRhbSIsImFwZV9tYXQiOiJNYW56YW5pbGxvIiwiZW1haWwiOiJwcm9ncmFtYWNpb25AY2FwZGFtLmdvYi5teCIsInBhc3N3b3JkIjoiJDJiJDEwJHI1ZVJiNG9CZmhxZzdQSGtVS25hby45cHRFN2JVeUxaLjBUbmhMazN1ZzlqMU5NQmFHeEF5IiwiaXNBY3RpdmUiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjMtMTItMjNUMTg6Mjg6NDcuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjMtMTItMjNUMTg6Mjg6NDcuMDAwWiIsImlhdCI6MTcwMzYwMjA3NCwiZXhwIjoxNzA2MTk0MDc0fQ.wKXfS4khPjbWXvGyQZ2yCdnVoHI_HGp9AK2euYlGJAU",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/v1/categories/all",
-					"protocol": "http",
+					"raw": "{{host}}categories/all",
 					"host": [
-						"localhost"
+						"{{host}}categories"
 					],
-					"port": "3000",
 					"path": [
-						"api",
-						"v1",
-						"categories",
 						"all"
 					],
 					"query": [
@@ -344,7 +346,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"101\",\r\n    \"archive\": \"101_0_0.json\",\r\n    \"category\": \"1\",\r\n    \"icono\": \"icono.png\"\r\n}",
+					"raw": "{\n    \"name\": \"demo\",\n    \"archive\": \"demo.json\",\n    \"category\": \"1\",\n    \"icono\": \"demo.png\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -404,18 +406,21 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "{{token}}",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwicGljdHVyZSI6InByb2ZpbGUucG5nIiwibmFtZSI6IlByb2dyYW1hY2lvbiIsImFwZV9wYXQiOiJDYXBkYW0iLCJhcGVfbWF0IjoiTWFuemFuaWxsbyIsImVtYWlsIjoicHJvZ3JhbWFjaW9uQGNhcGRhbS5nb2IubXgiLCJwYXNzd29yZCI6IiQyYiQxMCRyNWVSYjRvQmZocWc3UEhrVUtuYW8uOXB0RTdiVXlMWi4wVG5oTGszdWc5ajFOTUJhR3hBeSIsImlzQWN0aXZlIjp0cnVlLCJjcmVhdGVkQXQiOiIyMDIzLTEyLTIzVDE4OjI4OjQ3LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEyLTIzVDE4OjI4OjQ3LjAwMFoiLCJpYXQiOjE3MDYxODk2MDEsImV4cCI6MTcwODc4MTYwMX0.uGeJOIKhnXAXu6YpTn2xFdCWlzE7-21ny1ZAGdsPklw",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nombre\": \"Enrique\",\n    \"ape_pat\": \"Ochoa\",\n    \"ape_mat\": \"Preciado\",\n    \"email\": \"eochoa11@ucol.mx\",\n    \"password\": \"123tamarindo\",\n    \"isActive\": \"1\"\n}"
+					"raw": "{\n    \"role_id\": \"3\",\n    \"name\": \"John\",\n    \"ape_pat\": \"Doe\",\n    \"ape_mat\": \"Done\",\n    \"email\": \"example@example.com\",\n    \"password\": \"password\"\n}"
 				},
 				"url": {
-					"raw": "{{host}}users",
+					"raw": "{{host}}users/new",
 					"host": [
 						"{{host}}users"
+					],
+					"path": [
+						"new"
 					]
 				}
 			},
@@ -541,12 +546,18 @@
 					"raw": "{\n    \"role_name\": \"root\",\n    \"role_description\": \"Administrador root\"\n}"
 				},
 				"url": {
-					"raw": "{{host}}roles/1",
+					"raw": "{{host}}roles/:id",
 					"host": [
 						"{{host}}roles"
 					],
 					"path": [
-						"1"
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
 					]
 				}
 			},
@@ -564,21 +575,27 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "{{token}}",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwicGljdHVyZSI6InByb2ZpbGUucG5nIiwibmFtZSI6IlByb2dyYW1hY2lvbiIsImFwZV9wYXQiOiJDYXBkYW0iLCJhcGVfbWF0IjoiTWFuemFuaWxsbyIsImVtYWlsIjoicHJvZ3JhbWFjaW9uQGNhcGRhbS5nb2IubXgiLCJwYXNzd29yZCI6IiQyYiQxMCRyNWVSYjRvQmZocWc3UEhrVUtuYW8uOXB0RTdiVXlMWi4wVG5oTGszdWc5ajFOTUJhR3hBeSIsImlzQWN0aXZlIjp0cnVlLCJjcmVhdGVkQXQiOiIyMDIzLTEyLTIzVDE4OjI4OjQ3LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEyLTIzVDE4OjI4OjQ3LjAwMFoiLCJpYXQiOjE3MDYyNzU3MzQsImV4cCI6MTcwODg2NzczNH0.nFM9J62Hx7SC7sREvcucvJDjfjdk-W5iuKKK2ep-75o",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"role_id\": 1,\n    \"nombre\": \"John\",\n    \"ape_pat\": \"Doe\",\n    \"ape_mat\": \"Doe\",\n    \"email\": \"example@example.com\",\n    \"password\": \"mypassword\",\n    \"isActive\": 1\n}"
+					"raw": "{\n    \"role_id\": 2,\n    \"name\": \"Enrique\",\n    \"ape_pat\": \"Ochoa\",\n    \"ape_mat\": \"Preciado\",\n    \"email\": \"eochoa11@ucol.mx \",\n    \"password\": \"\"\n}"
 				},
 				"url": {
-					"raw": "{{host}}users/(id del user al que le deseas hacer update)",
+					"raw": "{{host}}users/:id",
 					"host": [
 						"{{host}}users"
 					],
 					"path": [
-						"(id del user al que le deseas hacer update)"
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
 					]
 				}
 			},
@@ -605,12 +622,18 @@
 					"raw": "{\n    \"perm_name\": \"layer_get\",\n    \"perm_description\": \"Get only one layer\"\n}"
 				},
 				"url": {
-					"raw": "{{host}}permissions/(id del permiso que deseas darle update)",
+					"raw": "{{host}}permissions/:id",
 					"host": [
 						"{{host}}permissions"
 					],
 					"path": [
-						"(id del permiso que deseas darle update)"
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
 					]
 				}
 			},
@@ -655,6 +678,56 @@
 			"response": []
 		},
 		{
+			"name": "Category Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"INFRAESTRUCTURA\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}categories/:id",
+					"host": [
+						"{{host}}categories"
+					],
+					"path": [
+						":id"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": null,
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Role Delete",
 			"request": {
 				"method": "DELETE",
@@ -671,12 +744,18 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}roles/(id del rol que deseas borrar)",
+					"raw": "{{host}}roles/:id",
 					"host": [
 						"{{host}}roles"
 					],
 					"path": [
-						"(id del rol que deseas borrar)"
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
 					]
 				}
 			},
@@ -699,12 +778,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}users/1",
+					"raw": "{{host}}users/;id",
 					"host": [
 						"{{host}}users"
 					],
 					"path": [
-						"1"
+						";id"
 					]
 				}
 			},
@@ -727,12 +806,18 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}permissions/(id del permission que deseas borrar)",
+					"raw": "{{host}}permissions/:id",
 					"host": [
 						"{{host}}permissions"
 					],
 					"path": [
-						"(id del permission que deseas borrar)"
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
 					]
 				}
 			},
@@ -768,6 +853,40 @@
 			"response": []
 		},
 		{
+			"name": "Category Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}categories/:id",
+					"host": [
+						"{{host}}categories"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Register",
 			"request": {
 				"method": "POST",
@@ -780,7 +899,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nombre\": \"John\",\n    \"ape_pat\": \"Doe\",\n    \"ape_mat\": \"Doe\",\n    \"email\": \"example@example.com\",\n    \"password\": \"mypassword\",\n    \"isActive\": \"1\"\n}"
+					"raw": "{\n    \"name\": \"John\",\n    \"ape_pat\": \"Doe\",\n    \"ape_mat\": \"Doe\",\n    \"email\": \"example@example.com\",\n    \"password\": \"mypassword\",\n    \"isActive\": \"1\",\n    \"picture\": \"profile.png\",\n    \"role_id\": 2\n}"
 				},
 				"url": {
 					"raw": "{{host}}auth/register",
@@ -849,13 +968,8 @@
 			"type": "string"
 		},
 		{
-			"key": "api",
-			"value": "localhost:3000/api/v1/",
-			"type": "string"
-		},
-		{
 			"key": "token",
-			"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwicHJvZmlsZVBpYyI6InByb2ZpbGUucG5nIiwibm9tYnJlIjoiUHJvZ3JhbWFjaW9uIiwiYXBlX3BhdCI6IkNhcGRhbSIsImFwZV9tYXQiOiJNYW56YW5pbGxvIiwiZW1haWwiOiJwcm9ncmFtYWNpb25AY2FwZGFtLmdvYi5teCIsInBhc3N3b3JkIjoiJDJiJDEwJHI1ZVJiNG9CZmhxZzdQSGtVS25hby45cHRFN2JVeUxaLjBUbmhMazN1ZzlqMU5NQmFHeEF5IiwiaXNBY3RpdmUiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjMtMTItMjNUMTg6Mjg6NDcuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjMtMTItMjNUMTg6Mjg6NDcuMDAwWiIsImlhdCI6MTcwMzYwMjA3NCwiZXhwIjoxNzA2MTk0MDc0fQ.wKXfS4khPjbWXvGyQZ2yCdnVoHI_HGp9AK2euYlGJAU",
+			"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwicGljdHVyZSI6InByb2ZpbGUucG5nIiwibmFtZSI6IlByb2dyYW1hY2lvbiIsImFwZV9wYXQiOiJDYXBkYW0iLCJhcGVfbWF0IjoiTWFuemFuaWxsbyIsImVtYWlsIjoicHJvZ3JhbWFjaW9uQGNhcGRhbS5nb2IubXgiLCJwYXNzd29yZCI6IiQyYiQxMCRyNWVSYjRvQmZocWc3UEhrVUtuYW8uOXB0RTdiVXlMWi4wVG5oTGszdWc5ajFOTUJhR3hBeSIsImlzQWN0aXZlIjp0cnVlLCJjcmVhdGVkQXQiOiIyMDIzLTEyLTIzVDE4OjI4OjQ3LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEyLTIzVDE4OjI4OjQ3LjAwMFoiLCJpYXQiOjE3MDYxODk2MDEsImV4cCI6MTcwODc4MTYwMX0.uGeJOIKhnXAXu6YpTn2xFdCWlzE7-21ny1ZAGdsPklw",
 			"type": "string"
 		}
 	]
