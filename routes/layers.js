@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
 	},
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage, limits: { fileSize: 100000000 }} ); // 100MB
 
 const cpUpload = upload.fields([
 	{ name: "icono", maxCount: 1 },
@@ -33,54 +33,48 @@ const cpUpload = upload.fields([
 
 // Agrega una nueva layer
 router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (req, res) => {
-		helper.checkPermission(req.user.role_id, "layer_add")
-			.then((rolePerm) => {
-				const archiveFileName = req.files["archive"][0].filename;
-				const iconoFileName = req.files["icono"][0].filename;
-				if (!req.body.name || !req.body.category) {
+	helper.checkPermission(req.user.role_id, "layer_add")
+	.then((rolePerm) => {
+		const archiveFileName = req.files["archive"][0].filename;
+		const iconoFileName = req.files["icono"][0].filename;
+		if (!req.body.name || !req.body.category) {
+			res.status(400).send({
+				msg: "Por favor, proporciona un nombre o una categoría.",
+			});
+			console.log("No se recibió nada");
+		} 
+		else {
+			// Obtén el nombre de la categoría basado en el ID
+			Category.findByPk(req.body.category)
+			.then((category) => {
+				if (!category) {
 					res.status(400).send({
-						msg: "Por favor, proporciona un nombre o una categoría.",
+						msg: "ID de categoría inválido.",
 					});
-					console.log("No se recibió nada");
-				} 
-				else {
-					// Obtén el nombre de la categoría basado en el ID
-					Category.findByPk(req.body.category)
-					.then((category) => {
-						if (!category) {
-							res.status(400).send({
-								msg: "ID de categoría inválido.",
-							});
+				} else {
+					// Crea un directorio para el ícono de la categoría
+					try {
+						// Verifica si el directorio ya existe
+						const dir = "./public/assets/layer_icons/";
+						const categoryDir = dir + category.name;
+						if (!fs.existsSync(categoryDir)) {
+							fs.mkdirSync(categoryDir);
+							console.log("Directorio creado.");
 						} else {
-							// Crea un directorio para el ícono de la categoría
-							try {
-								// Verifica si el directorio ya existe
-								const dir = "./public/assets/layer_icons/";
-								const categoryDir = dir + category.name;
-								if (!fs.existsSync(categoryDir)) {
-									fs.mkdirSync(categoryDir);
-									console.log("Directorio creado.");
-								} else {
-									console.log("El directorio ya existe.");
-								}
-							} catch (err) {
-								console.log(err);
-							}
-
-							Layer.create({
-								name: req.body.name,
-								archive: archiveFileName,
-								category: req.body.category,
-								icono: iconoFileName,
-								isActive: 1,
-							})
-							.then((layer) => res.status(201).send(layer))
-							.catch((error) => {
-								console.log(error);
-								res.status(400).send(error);
-							});
+							console.log("El directorio ya existe.");
 						}
+					} catch (err) {
+						console.log(err);
+					}
+
+					Layer.create({
+						name: req.body.name,
+						archive: archiveFileName,
+						category: req.body.category,
+						icono: iconoFileName,
+						isActive: 1,
 					})
+					.then((layer) => res.status(201).send(layer))
 					.catch((error) => {
 						console.log(error);
 						res.status(400).send(error);
@@ -88,8 +82,14 @@ router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (re
 				}
 			})
 			.catch((error) => {
-				res.status(403).send(error);
+				console.log(error);
+				res.status(400).send(error);
 			});
+		}
+	})
+	.catch((error) => {
+		res.status(403).send(error);
+	});
 });
 
 // Consulta una layer por su nombre y categoría

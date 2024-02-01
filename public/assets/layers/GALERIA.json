@@ -1,0 +1,410 @@
+{
+    "type": "FeatureCollection",
+    "name": "GALERIA_5",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [{
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90000",
+                "LAYER": "GALERIA",
+                "_NAME": "CENTINELA DE ABAJO",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.5889, 19.170316667000066, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90001",
+                "LAYER": "GALERIA",
+                "_NAME": "TOMA DIRECTA CAMOTLAN",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.205983033999985, 19.212016667000057, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90002",
+                "LAYER": "GALERIA",
+                "_NAME": "ARRANCADOR TOMA DIRACTA AVILA CAMACHO 3",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.244114121999985, 19.308328161000077, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90003",
+                "LAYER": "GALERIA",
+                "_NAME": "TOMA DIRECTA AVILA  CAMACHO 3",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.243384468999977, 19.309401755000067, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90004",
+                "LAYER": "GALERIA",
+                "_NAME": "REBOMBEO GALERIA AVILA CAMACHO 3",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.249377650999975, 19.289860790000034, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90005",
+                "LAYER": "GALERIA",
+                "_NAME": "REBOMBEO AVILA CAMACHO 2",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.249514096999974, 19.289744938000069, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90006",
+                "LAYER": "GALERIA",
+                "_NAME": "REBOMBEP GALERIA CAMOTLAN",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.20561741399996, 19.211787202000039, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90007",
+                "LAYER": "GALERIA",
+                "_NAME": "REBOMBEO GALERIA V. DE LOS OTATES",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.34019812799994, 19.256332701000076, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90008",
+                "LAYER": "GALERIA",
+                "_NAME": "REBOMBEO GALERIA CEDOS 1",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.235777777999942, 19.28425, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90009",
+                "LAYER": "GALERIA",
+                "_NAME": "REBOMBEO GALERIA EL CIRUELITO",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.222145886999954, 19.256097340000053, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90010",
+                "LAYER": "GALERIA",
+                "_NAME": "REBOBEO GALERIA EL HUIZCOLOTE 1",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.287895952999975, 19.271440163000022, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90011",
+                "LAYER": "GALERIA",
+                "_NAME": "REBOMBEO EL HUIZCOLOTE 2",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.290948929999956, 19.273688176000064, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90012",
+                "LAYER": "GALERIA",
+                "_NAME": "REBOMBEO GALERIA PUERTECITO DE LAJAS",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.191805555999963, 19.217416667000066, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90013",
+                "LAYER": "GALERIA",
+                "_NAME": "GALERIA CHANDIABLO",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.334847470999989, 19.197007193000047, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90014",
+                "LAYER": "GALERIA",
+                "_NAME": "GALERIA LA LIMA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.336972221999986, 19.230888889000028, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90015",
+                "LAYER": "GALERIA",
+                "_NAME": "GALERIA PARAJES",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.41525, 19.236583333000056, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90016",
+                "LAYER": "GALERIA",
+                "_NAME": "GALERIA DON TOMAS",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.382944443999975, 19.226444444000037, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90017",
+                "LAYER": "GALERIA",
+                "_NAME": "GALERIA HIZCOLOTILA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.380111110999962, 19.221833333000063, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "GALERIA",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "GALERIA.png",
+                "FID_": "90018",
+                "LAYER": "GALERIA",
+                "_NAME": "GALERIA EL LLANITO DE LA MARINA (TOMA DIRECTA)",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.201509362999957, 19.261815751000029, 0.0]
+            }
+        }
+    ]
+}

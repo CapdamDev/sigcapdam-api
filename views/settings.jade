@@ -15,11 +15,11 @@ html(lang='es')
                     div(class='flex items-center text-xl')
                         span(class='text-gray-500 dark:text-gray-200') Ajustes
             
-            //- Contenido en un submenú de diferentes opciones.
+            //- Contenido en un sub menu de diferentes opciones.
             //- Ajustes de: Categorias, Roles, Permisos, Ajustes de la Pagina, y gestión de rutas (esta tendrá el CRUD que permitirá agregar claves catastrales a los contratos que hagan falta).
 
             //- Se hace un grid, con 4 columnas, y 2 filas.
-            //- En la primera fila, se hace un grid con 3 columnas, y 1 fila (Para Categorias, Roles y Permisos)
+            //- En la primera fila, se hace un grid con 3 columnas, y 1 fila (Para Categorias, Roles y Permisos).
             //- En la segunda fila, se hace un grid con 1 columna, y 1 fila (Para Ajustes de la Pagina y del propio usuario.
 
             div(class='px-6 h-[calc(55rem)]')
@@ -83,5 +83,7 @@ html(lang='es')
                         grid-template-columns: repeat(4, minmax(0, 1fr));
                     }
                 }
+
     include ./includes/footer.jade
+    
     script.

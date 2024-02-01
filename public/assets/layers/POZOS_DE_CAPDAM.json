@@ -1,0 +1,1082 @@
+{
+    "type": "FeatureCollection",
+    "name": "POZOS_CAPDAM_8",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [{
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60000",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "pozo jalipa",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.296404420999977, 19.096045769000057, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60001",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 115 SALAGUA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.34411381699999, 19.125359822000064, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60002",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO COUNTRY CLUB",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.345904010999959, 19.139267281000059, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60003",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POAO 4 FRAHOPA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.339051064999978, 19.126160609000067, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60004",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 3 FRAHOPA ENTRADA POR LA C. HACIENDA LA ABAR*",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.334714973999951, 19.126284502000033, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60005",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO FRAHOPA 5",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.341529907999984, 19.128325833000076, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60006",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO MIRAMAR",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.391290647999938, 19.123212724000041, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60007",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO IVECOL",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.342298356999947, 19.135375787000044, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60008",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO GAUDENCIO",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.328570300999957, 19.123246012000038, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60009",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO VIVEROS",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.318220075999989, 19.12118037700003, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60010",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO MARIMAR II NO ES DE CAPDAM",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.322242451999955, 19.121905162000076, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60011",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO MARIMAR II",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.32524320499999, 19.124208864000025, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60012",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO ZUAZO",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.281607478999945, 19.092293920000031, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60013",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 6 TAPEIXTLES",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.282859028999951, 19.09425787300006, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60014",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO EL CENTINELA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.59393289799999, 19.170210295000061, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60015",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 123 SANTIAGO",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.346136509999951, 19.133104144000072, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60016",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 2 COLOMOS",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.242016299999989, 19.051509339000063, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60017",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO LA CENTRAL",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.430787020999958, 19.137544040000023, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60018",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO EL GARCERO",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.226531179999938, 19.053858835000028, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60019",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO SANTA RITA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.094377231999943, 19.012474629000053, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60020",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO LAS ADJUNTAS",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.215767531999973, 19.056940957000052, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60021",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO EL CHAVARIN",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.559485890999952, 19.199941484000078, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60022",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO DYNAMICA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.33924191599999, 19.151940170000046, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60023",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 1 PATOS",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.35188392399999, 19.170752055000037, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60024",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "pozo chandiablo",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.34408287399998, 19.194214136000028, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60025",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO EL CHARCO",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.504487583999946, 19.239491567000073, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60026",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO MARABASCO",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.527778722999983, 19.229705012000068, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60027",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO EMILIANO ZAPATA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.523652204999962, 19.181450942000026, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60028",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO HUERTAS",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.343782416999943, 19.121021188000043, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60029",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO SANTIAGO NORTE",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.339536883999983, 19.156694138000034, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60030",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO PATOS 2",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.347456612999963, 19.170233124000049, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60031",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 10 SALAGUA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.338036129999978, 19.116419096000072, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60032",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO JALIPA 1",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.276731213999938, 19.098467096000036, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60033",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO SAN BUENA VENTURA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.157533712999964, 19.02148726300004, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60034",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO NVO. CUYUTLAN",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.116828928999951, 19.020315611000058, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60035",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO V. CARRANZA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.102329488999942, 19.012622480000061, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60036",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 1 ARMARIA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-103.963539783999977, 18.925676890000034, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60037",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 2 ARMERIA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-103.963382605999982, 18.921752871000024, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60038",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZ0 3 ARMERIA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-103.963636188999942, 18.917195207000077, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60039",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 5 ARMERIA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-103.965020949999939, 18.906617237000034, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60040",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 4 ARMERIA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-103.963634335999984, 18.911364879000075, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60041",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 6 ARMERIA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-103.944179307999946, 18.932420536000052, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60042",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 8 ARMERIA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-103.944573652999964, 18.922779581000043, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60043",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 9 ARMERIA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-103.945545258999971, 18.918091353000023, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60044",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 10 ARMERIA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-103.948952069999962, 18.914395822000074, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60045",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO EJIDO ARMERIA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-103.952053341999942, 18.926949936000028, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60046",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO PEDRO NUÑEZ",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.36384129299995, 19.124272236000024, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60047",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO COLOMOS 1",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.243320438999945, 19.053869894000059, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60048",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO EL NARANJO",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.417988535999939, 19.126591588000053, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60049",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO ROSA MORADA",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.327015604999985, 19.112523955000029, 0.0]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OID_": "0",
+                "FolderPath": "POZOS DE CAPDAM",
+                "COLOR_1": null,
+                "COLOR_2": "110,110,110",
+                "TRANS_1": "0",
+                "TRANS_2": "0",
+                "GROSOR": "4",
+                "ICONO": "POZOS_CAPDAM.png",
+                "FID_": "60050",
+                "LAYER": "POZOS DE CAPDAM",
+                "_NAME": "POZO 153",
+                "PLANTILLA": "2"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-104.325313942999969, 19.118235643000048, 0.0]
+            }
+        }
+    ]
+}
