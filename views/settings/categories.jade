@@ -96,27 +96,9 @@ html(lang='es')
                                                             span(class="sr-only") Close
                                                     form(name="updateCategoryModalForm" id="update-form" action="/api/v1/categories/" method="PUT" enctype="multipart/form-data")
                                                         div(class="grid gap-4 mb-4 sm:grid-cols-2" id="userUpdateId")
-                                                            div
+                                                            div(class="sm:col-span-2")
                                                                 label(for="updateNameInput" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Nombre
                                                                 input(type="text" name="updateNameInput" id="updateNameInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
-                                                            div
-                                                                label(for="updateApePatInput" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Apellido Paterno
-                                                                input(type="text" name="updateApePatInput" id="updateApePatInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
-                                                            div
-                                                                label(for="updateApeMatInput" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Apellido Materno
-                                                                input(type="text" name="updateApeMatInput" id="updateApeMatInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
-                                                            div
-                                                                label(for="rolesUpdate", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Rol
-                                                                select(id="rolesUpdate" name="rolesUpdate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
-                                                                    //- each role in roles
-                                                                    //-     option(value=role.id id='rolesUpdate')= role.role_description
-                                                            div(class="sm:col-span-2")
-                                                                label(for="updateEmailInput", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Email
-                                                                input(type="email" name="updateEmailInput" id="updateEmailInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" autocomplete="new-password")
-                                                            div(class="sm:col-span-2")
-                                                                label(for="updatePasswordInput", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Contraseña
-                                                                input(type="password" name="updatePasswordInput" id="updatePasswordInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="(Sin cambios)" autocomplete="new-password")
-
                                                             div(class="flex items-center space-x-4")
                                                                 button(type="submit" class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800") Actualizar
                                         div(id="deleteModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
@@ -219,7 +201,65 @@ html(lang='es')
                             text: error.message,
                         });
                     }
-                })
+                });
+
+                $(document).on("click", "#updateModalButton", function() {
+                    const categoryId = $(this).val();
+                    const categoryName = $(this).closest("tr").find("#categoryName").attr("value");
+
+                    $("#updateNameInput").val(categoryName);
+
+                    updateForm.addEventListener('submit', async function (event) {
+                        event.preventDefault();
+
+                        try {
+                            const name = document.getElementById('updateNameInput').value;
+
+                            const body = {
+                                name: name,
+                            }
+
+                            const response = await fetch(`/api/v1/categories/${categoryId}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': '!{cookies.token}',
+                                },
+                                body: JSON.stringify(body)
+                            });
+
+                            const data = await response.json();
+
+                            if(response.status === 400){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: data.message,
+                                });
+                            }
+                            else if(response.ok){
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: '¡Éxito!',
+                                    text: data.message,
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.reload();
+                                    }
+                                });
+                            }
+                            else {
+                                throw new Error(data.message);
+                            }
+                        } catch (error) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: error.message,
+                            });
+                        }
+                    })
+                });
 
                 // Delete a category
                 $(document).on("click", "#deleteModalButton", function() {
@@ -240,7 +280,7 @@ html(lang='es')
                             if (response.ok) {
                                 Swal.fire({
                                     title: "Eliminado",
-                                    text: "Usuario eliminado correctamente.",
+                                    text: "Categoria eliminada correctamente.",
                                     icon: "success",
                                     showConfirmButton: true,
                                 }).then(() => {

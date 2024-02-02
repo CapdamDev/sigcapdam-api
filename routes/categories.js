@@ -51,6 +51,9 @@ router.get("/all", passport.authenticate("jwt", {
                         as: "layers",
                     },
                 ],
+                where:{
+                    isActive: true
+                }
             })
                 .then((categories) => {
                     const categoriesWithTotalLayers = categories.map(category => {
@@ -163,7 +166,9 @@ router.delete("/:id", passport.authenticate("jwt", {
                     });
                 }
                 return category
-                    .destroy()
+                    .update({
+                        isActive: false
+                    })
                     .then(() =>
                         res.status(200).send({
                             msg: "Categoría eliminada exitosamente.",

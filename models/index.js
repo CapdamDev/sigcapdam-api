@@ -3,35 +3,35 @@
 const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
-require("dotenv").config();
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || "production";
 
 // Obtener la configuración de la base de datos de las variables de entorno
 const config = {
-	username: process.env.DB_USERNAME || "root",
-	password: process.env.DB_PASSWORD || "",
-	database: process.env.DB_DATABASE || "sigcapdam-apis",
-	host: process.env.DB_HOST || "127.0.0.1",
-	dialect: process.env.DB_DIALECT || "mysql",
+	username: "root",
+	password: "",
+	database: "sigcapdam-api",
+	host: "localhost",
+	dialect: "mysql",
+	timezone: "-06:00",
+	dialectOptions: {
+		dateStrings: true,
+		typeCast: function (field, next) { // for reading from database
+			if (field.type === 'DATETIME') {
+			return field.string()
+			}
+			return next()
+		},
+	},
 };
 
 const db = {};
 
 let sequelize;
-if (config.use_env_variable) {
-	// Si se utiliza una variable de entorno para la conexión a la base de datos, se crea una instancia de Sequelize con esa variable
-	sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} 
-else {
-	// Si no se utiliza una variable de entorno, se crea una instancia de Sequelize con la configuración proporcionada
-	sequelize = new Sequelize(
-		config.database,
-		config.username,
-		config.password,
-		config
-	);
-}
+
+// Si no se utiliza una variable de entorno, se crea una instancia de Sequelize con la configuración proporcionada
+sequelize = new Sequelize(
+	config
+);
 
 fs.readdirSync(__dirname)
 	.filter((file) => {

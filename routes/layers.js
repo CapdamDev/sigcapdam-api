@@ -24,7 +24,10 @@ const storage = multer.diskStorage({
 	},
 });
 
-const upload = multer({ storage, limits: { fileSize: 100000000 }} ); // 100MB
+const upload = multer({
+	storage,
+	limits: { fileSize: 10 * 1024 * 1024 }, // Set the file size limit to 10MB
+});
 
 const cpUpload = upload.fields([
 	{ name: "icono", maxCount: 1 },
@@ -34,53 +37,51 @@ const cpUpload = upload.fields([
 // Agrega una nueva layer
 router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (req, res) => {
 	helper.checkPermission(req.user.role_id, "layer_add")
-	.then((rolePerm) => {
-		const archiveFileName = req.files["archive"][0].filename;
-		const iconoFileName = req.files["icono"][0].filename;
-		if (!req.body.name || !req.body.category) {
-			res.status(400).send({
-				msg: "Por favor, proporciona un nombre o una categoría.",
-			});
-			console.log("No se recibió nada");
-		} 
-		else {
-			// Obtén el nombre de la categoría basado en el ID
-			Category.findByPk(req.body.category)
-			.then((category) => {
-				if (!category) {
-					res.status(400).send({
-						msg: "ID de categoría inválido.",
-					});
-				} else {
-					// Crea un directorio para el ícono de la categoría
-					try {
-						// Verifica si el directorio ya existe
-						const dir = "./public/assets/layer_icons/";
-						const categoryDir = dir + category.name;
-						if (!fs.existsSync(categoryDir)) {
-							fs.mkdirSync(categoryDir);
-							console.log("Directorio creado.");
-						} else {
-							console.log("El directorio ya existe.");
+		.then((rolePerm) => {
+			const archiveFileName = req.files["archive"][0].filename;
+			const iconoFileName = req.files["icono"][0].filename;
+			if (!req.body.name || !req.body.category) {
+				res.status(400).send({
+					msg: "Please pass name or category.",
+				});
+				console.log("No se recibió nada");
+			} else {
+				// Get the category name based on the ID
+				Category.findByPk(req.body.category)
+				.then((category) => {
+					if (!category) {
+						res.status(400).send({
+							msg: "Invalid category ID.",
+						});
+					} else {
+						// Create a directory for the category icon
+						try {
+							// Check if directory already exists
+							const dir = "./public/assets/layer_icons/";
+							const categoryDir = dir + category.name;
+							if (!fs.existsSync(categoryDir)) {
+								fs.mkdirSync(categoryDir);
+								console.log("Directory is created.");
+							} else {
+								console.log("Directory already exists.");
+							}
+						} catch (err) {
+							console.log(err);
 						}
-					} catch (err) {
-						console.log(err);
+						Layer.create({
+							name: req.body.name,
+							archive: archiveFileName,
+							category: req.body.category,
+							icono: iconoFileName,
+							isActive: 1,
+						})
+						.then((layer) => res.status(201).send(layer))
+						.catch((error) => {
+							console.log(error);
+							res.status(400).send(error);
+						});
 					}
-
-					Layer.create({
-						name: req.body.name,
-						archive: archiveFileName,
-						category: req.body.category,
-						icono: iconoFileName,
-						isActive: 1,
-					})
-					.then((layer) => res.status(201).send(layer))
-					.catch((error) => {
-						console.log(error);
-						res.status(400).send(error);
-					});
-				}
-			})
+				})
 			.catch((error) => {
 				console.log(error);
 				res.status(400).send(error);
@@ -120,8 +121,8 @@ router.get("/:category/:name", passport.authenticate("jwt", { session: false }),
 	}
 );
 
-router.get("/all", passport.authenticate("jwt", { session: false, }), function (req, res) {
-		helper.checkPermission(req.user.role_id, "layer_get_all")
+router.get("/all", passport.authenticate("jwt", { session: false }), function (req, res) {
+	helper.checkPermission(req.user.role_id, "layer_get_all")
 		.then((rolePerm) => {
 			Layer.findAll({
 				where: {
@@ -130,34 +131,36 @@ router.get("/all", passport.authenticate("jwt", { session: false, }), function (
 				include: [
 					{
 						model: Category,
-						attributes: ["name"],
+						attributes: ["name", "isActive"],
 						as: "categoryData",
+						where: {
+							isActive: 1,
+						},
 					},
 				],
 			})
 				.then((layers) => {
-					// Envía las layers como respuesta JSON al cliente
+					// Send the layers as a JSON response to the client
 					res.status(200).json(layers);
 				})
 				.catch((error) => {
 					res.status(500).json({
-						error: "Error interno del servidor",
+						error: "Internal Server Error",
 					});
 				});
 		})
 		.catch((error) => {
 			if (error.status === 401) {
 				res.status(401).json({
-					error: "No autorizado",
+					error: "Unauthorized",
 				});
 			} else {
 				res.status(403).json({
-					error: "Prohibido",
+					error: "Forbidden",
 				});
 			}
 		});
-	}
-);
+});
 
 // Consulta una layer por su id
 router.get("/:id", passport.authenticate("jwt", { session: false, }), function (req, res) {
