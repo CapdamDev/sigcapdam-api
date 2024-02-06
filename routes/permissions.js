@@ -33,7 +33,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), function (req
 });
 
 // Obtener lista de todos los permisos
-router.get('/', passport.authenticate('jwt', { session: false }), function (req, res) {
+router.get('/all', passport.authenticate('jwt', { session: false }), function (req, res) {
     helper.checkPermission(req.user.role_id, 'permissions_get_all')
     .then((rolePerm) => {
         Permission

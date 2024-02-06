@@ -1,13 +1,17 @@
-- let verify = false, verify2 = false, verify3 = false, verify4 = false
-case url 
-    when '/home'
-        - verify = true, verify2 = false, verify3 = false, verify4 = false
-    when '/layers_dashboard'
-        - verify = false, verify2 = true, verify3 = false, verify4 = false
-    when '/users_dashboard'
-        - verify = false, verify2 = false, verify3 = true, verify4 = false
-    when '/settings/categories'
-        - verify = false, verify2 = false, verify3 = false, verify4 = true
+- let verify, verify2, verify3, verify4 = false
+if url === '/home'
+    - verify = true
+    - verify2, verify3, verify4 = false
+else if url === '/layers_dashboard'
+    - verify2 = true
+    - verify, verify3, verify4 = false
+else if url === '/settings' || url === '/settings/categories' || url === '/settings/roles' || url === '/settings/permissions' || url === '/settings/routes' || url === '/settings/page-settings'
+    - verify4 = true
+    -verify, verify2, verify3 = false
+else if url === '/users_dashboard'
+    - verify3 = true
+    - verify, verify2, verify4 = false
+
 
 aside(class='compact-nav fixed group overflow-hidden left-0 top-0 z-10 h-screen w-[calc(3.73rem)] border-r border-gray-300/40 bg-white dark:bg-gray-900 dark:border-gray-700 hover:w-56 hover:shadow-2xl')
     div(class='h-full flex flex-col justify-between')

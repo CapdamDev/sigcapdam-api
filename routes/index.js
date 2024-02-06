@@ -43,11 +43,11 @@ router.get("/login", async function (req, res, next) {
 /* GET de las layers en el home */
 router.get("/home", async function (req, res, next) {
 	const cookies = req.parsedCookies;
-	const url = "/home";
+	const url = req.originalUrl;
 
 	if (!cookies.token) {
 		res.redirect("/login");
-	} 
+	}
 	else {
 		res.render("home", { cookies, url });
 	}
@@ -60,7 +60,7 @@ router.get("/layers_dashboard", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.redirect("/login");
-	} 
+	}
 	else {
 		try {
 			// Fetch layers data from the API endpoint
@@ -87,7 +87,7 @@ router.get("/layers_dashboard", async function (req, res, next) {
 
 			if (!layers) {
 				res.send("Error: Could not fetch layers data");
-			} 
+			}
 			else {
 				res.render("layers_dashboard", { layers, cookies, url, categories });
 			}
@@ -104,7 +104,7 @@ router.get("/users_dashboard", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.redirect("/login");
-	} 
+	}
 	else {
 		try {
 			const response = await fetch("http://localhost:3000/api/v1/users/all", {
@@ -127,7 +127,7 @@ router.get("/users_dashboard", async function (req, res, next) {
 
 			if (!users) {
 				res.send(404);
-			} 
+			}
 			else {
 				res.render("users_dashboard", { users, cookies, url, roles });
 			}
@@ -143,7 +143,7 @@ router.get("/settings", async function (req, res, next) {
 	const url = req.originalUrl;
 	if (!cookies.token) {
 		res.redirect("/login");
-	} 
+	}
 	else {
 		res.render("settings", { cookies, url });
 	}
@@ -162,6 +162,7 @@ router.get("/main", async function (req, res, next) {
 	}
 });
 
+/* GET DE LA SECCIÓN DE SETTINGS */
 
 /* GET de la pagina de settings/categories */
 router.get("/settings/categories", async function (req, res, next) {
@@ -184,7 +185,7 @@ router.get("/settings/categories", async function (req, res, next) {
 
 			if (!categories) {
 				res.send(404);
-			} 
+			}
 			else {
 				res.render("settings/categories", { categories, cookies, url });
 			}
@@ -194,8 +195,95 @@ router.get("/settings/categories", async function (req, res, next) {
 	}
 });
 
+/* GET de la pagina de settings/roles */
+router.get("/settings/roles", async function (req, res, next) {
+	const cookies = req.parsedCookies;
+	const url = req.originalUrl;
 
-// /* GET de la pagina de registro */
+	if (!cookies.token) {
+		res.redirect("/login");
+	}
+	else {
+		try {
+			const response = await fetch("http://localhost:3000/api/v1/roles/all", {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: cookies.token,
+				},
+			});
+			const roles = await response.json();
+
+			if (!roles) {
+				res.send(404);
+			}
+			else {
+				res.render("settings/roles", { roles, cookies, url });
+			}
+		} catch (error) {
+			res.status(500).json({ error: "Internal Server Error" });
+		}
+	}
+});
+
+/* GET de la pagina de settings/permissions */
+router.get("/settings/permissions", async function (req, res, next) {
+	const cookies = req.parsedCookies;
+	const url = req.originalUrl;
+
+	if (!cookies.token) {
+		res.redirect("/login");
+	}
+	else {
+		try {
+			const response = await fetch("http://localhost:3000/api/v1/permissions/all", {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: cookies.token,
+				},
+			});
+			const permissions = await response.json();
+
+			if (!permissions) {
+				res.send(404);
+			}
+			else {
+				res.render("settings/permissions", { permissions, cookies, url });
+			}
+		} catch (error) {
+			res.status(500).json({ error: "Internal Server Error" });
+		}
+	}
+});
+
+/* GET de la pagina de settings/routes */
+router.get("/settings/routes", async function (req, res, next) {
+	const cookies = req.parsedCookies;
+	const url = req.originalUrl;
+
+	if (!cookies.token) {
+		res.redirect("/login");
+	}
+	else {
+		res.render("settings/routes", { cookies, url });
+	}
+});
+
+/* GET de la pagina de settings/page-settings */
+router.get("/settings/page-settings", async function (req, res, next) {
+	const cookies = req.parsedCookies;
+	const url = req.originalUrl;
+
+	if (!cookies.token) {
+		res.redirect("/login");
+	}
+	else {
+		res.render("settings/page-settings", { cookies, url });
+	}
+});
+
+// /* GET de la pagina de registro para usuarios nuevos */
 // router.get('/register', function(req, res, next) {
 //   res.render('register');
 // });

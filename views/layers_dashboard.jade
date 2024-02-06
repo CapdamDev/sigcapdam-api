@@ -19,6 +19,9 @@ html(lang='es')
                 margin-top: .7rem;
                 margin-bottom: .5rem;
             }
+            #layersTable_length select {
+                background:  rgb(75 85 99);
+            }
 
     body(class='bg-white dark:bg-gray-900')
         include ./includes/sidebar.jade
@@ -142,15 +145,13 @@ html(lang='es')
             include ./includes/footer.jade
 
                 script.
-                
-                    // Receive the JSON data from API get response from server side (layers)
                     const layers = !{JSON.stringify(layers)};
 
                     $(document).ready(function(){
                         const table = new DataTable('#layersTable', {
                             responsive: true,
                             pageLength: 20,
-                            lengthMenu: [ [20, 40, 60, 100, -1], [20, 40, 60, 100, "All"] ],
+                            lengthMenu: [ [20, 40, 60, 100, -1], [20, 40, 60, 100, "Todos"] ],
                             scrollX: true,
                             scrollY: true,
                             scrollCollapse: true,

@@ -8,9 +8,7 @@ script(src='../assets/flowbite/flowbite.min.js')
 script(src='../assets/dataTables/jquery.dataTables.min.js')
 script(src='../assets/fonts/font-awesome/fontawesome.js')
 script.
-    // Logout button click handler
     $('#logoutButton').on('click', function () {
-        // Fetch to the API logout endpoint
         fetch('/api/v1/auth/logout', {
             method: 'POST',
             headers: {
@@ -19,24 +17,20 @@ script.
         })
         .then(response => {
             if (response.ok) {
-                // Display SweetAlert for successful logout
                 return Swal.fire({
                     title: "Logout Successful",
                     text: "You have been logged out successfully.",
                     icon: "success",
                 });
-            } else {
-                // If the response is not OK, reject the promise
+            }
+            else {
                 throw new Error('Logout failed.');
             }
         })
         .then(() => {
-            // Reload the page
             window.location.reload();
         })
         .catch(error => {
-            // Handle errors, including failed logout
-            console.error('Error during logout:', error);
             Swal.fire("Logout Failed", "There was an error during logout.", "error");
         });
     });
