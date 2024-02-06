@@ -22,7 +22,8 @@ module.exports = {
         password: hashedPassword,
         isActive: 1,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        department_id: 3
       }]);
 
       console.log('Seeding complete');

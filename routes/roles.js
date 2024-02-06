@@ -49,20 +49,28 @@ router.get('/all', passport.authenticate('jwt', { session: false }), function (r
         Role.findAll({
             where: {
                 id: {
-                    [Op.gt]: 1  // Exclude role with ID 1
+                    [Op.gt]: 1  // Exclude role with ID 1, if u want to include it, remove this where clause
                 }
             },
             include: [{
-                    model: Permission,
-                    as: 'permissions',
-                },
-                {
-                    model: User,
-                    as: 'users',
-                }
-            ]
+                model: Permission,
+                as: 'permissions',
+            }, {
+                model: User,
+                as: 'users',
+                attributes: ['name', 'ape_pat', 'ape_mat', 'email', 'id']
+            }]
         })
-        .then((roles) => res.status(200).send(roles))
+        .then((roles) => {
+            const rolesWithPermissionsCountAndUsersCount = roles.map(role => {
+                return {
+                    ...role.toJSON(),
+                    permissionsCount: role.permissions.length,
+                    usersCount: role.users.length
+                };
+            });
+            res.status(200).send(rolesWithPermissionsCountAndUsersCount);
+        })
         .catch((error) => {
             res.status(400).send({
                 success: false,

@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
 				foreignKey: "role_id",
 				as: "roleData",
 			});
+			User.belongsTo(models.Department, {
+				foreignKey: "department_id",
+				as: "departmentData",
+			});
 		}
 	}
 	User.init(
@@ -46,6 +50,10 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			isActive: {
 				type: DataTypes.BOOLEAN,
+				allowNull: true,
+			},
+			department_id: {
+				type: DataTypes.INTEGER,
 				allowNull: true,
 			},
 		},

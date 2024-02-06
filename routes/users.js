@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const router = express.Router();
-const { User, Role, Category, Permission, Layer } = require("../models");
+const { User, Role, Category, Permission, Layer, Department, Direction } = require("../models");
 const passport = require("passport");
 require("../config/passport")(passport);
 const Helper = require("../utils/helper");
@@ -114,7 +114,12 @@ router.get("/all", passport.authenticate("jwt", { session: false, }),
               attributes: ["role_name", "role_description"],
               as: "roleData",
             },
-          ]
+            {
+              model: Department,
+              attributes: ["name"],
+              as: "departmentData",
+            }
+          ],
 				})
 					.then((users) => {
 						// Send the users as a JSON response to the client
