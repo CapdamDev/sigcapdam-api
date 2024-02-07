@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const router = express.Router();
-const { User, Role, Category, Permission, Layer } = require("../models");
+const { Category, Department, Direction, Layer, Permission, Role, RolePermission, User } = require("../models");
 const passport = require("passport");
 require("../config/passport")(passport);
 const Helper = require("../utils/helper");

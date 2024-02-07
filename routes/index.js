@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const { Layer, Category } = require("../models");
+const { Category, Department, Direction, Layer, Permission, Role, RolePermission, User } = require("../models");
 const cookieParser = require("cookie-parser");
 
 router.use(cookieParser());
@@ -162,7 +162,7 @@ router.get("/main", async function (req, res, next) {
 	}
 });
 
-/* GET DE LA SECCIÓN DE SETTINGS */
+/* ================================================== SETTINGS ================================================== */
 
 /* GET de la pagina de settings/categories */
 router.get("/settings/categories", async function (req, res, next) {
@@ -218,6 +218,15 @@ router.get("/settings/roles", async function (req, res, next) {
 				res.send(404);
 			}
 			else {
+				// Convert isActive 1 || true to "Active" and 0 || false to "Inactive"
+				roles.forEach((role) => {
+					if (role.isActive) {
+						role.isActive = "Activo";
+					}
+					else {
+						role.isActive = "Inactivo";
+					}
+				});
 				res.render("settings/roles", { roles, cookies, url });
 			}
 		} catch (error) {
@@ -280,6 +289,68 @@ router.get("/settings/page-settings", async function (req, res, next) {
 	}
 	else {
 		res.render("settings/page-settings", { cookies, url });
+	}
+});
+
+/* GET de la pagina de settings/directions */
+router.get("/settings/directions", async function (req, res, next) {
+	const cookies = req.parsedCookies;
+	const url = req.originalUrl;
+
+	if (!cookies.token) {
+		res.redirect("/login");
+	}
+	else {
+		try {
+			const response = await fetch("http://localhost:3000/api/v1/directions/all", {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: cookies.token,
+				},
+			});
+			const directions = await response.json();
+
+			if (!directions) {
+				res.send(404);
+			}
+			else {
+				res.render("settings/directions", { directions, cookies, url });
+			}
+		} catch (error) {
+			res.status(500).json({ error: "Internal Server Error" });
+		}
+	}
+});
+
+/* GET de la pagina de settings/departments */
+router.get("/settings/departments", async function (req, res, next) {
+	const cookies = req.parsedCookies;
+	const url = req.originalUrl;
+
+	if (!cookies.token) {
+		res.redirect("/login");
+	}
+	else {
+		try {
+			const response = await fetch("http://localhost:3000/api/v1/departments/all", {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: cookies.token,
+				},
+			});
+			const departments = await response.json();
+
+			if (!departments) {
+				res.send(404);
+			}
+			else {
+				res.render("settings/departments", { departments, cookies, url });
+			}
+		} catch (error) {
+			res.status(500).json({ error: "Internal Server Error" });
+		}
 	}
 });
 

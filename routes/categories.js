@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const router = express.Router();
-const { User, Role, Category, Permission, Layer } = require("../models");
+const { Category, Department, Direction, Layer, Permission, Role, RolePermission, User } = require("../models");
 const passport = require("passport");
 require("../config/passport")(passport);
 const Helper = require("../utils/helper");
@@ -55,20 +55,20 @@ router.get("/all", passport.authenticate("jwt", {
                     isActive: true
                 }
             })
-                .then((categories) => {
-                    const categoriesWithTotalLayers = categories.map(category => {
-                        const totalLayers = category.layers.length;
-                        return {
-                            ...category.toJSON(),
-                            totalLayers
-                        };
-                    });
-                    res.status(200).send(categoriesWithTotalLayers);
-                })
-                .catch((error) => {
-                    console.log(error);
-                    res.status(400).send(error);
+            .then((categories) => {
+                const categoriesWithTotalLayers = categories.map(category => {
+                    const totalLayers = category.layers.length;
+                    return {
+                        ...category.toJSON(),
+                        totalLayers
+                    };
                 });
+                res.status(200).send(categoriesWithTotalLayers);
+            })
+            .catch((error) => {
+                console.log(error);
+                res.status(400).send(error);
+            });
         })
         .catch((error) => {
             res.status(403).send(error);
