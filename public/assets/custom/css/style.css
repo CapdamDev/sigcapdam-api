@@ -11,3 +11,27 @@ a {
 .compact-nav {
   transition: width 0.4s ease-in-out;
 }
+
+#layersTable_length select {
+  background:  rgb(75 85 99);
+}
+
+#usersTable_length select {
+  background:  rgb(75 85 99);
+}
+
+#categoriesTable_length select {
+  background:  rgb(75 85 99);
+}
+
+#rolesTable_length select {
+  background:  rgb(75 85 99);
+}
+
+#permissionsTable_length select {
+  background:  rgb(75 85 99);
+}
+
+#routesTable_length select {
+  background:  rgb(75 85 99);
+}
