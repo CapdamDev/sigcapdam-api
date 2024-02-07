@@ -8,43 +8,10 @@
 	},
 	"item": [
 		{
-			"name": "Roles Get",
+			"name": "Get All Users",
 			"request": {
 				"method": "GET",
 				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}roles/all",
-					"host": [
-						"{{host}}roles"
-					],
-					"path": [
-						"all"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Users List",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
 					{
 						"key": "Authorization",
 						"value": "{{token}}",
@@ -98,7 +65,7 @@
 			"response": []
 		},
 		{
-			"name": "Permissions Get",
+			"name": "Get All Permissions",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -114,47 +81,43 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}permissions",
+					"raw": "{{host}}permissions/all",
 					"host": [
 						"{{host}}permissions"
+					],
+					"path": [
+						"all"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Test API de catastro",
+			"name": "Get Permissions by ID",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}permissions/:id",
+					"host": [
+						"{{host}}permissions"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
 						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNhcGRhbSIsImlhdCI6MTY5MjY1Mzc5NX0.KFcP_21WEnzvdAWF_8augN-a6-j3LYlKZiGpzGmVtdM",
-							"type": "string"
+							"key": "id",
+							"value": "1"
 						}
 					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://api.manzanillo.gob.mx:3001/api/predio/private/072004022003000",
-					"protocol": "http",
-					"host": [
-						"api",
-						"manzanillo",
-						"gob",
-						"mx"
-					],
-					"port": "3001",
-					"path": [
-						"api",
-						"predio",
-						"private",
-						"072004022003000"
-					]
-				},
-				"description": "Los números después de \"/private/XXXXXXXX\" es la clave catastral de un predio sin los guiones medios. Si deseas hacer una solicitud con otra clave catastral asegúrate de que no tenga los guiones medios. NOTA: Se necesita un Bearer Token para hacer la solicitud."
+				}
 			},
 			"response": []
 		},
@@ -203,6 +166,97 @@
 					"raw": "{{host}}layers/:id",
 					"host": [
 						"{{host}}layers"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Layer Exist",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}layers/:category/:name",
+					"host": [
+						"{{host}}layers"
+					],
+					"path": [
+						":category",
+						":name"
+					],
+					"variable": [
+						{
+							"key": "category",
+							"value": "1"
+						},
+						{
+							"key": "name",
+							"value": "SANTIAGO-SALAGUA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Roles",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}roles/all",
+					"host": [
+						"{{host}}roles"
+					],
+					"path": [
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Role by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}roles/:id",
+					"host": [
+						"{{host}}roles"
 					],
 					"path": [
 						":id"
@@ -277,7 +331,7 @@
 			"response": []
 		},
 		{
-			"name": "Get All Users",
+			"name": "Get All Departments",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -288,9 +342,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}users/all",
+					"raw": "{{host}}departments/all",
 					"host": [
-						"{{host}}users"
+						"{{host}}departments"
 					],
 					"path": [
 						"all"
@@ -300,7 +354,7 @@
 			"response": []
 		},
 		{
-			"name": "Check Layer Exist",
+			"name": "Get Department by ID",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -311,25 +365,108 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}layers/:category/:name",
+					"raw": "{{host}}departments/:id",
 					"host": [
-						"{{host}}layers"
+						"{{host}}departments"
 					],
 					"path": [
-						":category",
-						":name"
+						":id"
 					],
 					"variable": [
 						{
-							"key": "category",
+							"key": "id",
 							"value": "1"
-						},
-						{
-							"key": "name",
-							"value": "SANTIAGO-SALAGUA"
 						}
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Directions",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}directions/all",
+					"host": [
+						"{{host}}directions"
+					],
+					"path": [
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Direction by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}directions/:id",
+					"host": [
+						"{{host}}directions"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test API de catastro",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNhcGRhbSIsImlhdCI6MTY5MjY1Mzc5NX0.KFcP_21WEnzvdAWF_8augN-a6-j3LYlKZiGpzGmVtdM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.manzanillo.gob.mx:3001/api/predio/private/072004022003000",
+					"protocol": "http",
+					"host": [
+						"api",
+						"manzanillo",
+						"gob",
+						"mx"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"predio",
+						"private",
+						"072004022003000"
+					]
+				},
+				"description": "Los números después de \"/private/XXXXXXXX\" es la clave catastral de un predio sin los guiones medios. Si deseas hacer una solicitud con otra clave catastral asegúrate de que no tenga los guiones medios. NOTA: Se necesita un Bearer Token para hacer la solicitud."
 			},
 			"response": []
 		},
@@ -969,7 +1106,7 @@
 		},
 		{
 			"key": "token",
-			"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwicGljdHVyZSI6InByb2ZpbGUucG5nIiwibmFtZSI6IlByb2dyYW1hY2lvbiIsImFwZV9wYXQiOiJDYXBkYW0iLCJhcGVfbWF0IjoiTWFuemFuaWxsbyIsImVtYWlsIjoicHJvZ3JhbWFjaW9uQGNhcGRhbS5nb2IubXgiLCJwYXNzd29yZCI6IiQyYiQxMCRyNWVSYjRvQmZocWc3UEhrVUtuYW8uOXB0RTdiVXlMWi4wVG5oTGszdWc5ajFOTUJhR3hBeSIsImlzQWN0aXZlIjp0cnVlLCJjcmVhdGVkQXQiOiIyMDIzLTEyLTIzVDE4OjI4OjQ3LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEyLTIzVDE4OjI4OjQ3LjAwMFoiLCJpYXQiOjE3MDYxODk2MDEsImV4cCI6MTcwODc4MTYwMX0.uGeJOIKhnXAXu6YpTn2xFdCWlzE7-21ny1ZAGdsPklw",
+			"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwicGljdHVyZSI6InByb2ZpbGUucG5nIiwibmFtZSI6IlByb2dyYW1hY2lvbiIsImFwZV9wYXQiOiJDYXBkYW0iLCJhcGVfbWF0IjoiTWFuemFuaWxsbyIsImVtYWlsIjoicHJvZ3JhbWFjaW9uQGNhcGRhbS5nb2IubXgiLCJwYXNzd29yZCI6IiQyYiQxMCRyNWVSYjRvQmZocWc3UEhrVUtuYW8uOXB0RTdiVXlMWi4wVG5oTGszdWc5ajFOTUJhR3hBeSIsImlzQWN0aXZlIjp0cnVlLCJkZXBhcnRtZW50X2lkIjozLCJjcmVhdGVkQXQiOiIyMDIzLTEyLTIzIDE4OjI4OjQ3IiwidXBkYXRlZEF0IjoiMjAyMy0xMi0yMyAxODoyODo0NyIsImlhdCI6MTcwNzMxODk2OSwiZXhwIjoxNzA5OTEwOTY5fQ.dUYiX_Jjq9s2-MrpxKJoTSeYKwRmuxcyRROGLvOS9zs",
 			"type": "string"
 		}
 	]

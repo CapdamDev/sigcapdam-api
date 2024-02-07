@@ -48,6 +48,36 @@ router.get('/all', passport.authenticate('jwt', { session: false }), function (r
     });
 });
 
+// Obtener un permiso por ID
+router.get('/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
+    helper.checkPermission(req.user.role_id, 'permissions_get')
+    .then((rolePerm) => {
+        if (!req.params.id) {
+            res.status(400).send({
+                msg: 'Please pass permission ID.'
+            })
+        } 
+        else {
+            Permission.findByPk(req.params.id)
+            .then((perm) => {
+                if (perm) {
+                    res.status(200).send(perm);
+                } else {
+                    res.status(404).send({
+                        'message': 'permission not found'
+                    });
+                }
+            })
+            .catch((error) => {
+                res.status(400).send(error);
+            });
+        }
+    })
+    .catch((error) => {
+        res.status(403).send(error);
+    });
+});
+
 // Actualizar un permiso
 router.put('/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
     helper.checkPermission(req.user.role_id, 'permissions_update')
