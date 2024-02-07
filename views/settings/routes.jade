@@ -29,12 +29,16 @@ html(lang='es')
                 div(class="h-16 items-center border-b border-gray-700 flex justify-between px-6 lg:px-12")
                     //- Coordenadas del mouse
                     div(class='flex items-center lg:text-xl md:text-md sm:text-sm')
-                        span(class='text-gray-500 dark:text-gray-200') Rutas, Claves Catastrales y Contratos
-                    //- span(class='text-left text-white') SIGCAPDAM
-                    //- button(type="button" id="createCategoryModalButton" data-modal-target="createCategoryModal" data-modal-toggle="createCategoryModal" class="flex items-center justify-center text-white bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-full text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-500 focus:outline-none dark:focus:ring-sky-800")
-                    //-             svg(class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true")
-                    //-                 path(clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z")
-                    //-             | Nuevo usuario
+                        //- Add a button to go back to the previous page
+                        button(type="button" class="flex items-center justify-center text-white bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-full text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-500 focus:outline-none dark:focus:ring-sky-800" onclick="window.location.href='/settings'")
+                            svg(class='w-4 h-4 mr-1' xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' stroke='currentColor')
+                                path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10 19l-7-7m0 0l7-7m-7 7h18')
+                            span(class='ml-1') Regresar
+                        span(class='text-gray-500 dark:text-gray-200 ml-4') Rutas
+                    button(type="button" id="createCategoryModalButton" data-modal-target="createCategoryModal" data-modal-toggle="createCategoryModal" class="flex items-center justify-center text-white bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-full text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-500 focus:outline-none dark:focus:ring-sky-800")
+                                svg(class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true")
+                                    path(clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z")
+                                | Agregar ruta
                 div(class='px-6 h-[calc(55rem)]')
                     //- CRUD para gestionar las capas cargadas
                     section(class="px-3 h-auto w-full rounded-2xl bg-gray-50 dark:bg-gray-900 antialiased")
