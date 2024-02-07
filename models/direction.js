@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       // Define the association here
       Direction.hasMany(models.Department, {
         foreignKey: "direction_id",
-        as: "departments",
+        as: "departmentsData",
       });
     }
   }

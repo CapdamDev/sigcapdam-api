@@ -14,6 +14,8 @@ var permsRouter = require('./routes/permissions');
 var authRouter = require('./routes/auth');
 var layersRouter = require('./routes/layers');
 var categoriesRouter = require('./routes/categories');
+var directionsRouter = require('./routes/directions');
+var departmentsRouter = require('./routes/departments');
 
 var app = express();
 
@@ -37,11 +39,13 @@ app.use((req, res, next) => { res.header("Access-Control-Allow-Origin", "http://
 
 app.use('/', indexRouter);
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/users', usersRouter);
-app.use('/api/v1/roles', rolesRouter);
-app.use('/api/v1/permissions', permsRouter);
-app.use('/api/v1/layers', layersRouter);
 app.use('/api/v1/categories', categoriesRouter);
+app.use('/api/v1/departments', departmentsRouter);
+app.use('/api/v1/directions', directionsRouter);
+app.use('/api/v1/layers', layersRouter);
+app.use('/api/v1/permissions', permsRouter);
+app.use('/api/v1/roles', rolesRouter);
+app.use('/api/v1/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

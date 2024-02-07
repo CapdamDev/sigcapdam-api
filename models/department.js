@@ -16,7 +16,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Department.init({
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    direction_id: DataTypes.INTEGER, // Foreign key for the direction
+    isActive: DataTypes.BOOLEAN, // Assuming you have an isActive column
   }, {
     sequelize,
     modelName: 'Department',

@@ -29,12 +29,16 @@ html(lang='es')
                 div(class="h-16 items-center border-b border-gray-700 flex justify-between px-6 lg:px-12")
                     //- Coordenadas del mouse
                     div(class='flex items-center lg:text-xl md:text-md sm:text-sm')
-                        span(class='text-gray-500 dark:text-gray-200') Roles de usuario
-                    //- span(class='text-left text-white') SIGCAPDAM
+                        //- Add a button to go back to the previous page
+                        button(type="button" class="flex items-center justify-center text-white bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-full text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-500 focus:outline-none dark:focus:ring-sky-800" onclick="window.location.href='/settings'")
+                            svg(class='w-4 h-4 mr-1' xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' stroke='currentColor')
+                                path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10 19l-7-7m0 0l7-7m-7 7h18')
+                            span(class='ml-1') Regresar
+                        span(class='text-gray-500 dark:text-gray-200 ml-4') Roles
                     button(type="button" id="createRoleModalButton" data-modal-target="createRoleModal" data-modal-toggle="createRoleModal" class="flex items-center justify-center text-white bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-full text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-500 focus:outline-none dark:focus:ring-sky-800")
                                 svg(class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true")
                                     path(clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z")
-                                | Nuevo usuario
+                                | Nuevo rol
                 div(class='px-6 h-[calc(55rem)]')
                     //- CRUD para gestionar las capas cargadas
                     section(class="px-3 h-auto w-full rounded-2xl bg-gray-50 dark:bg-gray-900 antialiased")
@@ -47,6 +51,7 @@ html(lang='es')
                                                 th(scope="col" class="px-6 py-4") #
                                                 th(scope="col" class="px-6 py-4") Rol
                                                 th(scope="col" class="px-6 py-4") Descripción
+                                                th(scope="col" class="px-6 py-4") Status
                                                 th(scope="col" class="px-6 py-4") Total de permisos
                                                 th(scope="col" class="px-6 py-4") Usuarios asignados
                                                 th(scope="col" class="px-6 py-4") Acciones
@@ -58,6 +63,7 @@ html(lang='es')
                                                     th(id="roleId" scope="row" class="px-3 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white" value=role.id)=role.id
                                                     td(id="roleName" scope="row" class="px-4 py-3 text-sm font-medium" value=role.role_name)=role.role_name
                                                     td(id="roleDescription" scope="row" class="px-4 py-3 text-sm font-medium" value=role.role_description)=role.role_description
+                                                    td(id="roleStatus" scope="row" class="px-4 py-3 text-sm font-medium" value=role.isActive)=role.isActive
                                                     td(id="roleTotal" scope="row" class="px-4 py-3 text-sm font-medium" value=role.permissionsCount)=role.permissionsCount
                                                     td(id="roleUsers" scope="row" class="px-4 py-3 text-sm font-medium" value=role.usersCount)=role.usersCount
                                                     td(id="roleActions" scope="row" class="px-4 py-3 items-center")
@@ -103,9 +109,12 @@ html(lang='es')
                                                             span(class="sr-only") Close
                                                     form(name="updateRoleModalForm" id="update-form" action="/api/v1/roles/" method="PUT" enctype="multipart/form-data")
                                                         div(class="grid gap-4 mb-4 sm:grid-cols-2" id="userUpdateId")
-                                                            div(class="sm:col-span-2")
-                                                                label(for="updateNameInput" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Nombre
-                                                                input(type="text" name="updateNameInput" id="updateNameInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
+                                                            div
+                                                                label(for="updateRoleName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Nombre
+                                                                input(type="text" name="updateRoleName" id="updateRoleName" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
+                                                            div
+                                                                label(for="updateRoleDescription" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Descripción o Área de trabajo
+                                                                input(type="text" name="updateRoleDescription" id="updateRoleDescription" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
                                                             div(class="flex items-center space-x-4")
                                                                 button(type="submit" class="text-white bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-500 dark:focus:ring-sky-800") Actualizar
                                         div(id="deleteModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
@@ -163,10 +172,12 @@ html(lang='es')
                     event.preventDefault();
 
                     try {
-                        const name = document.getElementById('name').value;
+                        const role_name = document.getElementById('role_name').value;
+                        const role_description = document.getElementById('role_description').value;
 
                         const body = {
-                            name: name,
+                            role_name: role_name,
+                            role_description: role_description,
                         }
 
                         const response = await fetch('/api/v1/roles/', {
@@ -213,17 +224,21 @@ html(lang='es')
                 $(document).on("click", "#updateModalButton", function() {
                     const roleId = $(this).val();
                     const roleName = $(this).closest("tr").find("#roleName").attr("value");
+                    const roleDescription = $(this).closest("tr").find("#roleDescription").attr("value");
 
-                    $("#updateNameInput").val(roleName);
+                    $("#updateRoleName").val(roleName);
+                    $("#updateRoleDescription").val(roleDescription);
 
                     updateForm.addEventListener('submit', async function (event) {
                         event.preventDefault();
 
                         try {
-                            const name = document.getElementById('updateNameInput').value;
+                            const role_name = document.getElementById('updateRoleName').value;
+                            const role_description = document.getElementById('updateRoleDescription').value;
 
                             const body = {
-                                name: name,
+                                role_name: role_name,
+                                role_description: role_description,
                             }
 
                             const response = await fetch(`/api/v1/roles/${roleId}`, {

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Permission = require('../models').Permission;
+const { Category, Department, Direction, Layer, Permission, Role, RolePermission, User } = require("../models");
 const passport = require('passport');
 require('../config/passport')(passport);
 const Helper = require('../utils/helper');

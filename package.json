@@ -1,11 +1,12 @@
 {
   "name": "sigcapdam-api",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
+  "description": "Sistema de Información Geográfica para la Comisión de Agua Potable y Alcantarillado Manzanillo",
   "scripts": {
-    "start": "npx pm2 start ./bin/www",
-    "dev": "npx pm2-dev ./bin/www",
-    "watch": "nodemon --ext js,html,css,jade,pug --ignore public/ ./bin/www",
+    "start": "npx pm2 start ./bin/www --name sigcapdam-api --watch",
+    "dev": "npx pm2 start ./bin/www --name sigcapdam-api --watch",
+    "watch": "npx pm2 start ./bin/www --name sigcapdam-api --watch",
     "build": "webpack"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
     "jstransformer": "^1.0.0",
     "morgan": "~1.9.1",
     "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "nocache": "^4.0.0",
     "passport": "^0.7.0",
@@ -41,11 +43,13 @@
     "sequelize-cli": "^6.6.2",
     "tailwindcss": "^3.3.5",
     "transformers": "^1.8.3",
+    "uuid": "7.0",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
   },
   "devDependencies": {
-    "pm2": "^2.10.4",
+    "pm2": "^5.3.1",
+    "tx2": "^1.0.5",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
   }

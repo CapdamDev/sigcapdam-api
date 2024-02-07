@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models').User;
-const Role = require('../models').Role;
-const Permission = require('../models').Permission;
-const RolePermission = require('../models').RolePermission;
+const { Category, Department, Direction, Layer, Permission, Role, RolePermission, User } = require("../models");
 const passport = require('passport');
 require('../config/passport')(passport);
 const Helper = require('../utils/helper');
@@ -23,7 +20,8 @@ router.post('/', passport.authenticate('jwt', { session: false }), function (req
         else {
             Role.create({
                 role_name: req.body.role_name,
-                role_description: req.body.role_description
+                role_description: req.body.role_description,
+                isActive: 1,
             })
             .then((role) => res.status(201).send(role))
             .catch((error) => {
