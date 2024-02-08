@@ -23,6 +23,7 @@ router.post("/", passport.authenticate("jwt", {
             else {
                 Category.create({
                     name: req.body.name,
+                    isActive: 1
                 })
                     .then((category) => res.status(201).send(category))
                     .catch((error) => {
