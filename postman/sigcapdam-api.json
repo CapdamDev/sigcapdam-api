@@ -122,6 +122,36 @@
 			"response": []
 		},
 		{
+			"name": "Get Permissions by Role",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}permissions/role/:id",
+					"host": [
+						"{{host}}permissions"
+					],
+					"path": [
+						"role",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get All Layers",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -339,6 +369,12 @@
 						"key": "Authorization",
 						"value": "{{token}}",
 						"type": "text"
+					},
+					{
+						"key": "COoCookie",
+						"value": "",
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"url": {
@@ -348,6 +384,13 @@
 					],
 					"path": [
 						"all"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "{{token}}",
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -581,16 +624,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"permissions\": [2, 18, 19] // Aqui debes de poner como numero los permisos que se le van a dar al rol del usuario\n}"
+					"raw": "{\n    \"permissions\": [1, 2, 3, 4, 5] // Aqui debes de poner como numero los permisos que se le van a dar al rol del usuario\n}"
 				},
 				"url": {
-					"raw": "{{host}}roles/permissions/2",
+					"raw": "{{host}}roles/permissions/4",
 					"host": [
 						"{{host}}roles"
 					],
 					"path": [
 						"permissions",
-						"2"
+						"4"
 					]
 				}
 			},

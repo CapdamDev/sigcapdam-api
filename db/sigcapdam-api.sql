@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 27-01-2024 a las 20:16:04
+-- Tiempo de generación: 09-02-2024 a las 23:01:02
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `Categories` (
   `name` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
+  `isActive` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -42,12 +43,99 @@ CREATE TABLE IF NOT EXISTS `Categories` (
 -- Volcado de datos para la tabla `Categories`
 --
 
-INSERT INTO `Categories` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
-(1, 'POZOS DE CONAGUA', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(2, 'COMERCIALIZACION', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(3, 'INFRAESTRUCTURA', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(4, 'RUTAS', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(5, 'CARTOGRAFIA MUNICIPAL', '2023-12-26 19:50:35', '2023-12-26 19:50:35');
+INSERT INTO `Categories` (`id`, `name`, `createdAt`, `updatedAt`, `isActive`) VALUES
+(1, 'POZOS DE CONAGUA', '2023-12-23 18:28:47', '2023-12-23 18:28:47', 1),
+(2, 'COMERCIALIZACION', '2023-12-23 18:28:47', '2024-02-02 13:02:52', 1),
+(3, 'INFRAESTRUCTURA', '2023-12-23 18:28:47', '2023-12-23 18:28:47', 1),
+(4, 'RUTAS', '2023-12-23 18:28:47', '2024-02-09 20:04:56', 1),
+(5, 'CARTOGRAFIA MUNICIPAL', '2024-02-08 14:18:31', '2024-02-08 14:18:31', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Departments`
+--
+
+DROP TABLE IF EXISTS `Departments`;
+CREATE TABLE IF NOT EXISTS `Departments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `direction_id` int(11) DEFAULT NULL,
+  `isActive` tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  KEY `Departments_direction_id_foreign_idx` (`direction_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `Departments`
+--
+
+INSERT INTO `Departments` (`id`, `name`, `createdAt`, `updatedAt`, `direction_id`, `isActive`) VALUES
+(1, 'DEPARTAMENTO JURIDICO', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 1, 1),
+(2, 'DEPARTAMENTO TRANSPARENCIA', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 1, 1),
+(3, 'DEPARTAMENTO DE SISTEMAS E INFORMATICA', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 1, 1),
+(4, 'DEPARTAMENTO DE COMUNICACIÓN SOCIAL', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 1, 1),
+(5, 'NOTIFICADORES E INSPECTORES', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 3, 1),
+(6, 'DEPARTAMENTO DE BIENES PATRIMONIALES', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 4, 1),
+(7, 'DEPARTAMENTO DE TALLER MECANICO', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 4, 1),
+(8, 'DIRECCIÓN ADMINISTRATIVA', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 4, 1),
+(9, 'DEPARTAMENTO DE RECURSOS HUMANOS', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 4, 1),
+(10, 'DEPARTAMENTO DE RECURSOS MATERIALES', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 4, 1),
+(11, 'DEPARTAMENTO DE ALMACEN', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 4, 1),
+(12, 'DEPARTAMENTO DE SERVICIOS GENERALES', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 4, 1),
+(13, 'COBRANZA Y CAJAS', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 5, 1),
+(14, 'DEPARTAMENTO DE INSTALACIONES Y REDES', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 6, 1),
+(15, 'DELEGACION SANTIAGO Y PENÍNSULA', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 6, 1),
+(16, 'DELEGACION VALLE DE LAS GARZAS', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 6, 1),
+(17, 'DELEGACION ZONA CENTRO Y EL COLOMO', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 6, 1),
+(18, 'DEPARTAMENTO ELECTROMECÁNICA', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 6, 1),
+(19, 'CALIDAD DEL AGUA Y SANEAMIENTO', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 6, 1),
+(20, 'ACUEDUCTO ARMERIA-MANZANILLO', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 6, 1),
+(21, 'DEPARTAMENTO DE PROYECTOS', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 7, 1),
+(22, 'DIRECCIÓN DE CONSTRUCCIÓN', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 7, 1),
+(23, 'SUPERVISIÓN DE OBRAS', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 7, 1),
+(24, 'COMERCIAL ADMINISTRATIVA', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 3, 1),
+(25, 'ATENCIÓN A USUARIOS', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 3, 1),
+(26, 'ACLARACIONES', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 3, 1),
+(27, 'DEPARTAMENTOS DE LA CONTRALORÍA', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 2, 1),
+(28, 'DEPARTAMENTOS DE FINANZAS', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 5, 1),
+(29, 'FACTURACIÓN', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 3, 1),
+(30, 'DIRECCIÓN GENERAL', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 1, 1),
+(31, 'DIRECCIÓN DE OPERACIÓN', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 6, 1),
+(32, 'DIRECCIÓN DE CONSTRUCCIÓN', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 7, 1),
+(33, 'AYUNTAMIENTO DE MANZANILLO', '2024-02-06 13:53:52', '2024-02-06 13:53:52', 8, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Directions`
+--
+
+DROP TABLE IF EXISTS `Directions`;
+CREATE TABLE IF NOT EXISTS `Directions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `isActive` tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `Directions`
+--
+
+INSERT INTO `Directions` (`id`, `name`, `createdAt`, `updatedAt`, `isActive`) VALUES
+(1, 'DIRECCIÓN GENERAL', '2024-02-06 13:49:11', '2024-02-06 13:49:11', 1),
+(2, 'DIRECCIÓN DE CONTRALORÍA', '2024-02-06 13:49:11', '2024-02-06 13:49:11', 1),
+(3, 'DIRECCION COMERCIAL', '2024-02-06 13:49:11', '2024-02-06 13:49:11', 1),
+(4, 'DIRECIÓN ADMINISTRATIVA', '2024-02-06 13:49:11', '2024-02-06 13:49:11', 1),
+(5, 'DIRECCION DE FINANZAS', '2024-02-06 13:49:11', '2024-02-06 13:49:11', 1),
+(6, 'DIRECIÓN DE OPERACIÓN', '2024-02-06 13:49:11', '2024-02-06 13:49:11', 1),
+(7, 'DIRECCIÓN DE CONSTRUCCIÓN', '2024-02-06 13:49:11', '2024-02-06 13:49:11', 1),
+(8, 'AYUNTAMIENTO DE MAZANILLO', '2024-02-06 13:49:11', '2024-02-06 13:49:11', 1);
 
 -- --------------------------------------------------------
 
@@ -66,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `Layers` (
   `icono` varchar(255) DEFAULT NULL,
   `isActive` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=175 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=197 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Layers`
@@ -243,7 +331,31 @@ INSERT INTO `Layers` (`id`, `name`, `archive`, `category`, `createdAt`, `updated
 (169, '1019', '1019.json', '4', '2024-01-10 16:37:14', '2024-01-10 16:37:14', '1019.png', 1),
 (170, '1020', '1020.json', '4', '2024-01-10 16:37:14', '2024-01-10 16:37:14', '1020.png', 1),
 (171, '1023', '1023.json', '4', '2024-01-10 16:37:14', '2024-01-10 16:37:14', '1023.png', 1),
-(172, '1024', '1024.json', '4', '2024-01-10 16:37:14', '2024-01-10 16:37:14', '1024.png', 1);
+(172, '1024', '1024.json', '4', '2024-01-10 16:37:14', '2024-01-10 16:37:14', '1024.png', 1),
+(173, 'COLADERA', 'COLADERA.json', '3', '2024-02-01 13:52:18', '2024-02-01 13:52:18', 'COLADERA.png', 1),
+(174, 'DESAGUE', 'DESAGUE.json', '3', '2024-02-01 13:53:35', '2024-02-01 13:53:35', 'DESAGUE.png', 1),
+(175, 'POZO DE VISITA', 'POZO_DE_VISITA.json', '3', '2024-02-01 14:19:04', '2024-02-01 14:19:04', 'POZO_DE_VISITA.png', 1),
+(176, 'CAJA DE VALVULAS', 'CAJA_DE_VALVULAS.json', '3', '2024-02-01 14:20:51', '2024-02-01 14:20:51', 'CAJA_DE_VALVULAS.png', 1),
+(177, 'NO IDENTIFICADO', 'NO_IDENTIFICADO.json', '3', '2024-02-01 14:24:40', '2024-02-01 14:24:40', 'NO_IDENTIFICADO.png', 1),
+(178, 'POZOS DE CAPDAM', 'POZOS_DE_CAPDAM.json', '3', '2024-02-01 14:35:00', '2024-02-01 14:35:00', 'POZOS_DE_CAPDAM.png', 1),
+(179, 'REBOMBEO AGUA POTABLE', 'REBOMBEO_AGUA_POTABLE.json', '3', '2024-02-01 14:37:53', '2024-02-01 14:37:53', 'REBOMBEO_AGUA_POTABLE.png', 1),
+(180, 'REBOMBEO AGUAS NEGRAS', 'REBOMBEO_AGUAS_NEGRAS.json', '3', '2024-02-01 14:38:25', '2024-02-01 14:38:25', 'REBOMBEO_AGUAS_NEGRAS.png', 1),
+(181, 'GALERIA', 'GALERIA.json', '3', '2024-02-01 14:38:54', '2024-02-01 14:38:54', 'GALERIA.png', 1),
+(182, 'PTAR', 'PTAR.json', '3', '2024-02-01 14:39:52', '2024-02-01 14:39:52', 'PTAR.png', 1),
+(183, 'TANQUE DE ALMACENAMIENTO AP', 'TANQUE_DE_ALMACENAMIENTO_AP.json', '3', '2024-02-01 14:41:00', '2024-02-01 14:41:00', 'TANQUE_DE_ALMACENAMIENTO_AP.png', 1),
+(184, 'OFICINAS ADMINISTRATIVAS', 'OFICINAS_ADMINISTRATIVAS.json', '3', '2024-02-01 14:42:13', '2024-02-01 14:42:13', 'OFICINAS_ADMINISTRATIVAS.png', 1),
+(185, 'RED DE AGUA POTABLE', 'RED_DE_AGUA_POTABLE.json', '3', '2024-02-01 14:42:13', '2024-02-01 14:42:13', 'RED_DE_AGUA_POTABLE.png', 1),
+(186, 'ESCURRIMIENTOS', 'ESCURRIMIENTOS.json', '3', '2024-02-02 14:38:30', '2024-02-02 14:38:30', 'ESCURRIMIENTOS.png', 1),
+(187, 'RIOS', 'RIOS.json', '3', '2024-02-02 16:09:32', '2024-02-02 16:09:32', 'RIOS.png', 1),
+(188, 'ZONAS IRREGULARES', 'ZONAS_IRREGULARES.json', '5', '2024-02-08 14:25:31', '2024-02-08 14:25:31', 'ZONAS_IRREGULARES.png', 1),
+(189, 'SIN INFORMACION', 'SIN_INFORMACION.json', '5', '2024-02-08 14:28:20', '2024-02-08 14:28:20', 'SIN_INFORMACION.png', 1),
+(190, 'REGIMEN CONDOMINAL', 'REGIMEN_CONDOMINAL.json', '5', '2024-02-08 14:30:54', '2024-02-08 14:30:54', 'REGIMEN_CONDOMINAL.png', 1),
+(191, 'MANZANAS', 'MANZANAS.json', '5', '2024-02-08 14:56:58', '2024-02-08 14:56:58', 'MANZANAS.png', 1),
+(192, 'FRACCIONAMIENTOS', 'FRACCIONAMIENTOS.json', '5', '2024-02-08 15:06:39', '2024-02-08 15:06:39', 'FRACCIONAMIENTOS.png', 1),
+(193, 'CUERPOS DE AGUA', 'CUERPOS_DE_AGUA.json', '5', '2024-02-08 15:09:31', '2024-02-08 15:09:31', 'CUERPOS_DE_AGUA.png', 1),
+(194, 'CONDOMINIO', 'CONDOMINIOS.json', '5', '2024-02-08 15:12:10', '2024-02-08 15:15:10', 'CONDOMINIOS.png', 1),
+(195, 'COLONIA', 'COLONIA.json', '5', '2024-02-08 15:15:02', '2024-02-08 15:15:02', 'COLONIA.png', 1),
+(196, 'MUNICIPIO', 'MUNICIPIO.json', '5', '2024-02-08 15:18:23', '2024-02-08 15:18:23', 'MUNICIPIO.png', 1);
 
 -- --------------------------------------------------------
 
@@ -260,38 +372,48 @@ CREATE TABLE IF NOT EXISTS `Permissions` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `perm_name` (`perm_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Permissions`
 --
 
 INSERT INTO `Permissions` (`id`, `perm_name`, `perm_description`, `createdAt`, `updatedAt`) VALUES
-(1, 'user_add', 'Add User', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(2, 'user_update', 'Update User', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(3, 'user_get', 'Get User', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(4, 'user_get_all', 'Get All User', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(5, 'user_delete', 'Delete User', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(6, 'role_add', 'Add Role', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(7, 'role_update', 'Update Role', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(8, 'role_get', 'Get Role', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(9, 'role_get_all', 'Get All Role', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(10, 'role_delete', 'Delete Role', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(11, 'permissions_add', 'Add Permission', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(12, 'permissions_update', 'Update Permission', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(13, 'permissions_get', 'Get Permission', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(14, 'permissions_get_all', 'Get All Permission', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(15, 'permissions_delete', 'Delete Permission', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(16, 'layer_add', 'Add Product', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(17, 'layer_update', 'Update Product', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(18, 'layer_get', 'Get Product', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(19, 'layer_get_all', 'Get All Product', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(20, 'layer_delete', 'Delete Product', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(21, 'category_add', 'Add category', '2023-12-08 17:30:21', '2023-12-08 17:30:21'),
-(22, 'category_update', 'Update category', '2023-12-08 17:30:41', '2023-12-08 17:30:41'),
-(23, 'category_get', 'Get category', '2023-12-08 17:31:07', '2023-12-08 17:31:07'),
-(24, 'category_get_all', 'Get all categories', '2023-12-08 17:31:18', '2023-12-08 17:31:18'),
-(25, 'category_delete', 'Delete category', '2023-12-08 17:31:31', '2023-12-08 17:31:31');
+(1, 'user_add', 'Agregar usuario', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(2, 'user_update', 'Actualizar usuario', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(3, 'user_get', 'Obtener un usuario', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(4, 'user_get_all', 'Obtener todos los usuarios', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(5, 'user_delete', 'Borrar usuarios', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(6, 'role_add', 'Agregar rol', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(7, 'role_update', 'Actualizar rol', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(8, 'role_get', 'Obtener un rol', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(9, 'role_get_all', 'Obtener todos los roles', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(10, 'role_delete', 'Borrar rol', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(11, 'permissions_add', 'Agregar permiso', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(12, 'permissions_update', 'Actualizar permiso', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(13, 'permissions_get', 'Obtener un permiso', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(14, 'permissions_get_all', 'Obtener todos los permisos', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(15, 'permissions_delete', 'Borrar un permiso', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(16, 'layer_add', 'Agregar una capa', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(17, 'layer_update', 'Actualizar capa', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(18, 'layer_get', 'Obtener una capa', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(19, 'layer_get_all', 'Obtener todas las capas', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(20, 'layer_delete', 'Borrar una capa', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
+(21, 'category_add', 'Agregar categoría', '2023-12-08 17:30:21', '2023-12-08 17:30:21'),
+(22, 'category_update', 'Actualizar categoría', '2023-12-08 17:30:41', '2023-12-08 17:30:41'),
+(23, 'category_get', 'Obtener una categoría', '2023-12-08 17:31:07', '2023-12-08 17:31:07'),
+(24, 'category_get_all', 'Obtener todas las categorías', '2023-12-08 17:31:18', '2023-12-08 17:31:18'),
+(25, 'category_delete', 'Borrar categoría', '2023-12-08 17:31:31', '2023-12-08 17:31:31'),
+(26, 'direction_add', 'Agregar dirección', '2023-12-08 17:31:31', '2023-12-08 17:31:31'),
+(27, 'direction_update', 'Actualizar dirección', '2023-12-08 17:31:31', '2023-12-08 17:31:31'),
+(28, 'direction_get', 'Obtener una dirección', '2023-12-08 17:31:31', '2023-12-08 17:31:31'),
+(29, 'direction_get_all', 'Obtener todas las direcciones', '2023-12-08 17:31:31', '2023-12-08 17:31:31'),
+(30, 'direction_delete', 'Borrar dirección', '2023-12-08 17:31:31', '2023-12-08 17:31:31'),
+(31, 'department_add', 'Agregar departamento', '2023-12-08 17:31:31', '2023-12-08 17:31:31'),
+(32, 'department_update', 'Actualizar departamento', '2023-12-08 17:31:31', '2023-12-08 17:31:31'),
+(33, 'department_get', 'Obtener un departamento', '2023-12-08 17:31:31', '2023-12-08 17:31:31'),
+(34, 'department_get_all', 'Obtener todos los departamentos', '2023-12-08 17:31:31', '2023-12-08 17:31:31'),
+(35, 'department_delete', 'Borrar departamento', '2023-12-08 17:31:31', '2023-12-08 17:31:31');
 
 -- --------------------------------------------------------
 
@@ -307,58 +429,58 @@ CREATE TABLE IF NOT EXISTS `RolePermissions` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `RolePermissions`
 --
 
 INSERT INTO `RolePermissions` (`id`, `role_id`, `perm_id`, `createdAt`, `updatedAt`) VALUES
-(1, 1, 1, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(2, 1, 2, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(3, 1, 3, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(4, 1, 4, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(5, 1, 5, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(6, 1, 6, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(7, 1, 7, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(8, 1, 8, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(9, 1, 9, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(10, 1, 10, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(11, 1, 11, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(12, 1, 12, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(13, 1, 13, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(14, 1, 14, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(15, 1, 15, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(16, 1, 16, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(17, 1, 17, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(18, 1, 18, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(19, 1, 19, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(20, 1, 20, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(21, 1, 21, '2024-01-22 16:46:00', '2024-01-22 16:46:00'),
-(22, 1, 22, '2024-01-22 16:46:00', '2024-01-22 16:46:00'),
-(23, 1, 23, '2024-01-22 16:46:00', '2024-01-22 16:46:00'),
-(24, 1, 24, '2024-01-22 16:46:00', '2024-01-22 16:46:00'),
-(25, 1, 25, '2024-01-22 16:46:35', '2024-01-22 16:46:35'),
-(26, 2, 16, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
-(27, 2, 17, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
-(28, 2, 17, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
-(29, 2, 18, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
-(30, 2, 19, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
-(31, 2, 20, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
-(32, 2, 21, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
-(33, 2, 22, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
-(34, 2, 23, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
-(35, 2, 24, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
-(36, 2, 25, '2024-01-22 16:51:40', '2024-01-22 16:51:40'),
-(37, 2, 1, '2024-01-22 16:51:40', '2024-01-22 16:52:50'),
-(38, 2, 2, '2024-01-22 16:51:40', '2024-01-22 16:52:50'),
-(39, 2, 3, '2024-01-22 16:51:40', '2024-01-22 16:52:50'),
-(40, 2, 4, '2024-01-22 16:51:40', '2024-01-22 16:52:50'),
-(41, 2, 5, '2024-01-22 16:51:40', '2024-01-22 16:52:50'),
-(42, 3, 18, '2024-01-22 16:55:40', '2024-01-22 16:55:40'),
-(43, 3, 19, '2024-01-22 16:55:40', '2024-01-22 16:55:40'),
-(44, 3, 23, '2024-01-22 16:55:40', '2024-01-22 16:55:40'),
-(45, 3, 24, '2024-01-22 16:55:40', '2024-01-22 16:55:40');
+(17, 3, 18, '2024-01-22 16:55:40', '2024-01-22 16:55:40'),
+(18, 3, 19, '2024-01-22 16:55:40', '2024-01-22 16:55:40'),
+(19, 3, 23, '2024-01-22 16:55:40', '2024-01-22 16:55:40'),
+(20, 3, 24, '2024-01-22 16:55:40', '2024-01-22 16:55:40'),
+(52, 2, 16, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(53, 4, 16, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(54, 2, 17, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(55, 4, 17, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(56, 2, 18, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(57, 4, 18, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(58, 2, 19, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(59, 4, 19, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(60, 2, 20, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(61, 4, 20, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(62, 4, 21, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(63, 2, 21, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(64, 4, 22, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(65, 2, 22, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(66, 4, 23, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(67, 2, 23, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(68, 4, 24, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(69, 2, 24, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(70, 4, 25, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(71, 2, 25, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(72, 4, 1, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(73, 2, 1, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(74, 4, 2, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(75, 2, 2, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(76, 4, 3, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(77, 2, 3, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(78, 4, 4, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(79, 2, 4, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(80, 4, 5, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(81, 2, 5, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(82, 4, 6, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(83, 2, 6, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(84, 4, 7, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(85, 2, 7, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(86, 4, 8, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(87, 2, 8, '2024-02-09 20:06:52', '2024-02-09 20:06:52'),
+(88, 1, 31, '2024-02-09 19:33:43', '2024-02-09 19:33:43'),
+(89, 1, 32, '2024-02-09 19:33:43', '2024-02-09 19:33:43'),
+(90, 1, 33, '2024-02-09 19:33:43', '2024-02-09 19:33:43'),
+(91, 1, 34, '2024-02-09 19:33:43', '2024-02-09 19:33:43'),
+(92, 1, 35, '2024-02-09 19:33:43', '2024-02-09 19:33:43');
 
 -- --------------------------------------------------------
 
@@ -373,6 +495,7 @@ CREATE TABLE IF NOT EXISTS `Roles` (
   `role_description` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
+  `isActive` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `role_name` (`role_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -381,10 +504,11 @@ CREATE TABLE IF NOT EXISTS `Roles` (
 -- Volcado de datos para la tabla `Roles`
 --
 
-INSERT INTO `Roles` (`id`, `role_name`, `role_description`, `createdAt`, `updatedAt`) VALUES
-(1, 'root', 'Root', '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(2, 'admin', 'Admin', '2023-12-26 18:41:59', '2023-12-26 18:41:59'),
-(3, 'usuario', 'Usuario', '2023-12-26 18:42:11', '2023-12-26 18:42:11');
+INSERT INTO `Roles` (`id`, `role_name`, `role_description`, `createdAt`, `updatedAt`, `isActive`) VALUES
+(1, 'root', 'Sistemas', '2023-12-23 18:28:47', '2023-12-23 18:28:47', 1),
+(2, 'admin', 'Admin', '2023-12-26 18:41:59', '2024-02-09 20:06:52', 1),
+(3, 'usuario', 'Usuario', '2023-12-26 18:42:11', '2024-02-08 18:33:23', 1),
+(4, 'jefe', 'Jefe de Departamento', '2024-02-07 10:18:10', '2024-02-09 19:33:43', 1);
 
 -- --------------------------------------------------------
 
@@ -411,7 +535,14 @@ INSERT INTO `SequelizeMeta` (`name`) VALUES
 ('20231031150143-create-layer.js'),
 ('20231125150452-create-category.js'),
 ('20231206213519-addLayerIcon.js'),
-('20231209183149-addIsActiveLayerColumn.js');
+('20231209183149-addIsActiveLayerColumn.js'),
+('20240202184610-add-isActive-to-Categories.js'),
+('20240206194006-create-direction.js'),
+('20240206194133-create-department.js'),
+('20240206195450-addDepartmentToUser.js'),
+('20240206195800-addDirectionIdToDepartment.js'),
+('20240206200350-addIsActiveToDepartmentAndDirection.js'),
+('20240207160253-addIsActiveToRoles.js');
 
 -- --------------------------------------------------------
 
@@ -432,17 +563,37 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `isActive` tinyint(1) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
+  `department_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  UNIQUE KEY `email` (`email`),
+  KEY `Users_department_id_foreign_idx` (`department_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Users`
 --
 
-INSERT INTO `Users` (`id`, `role_id`, `picture`, `name`, `ape_pat`, `ape_mat`, `email`, `password`, `isActive`, `createdAt`, `updatedAt`) VALUES
-(1, 1, 'profile.png', 'Programacion', 'Capdam', 'Manzanillo', 'programacion@capdam.gob.mx', '$2b$10$r5eRb4oBfhqg7PHkUKnao.9ptE7bUyLZ.0TnhLk3ug9j1NMBaGxAy', 1, '2023-12-23 18:28:47', '2023-12-23 18:28:47'),
-(3, 2, 'profile.png', 'Admin', 'Capdam', 'Manzanillo', 'admin@capdam.gob.mx', '$2a$10$4MR/DHpgKOEfeI5VmoyCqusxYqWdQ5Rd4G10pChfkyK6Y5Ai8WaHO', 1, '2023-12-30 15:03:42', '2023-12-30 15:03:42');
+INSERT INTO `Users` (`id`, `role_id`, `picture`, `name`, `ape_pat`, `ape_mat`, `email`, `password`, `isActive`, `createdAt`, `updatedAt`, `department_id`) VALUES
+(1, 1, 'profile.png', 'Programacion', 'Capdam', 'Manzanillo', 'programacion@capdam.gob.mx', '$2b$10$r5eRb4oBfhqg7PHkUKnao.9ptE7bUyLZ.0TnhLk3ug9j1NMBaGxAy', 1, '2023-12-23 18:28:47', '2023-12-23 18:28:47', 3),
+(3, 2, 'profile.png', 'Admin', 'Capdam', 'Manzanillo', 'sistemas@capdam.gob.mx', '$2a$10$jzI2/d2mMjyyBn2VT2zZQ.Nl.2Z91sIZrZdMYmN6GdBGo/4H6iije', 1, '2023-12-30 15:03:42', '2024-02-09 21:52:15', 3),
+(4, 3, 'profile.png', 'Enrique de Jesús', 'Ochoa', 'Preciado', 'eochoa11@ucol.mx', '$2a$10$a5JPxiotKowUKDWoJ..N/.gL.64QaQwxc3rhN1h3n2OKcg2h..reS', 1, '2024-01-29 14:07:11', '2024-02-09 21:50:51', 1),
+(7, 1, 'profile.png', 'Demo', 'Demo', 'Demo2', 'pruebas@demo.com', '$2a$10$3tU79Tln.rNQwUMfCZxaNO/thRYlZa5TZXI9su9W45O.801inIPy6', 1, '2024-02-09 20:21:40', '2024-02-09 20:21:40', 1);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `Departments`
+--
+ALTER TABLE `Departments`
+  ADD CONSTRAINT `Departments_direction_id_foreign_idx` FOREIGN KEY (`direction_id`) REFERENCES `Directions` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `Users`
+--
+ALTER TABLE `Users`
+  ADD CONSTRAINT `Users_department_id_foreign_idx` FOREIGN KEY (`department_id`) REFERENCES `Departments` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
