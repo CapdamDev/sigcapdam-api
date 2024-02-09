@@ -125,11 +125,22 @@ router.get("/users_dashboard", async function (req, res, next) {
 			});
 			const roles = await response2.json();
 
-			if (!users) {
+			const response3 = await fetch("http://localhost:3000/api/v1/departments/all", {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: cookies.token,
+				},
+			});
+			const departments = await response3.json();
+			console.log(departments);
+
+			if (!users || !roles || !departments) {
 				res.send(404);
 			}
 			else {
-				res.render("users_dashboard", { users, cookies, url, roles });
+				console.log(departments);
+				res.render("users_dashboard", { users, cookies, url, roles, departments });
 			}
 		} catch (error) {
 			res.status(500).json({ error: "Internal Server Error" });

@@ -42,7 +42,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), function (req
 
 // Obtener lista de todos los roles
 router.get('/all', passport.authenticate('jwt', { session: false }), function (req, res) {
-    helper.checkPermission(req.user.role_id, 'role_get_all')
+    helper.checkPermission(req.user.role_id, 'role_get')
     .then((rolePerm) => {
         Role.findAll({
             where: {
