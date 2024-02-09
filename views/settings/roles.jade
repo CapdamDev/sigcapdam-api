@@ -115,6 +115,9 @@ html(lang='es')
                                                             div
                                                                 label(for="updateRoleDescription" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Descripción o Área de trabajo
                                                                 input(type="text" name="updateRoleDescription" id="updateRoleDescription" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
+                                                            div(class="sm:col-span-2")
+                                                                label(for="updateRolePermissions" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Permisos
+                                                                input(name="input" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Permisos" value='')
                                                             div(class="flex items-center space-x-4")
                                                                 button(type="submit" class="text-white bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-500 dark:focus:ring-sky-800") Actualizar
                                         div(id="deleteModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
@@ -225,6 +228,158 @@ html(lang='es')
                     const roleId = $(this).val();
                     const roleName = $(this).closest("tr").find("#roleName").attr("value");
                     const roleDescription = $(this).closest("tr").find("#roleDescription").attr("value");
+                    // Get the input for tagify and set the value to the permissions
+                    const rolePermissions = document.querySelector('input[name=input]');
+
+                    // Set the actual permission of the roleId to the input rolePermissions
+                    // First fetch the permissions of the roleId
+                    fetch(`/api/v1/permissions/role/${roleId}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': '!{cookies.token}',
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        //- rolePermissions.id = data.map(permission => permission.id).join(', ');
+                        rolePermissions.value = data.map(permission => permission.perm_description).join(', ');
+                    })
+
+                    // Make API fetch call to get role permissions based on roleId
+                    fetch(`/api/v1/permissions/all`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': '!{cookies.token}',
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+
+                        // Set the whitelist of permissions using the data from the API
+                        const whitelist = [];
+                        data.forEach(permission => {
+                            const whitelistItem = {
+                                id: permission.id,
+                                value: permission.id, // Assign the perm_description to the value property
+                                name: permission.perm_description,
+                            };
+                            whitelist.push(whitelistItem);
+                        });
+
+                        console.log(whitelist);
+
+                        function tagTemplate(tagData) {
+                            return `
+                                <div ${this.getAttributes(tagData)} class="tagify__dropdown__item">
+                                    <button class="tagify__dropdown__item__title text-gray-800">${tagData.name}</button>
+                                </div>
+                            `;
+                        }
+
+                        // Initialize tagify
+                        var tagify = new Tagify(rolePermissions, {
+                            tagTextProp: 'name',
+                            enforceWhitelist: true,
+                            skipInvalid: true,
+                            dropdown: {
+                                closeOnSelect: false,
+                                enabled: 0,
+                                classname: 'tags-look',
+                                searchKeys: ['name'],
+                            },
+                            templates: {
+                                dropdownItem: tagTemplate,
+                            },
+                            whitelist: whitelist,
+                        });
+
+                        // Chainable event listeners
+                        tagify.on('add', onAddTag)
+                        .on('remove', onRemoveTag)
+                        .on('input', onInput)
+                        .on('edit', onTagEdit)
+                        .on('invalid', onInvalidTag)
+                        .on('click', onTagClick)
+                        .on('focus', onTagifyFocusBlur)
+                        .on('blur', onTagifyFocusBlur)
+                        .on('dropdown:hide dropdown:show', e => console.log(e.type))
+                        .on('dropdown:select', onDropdownSelect)
+
+                        var mockAjax = (function mockAjax(){
+                            var timeout;
+                            return function(duration){
+                                clearTimeout(timeout); // abort last request
+                                return new Promise(function(resolve, reject){
+                                    timeout = setTimeout(resolve, duration || 700, whitelist)
+                                })
+                            }
+                        })()
+
+                        // tag added callback
+                        function onAddTag(e){
+                            console.log("onAddTag: ", e.detail);
+                            console.log("original input value: ", rolePermissions.value)
+                            tagify.off('add', onAddTag) // example of removing a custom Tagify event
+                        }
+
+                        // tag removed callback
+                        function onRemoveTag(e){
+                            console.log("onRemoveTag:", e.detail, "tagify instance value:", tagify.value)
+                        }
+
+                        // on character(s) added/removed (user is typing/deleting)
+                        function onInput(e){
+                            console.log("onInput: ", e.detail);
+                            tagify.whitelist = null; // reset current whitelist
+                            tagify.loading(true) // show the loader animation
+
+                            // get new whitelist from a delayed mocked request (Promise)
+                            mockAjax()
+                                .then(function(result){
+                                    tagify.settings.whitelist = result.concat(tagify.value) // add already-existing tags to the new whitelist array
+
+                                    tagify
+                                        .loading(false)
+                                        // render the suggestions dropdown.
+                                        .dropdown.show(e.detail.value);
+                                })
+                                .catch(err => tagify.dropdown.hide())
+                        }
+
+                        function onTagEdit(e){
+                            console.log("onTagEdit: ", e.detail);
+                        }
+
+                        // invalid tag added callback
+                        function onInvalidTag(e){
+                            console.log("onInvalidTag: ", e.detail);
+                        }
+
+                        // invalid tag added callback
+                        function onTagClick(e){
+                            console.log(e.detail);
+                            console.log("onTagClick: ", e.detail);
+                        }
+
+                        function onTagifyFocusBlur(e){
+                            console.log(e.type, "event fired")
+                        }
+
+                        function onDropdownSelect(e){
+                            console.log("onDropdownSelect: ", e.detail)
+                            var tagData = e.detail.data;
+                            tagify.addTags([tagData]);
+                        }
+
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire("Error", error.message, "error");
+                    });
 
                     $("#updateRoleName").val(roleName);
                     $("#updateRoleDescription").val(roleDescription);
@@ -235,10 +390,29 @@ html(lang='es')
                         try {
                             const role_name = document.getElementById('updateRoleName').value;
                             const role_description = document.getElementById('updateRoleDescription').value;
+                            const permissions = document.querySelector('input[name=input]').value;
+                            console.log(permissions);
+                            if(permissions.length === 0){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Debes seleccionar al menos un permiso.',
+                                });
+                                return;
+                            }
+                            const jsonPermissions = JSON.parse(permissions);
+                            console.log(jsonPermissions);
+                            // Foreach permission, get the value and push it to the permissions array
+                            const permissionsA = [];
+                            jsonPermissions.forEach(permission => {
+                                permissionsA.push(permission.value);
+                            });
+                            console.log(permissionsA);
 
                             const body = {
                                 role_name: role_name,
                                 role_description: role_description,
+                                permissions: permissionsA,
                             }
 
                             const response = await fetch(`/api/v1/roles/${roleId}`, {
@@ -252,14 +426,25 @@ html(lang='es')
 
                             const data = await response.json();
 
-                            if(response.status === 400){
+                            const response2 = await fetch(`/api/v1/roles/permissions/${roleId}`,{
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': '!{cookies.token}',
+                                },
+                                body: JSON.stringify({permissions: permissionsA})
+                            });
+
+                            const data2 = await response2.json();
+
+                            if(response.status === 400 || response2.status === 400 || response2.success === false){
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Oops...',
                                     text: data.message,
                                 });
                             }
-                            else if(response.ok){
+                            else if(response.ok && response2.ok){
                                 Swal.fire({
                                     icon: 'success',
                                     title: '¡Éxito!',

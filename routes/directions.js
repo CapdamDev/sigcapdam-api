@@ -78,4 +78,48 @@ router.get("/all", passport.authenticate("jwt", {
     }
 );
 
+// Obtener una dirección por ID
+router.get("/:id", passport.authenticate("jwt", {
+        session: false,
+    }),
+    function (req, res) {
+        helper.checkPermission(req.user.role_id, "direction_get")
+        .then((rolePerm) => {
+            if (!req.params.id) {
+                res.status(400).send({
+                    msg: "Por favor, proporciona un ID.",
+                });
+            } 
+            else {
+                Direction.findByPk(req.params.id, {
+                    include: [
+                        {
+                            model: Department,
+                            as: "departmentsData",
+                        },
+                    ],
+                })
+                .then((direction) => {
+                    if (!direction) {
+                        return res.status(404).send({
+                            msg: "No se encontró la dirección.",
+                        });
+                    }
+                    const totalDepartments = direction.departmentsData.length;
+                    res.status(200).send({
+                        ...direction.toJSON(),
+                        totalDepartments
+                    });
+                })
+                .catch((error) => {
+                    res.status(400).send(error);
+                });
+            }
+        })
+        .catch((error) => {
+            res.status(403).send(error);
+        });
+    }
+);
+
 module.exports = router;
