@@ -78,6 +78,33 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), function (r
     });
 });
 
+// Obtener lista de permisos por rol
+router.get('/role/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
+    helper.checkPermission(req.user.role_id, 'permissions_get')
+    .then((rolePerm) => {
+        if (!req.params.id) {
+            res.status(400).send({
+                msg: 'Please pass role ID.'
+            })
+        } 
+        else {
+            Role.findByPk(req.params.id, {
+                include: {
+                    model: Permission,
+                    as: 'permissions',
+                }
+            })
+            .then((role) => res.status(200).send(role.permissions))
+            .catch((error) => {
+                res.status(400).send(error);
+            });
+        }
+    })
+    .catch((error) => {
+        res.status(403).send(error);
+    });
+});
+
 // Actualizar un permiso
 router.put('/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
     helper.checkPermission(req.user.role_id, 'permissions_update')

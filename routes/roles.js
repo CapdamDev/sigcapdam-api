@@ -194,7 +194,7 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), function
     });
 });
 
-// Obtener permisos de un rol
+// Agregar permisos a un rol
 router.post('/permissions/:id', passport.authenticate('jwt', { session: false }), async function (req, res) {
     try {
         const rolePerm = await helper.checkPermission(req.user.role_id, 'role_add');
