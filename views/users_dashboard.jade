@@ -93,7 +93,11 @@ html(lang='es')
                                                                 select(id="role_id" name="role_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
                                                                     for role in roles
                                                                         option(value=role.id id='role_id')= role.role_description
-
+                                                            div(class="sm:col-span-2")
+                                                                label(for="department_id", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Departamento
+                                                                select(id="department_id" name="department_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
+                                                                    each department in departments
+                                                                        option(value=department.id id='department_id')= department.name
                                                             div(class="sm:col-span-2")
                                                                 label(for="email", class='block mb-2 text-sm font-medium text-gray-900 dark:text-white') Email
                                                                 input(type="email" name="email" id="email" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="ejemplo@correo.com" autocomplete="new-password")
@@ -132,6 +136,11 @@ html(lang='es')
                                                                 select(id="rolesUpdate" name="rolesUpdate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
                                                                     each role in roles
                                                                         option(value=role.id id='rolesUpdate')= role.role_description
+                                                            div(class="sm:col-span-2")
+                                                                label(for="updateDeparmentId", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Departamento
+                                                                select(id="updateDeparmentId" name="updateDeparmentId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
+                                                                    each department in departments
+                                                                        option(value=department.id id='updateDeparmentId')= department.name
                                                             div(class="sm:col-span-2")
                                                                 label(for="updateEmailInput", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Email
                                                                 input(type="email" name="updateEmailInput" id="updateEmailInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" autocomplete="new-password")
@@ -203,6 +212,7 @@ html(lang='es')
                                 const role_id = document.getElementById('role_id').value;
                                 const email = document.getElementById('email').value;
                                 const password = document.getElementById('password').value;
+                                const department_id = document.getElementById('department_id').value;
 
                                 const body = {
                                     name: name,
@@ -210,7 +220,8 @@ html(lang='es')
                                     ape_mat: ape_mat,
                                     role_id: role_id,
                                     email: email,
-                                    password: password
+                                    password: password,
+                                    department_id: department_id
                                 };
 
                                 const response = await fetch('/api/v1/users/new', {
@@ -263,6 +274,7 @@ html(lang='es')
                             $("#updateEmailInput").val(userData.email);
                             //- $("#updatePasswordInput").val(userData.password);
                             $("#rolesUpdate").val(userData.role_id);
+                            $("#updateDeparmentId").val(userData.department_id);
 
                             // Update the information sending to the API
                             updateForm.addEventListener('submit', async function (event) {
@@ -275,6 +287,7 @@ html(lang='es')
                                     const role_id = document.getElementById('rolesUpdate').value;
                                     const email = document.getElementById('updateEmailInput').value;
                                     const password = document.getElementById('updatePasswordInput').value;
+                                    const department_id = document.getElementById('updateDeparmentId').value;
 
                                     const body = JSON.stringify({
                                         name: name,
@@ -282,7 +295,8 @@ html(lang='es')
                                         ape_mat: ape_mat,
                                         email: email,
                                         password: password,
-                                        role_id: role_id
+                                        role_id: role_id,
+                                        department_id: department_id
                                     });
 
                                     const response = await fetch(`/api/v1/users/${userId}`, {
@@ -293,8 +307,6 @@ html(lang='es')
                                         },
                                         body: body,
                                     });
-
-                                    const data = await response.json();
 
                                     if (response.ok) {
                                         Swal.fire({

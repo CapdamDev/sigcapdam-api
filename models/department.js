@@ -5,10 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Department extends Model {
     static associate(models) {
-      Department.hasMany(models.User, {
-        foreignKey: "department_id",
-        as: "users",
-      });
+      
       Department.belongsTo(models.Direction, {
         foreignKey: "direction_id",
         as: "directionData",

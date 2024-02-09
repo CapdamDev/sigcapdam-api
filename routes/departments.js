@@ -59,14 +59,15 @@ function (req, res) {
         })
         .then((departments) => res.status(200).send(departments))
         .catch((error) => {
+            console.log(error);
             res.status(400).send(error);
         });
     })
     .catch((error) => {
+        console.log(error);
         res.status(403).send(error);
     });
-}
-);
+});
 
 // Obtener un departamento por ID
 router.get("/:id", passport.authenticate("jwt", {
