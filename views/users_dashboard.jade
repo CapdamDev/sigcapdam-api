@@ -137,10 +137,10 @@ html(lang='es')
                                                                     each role in roles
                                                                         option(value=role.id id='rolesUpdate')= role.role_description
                                                             div(class="sm:col-span-2")
-                                                                label(for="updateDeparmentId", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Departamento
-                                                                select(id="updateDeparmentId" name="updateDeparmentId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
+                                                                label(for="updateDepartmentId", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Departamento
+                                                                select(id="updateDepartmentId" name="updateDepartmentId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
                                                                     each department in departments
-                                                                        option(value=department.id id='updateDeparmentId')= department.name
+                                                                        option(value=department.id id='updateDepartmentId')= department.name
                                                             div(class="sm:col-span-2")
                                                                 label(for="updateEmailInput", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Email
                                                                 input(type="email" name="updateEmailInput" id="updateEmailInput" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" autocomplete="new-password")
@@ -274,7 +274,7 @@ html(lang='es')
                             $("#updateEmailInput").val(userData.email);
                             //- $("#updatePasswordInput").val(userData.password);
                             $("#rolesUpdate").val(userData.role_id);
-                            $("#updateDeparmentId").val(userData.department_id);
+                            $("#updateDepartmentId").val(userData.department_id);
 
                             // Update the information sending to the API
                             updateForm.addEventListener('submit', async function (event) {
@@ -287,7 +287,7 @@ html(lang='es')
                                     const role_id = document.getElementById('rolesUpdate').value;
                                     const email = document.getElementById('updateEmailInput').value;
                                     const password = document.getElementById('updatePasswordInput').value;
-                                    const department_id = document.getElementById('updateDeparmentId').value;
+                                    const department_id = document.getElementById('updateDepartmentId').value;
 
                                     const body = JSON.stringify({
                                         name: name,
