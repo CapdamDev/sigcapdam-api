@@ -8,9 +8,7 @@ module.exports = {
       references: {
         model: 'Departments',
         key: 'id'
-      },
-      onUpdate: 'CASCADE',
-      onDelete: 'SET NULL'
+      }
     });
   },
 

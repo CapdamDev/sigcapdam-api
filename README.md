@@ -94,7 +94,8 @@ Una vez configurada la base de datos, procedemos a hacer las migraciones
 Para esto ejecutamos el comando:
 
 ```bash
-    npx sequelize-cli db:seed:all
+    npx sequelize-cli db:seed --seed seeders/Directions.js seeders/Departments.js  seeders/Categories.js seeders/Permissions.js seeders/Roles.js seeders/Users.js
+
 ```
 
 Nos creara el usuario base que tiene todos los permisos del sistema (root user), permisos y roles principales.

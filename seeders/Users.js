@@ -14,7 +14,7 @@ module.exports = {
 
       await queryInterface.bulkInsert('Users', [{
         role_id: 1,
-        picture: 'profile.png',
+        profilePic: 'profile.png',
         nombre: 'Programacion',
         ape_pat: 'Capdam',
         ape_mat: 'Manzanillo',
@@ -23,7 +23,7 @@ module.exports = {
         isActive: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
-        department_id: 3
+        department_id: 1
       }]);
 
       console.log('Seeding complete');

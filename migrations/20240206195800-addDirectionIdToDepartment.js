@@ -9,8 +9,7 @@ module.exports = {
         model: 'Directions',
         key: 'id'
       },
-      onUpdate: 'CASCADE',
-      onDelete: 'SET NULL'
+      onUpdate: 'SET NULL',
     });
   },
 
