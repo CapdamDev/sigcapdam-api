@@ -4,8 +4,8 @@
   "private": true,
   "description": "Sistema de Información Geográfica para la Comisión de Agua Potable y Alcantarillado Manzanillo",
   "scripts": {
-    "start": "npx pm2 start ./bin/www --name sigcapdam-api --watch",
-    "dev": "npx pm2 start ./bin/www --name sigcapdam-api --watch",
+    "start": "NODE_ENV=production npx pm2 start ./bin/www --name sigcapdam-api --watch",
+    "dev": "NODE_ENV=development npx pm2 start ./bin/www --name sigcapdam-api --watch",
     "watch": "npx pm2 start ./bin/www --name sigcapdam-api --watch",
     "build": "webpack"
   },
