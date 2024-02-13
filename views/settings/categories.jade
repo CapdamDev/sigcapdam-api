@@ -34,7 +34,7 @@ html(lang='es')
                             svg(class='w-4 h-4 mr-1' xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' stroke='currentColor')
                                 path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10 19l-7-7m0 0l7-7m-7 7h18')
                             span(class='ml-1') Regresar
-                        span(class='text-gray-500 dark:text-gray-200 ml-4') Categorias
+                        span(class='text-gray-500 dark:text-gray-200 ml-4') Categorias !{cookies.role_id}
                     button(type="button" id="createCategoryModalButton" data-modal-target="createCategoryModal" data-modal-toggle="createCategoryModal" class="flex items-center justify-center text-white bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-full text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-500 focus:outline-none dark:focus:ring-sky-800")
                                 | Nueva categoría
                 div(class='px-6 h-[calc(55rem)]')
@@ -49,15 +49,21 @@ html(lang='es')
                                                 th(scope="col" class="px-6 py-4") #
                                                 th(scope="col" class="px-6 py-4") Nombre
                                                 th(scope="col" class="px-6 py-4") Total de capas
+                                                th(scope="col" class="px-6 py-4") Status
                                                 th(scope="col" class="px-6 py-4") Acciones
                                                     span(class="sr-only") Actions
                                         tbody(id="categoriesTbody")
                                             each category in categories
                                                 - let src = "./assets/users/pictures/profile.png"
+                                                - if(category.isActive === false)
+                                                    - category.isActive = "Inactivo"
+                                                - else
+                                                    - category.isActive = "Activo"
                                                 tr(class="border-b dark:border-gray-700")
                                                     th(id="categoryId" scope="row" class="px-3 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white" value=category.id)=category.id
                                                     td(id="categoryName" scope="row" class="px-4 py-3 text-sm font-medium" value=category.name)=category.name
                                                     td(id="categoryTotal" scope="row" class="px-4 py-3 text-sm font-medium" value=category.totalLayers)=category.totalLayers
+                                                    td(id="categoryStatus" scope="row" class="px-4 py-3 text-sm font-medium" value=category.isActive)=category.isActive
                                                     td(id="categoryActions" scope="row" class="px-4 py-3 items-center")
                                                         div(class="space-x-2")
                                                                 button(class=" hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200" type="button" data-modal-target="updateCategoryModal" data-modal-toggle="updateCategoryModal" id="updateModalButton" value=category.id)
@@ -67,6 +73,10 @@ html(lang='es')
                                                                 button(class="hover:bg-gray-100 dark:hover:bg-gray-600 text-red-500 dark:hover:text-red-400" type="button" data-modal-target="deleteModal" data-modal-toggle="deleteModal" id="deleteModalButton" value=category.id)
                                                                     svg(class="w-4 h-4 mr-2" viewbox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true")
                                                                         path(fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M6.09922 0.300781C5.93212 0.30087 5.76835 0.347476 5.62625 0.435378C5.48414 0.523281 5.36931 0.649009 5.29462 0.798481L4.64302 2.10078H1.59922C1.36052 2.10078 1.13161 2.1956 0.962823 2.36439C0.79404 2.53317 0.699219 2.76209 0.699219 3.00078C0.699219 3.23948 0.79404 3.46839 0.962823 3.63718C1.13161 3.80596 1.36052 3.90078 1.59922 3.90078V12.9008C1.59922 13.3782 1.78886 13.836 2.12643 14.1736C2.46399 14.5111 2.92183 14.7008 3.39922 14.7008H10.5992C11.0766 14.7008 11.5344 14.5111 11.872 14.1736C12.2096 13.836 12.3992 13.3782 12.3992 12.9008V3.90078C12.6379 3.90078 12.8668 3.80596 13.0356 3.63718C13.2044 3.46839 13.2992 3.23948 13.2992 3.00078C13.2992 2.76209 13.2044 2.53317 13.0356 2.36439C12.8668 2.1956 12.6379 2.10078 12.3992 2.10078H9.35542L8.70382 0.798481C8.62913 0.649009 8.5143 0.523281 8.37219 0.435378C8.23009 0.347476 8.06631 0.30087 7.89922 0.300781H6.09922ZM4.29922 5.70078C4.29922 5.46209 4.39404 5.23317 4.56282 5.06439C4.73161 4.8956 4.96052 4.80078 5.19922 4.80078C5.43791 4.80078 5.66683 4.8956 5.83561 5.06439C6.0044 5.23317 6.09922 5.46209 6.09922 5.70078V11.1008C6.09922 11.3395 6.0044 11.5684 5.83561 11.7372C5.66683 11.906 5.43791 12.0008 5.19922 12.0008C4.96052 12.0008 4.73161 11.906 4.56282 11.7372C4.39404 11.5684 4.29922 11.3395 4.29922 11.1008V5.70078ZM8.79922 4.80078C8.56052 4.80078 8.33161 4.8956 8.16282 5.06439C7.99404 5.23317 7.89922 5.46209 7.89922 5.70078V11.1008C7.89922 11.3395 7.99404 11.5684 8.16282 11.7372C8.33161 11.906 8.56052 12.0008 8.79922 12.0008C9.03791 12.0008 9.26683 11.906 9.43561 11.7372C9.6044 11.5684 9.69922 11.3395 9.69922 11.1008V5.70078C9.69922 5.46209 9.6044 5.23317 9.43561 5.06439C9.26683 4.8956 9.03791 4.80078 8.79922 4.80078Z")
+                                                                - if(cookies.role_id === "1" && category.isActive === "Inactivo")
+                                                                    button(class="hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-red-500 dark:text-red-400" type="button" id="setActiveButton" value=category.id)
+                                                                        svg(class="w-4 h-4 mr-2" viewBox="0 0 20 20")
+                                                                            path(d="M10.219,1.688c-4.471,0-8.094,3.623-8.094,8.094s3.623,8.094,8.094,8.094s8.094-3.623,8.094-8.094S14.689,1.688,10.219,1.688 M10.219,17.022c-3.994,0-7.242-3.247-7.242-7.241c0-3.994,3.248-7.242,7.242-7.242c3.994,0,7.241,3.248,7.241,7.242C17.46,13.775,14.213,17.022,10.219,17.022 M15.099,7.03c-0.167-0.167-0.438-0.167-0.604,0.002L9.062,12.48l-2.269-2.277c-0.166-0.167-0.437-0.167-0.603,0c-0.166,0.166-0.168,0.437-0.002,0.603l2.573,2.578c0.079,0.08,0.188,0.125,0.3,0.125s0.222-0.045,0.303-0.125l5.736-5.751C15.268,7.466,15.265,7.196,15.099,7.03")
                                         div(id="createCategoryModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
                                             div(class="relative p-4 w-full max-w-2xl max-h-full")
                                                 div(class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
@@ -297,4 +307,49 @@ html(lang='es')
                         }
                     });
                 })
+
+                // Set category active or inactive
+                $(document).on("click", "#setActiveButton", function() {
+                    const categoryId = $(this).val();
+
+                    Swal.fire({
+                        title: "¿Estás seguro?",
+                        text: "¿Quieres cambiar el estado de esta categoría?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Sí",
+                        cancelButtonText: "Cancelar",
+                    }).then(async (result) => {
+                        if (result.isConfirmed) {
+                            try {
+                                const response = await fetch(`/api/v1/categories/activate/${categoryId}/`, {
+                                    method: 'PUT',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Authorization': '!{cookies.token}',
+                                    },
+                                });
+
+                                const data = await response.json();
+                                if (response.ok) {
+                                    Swal.fire({
+                                        title: "¡Éxito!",
+                                        text: "Estado de la categoría actualizado correctamente.",
+                                        icon: "success",
+                                        showConfirmButton: true,
+                                    }).then(() => {
+                                        window.location.reload();
+                                    });
+                                } else {
+                                    throw new Error(data.message);
+                                }
+                            } catch (error) {
+                                console.error('Error:', error);
+                                Swal.fire("Error", error.message, "error");
+                            }
+                        }
+                    });
+                });
             })

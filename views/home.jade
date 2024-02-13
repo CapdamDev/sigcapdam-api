@@ -503,7 +503,19 @@ html(lang='es')
                                                 }
                                             })
                                         });
-                                    } else {
+                                    }
+                                    else if(response.status === 500){
+                                        return {
+                                            name: 'No layers',
+                                            archive: 'No layers',
+                                            icono: 'profile.png',
+                                            categoryData: {
+                                                name: 'No layers',
+                                                isActive: true
+                                            },
+                                        }
+                                    }
+                                    else {
                                         return response.json();
                                     }
                                 })
@@ -610,6 +622,17 @@ html(lang='es')
                                                 children: categories[category]
                                             };
                                         });
+
+                                        if(jstreeData.length === 0){
+                                            jstreeData = [{
+                                                text: 'No se encontraron capas',
+                                                state: {
+                                                    opened: false,
+                                                    selected: false,
+                                                    checkbox_disabled: true
+                                                },
+                                            }];
+                                        }
 
                                         $("#jstree").jstree({
                                             "core": {

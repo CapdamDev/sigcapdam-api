@@ -140,12 +140,12 @@ router.get("/all", passport.authenticate("jwt", { session: false }), function (r
 				],
 			})
 				.then((layers) => {
-					// Send the layers as a JSON response to the client
 					res.status(200).json(layers);
 				})
 				.catch((error) => {
 					res.status(500).json({
 						error: "Internal Server Error",
+						success: false,
 					});
 				});
 		})
