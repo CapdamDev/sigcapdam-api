@@ -39,10 +39,9 @@ router.post("/", passport.authenticate("jwt", {
 );
 
 // Obtener todas las categorías
-router.get("/all", passport.authenticate("jwt", {
-        session: false,
-    }),
+router.get("/all", passport.authenticate("jwt", { session: false, }),
     function (req, res) {
+        // Based on the role_id stored in the cookies, the user will be able to access the categories, if role_id is 1, the user can see active and inactive categories, if role_id is 2, the user can only see active categories.
         helper.checkPermission(req.user.role_id, "category_get_all")
         .then((rolePerm) => {
             Category.findAll({
@@ -52,9 +51,9 @@ router.get("/all", passport.authenticate("jwt", {
                         as: "layers",
                     },
                 ],
-                where:{
-                    isActive: true
-                }
+                where: {
+                    isActive: req.user.role_id === 1 ? [0, 1] : 1,
+                },
             })
             .then((categories) => {
                 const categoriesWithTotalLayers = categories.map(category => {
@@ -71,9 +70,6 @@ router.get("/all", passport.authenticate("jwt", {
                 res.status(400).send(error);
             });
         })
-        .catch((error) => {
-            res.status(403).send(error);
-        });
     }
 );
 
@@ -134,6 +130,7 @@ router.put(
                         return category
                             .update({
                                 name: req.body.name || category.name,
+                                isActive: req.body.isActive || category.isActive,
                             })
                             .then(() => res.status(200).send(category))
                             .catch((error) => {
@@ -149,6 +146,41 @@ router.put(
             .catch((error) => {
                 res.status(403).send(error);
             });
+    }
+);
+
+// Update isActive field to 1
+router.put("/activate/:id", passport.authenticate("jwt", {
+        session: false,
+    }),
+    function (req, res) {
+        helper.checkPermission(req.user.role_id, "category_update")
+        .then((rolePerm) => {
+            Category.findByPk(req.params.id)
+            .then((category) => {
+                if (!category) {
+                    return res.status(404).send({
+                        msg: "Categoría no encontrada",
+                    });
+                }
+                return category
+                    .update({
+                        isActive: 1
+                    })
+                    .then(() => res.status(200).send(category))
+                    .catch((error) => {
+                        console.log(error);
+                        res.status(400).send(error);
+                    });
+            })
+            .catch((error) => {
+                console.log(error);
+                res.status(400).send(error);
+            });
+        })
+        .catch((error) => {
+            res.status(403).send(error);
+        });
     }
 );
 
