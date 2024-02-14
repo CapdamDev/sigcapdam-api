@@ -25,11 +25,11 @@ router.post("/", passport.authenticate("jwt", {
                     name: req.body.name,
                     isActive: 1
                 })
-                    .then((category) => res.status(201).send(category))
-                    .catch((error) => {
-                        console.log(error);
-                        res.status(400).send(error);
-                    });
+                .then((category) => res.status(201).send(category))
+                .catch((error) => {
+                    console.log(error);
+                    res.status(400).send(error);
+                });
             }
         })
         .catch((error) => {
@@ -39,10 +39,10 @@ router.post("/", passport.authenticate("jwt", {
 );
 
 // Obtener todas las categorías
-router.get("/all", passport.authenticate("jwt", { session: false, }),
-    function (req, res) {
-        // Based on the role_id stored in the cookies, the user will be able to access the categories, if role_id is 1, the user can see active and inactive categories, if role_id is 2, the user can only see active categories.
-        helper.checkPermission(req.user.role_id, "category_get_all")
+router.get("/all", passport.authenticate("jwt", { session: false }), function (req, res) {
+    // Based on the role_id stored in the cookies, the user will be able to access the categories, if role_id is 1, the user can see active and inactive categories, if role_id is 2, the user can only see active categories.
+    helper
+        .checkPermission(req.user.role_id, "category_get_all")
         .then((rolePerm) => {
             Category.findAll({
                 include: [
@@ -56,22 +56,30 @@ router.get("/all", passport.authenticate("jwt", { session: false, }),
                 },
             })
             .then((categories) => {
-                const categoriesWithTotalLayers = categories.map(category => {
+                const categoriesWithCounts = categories.map((category) => {
                     const totalLayers = category.layers.length;
+                    const activeLayers = category.layers.filter(layer => layer.isActive === true).length;
+                    const inactiveLayers = totalLayers - activeLayers;
                     return {
                         ...category.toJSON(),
-                        totalLayers
+                        totalLayers,
+                        activeLayers,
+                        inactiveLayers
                     };
                 });
-                res.status(200).send(categoriesWithTotalLayers);
+                res.status(200).send(categoriesWithCounts);
             })
             .catch((error) => {
                 console.log(error);
                 res.status(400).send(error);
             });
         })
-    }
-);
+        .catch((error) => {
+            console.log(error);
+            res.status(400).send(error);
+        });
+});
+
 
 // Obtener una categoría por id
 router.get(

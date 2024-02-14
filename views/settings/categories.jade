@@ -34,7 +34,7 @@ html(lang='es')
                             svg(class='w-4 h-4 mr-1' xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' stroke='currentColor')
                                 path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10 19l-7-7m0 0l7-7m-7 7h18')
                             span(class='ml-1') Regresar
-                        span(class='text-gray-500 dark:text-gray-200 ml-4') Categorias !{cookies.role_id}
+                        span(class='text-gray-500 dark:text-gray-200 ml-4') Categorias
                     button(type="button" id="createCategoryModalButton" data-modal-target="createCategoryModal" data-modal-toggle="createCategoryModal" class="flex items-center justify-center text-white bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-full text-sm px-4 py-2 dark:bg-sky-600 dark:hover:bg-sky-500 focus:outline-none dark:focus:ring-sky-800")
                                 | Nueva categoría
                 div(class='px-6 h-[calc(55rem)]')
@@ -49,6 +49,8 @@ html(lang='es')
                                                 th(scope="col" class="px-6 py-4") #
                                                 th(scope="col" class="px-6 py-4") Nombre
                                                 th(scope="col" class="px-6 py-4") Total de capas
+                                                th(scope="col" class="px-6 py-4") Capas activas
+                                                th(scope="col" class="px-6 py-4") Capas inactivas
                                                 th(scope="col" class="px-6 py-4") Status
                                                 th(scope="col" class="px-6 py-4") Acciones
                                                     span(class="sr-only") Actions
@@ -63,6 +65,8 @@ html(lang='es')
                                                     th(id="categoryId" scope="row" class="px-3 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white" value=category.id)=category.id
                                                     td(id="categoryName" scope="row" class="px-4 py-3 text-sm font-medium" value=category.name)=category.name
                                                     td(id="categoryTotal" scope="row" class="px-4 py-3 text-sm font-medium" value=category.totalLayers)=category.totalLayers
+                                                    td(id="activeLayers" scope="row" class="px-4 py-3 text-sm font-medium" value=category.activeLayers)=category.activeLayers
+                                                    td(id="inactiveLayers" scope="row" class="px-4 py-3 text-sm font-medium" value=category.inactiveLayers)=category.inactiveLayers
                                                     td(id="categoryStatus" scope="row" class="px-4 py-3 text-sm font-medium" value=category.isActive)=category.isActive
                                                     td(id="categoryActions" scope="row" class="px-4 py-3 items-center")
                                                         div(class="space-x-2")
@@ -136,8 +140,8 @@ html(lang='es')
             $(document).ready(function(){
                 const table = new DataTable('#categoriesTable', {
                     responsive: true,
-                    pageLength: 20,
-                    lengthMenu: [ [20, 40, 60, 100, -1], [20, 40, 60, 100, "All"] ],
+                    pageLength: 15,
+                    lengthMenu: [ [15, 30, 60, -1], [15, 30, 60, "All"] ],
                     scrollX: true,
                     scrollY: true,
                     scrollCollapse: true,
