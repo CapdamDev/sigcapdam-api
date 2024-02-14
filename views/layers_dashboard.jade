@@ -46,18 +46,19 @@ html(lang='es')
                                                 th(scope="col" class="px-6 py-4") #
                                                 th(scope="col" class="px-6 py-4") Nombre
                                                 th(scope="col" class="px-6 py-4") Categoría
-                                                th(scope="col" class="px-6 py-4 hidden") Archivo
-                                                th(scope="col" class="px-6 py-4 hidden") Icono
                                                 th(scope="col" class="px-6 py-4") Acciones
                                                     span(class="sr-only") Actions
                                         tbody(id="layersTbody")
                                             each layer in layers
+                                                - if(layer.isActive === false)
+                                                    - layer.isActive = "Inactiva"
+                                                - else
+                                                    - layer.isActive = "Activa"
                                                 tr(class="border-b dark:border-gray-700")
                                                     th(id="layerId" scope="row" class="px-3 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white" value=layer.id)=layer.id
                                                     td(id="layerName" scope="row" class="px-4 py-3 text-sm font-medium" value=layer.name)=layer.name
                                                     td(id="layerCategory" scope="row" class="px-4 py-3 text-sm font-medium" value=layer.category)=layer.categoryData.name
-                                                    td(id="layerArchive" scope="row" class="px-4 py-3 text-sm font-medium hidden" value=layer.archive)=layer.archive
-                                                    td(id="layerIcon" scope="row" class="px-4 py-3 text-sm font-medium hidden" value=layer.icono)=layer.icono
+
                                                     td(id="layerActions" scope="row" class="px-4 py-3 items-center")
                                                         div(class="space-x-2")
                                                                 button(class=" hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200" type="button" data-modal-target="updateLayerModal" data-modal-toggle="updateLayerModal" id="updateModalButton" value=layer.id)
@@ -147,8 +148,8 @@ html(lang='es')
                     $(document).ready(function(){
                         const table = new DataTable('#layersTable', {
                             responsive: true,
-                            pageLength: 20,
-                            lengthMenu: [ [20, 40, 60, 100, -1], [20, 40, 60, 100, "Todos"] ],
+                            pageLength: 15,
+                            lengthMenu: [ [15, 30, 60, -1], [15, 30, 60, "Todos"] ],
                             scrollX: true,
                             scrollY: true,
                             scrollCollapse: true,
