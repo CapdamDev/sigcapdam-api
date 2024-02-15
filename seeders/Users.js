@@ -14,8 +14,8 @@ module.exports = {
 
       await queryInterface.bulkInsert('Users', [{
         role_id: 1,
-        profilePic: 'profile.png',
-        nombre: 'Programacion',
+        picture: 'profile.png',
+        name: 'Programacion',
         ape_pat: 'Capdam',
         ape_mat: 'Manzanillo',
         email: 'programacion@capdam.gob.mx',
