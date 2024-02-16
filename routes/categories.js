@@ -27,7 +27,6 @@ router.post("/", passport.authenticate("jwt", {
                 })
                 .then((category) => res.status(201).send(category))
                 .catch((error) => {
-                    console.log(error);
                     res.status(400).send(error);
                 });
             }
@@ -70,12 +69,10 @@ router.get("/all", passport.authenticate("jwt", { session: false }), function (r
                 res.status(200).send(categoriesWithCounts);
             })
             .catch((error) => {
-                console.log(error);
                 res.status(400).send(error);
             });
         })
         .catch((error) => {
-            console.log(error);
             res.status(400).send(error);
         });
 });
@@ -108,8 +105,7 @@ router.get(
                         return res.status(200).send(category);
                     })
                     .catch((error) => {
-                        console.log(error);
-                        res.status(400).send(error);
+                                    res.status(400).send(error);
                     });
             })
             .catch((error) => {
@@ -142,13 +138,11 @@ router.put(
                             })
                             .then(() => res.status(200).send(category))
                             .catch((error) => {
-                                console.log(error);
-                                res.status(400).send(error);
+                                                    res.status(400).send(error);
                             });
                     })
                     .catch((error) => {
-                        console.log(error);
-                        res.status(400).send(error);
+                                    res.status(400).send(error);
                     });
             })
             .catch((error) => {
@@ -177,13 +171,11 @@ router.put("/activate/:id", passport.authenticate("jwt", {
                     })
                     .then(() => res.status(200).send(category))
                     .catch((error) => {
-                        console.log(error);
-                        res.status(400).send(error);
+                                    res.status(400).send(error);
                     });
             })
             .catch((error) => {
-                console.log(error);
-                res.status(400).send(error);
+                    res.status(400).send(error);
             });
         })
         .catch((error) => {

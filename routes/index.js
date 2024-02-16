@@ -133,13 +133,11 @@ router.get("/users_dashboard", async function (req, res, next) {
 				},
 			});
 			const departments = await response3.json();
-			console.log(departments);
 
 			if (!users || !roles || !departments) {
 				res.send(404);
 			}
 			else {
-				console.log(departments);
 				res.render("users_dashboard", { users, cookies, url, roles, departments });
 			}
 		} catch (error) {
