@@ -60,9 +60,13 @@ router.get("/all", passport.authenticate("jwt", {
             .then((directions) => {
                 const directionsWithTotalDepartments = directions.map(direction => {
                     const totalDepartments = direction.departmentsData.length;
+                    const activeDepartments = direction.departmentsData.filter(department => department.isActive === true).length;
+                    const inactiveDepartments = totalDepartments - activeDepartments;
                     return {
                         ...direction.toJSON(),
-                        totalDepartments
+                        totalDepartments,
+                        activeDepartments,
+                        inactiveDepartments
                     };
                 });
                 res.status(200).send(directionsWithTotalDepartments);
