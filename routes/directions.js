@@ -29,7 +29,6 @@ router.post("/", passport.authenticate("jwt", {
                 })
                 .then((direction) => res.status(201).send(direction))
                 .catch((error) => {
-                    console.log(error);
                     res.status(400).send(error);
                 });
             }

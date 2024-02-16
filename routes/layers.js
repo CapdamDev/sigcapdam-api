@@ -44,7 +44,6 @@ router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (re
 				res.status(400).send({
 					msg: "Please pass name or category.",
 				});
-				console.log("No se recibió nada");
 			} else {
 				// Get the category name based on the ID
 				Category.findByPk(req.body.category)

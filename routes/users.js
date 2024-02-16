@@ -54,7 +54,6 @@ router.post("/new", passport.authenticate("jwt", { session: false }), (req, res)
         res.status(400).send({
           msg: "Por favor, proporciona un nombre o password.",
         });
-        console.log("No se recibió nada");
       } else {
 
         // Check if user already exists with same email
@@ -82,7 +81,6 @@ router.post("/new", passport.authenticate("jwt", { session: false }), (req, res)
             })
               .then((user) => res.status(201).send(user))
               .catch((error) => {
-                console.log(error);
                 res.status(400).send(error);
               });
           }
@@ -156,7 +154,6 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), function (r
 router.put('/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
   helper.checkPermission(req.user.role_id, 'user_update')
   .then((rolePerm) => {
-    console.log(req.body);
     if (!req.body.role_id || !req.body.email || !req.body.name || !req.body.ape_pat || !req.body.ape_mat) {
       res.status(400).send({
         msg: 'Pasa todos los param.'
