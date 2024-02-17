@@ -12,30 +12,96 @@ a {
   transition: width 0.4s ease-in-out;
 }
 
+.dataTables_wrapper .dataTables_length select{
+  width: 5rem;
+}
+
+.dataTables_length{
+  margin-left: 2rem;
+}
+.dataTables_filter{
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+#layersTable_wrapper{
+  margin-top: .7rem;
+  margin-bottom: .5rem;
+}
+
 #layersTable_length select {
   background:  rgb(75 85 99);
+}
+
+#usersTable_wrapper{
+  margin-top: .7rem;
+  margin-bottom: .5rem;
 }
 
 #usersTable_length select {
   background:  rgb(75 85 99);
 }
 
+#categoriesTable_wrapper{
+  margin-top: .7rem;
+  margin-bottom: .5rem;
+}
+
 #categoriesTable_length select {
   background:  rgb(75 85 99);
+}
+
+#rolesTable_wrapper{
+  margin-top: .7rem;
+  margin-bottom: .5rem;
 }
 
 #rolesTable_length select {
   background:  rgb(75 85 99);
 }
 
+#permissionsTable_wrapper{
+  margin-top: .7rem;
+  margin-bottom: .5rem;
+}
+
 #permissionsTable_length select {
   background:  rgb(75 85 99);
+}
+
+#routesTable_wrapper{
+  margin-top: .7rem;
+  margin-bottom: .5rem;
 }
 
 #routesTable_length select {
   background:  rgb(75 85 99);
 }
 
+#permissionsTable_wrapper{
+  margin-top: .7rem;
+  margin-bottom: .5rem;
+}
+
 #permissionsTable_length select {
+  background:  rgb(75 85 99);
+}
+
+#directionsTable_wrapper{
+  margin-top: .7rem;
+  margin-bottom: .5rem;
+}
+
+#directionsTable_length select {
+  background:  rgb(75 85 99);
+}
+
+#departmentsTable_wrapper{
+  margin-top: .7rem;
+  margin-bottom: .5rem;
+}
+
+#departmentsTable_length select {
   background:  rgb(75 85 99);
 }
