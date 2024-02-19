@@ -351,11 +351,20 @@ router.get("/settings/departments", async function (req, res, next) {
 			});
 			const departments = await response.json();
 
+			const response2 = await fetch("http://localhost:3000/api/v1/directions/all", {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: cookies.token,
+				},
+			});
+			const directions = await response2.json();
+
 			if (!departments) {
 				res.send(404);
 			}
 			else {
-				res.render("settings/departments", { departments, cookies, url });
+				res.render("settings/departments", { departments, directions, cookies, url });
 			}
 		} catch (error) {
 			res.status(500).json({ error: "Internal Server Error" });

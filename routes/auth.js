@@ -73,16 +73,22 @@ router.post("/login", function (req, res) {
 				}
 
 				var token = jwt.sign(
-					JSON.parse(JSON.stringify(user)),
+					{ id: user.id }, // Set the id on the payload
 					"nodeauthsecret",
 					{
-						// expiresIn: 86400 * 30,
-						expiresIn: expires,
+						header: {
+							alg: "HS256",
+							typ: "JWT"
+						},
+						expiresIn: expires // Set the expiration time for the token
 					}
 				);
 
+				// Format the token correctly
+				var formattedToken = "JWT " + token;
+
 				// Guardar las cookies inmediatamente
-				res.cookie("token", "JWT " + token, { httpOnly: true, secure: true });
+				res.cookie("token", formattedToken, { httpOnly: true, secure: true });
 
 				RolePermission.findAll({ where: { role_id: user.role_id } }).then(
 					(RolePermission) => {
