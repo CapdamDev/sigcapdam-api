@@ -22,8 +22,7 @@ router.get("/", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.render("login");
-	} 
-	else {
+	} else {
 		res.redirect("home", { cookies, url });
 	}
 });
@@ -34,8 +33,7 @@ router.get("/login", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.render("login");
-	} 
-	else {
+	} else {
 		res.redirect("home");
 	}
 });
@@ -47,8 +45,7 @@ router.get("/home", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.redirect("/login");
-	}
-	else {
+	} else {
 		res.render("home", { cookies, url });
 	}
 });
@@ -60,8 +57,7 @@ router.get("/layers_dashboard", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.redirect("/login");
-	}
-	else {
+	} else {
 		try {
 			// Fetch layers data from the API endpoint
 			const response = await fetch("http://localhost:3000/api/v1/layers/all", {
@@ -87,8 +83,7 @@ router.get("/layers_dashboard", async function (req, res, next) {
 
 			if (!layers) {
 				res.send("Error: Could not fetch layers data");
-			}
-			else {
+			} else {
 				res.render("layers_dashboard", { layers, cookies, url, categories });
 			}
 		} catch (error) {
@@ -104,8 +99,7 @@ router.get("/users_dashboard", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.redirect("/login");
-	}
-	else {
+	} else {
 		try {
 			const response = await fetch("http://localhost:3000/api/v1/users/all", {
 				method: "GET",
@@ -125,20 +119,28 @@ router.get("/users_dashboard", async function (req, res, next) {
 			});
 			const roles = await response2.json();
 
-			const response3 = await fetch("http://localhost:3000/api/v1/departments/all", {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: cookies.token,
-				},
-			});
+			const response3 = await fetch(
+				"http://localhost:3000/api/v1/departments/all",
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: cookies.token,
+					},
+				}
+			);
 			const departments = await response3.json();
 
 			if (!users || !roles || !departments) {
 				res.send(404);
-			}
-			else {
-				res.render("users_dashboard", { users, cookies, url, roles, departments });
+			} else {
+				res.render("users_dashboard", {
+					users,
+					cookies,
+					url,
+					roles,
+					departments,
+				});
 			}
 		} catch (error) {
 			res.status(500).json({ error: "Internal Server Error" });
@@ -152,8 +154,7 @@ router.get("/settings", async function (req, res, next) {
 	const url = req.originalUrl;
 	if (!cookies.token) {
 		res.redirect("/login");
-	}
-	else {
+	} else {
 		res.render("settings", { cookies, url });
 	}
 });
@@ -165,8 +166,7 @@ router.get("/main", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.redirect("/login");
-	}
-	else {
+	} else {
 		res.render("index", { cookies, url });
 	}
 });
@@ -180,8 +180,7 @@ router.get("/settings/categories", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.redirect("/login");
-	} 
-	else {
+	} else {
 		try {
 			const response = await fetch("http://localhost:3000/api/v1/categories/all", {
 				method: "GET",
@@ -194,8 +193,7 @@ router.get("/settings/categories", async function (req, res, next) {
 
 			if (!categories) {
 				res.send(404);
-			}
-			else {
+			} else {
 				res.render("settings/categories", { categories, cookies, url });
 			}
 		} catch (error) {
@@ -211,8 +209,7 @@ router.get("/settings/roles", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.redirect("/login");
-	}
-	else {
+	} else {
 		try {
 			const response = await fetch("http://localhost:3000/api/v1/roles/all", {
 				method: "GET",
@@ -225,14 +222,12 @@ router.get("/settings/roles", async function (req, res, next) {
 
 			if (!roles) {
 				res.send(404);
-			}
-			else {
+			} else {
 				// Convert isActive 1 || true to "Active" and 0 || false to "Inactive"
 				roles.forEach((role) => {
 					if (role.isActive) {
 						role.isActive = "Activo";
-					}
-					else {
+					} else {
 						role.isActive = "Inactivo";
 					}
 				});
@@ -251,8 +246,7 @@ router.get("/settings/permissions", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.redirect("/login");
-	}
-	else {
+	} else {
 		try {
 			const response = await fetch("http://localhost:3000/api/v1/permissions/all", {
 				method: "GET",
@@ -265,8 +259,7 @@ router.get("/settings/permissions", async function (req, res, next) {
 
 			if (!permissions) {
 				res.send(404);
-			}
-			else {
+			} else {
 				res.render("settings/permissions", { permissions, cookies, url });
 			}
 		} catch (error) {
@@ -282,8 +275,7 @@ router.get("/settings/routes", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.redirect("/login");
-	}
-	else {
+	} else {
 		res.render("settings/routes", { cookies, url });
 	}
 });
@@ -295,8 +287,7 @@ router.get("/settings/page-settings", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.redirect("/login");
-	}
-	else {
+	} else {
 		res.render("settings/page-settings", { cookies, url });
 	}
 });
@@ -308,8 +299,7 @@ router.get("/settings/directions", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.redirect("/login");
-	}
-	else {
+	} else {
 		try {
 			const response = await fetch("http://localhost:3000/api/v1/directions/all", {
 				method: "GET",
@@ -322,8 +312,7 @@ router.get("/settings/directions", async function (req, res, next) {
 
 			if (!directions) {
 				res.send(404);
-			}
-			else {
+			} else {
 				res.render("settings/directions", { directions, cookies, url });
 			}
 		} catch (error) {
@@ -339,8 +328,7 @@ router.get("/settings/departments", async function (req, res, next) {
 
 	if (!cookies.token) {
 		res.redirect("/login");
-	}
-	else {
+	} else {
 		try {
 			const response = await fetch("http://localhost:3000/api/v1/departments/all", {
 				method: "GET",
@@ -362,8 +350,7 @@ router.get("/settings/departments", async function (req, res, next) {
 
 			if (!departments) {
 				res.send(404);
-			}
-			else {
+			} else {
 				res.render("settings/departments", { departments, directions, cookies, url });
 			}
 		} catch (error) {

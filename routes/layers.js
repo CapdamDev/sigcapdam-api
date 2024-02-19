@@ -47,78 +47,74 @@ router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (re
 			} else {
 				// Get the category name based on the ID
 				Category.findByPk(req.body.category)
-				.then((category) => {
-					if (!category) {
-						res.status(400).send({
-							msg: "Invalid category ID.",
-						});
-					} else {
-						// Create a directory for the category icon
-						try {
-							// Check if directory already exists
-							const dir = "./public/assets/layer_icons/";
-							const categoryDir = dir + category.name;
-							if (!fs.existsSync(categoryDir)) {
-								fs.mkdirSync(categoryDir);
-								console.log("Directory is created.");
-							} else {
-								console.log("Directory already exists.");
+					.then((category) => {
+						if (!category) {
+							res.status(400).send({
+								msg: "Invalid category ID.",
+							});
+						} else {
+							// Create a directory for the category icon
+							try {
+								// Check if directory already exists
+								const dir = "./public/assets/layer_icons/";
+								const categoryDir = dir + category.name;
+								if (!fs.existsSync(categoryDir)) {
+									fs.mkdirSync(categoryDir);
+									console.log("Directory is created.");
+								} else {
+									console.log("Directory already exists.");
+								}
+							} catch (err) {
+								console.log(err);
 							}
-						} catch (err) {
-							console.log(err);
+							Layer.create({
+								name: req.body.name,
+								archive: archiveFileName,
+								category: req.body.category,
+								icono: iconoFileName,
+								isActive: 1,
+							})
+								.then((layer) => res.status(201).send(layer))
+								.catch((error) => {
+									console.log(error);
+									res.status(400).send(error);
+								});
 						}
-						Layer.create({
-							name: req.body.name,
-							archive: archiveFileName,
-							category: req.body.category,
-							icono: iconoFileName,
-							isActive: 1,
-						})
-						.then((layer) => res.status(201).send(layer))
-						.catch((error) => {
-							console.log(error);
-							res.status(400).send(error);
-						});
-					}
-				})
-			.catch((error) => {
-				console.log(error);
-				res.status(400).send(error);
-			});
-		}
-	})
-	.catch((error) => {
-		res.status(403).send(error);
-	});
+					})
+					.catch((error) => {
+						console.log(error);
+						res.status(400).send(error);
+					});
+			}
+		})
+		.catch((error) => {
+			res.status(403).send(error);
+		});
 });
 
 // Consulta una layer por su nombre y categoría
-
 router.get("/:category/:name", passport.authenticate("jwt", { session: false }), async (req, res) => {
-		try {
-			await helper.checkPermission(req.user.role_id, "layer_get");
-			const layer = await Layer.findOne({
-				where: {
-					name: req.params.name,
-				},
+	try {
+		await helper.checkPermission(req.user.role_id, "layer_get");
+		const layer = await Layer.findOne({
+			where: {
+				name: req.params.name,
+			},
+		});
+		if (layer) {
+			res.status(404).send({
+				success: false,
+				msg: "La layer ya existe.",
 			});
-			if (layer) {
-				res.status(404).send({
-					success: false,
-					msg: "La layer ya existe.",
-				});
-			} 
-			else {
-				res.status(200).send({
-					success: true,
-				});
-			}
-		} 
-		catch (err) {
-			res.status(403).send(err);
+		} else {
+			res.status(200).send({
+				success: true,
+			});
 		}
+	} catch (err) {
+		res.status(403).send(err);
 	}
-);
+});
 
 router.get("/all", passport.authenticate("jwt", { session: false }), function (req, res) {
 	helper.checkPermission(req.user.role_id, "layer_get_all")
@@ -163,7 +159,7 @@ router.get("/all", passport.authenticate("jwt", { session: false }), function (r
 
 // Consulta una layer por su id
 router.get("/:id", passport.authenticate("jwt", { session: false, }), function (req, res) {
-		helper.checkPermission(req.user.role_id, "layer_get")
+	helper.checkPermission(req.user.role_id, "layer_get")
 		.then((rolePerm) => {
 			Layer.findByPk(req.params.id)
 				.then((layer) => {
@@ -183,11 +179,10 @@ router.get("/:id", passport.authenticate("jwt", { session: false, }), function (
 		.catch((error) => {
 			res.status(403).send(error);
 		});
-	}
-);
+});
 
 router.put("/:id", passport.authenticate("jwt", { session: false }), cpUpload, (req, res) => {
-		helper.checkPermission(req.user.role_id, "layer_update")
+	helper.checkPermission(req.user.role_id, "layer_update")
 		.then((rolePerm) => {
 			Category.findByPk(req.body.category).then((category) => {
 				if (!category) {
@@ -217,23 +212,22 @@ router.put("/:id", passport.authenticate("jwt", { session: false }), cpUpload, (
 								},
 							}
 						)
-						.then((layer) =>
-							res.status(201).send({
-								data: "success",
-							})
-						)
-						.catch((error) => {
-							res.status(400).send(error);
-						});
+							.then((layer) =>
+								res.status(201).send({
+									data: "success",
+								})
+							)
+							.catch((error) => {
+								res.status(400).send(error);
+							});
 					});
 				}
 			});
 		});
-	}
-);
+});
 
 router.delete("/:id", passport.authenticate("jwt", { session: false, }), function (req, res) {
-		helper.checkPermission(req.user.role_id, "layer_delete")
+	helper.checkPermission(req.user.role_id, "layer_delete")
 		.then((rolePerm) => {
 			Layer.update(
 				{
@@ -259,7 +253,6 @@ router.delete("/:id", passport.authenticate("jwt", { session: false, }), functio
 				error: "Prohibido",
 			});
 		});
-	}
-);
+});
 
 module.exports = router;

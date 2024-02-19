@@ -3,7 +3,8 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        await queryInterface.bulkInsert('Permissions', [{
+        await queryInterface.bulkInsert('Permissions', [
+            {
                 perm_name: 'user_add',
                 perm_description: 'Agregar usuario',
                 createdAt: new Date(),
@@ -59,7 +60,7 @@ module.exports = {
             },
             {
                 perm_name: 'role_delete',
-                perm_description: 'Boorar rol',
+                perm_description: 'Borrar rol',
                 createdAt: new Date(),
                 updatedAt: new Date()
             },
@@ -89,7 +90,7 @@ module.exports = {
             },
             {
                 perm_name: 'permissions_delete',
-                perm_description: 'Boorar permiso',
+                perm_description: 'Borrar permiso',
                 createdAt: new Date(),
                 updatedAt: new Date()
             },

@@ -653,11 +653,17 @@
 						"key": "Authorization",
 						"value": "{{token}}",
 						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwicGljdHVyZSI6InByb2ZpbGUucG5nIiwibmFtZSI6IlByb2dyYW1hY2lvbiIsImFwZV9wYXQiOiJDYXBkYW0iLCJhcGVfbWF0IjoiTWFuemFuaWxsbyIsImVtYWlsIjoicHJvZ3JhbWFjaW9uQGNhcGRhbS5nb2IubXgiLCJwYXNzd29yZCI6IiQyYiQxMCRyNWVSYjRvQmZocWc3UEhrVUtuYW8uOXB0RTdiVXlMWi4wVG5oTGszdWc5ajFOTUJhR3hBeSIsImlzQWN0aXZlIjp0cnVlLCJkZXBhcnRtZW50X2lkIjozLCJjcmVhdGVkQXQiOiIyMDIzLTEyLTIzVDE4OjI4OjQ3LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEyLTIzVDE4OjI4OjQ3LjAwMFoiLCJpYXQiOjE3MDgwOTk2MjEsImV4cCI6MTcwODExNzYyMX0.8_Kbytrzx-cNPzVDnCCqF4MnCZyfpceHSpNDkhJqfjY",
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"perm_name\": \"category_delete\",\n    \"perm_description\": \"Delete category\"\n}"
+					"raw": "{\n    \"perm_name\": \"demo_data\",\n    \"perm_description\": \"Demopermission\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}permissions",
@@ -775,6 +781,44 @@
 						{
 							"key": "id",
 							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Department Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"COBRANZA Y CAJAS\",\n    \"direction_id\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}departments/:id",
+					"host": [
+						"{{host}}departments"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "13"
 						}
 					]
 				}

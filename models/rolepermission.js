@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
 			// Define una relación de la base de datos en caso de existir
 		}
 	}
+
 	RolePermission.init(
 		{
 			role_id: DataTypes.INTEGER,
@@ -17,5 +18,6 @@ module.exports = (sequelize, DataTypes) => {
 			modelName: "RolePermission",
 		}
 	);
+
 	return RolePermission;
 };
