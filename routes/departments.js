@@ -116,29 +116,29 @@ router.put("/:id", passport.authenticate("jwt", {
     function (req, res) {
         helper.checkPermission(req.user.role_id, "department_update")
         .then((rolePerm) => {
-            if (!req.params.id) {
+            if (!req.params.id || !req.body.name) {
                 res.status(400).send({
-                    msg: "Por favor, proporciona un ID.",
+                    msg: "Por favor, proporciona un ID y un nombre.",
                 });
             } 
             else {
                 Department.findByPk(req.params.id)
                 .then((department) => {
-                    if (department) {
-                        department.update({
-                            name: req.body.name,
-                            direction_id: req.body.direction_id,
-                        })
-                        .then((department) => res.status(200).send(department))
-                        .catch((error) => {
-                            res.status(400).send(error);
+                    Department.update({
+                        name: req.body.name || department.name,
+                        direction_id: req.body.direction_id || department.direction_id
+                    }, {
+                        where: {
+                            id: req.params.id
+                        }
+                    }).then(_ => {
+                        res.status(200).send({
+                            msg: "Departamento actualizado correctamente."
                         });
-                    } 
-                    else {
-                        res.status(404).send({
-                            msg: "Departamento no encontrado."
-                        });
-                    }
+                    })
+                    .catch((error) => {
+                        res.status(400).send(error);
+                    });
                 })
                 .catch((error) => {
                     res.status(400).send(error);
