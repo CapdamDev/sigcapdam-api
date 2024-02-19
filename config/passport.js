@@ -1,5 +1,5 @@
 const JwtStrategy = require('passport-jwt').Strategy,
-ExtractJwt = require('passport-jwt').ExtractJwt;
+  ExtractJwt = require('passport-jwt').ExtractJwt;
 
 // Carga el modelo de usuario
 const User = require('../models').User;
@@ -9,9 +9,14 @@ module.exports = function(passport) {
     jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('JWT'),
     secretOrKey: 'nodeauthsecret',
   };
+
   passport.use('jwt', new JwtStrategy(opts, function(jwt_payload, done) {
     User.findByPk(jwt_payload.id)
-    .then((user) => { return done(null, user); })
-    .catch((error) => { return done(error, false); });
+      .then((user) => {
+        return done(null, user);
+      })
+      .catch((error) => {
+        return done(error, false);
+      });
   }));
 };

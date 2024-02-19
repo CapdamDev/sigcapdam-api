@@ -20,19 +20,19 @@ script.
         .then(response => {
             if (response.ok) {
                 return Swal.fire({
-                    title: "Logout Successful",
-                    text: "You have been logged out successfully.",
+                    title: "Cierre de sesión exitoso",
+                    text: "Has cerrado sesión correctamente.",
                     icon: "success",
                 });
             }
             else {
-                throw new Error('Logout failed.');
+                throw new Error('Error al cerrar sesión.');
             }
         })
         .then(() => {
             window.location.reload();
         })
         .catch(error => {
-            Swal.fire("Logout Failed", "There was an error during logout.", "error");
+            Swal.fire("Error al cerrar sesión", "Hubo un error durante el cierre de sesión.", "error");
         });
     });

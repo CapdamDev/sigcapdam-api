@@ -1,7 +1,6 @@
+const { Model } = require('sequelize');
 'use strict';
-const {
-  Model
-} = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Direction extends Model {
     static associate(models) {
@@ -12,11 +11,13 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
+
   Direction.init({
     name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Direction',
   });
+
   return Direction;
 };

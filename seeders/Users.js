@@ -3,13 +3,13 @@
 const bcrypt = require('bcrypt');
 const { queryInterface } = require('sequelize');
 
-/** @type {import('sequelize-cli').Seed } */
+/** @type {import('sequelize-cli').Seed} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    console.log('Start seeding');
+    console.log('Comenzando la siembra');
 
     try {
-      // Your existing seed code here
+      // Tu código de siembra existente aquí
       const hashedPassword = await bcrypt.hash('123tamarindo', 10);
 
       await queryInterface.bulkInsert('Users', [{
@@ -26,9 +26,9 @@ module.exports = {
         department_id: 1
       }]);
 
-      console.log('Seeding complete');
+      console.log('Siembra completa');
     } catch (error) {
-      console.error('Seed Error:', error);
+      console.error('Error de siembra:', error);
     }
   },
 

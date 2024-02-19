@@ -2,10 +2,10 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Directions', [
       {
-        name: 'Direccion de Programacion',
+        name: 'Dirección de Programación',
         createdAt: new Date(),
         updatedAt: new Date(),
         isActive: 1
@@ -13,7 +13,7 @@ module.exports = {
     ], {});
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     await queryInterface.bulkDelete('Directions', null, {});
   }
 };

@@ -7,34 +7,31 @@ class Helper {
     constructor() {}
 
     checkPermission(roleId, permName) {
-        return new Promise(
-            (resolve, reject) => {
-                Permission.findOne({
+        return new Promise((resolve, reject) => {
+            Permission.findOne({
+                where: {
+                    perm_name: permName
+                }
+            }).then((perm) => {
+                RolePermission.findOne({
                     where: {
-                        perm_name: permName
+                        role_id: roleId,
+                        perm_id: perm.id
                     }
-                }).then((perm) => {
-                    RolePermission.findOne({
-                        where: {
-                            role_id: roleId,
-                            perm_id: perm.id
-                        }
-                    }).then((rolePermission) => {
-                        if(rolePermission || roleId === 1) {
-                            resolve(rolePermission);
-                        } else {
-                            reject({message: 'Forbidden'});
-                        }
-                    }).catch((error) => {
-                        reject(error);
-                    });
-                }).catch(() => {
-                    reject({message: 'Forbidden'});
+                }).then((rolePermission) => {
+                    if (rolePermission || roleId === 1) {
+                        resolve(rolePermission);
+                    } else {
+                        reject({ message: 'Forbidden' });
+                    }
+                }).catch((error) => {
+                    reject(error);
                 });
-            }
-        );
+            }).catch(() => {
+                reject({ message: 'Forbidden' });
+            });
+        });
     }
 }
-
 
 module.exports = Helper;

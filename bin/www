@@ -10,16 +10,16 @@ var http = require('http');
 const tx2 = require('tx2');
 
 var histogram = tx2.histogram({
-  name        : 'Latency',
-  measurement : 'mean'
-})
+  name: 'Latency',
+  measurement: 'mean'
+});
 
-var latency = 0
+var latency = 0;
 
 setInterval(function() {
-  latency = Math.round(Math.random() * 100)
-  histogram.update(latency)
-}, 100)
+  latency = Math.round(Math.random() * 100);
+  histogram.update(latency);
+}, 100);
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);

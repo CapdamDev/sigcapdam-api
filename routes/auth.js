@@ -14,32 +14,31 @@ router.post("/register", function (req, res) {
 		res.status(400).send({
 			msg: "Ingresa un name o contraseña válidos.",
 		});
-	} 
-	else {
+	} else {
 		Role.findOne({
 			where: {
 				role_name: "admin",
 			},
 		})
-		.then((role) => {
-			User.create({
-				name: req.body.name,
-				ape_pat: req.body.ape_pat,
-				ape_mat: req.body.ape_mat,
-				email: req.body.email,
-				password: req.body.password,
-				isActive: req.body.isActive,
-				role_id: role.id,
-				picture: req.body.picture,
+			.then((role) => {
+				User.create({
+					name: req.body.name,
+					ape_pat: req.body.ape_pat,
+					ape_mat: req.body.ape_mat,
+					email: req.body.email,
+					password: req.body.password,
+					isActive: req.body.isActive,
+					role_id: role.id,
+					picture: req.body.picture,
+				})
+					.then((user) => res.status(201).send(user))
+					.catch((error) => {
+						res.status(400).send(error);
+					});
 			})
-			.then((user) => res.status(201).send(user))
 			.catch((error) => {
 				res.status(400).send(error);
 			});
-		})
-		.catch((error) => {
-			res.status(400).send(error);
-		});
 	}
 });
 
@@ -49,83 +48,81 @@ router.post("/login", function (req, res) {
 			email: req.body.email,
 		},
 	})
-	.then((user) => {
-		if (!user) {
-			return res.status(401).send({
-				message: "Autenticación fallida.",
-			});
-		}
-
-		user.comparePassword(req.body.password, (err, isMatch) => {
-			if (isMatch && !err) {
-				var rememberMe = req.body.rememberMe;
-				console.log(rememberMe);
-
-				var expires;
-
-				if (rememberMe === false) {
-					expires = 60 * 30; // 30 minutos a partir de ahora
-				} 
-				else {
-					// expires = 86400 * 30; // 86400 minutos a partir de ahora, expira en un mes
-					// Expires in 5 hours
-					expires = 60 * 60 * 5;
-				}
-
-				var token = jwt.sign(
-					{ id: user.id }, // Set the id on the payload
-					"nodeauthsecret",
-					{
-						header: {
-							alg: "HS256",
-							typ: "JWT"
-						},
-						expiresIn: expires // Set the expiration time for the token
-					}
-				);
-
-				// Format the token correctly
-				var formattedToken = "JWT " + token;
-
-				// Guardar las cookies inmediatamente
-				res.cookie("token", formattedToken, { httpOnly: true, secure: true });
-
-				RolePermission.findAll({ where: { role_id: user.role_id } }).then(
-					(RolePermission) => {
-						var permIds = RolePermission.map((rp) => rp.perm_id);
-						Permission.findAll({ where: { id: permIds } }).then(
-							(permissions) => {
-								var permNames = permissions.map((p) => p.perm_name);
-
-								// Obtener detalles del rol basado en role_id
-								Role.findOne({ where: { id: user.role_id } })
-								.then((role) => {
-									res.cookie("role_id", user.role_id);
-									res.cookie("user_id", user.id);
-									res.cookie("role_name", role.role_name); // Suponiendo que user.role_name es accesible
-									res.cookie("role_description", role.role_description);
-									res.cookie("user_email", user.email);
-									res.cookie("user_name", user.name);
-									res.cookie("picture", user.picture);
-									res.send({ success: true });
-								})
-								.catch((error) => {
-									res.status(400).send(error);
-								});
-							}
-						);
-					}
-				);
-			} 
-			else {
-				res.status(401).send({
-					success: false,
-					msg: "Credenciales incorrectas.",
+		.then((user) => {
+			if (!user) {
+				return res.status(401).send({
+					message: "Autenticación fallida.",
 				});
 			}
-		});
-	})
-	.catch((error) => res.status(400).send(error));
+
+			user.comparePassword(req.body.password, (err, isMatch) => {
+				if (isMatch && !err) {
+					var rememberMe = req.body.rememberMe;
+					console.log(rememberMe);
+
+					var expires;
+
+					if (rememberMe === false) {
+						expires = 60 * 30; // 30 minutos a partir de ahora
+					} else {
+						// expires = 86400 * 30; // 86400 minutos a partir de ahora, expira en un mes
+						// Expires in 5 hours
+						expires = 60 * 60 * 5;
+					}
+
+					var token = jwt.sign(
+						{ id: user.id }, // Set the id on the payload
+						"nodeauthsecret",
+						{
+							header: {
+								alg: "HS256",
+								typ: "JWT",
+							},
+							expiresIn: expires, // Set the expiration time for the token
+						}
+					);
+
+					// Format the token correctly
+					var formattedToken = "JWT " + token;
+
+					// Guardar las cookies inmediatamente
+					res.cookie("token", formattedToken, { httpOnly: true, secure: true });
+
+					RolePermission.findAll({ where: { role_id: user.role_id } }).then(
+						(RolePermission) => {
+							var permIds = RolePermission.map((rp) => rp.perm_id);
+							Permission.findAll({ where: { id: permIds } }).then(
+								(permissions) => {
+									var permNames = permissions.map((p) => p.perm_name);
+
+									// Obtener detalles del rol basado en role_id
+									Role.findOne({ where: { id: user.role_id } })
+										.then((role) => {
+											res.cookie("role_id", user.role_id);
+											res.cookie("user_id", user.id);
+											res.cookie("role_name", role.role_name); // Suponiendo que user.role_name es accesible
+											res.cookie("role_description", role.role_description);
+											res.cookie("user_email", user.email);
+											res.cookie("user_name", user.name);
+											res.cookie("picture", user.picture);
+											res.send({ success: true });
+										})
+										.catch((error) => {
+											res.status(400).send(error);
+										});
+								}
+							);
+						}
+					);
+				} else {
+					res.status(401).send({
+						success: false,
+						msg: "Credenciales incorrectas.",
+					});
+				}
+			});
+		})
+		.catch((error) => res.status(400).send(error));
 });
 
 // Ruta de cierre de sesión

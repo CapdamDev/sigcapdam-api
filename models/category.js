@@ -1,11 +1,12 @@
 "use strict";
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
-/**
- * Representa un modelo de categoría.
- * @class
- * @extends Model
- */
+  /**
+   * Representa un modelo de categoría.
+   * @class
+   * @extends Model
+   */
   class Category extends Model {
     static associate(models) {
       // Define la asociación aquí desde la capa hasta la categoría
@@ -15,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
+
   Category.init(
     {
       name: DataTypes.STRING,
@@ -25,5 +27,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Category",
     }
   );
+
   return Category;
 };
