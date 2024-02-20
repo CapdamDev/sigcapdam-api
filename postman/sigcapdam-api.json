@@ -26,7 +26,8 @@
 					"path": [
 						"all"
 					]
-				}
+				},
+				"description": "Obtiene todos los usuarios"
 			},
 			"response": []
 		},
@@ -36,13 +37,8 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
 						"key": "Authorization",
-						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZV9pZCI6MSwicGljdHVyZSI6InByb2ZpbGUucG5nIiwibmFtZSI6IlByb2dyYW1hY2lvbiIsImFwZV9wYXQiOiJDYXBkYW0iLCJhcGVfbWF0IjoiTWFuemFuaWxsbyIsImVtYWlsIjoicHJvZ3JhbWFjaW9uQGNhcGRhbS5nb2IubXgiLCJwYXNzd29yZCI6IiQyYiQxMCRyNWVSYjRvQmZocWc3UEhrVUtuYW8uOXB0RTdiVXlMWi4wVG5oTGszdWc5ajFOTUJhR3hBeSIsImlzQWN0aXZlIjp0cnVlLCJjcmVhdGVkQXQiOiIyMDIzLTEyLTIzVDE4OjI4OjQ3LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEyLTIzVDE4OjI4OjQ3LjAwMFoiLCJpYXQiOjE3MDYxODk2MDEsImV4cCI6MTcwODc4MTYwMX0.uGeJOIKhnXAXu6YpTn2xFdCWlzE7-21ny1ZAGdsPklw",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
@@ -57,10 +53,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "",
+							"description": "ID Del usuario"
 						}
 					]
-				}
+				},
+				"description": "Obtiene un usuario por su ID"
 			},
 			"response": []
 		},
@@ -69,11 +67,6 @@
 			"request": {
 				"method": "GET",
 				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
 					{
 						"key": "Authorization",
 						"value": "{{token}}",
@@ -88,7 +81,8 @@
 					"path": [
 						"all"
 					]
-				}
+				},
+				"description": "Obtiene todos los permisos"
 			},
 			"response": []
 		},
@@ -114,10 +108,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "",
+							"description": "ID del permiso"
 						}
 					]
-				}
+				},
+				"description": "Obtiene la información del permiso con base en su ID"
 			},
 			"response": []
 		},
@@ -144,10 +140,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "4"
+							"value": "",
+							"description": "ID del rol que se desea obtener los permisos"
 						}
 					]
-				}
+				},
+				"description": "Obtiene los permisos con base en el ID de un rol de usuario"
 			},
 			"response": []
 		},
@@ -177,7 +175,8 @@
 					"path": [
 						"all"
 					]
-				}
+				},
+				"description": "Obtiene todas las capas"
 			},
 			"response": []
 		},
@@ -203,10 +202,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "",
+							"description": "ID de la capa"
 						}
 					]
-				}
+				},
+				"description": "Obtiene una capa por su ID"
 			},
 			"response": []
 		},
@@ -233,14 +234,17 @@
 					"variable": [
 						{
 							"key": "category",
-							"value": "1"
+							"value": "",
+							"description": "ID de la categoría"
 						},
 						{
 							"key": "name",
-							"value": "SANTIAGO-SALAGUA"
+							"value": "",
+							"description": "Nombre de la capa"
 						}
 					]
-				}
+				},
+				"description": "Comprueba que exista una capa con la misma categoría y nombre"
 			},
 			"response": []
 		},
@@ -249,11 +253,6 @@
 			"request": {
 				"method": "GET",
 				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
 					{
 						"key": "Authorization",
 						"value": "{{token}}",
@@ -268,7 +267,8 @@
 					"path": [
 						"all"
 					]
-				}
+				},
+				"description": "Obtiene todos los roles"
 			},
 			"response": []
 		},
@@ -294,10 +294,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "",
+							"description": "ID del rol"
 						}
 					]
-				}
+				},
+				"description": "Obtiene un rol por su ID"
 			},
 			"response": []
 		},
@@ -319,15 +321,9 @@
 					],
 					"path": [
 						"all"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": null,
-							"disabled": true
-						}
 					]
-				}
+				},
+				"description": "Obtiene todas las categorías"
 			},
 			"response": []
 		},
@@ -353,10 +349,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "",
+							"description": "ID de la categoría"
 						}
 					]
-				}
+				},
+				"description": "Obtiene una categoría por su ID"
 			},
 			"response": []
 		},
@@ -369,12 +367,6 @@
 						"key": "Authorization",
 						"value": "{{token}}",
 						"type": "text"
-					},
-					{
-						"key": "COoCookie",
-						"value": "",
-						"type": "text",
-						"disabled": true
 					}
 				],
 				"url": {
@@ -384,15 +376,9 @@
 					],
 					"path": [
 						"all"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": "{{token}}",
-							"disabled": true
-						}
 					]
-				}
+				},
+				"description": "Obtiene todos los departamentos"
 			},
 			"response": []
 		},
@@ -418,10 +404,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "",
+							"description": "ID del departamento"
 						}
 					]
-				}
+				},
+				"description": "Obtiene un departamento por su ID"
 			},
 			"response": []
 		},
@@ -444,7 +432,8 @@
 					"path": [
 						"all"
 					]
-				}
+				},
+				"description": "Obtiene todas las direcciones (con los departamentos que posee cada una)"
 			},
 			"response": []
 		},
@@ -470,10 +459,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "",
+							"description": "ID de la dirección"
 						}
 					]
-				}
+				},
+				"description": "Obtiene una dirección por su ID (y los departamentos que tiene esa dirección asignados)"
 			},
 			"response": []
 		},
@@ -541,7 +532,8 @@
 					"path": [
 						""
 					]
-				}
+				},
+				"description": "Agregar una capa"
 			},
 			"response": []
 		},
@@ -570,7 +562,8 @@
 					"host": [
 						"{{host}}roles"
 					]
-				}
+				},
+				"description": "Agregar un rol"
 			},
 			"response": []
 		},
@@ -602,7 +595,8 @@
 					"path": [
 						"new"
 					]
-				}
+				},
+				"description": "Agregar un nuevo usuario"
 			},
 			"response": []
 		},
@@ -635,7 +629,8 @@
 						"permissions",
 						"4"
 					]
-				}
+				},
+				"description": "Agregar permiso(s) a un rol"
 			},
 			"response": []
 		},
@@ -670,7 +665,8 @@
 					"host": [
 						"{{host}}permissions"
 					]
-				}
+				},
+				"description": "Agregar un permiso nuevo"
 			},
 			"response": []
 		},
@@ -707,7 +703,8 @@
 						"categories",
 						""
 					]
-				}
+				},
+				"description": "Agregar una nueva categoría"
 			},
 			"response": []
 		},
@@ -742,10 +739,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "",
+							"description": "ID del rol que se desea actualizar"
 						}
 					]
-				}
+				},
+				"description": "Actualizar un rol"
 			},
 			"response": []
 		},
@@ -780,10 +779,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "",
+							"description": "ID del usuario a actualizar"
 						}
 					]
-				}
+				},
+				"description": "Actualizar un usuario"
 			},
 			"response": []
 		},
@@ -818,10 +819,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "13"
+							"value": "",
+							"description": "ID del departamento a actualizar"
 						}
 					]
-				}
+				},
+				"description": "Actualizar un departamento"
 			},
 			"response": []
 		},
@@ -856,10 +859,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "",
+							"description": "ID del permiso a actualizar"
 						}
 					]
-				}
+				},
+				"description": "Actualizar un permiso"
 			},
 			"response": []
 		},
@@ -894,10 +899,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "11"
+							"value": "",
+							"description": "ID de la capa a actualizar"
 						}
 					]
-				}
+				},
+				"description": "Actualizar una capa"
 			},
 			"response": []
 		},
@@ -906,11 +913,6 @@
 			"request": {
 				"method": "PUT",
 				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
 					{
 						"key": "Authorization",
 						"value": "{{token}}",
@@ -944,10 +946,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "5"
+							"value": "",
+							"description": "ID de la categoría a actualizar"
 						}
 					]
-				}
+				},
+				"description": "Actualizar una categoría"
 			},
 			"response": []
 		},
@@ -978,10 +982,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": ""
+							"value": "",
+							"description": "ID del rol a eliminar"
 						}
 					]
-				}
+				},
+				"description": "Borrar un rol"
 			},
 			"response": []
 		},
@@ -1002,14 +1008,22 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}users/;id",
+					"raw": "{{host}}users/:id",
 					"host": [
 						"{{host}}users"
 					],
 					"path": [
-						";id"
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "",
+							"description": "ID del usuario a eliminar"
+						}
 					]
-				}
+				},
+				"description": "Borrar un usuario"
 			},
 			"response": []
 		},
@@ -1040,10 +1054,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": ""
+							"value": "",
+							"description": "ID del permiso a eliminar"
 						}
 					]
-				}
+				},
+				"description": "Borrar un permiso"
 			},
 			"response": []
 		},
@@ -1069,10 +1085,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "34"
+							"value": "",
+							"description": "ID de la capa a eliminar"
 						}
 					]
-				}
+				},
+				"description": "Borrar una capa"
 			},
 			"response": []
 		},
@@ -1081,11 +1099,6 @@
 			"request": {
 				"method": "DELETE",
 				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
 					{
 						"key": "Authorization",
 						"value": "{{token}}",
@@ -1103,10 +1116,12 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "5"
+							"value": "",
+							"description": "ID de la categoría a eliminar"
 						}
 					]
-				}
+				},
+				"description": "Borrar una categoría"
 			},
 			"response": []
 		},
@@ -1133,7 +1148,8 @@
 					"path": [
 						"register"
 					]
-				}
+				},
+				"description": "Registrar un nuevo usuario"
 			},
 			"response": []
 		},
@@ -1160,7 +1176,8 @@
 					"path": [
 						"login"
 					]
-				}
+				},
+				"description": "Login del usuario"
 			},
 			"response": []
 		}
