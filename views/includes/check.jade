@@ -1,0 +1,39 @@
+script.
+    // Use AJAX to check response status from server
+    $(window).on('load', function() {
+        $.ajax({
+            url: '/api/v1/auth/check',
+            type: 'GET',
+            success: function(response) {
+                if (response.status === 'success') {
+                    console.log('User is logged in');
+                }
+                else {
+                    console.log('User is not logged in');
+                }
+            },
+            error: function() {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Vuelve a iniciar sesión',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    fetch('api/v1/auth/logout', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': '!{cookies.token}'
+                        },
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            window.location.href = '/';
+                        } else {
+                            throw new Error('Logout failed.');
+                        }
+                    })
+                });
+            }
+        });
+    });
