@@ -64,10 +64,12 @@ router.post("/login", function (req, res) {
 
 					if (rememberMe === false) {
 						expires = 60 * 30; // 30 minutos a partir de ahora
+						// expires = 5;
 					} else {
 						// expires = 86400 * 30; // 86400 minutos a partir de ahora, expira en un mes
 						// Expires in 5 hours
 						expires = 60 * 60 * 5;
+						// expires = 5;
 					}
 
 					var token = jwt.sign(
@@ -125,17 +127,23 @@ router.post("/login", function (req, res) {
 		.catch((error) => res.status(400).send(error));
 });
 
+// Check if user is authenticated, logged and token is not expired
+router.get("/check", passport.authenticate("jwt", { session: false }), function (req, res) {
+	res.status(200).send(req.user);
+});
+
+
 // Ruta de cierre de sesión
 router.post("/logout", (req, res) => {
 	// Limpiar las cookies
 	res.clearCookie("token");
 	res.clearCookie("role_id");
 	res.clearCookie("role_name");
+	res.clearCookie("role_description");
 	res.clearCookie("user_email");
 	res.clearCookie("user_id");
 	res.clearCookie("user_name");
 	res.clearCookie("picture");
-	// Enviar JSON para confirmar la eliminación
 	res.status(200).redirect("/login");
 });
 
