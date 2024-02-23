@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-02-2024 a las 19:58:09
+-- Tiempo de generación: 23-02-2024 a las 23:01:39
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -48,7 +48,7 @@ INSERT INTO `Categories` (`id`, `name`, `createdAt`, `updatedAt`, `isActive`) VA
 (2, 'COMERCIALIZACION', '2023-12-23 18:28:47', '2024-02-14 13:57:28', 1),
 (3, 'INFRAESTRUCTURA', '2023-12-23 18:28:47', '2024-02-14 13:57:32', 1),
 (4, 'RUTAS', '2023-12-23 18:28:47', '2024-02-14 13:57:35', 1),
-(5, 'CARTOGRAFIA MUNICIPAL', '2024-02-08 14:18:31', '2024-02-16 16:56:52', 1);
+(5, 'CARTOGRAFIA MUNICIPAL', '2024-02-08 14:18:31', '2024-02-20 14:18:49', 1);
 
 -- --------------------------------------------------------
 
@@ -524,6 +524,30 @@ INSERT INTO `Roles` (`id`, `role_name`, `role_description`, `createdAt`, `update
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `Routes`
+--
+
+DROP TABLE IF EXISTS `Routes`;
+CREATE TABLE IF NOT EXISTS `Routes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `routeNumber` int(11) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `assignedUser` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `Routes_assignedUser_foreign_idx` (`assignedUser`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `Routes`
+--
+
+INSERT INTO `Routes` (`id`, `routeNumber`, `createdAt`, `updatedAt`, `assignedUser`) VALUES
+(1, 101, '2024-02-23 22:47:45', '2024-02-23 22:47:45', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `SequelizeMeta`
 --
 
@@ -553,7 +577,10 @@ INSERT INTO `SequelizeMeta` (`name`) VALUES
 ('20240206195450-addDepartmentToUser.js'),
 ('20240206195800-addDirectionIdToDepartment.js'),
 ('20240206200350-addIsActiveToDepartmentAndDirection.js'),
-('20240207160253-addIsActiveToRoles.js');
+('20240207160253-addIsActiveToRoles.js'),
+('20240215150447-changeNombreToNameUsers.js'),
+('20240223212355-create-route.js'),
+('20240223214420-addUserIdRelationInRoutes.js');
 
 -- --------------------------------------------------------
 
@@ -598,6 +625,12 @@ INSERT INTO `Users` (`id`, `role_id`, `picture`, `name`, `ape_pat`, `ape_mat`, `
 --
 ALTER TABLE `Departments`
   ADD CONSTRAINT `Departments_direction_id_foreign_idx` FOREIGN KEY (`direction_id`) REFERENCES `Directions` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `Routes`
+--
+ALTER TABLE `Routes`
+  ADD CONSTRAINT `Routes_assignedUser_foreign_idx` FOREIGN KEY (`assignedUser`) REFERENCES `Users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `Users`
