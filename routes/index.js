@@ -276,7 +276,25 @@ router.get("/settings/routes", async function (req, res, next) {
 	if (!cookies.token) {
 		res.redirect("/login");
 	} else {
-		res.render("settings/routes", { cookies, url });
+		try {
+			const response = await fetch("http://localhost:3000/api/v1/layers/routes", {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: cookies.token,
+				},
+			});
+			const routes = await response.json();
+
+			if (!routes) {
+				res.send(404);
+			} else {
+				res.render("settings/routes", { routes, cookies, url });
+			}
+		}
+		catch (error) {
+			res.status(500).json({ error: "Internal Server Error" });
+		}
 	}
 });
 
@@ -369,9 +387,9 @@ router.get("/settings/departments", async function (req, res, next) {
 //   res.render('dashboard');
 // });
 
-// /* GET de las layers2 (donde se hicieron las primeras pruebas de tipo CRUD de las layers) */
+/* GET de las layers2 (donde se hicieron las primeras pruebas de tipo CRUD de las layers) */
 // router.get('/layers2', function(req, res, next) {
-//   res.render('layers2');
+// 	res.render('layers2');
 // });
 
 module.exports = router;

@@ -157,6 +157,48 @@ router.get("/all", passport.authenticate("jwt", { session: false }), function (r
 		});
 });
 
+router.get("/routes", passport.authenticate("jwt", { session: false }), function (req, res) {
+	helper.checkPermission(req.user.role_id, "layer_get_all")
+		.then((rolePerm) => {
+			Layer.findAll({
+				where: {
+					category: 4,
+					isActive: true,
+				},
+				include: [
+					{
+						model: Category,
+						attributes: ["name", "isActive"],
+						as: "categoryData",
+						where: {
+							isActive: 1,
+						},
+					},
+				],
+			})
+				.then((layers) => {
+					res.status(200).json(layers);
+				})
+				.catch((error) => {
+					res.status(500).json({
+						error: "Internal Server Error",
+						success: false,
+					});
+				});
+		})
+		.catch((error) => {
+			if (error.status === 401) {
+				res.status(401).json({
+					error: "Unauthorized",
+				});
+			} else {
+				res.status(403).json({
+					error: "Forbidden",
+				});
+			}
+		});
+});
+
 // Consulta una layer por su id
 router.get("/:id", passport.authenticate("jwt", { session: false, }), function (req, res) {
 	helper.checkPermission(req.user.role_id, "layer_get")
