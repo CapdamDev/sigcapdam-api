@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const router = express.Router();
 require("../config/passport")(passport);
-const { Category, Department, Direction, Layer, Permission, Role, RolePermission, User } = require("../models");
+const { Category, Department, Direction, Layer, Permission, Role, RolePermission, User, Route } = require("../models");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 
