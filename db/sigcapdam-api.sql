@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-02-2024 a las 23:01:39
+-- Tiempo de generación: 24-02-2024 a las 18:56:58
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -371,7 +371,7 @@ CREATE TABLE IF NOT EXISTS `Permissions` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `perm_name` (`perm_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Permissions`
@@ -413,7 +413,13 @@ INSERT INTO `Permissions` (`id`, `perm_name`, `perm_description`, `createdAt`, `
 (33, 'department_get', 'Obtener un departamento', '2023-12-08 17:31:31', '2023-12-08 17:31:31'),
 (34, 'department_get_all', 'Obtener todos los departamentos', '2023-12-08 17:31:31', '2023-12-08 17:31:31'),
 (35, 'department_delete', 'Borrar departamento', '2023-12-08 17:31:31', '2023-12-08 17:31:31'),
-(37, 'category_get_inactive', 'Obtener categorias inactivas', '2023-12-08 17:31:18', '2023-12-08 17:31:18');
+(37, 'category_get_inactive', 'Obtener categorias inactivas', '2023-12-08 17:31:18', '2023-12-08 17:31:18'),
+(42, 'route_add', 'Agregar una ruta nueva', '2024-02-24 13:59:24', '2024-02-24 13:59:24'),
+(43, 'route_update', 'Actualizar una ruta', '2024-02-24 13:59:42', '2024-02-24 13:59:42'),
+(44, 'route_get', 'Obtener una ruta', '2024-02-24 14:02:07', '2024-02-24 14:02:07'),
+(45, 'route_get_all', 'Obtener todas las rutas', '2024-02-24 14:02:29', '2024-02-24 14:02:29'),
+(46, 'route_delete', 'Borrar una ruta', '2024-02-24 14:02:41', '2024-02-24 14:02:41'),
+(47, 'route_user_add', 'Asignar un usuario a una ruta', '2024-02-24 14:02:59', '2024-02-24 14:02:59');
 
 -- --------------------------------------------------------
 
@@ -534,6 +540,7 @@ CREATE TABLE IF NOT EXISTS `Routes` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `assignedUser` int(11) DEFAULT NULL,
+  `isActive` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `Routes_assignedUser_foreign_idx` (`assignedUser`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -542,8 +549,8 @@ CREATE TABLE IF NOT EXISTS `Routes` (
 -- Volcado de datos para la tabla `Routes`
 --
 
-INSERT INTO `Routes` (`id`, `routeNumber`, `createdAt`, `updatedAt`, `assignedUser`) VALUES
-(1, 101, '2024-02-23 22:47:45', '2024-02-23 22:47:45', 1);
+INSERT INTO `Routes` (`id`, `routeNumber`, `createdAt`, `updatedAt`, `assignedUser`, `isActive`) VALUES
+(1, 101, '2024-02-23 22:47:45', '2024-02-23 22:47:45', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -580,7 +587,8 @@ INSERT INTO `SequelizeMeta` (`name`) VALUES
 ('20240207160253-addIsActiveToRoles.js'),
 ('20240215150447-changeNombreToNameUsers.js'),
 ('20240223212355-create-route.js'),
-('20240223214420-addUserIdRelationInRoutes.js');
+('20240223214420-addUserIdRelationInRoutes.js'),
+('20240224160840-addIsActiveToRoutes.js');
 
 -- --------------------------------------------------------
 

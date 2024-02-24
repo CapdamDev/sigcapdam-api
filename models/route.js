@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Route.init({
     routeNumber: DataTypes.INTEGER,
-    assignedUser: DataTypes.INTEGER
+    assignedUser: DataTypes.INTEGER,
+    isActive: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Route',

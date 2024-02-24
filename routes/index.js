@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const { Category, Department, Direction, Layer, Permission, Role, RolePermission, User } = require("../models");
+const { Category, Department, Direction, Layer, Permission, Role, RolePermission, User, Route } = require("../models");
 const cookieParser = require("cookie-parser");
 
 router.use(cookieParser());
@@ -277,7 +277,7 @@ router.get("/settings/routes", async function (req, res, next) {
 		res.redirect("/login");
 	} else {
 		try {
-			const response = await fetch("http://localhost:3000/api/v1/layers/routes", {
+			const response = await fetch("http://localhost:3000/api/v1/routes/all", {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
