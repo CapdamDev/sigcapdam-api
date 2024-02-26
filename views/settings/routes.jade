@@ -36,9 +36,10 @@ html(lang='es')
                                                 th(scope="col" class="px-6 py-4") Ruta
                                                 //- th(scope="col" class="px-6 py-4") Ver en el mapa
                                                 th(scope="col" class="px-6 py-4") Usuarios asignados
-                                                //- th(scope="col" class="px-6 py-4") Total de contratos
-                                                //- th(scope="col" class="px-6 py-4") Total con Clave Cat.
-                                                //- th(scope="col" class="px-6 py-4") Total sin Clave Cat.
+                                                th(scope="col" class="px-6 py-4") Archivo de ruta
+                                                th(scope="col" class="px-6 py-4") Total de contratos
+                                                th(scope="col" class="px-6 py-4") Total con Clave Cat.
+                                                th(scope="col" class="px-6 py-4") Total sin Clave Cat.
                                                 th(scope="col" class="px-6 py-4") Acciones
                                                     span(class="sr-only") Actions
                                         tbody(id="routesTbody")
@@ -50,9 +51,11 @@ html(lang='es')
                                                     //- td(id="routeMap" scope="row" class="px-4 py-3 text-sm font-medium")
                                                     //-     a(href="/settings/routes/map" class="text-sky-500 dark:text-sky-400 hover:underline") Ver
                                                     td(id="routeDirection" scope="row" class="px-4 py-3 text-sm font-medium" value=route.assignedUserData.id)=route.assignedUserData.name
-                                                    //- td(id="routeTotalContracts" scope="row" class="px-4 py-3 text-sm font-medium" value=route.totalContracts)=route.totalContracts
-                                                    //- td(id="routeTotalContractsCat" scope="row" class="px-4 py-3 text-sm font-medium" value=route.totalContractsCat)=route.totalContractsCat
-                                                    //- td(id="routeTotalContractsNoCat" scope="row" class="px-4 py-3 text-sm font-medium" value=route.totalContractsNoCat)=route.totalContractsNoCat
+                                                    td(id="routeFile" scope="row" class="px-4 py-3 text-sm font-medium")
+                                                        a(href='/assets/layers/'+route.layerData.archive class="text-sky-500 dark:text-sky-400 hover:underline") Descargar
+                                                    td(id="routeTotalContracts" scope="row" class="px-4 py-3 text-sm font-medium" value=route.totalContracts)=route.totalContracts
+                                                    td(id="routeTotalContractsCat" scope="row" class="px-4 py-3 text-sm font-medium" value=route.totalContractsCat)=route.totalContractsCat
+                                                    td(id="routeTotalContractsNoCat" scope="row" class="px-4 py-3 text-sm font-medium" value=route.totalContractsNoCat)=route.totalContractsNoCat
                                                     td(id="routeActions" scope="row" class="px-4 py-3 items-center")
                                                         div(class="space-x-2")
                                                             button(class=" hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200" type="button" data-modal-target="updateDirectionModal" data-modal-toggle="updateDirectionModal" id="updateModalButton" value=route.id)

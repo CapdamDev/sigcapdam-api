@@ -10,11 +10,17 @@ module.exports = (sequelize, DataTypes) => {
         as: 'assignedUserData',
         targetKey: 'id', // Add this line to specify the target key
       });
+      Route.belongsTo(models.Layer, {
+        foreignKey: 'layerId',
+        as: 'layerData',
+        targetKey: 'id', //
+      });
     }
   }
   Route.init({
     routeNumber: DataTypes.INTEGER,
     assignedUser: DataTypes.INTEGER,
+    layerId: DataTypes.INTEGER,
     isActive: DataTypes.BOOLEAN
   }, {
     sequelize,

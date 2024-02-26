@@ -183,7 +183,7 @@ html(lang='es')
                                         }
                                         return response.json()
                                         .then(data2 => {
-                                            if (data2.length === 0) {
+                                            if (data2 === undefined || data2 === null || data2 === "") {
                                                 Swal.fire({
                                                     icon: 'error',
                                                     title: 'Sin datos',
@@ -339,6 +339,13 @@ html(lang='es')
                                         if (!response.ok) {
                                             throw new Error(`Network response was not ok: ${response.statusText}`);
                                         }
+                                        else if(response.status === 500 || response.status === 404){
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Error',
+                                                text: 'No se encontró información sobre el contrato proporcionado',
+                                            });
+                                        }
                                         return response.json();
                                     })
                                     .then(data1 => {
@@ -359,7 +366,7 @@ html(lang='es')
                                             console.log(data2);
 
                                             // If data2 is an empty array or empty object, show a sweet alert message
-                                            if(data2.length === 0){
+                                            if(data2 === undefined || data2 === null || data2 === "" || data2 === {}){
                                                 Swal.fire({
                                                     icon: 'error',
                                                     title: 'Sin datos',
