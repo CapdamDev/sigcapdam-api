@@ -39,32 +39,57 @@ router.post('/', passport.authenticate('jwt', { session: false }), function (req
     });
 });
 
-router.get('/all', passport.authenticate('jwt', { session: false }), function (req, res) {
-    helper.checkPermission(req.user.role_id, 'route_get_all')
-        .then((rolePerm) => {
-            Route.findAll({
-                where: {
-                    isActive: true
-                },
-                include: [{
-                    model: User,
-                    as: 'assignedUserData',
-                    attributes: ['id', 'name']
-                }]
-            })
-                .then((routes) => {
-                    // Convert the routes to JSON
-                    routes = routes.map(route => route.toJSON());
-                    console.log(routes);
-                    res.status(200).send(routes);
-                })
-                .catch((error) => {
-                    res.status(400).send(error);
-                });
-        })
-        .catch((error) => {
-            res.status(403).send(error);
+router.get('/all', passport.authenticate('jwt', { session: false }), async function (req, res) {
+    try {
+        helper.checkPermission(req.user.role_id, 'route_get_all');
+        const routes = await Route.findAll({
+            where: {
+                isActive: true
+            },
+            include: [{
+                model: User,
+                as: 'assignedUserData',
+                attributes: ['id', 'name']
+            }, {
+                model: Layer,
+                as: 'layerData',
+                attributes: ['id', 'archive']
+            }]
         });
+
+        const processedRoutes = await Promise.all(routes.map(async route => {
+            const archivePath = 'http://localhost:3000/assets/layers/' + route.layerData.archive;
+
+            try {
+                function isEmptyID(feature) {
+                    return feature.properties.ID_ === '' || feature.properties.ID_ === null || feature.properties.ID_ === undefined;
+                }
+                const layerDataInformation = await fetch(archivePath).then(res => res.json());
+                const totalContracts = layerDataInformation.features.length;
+                // From the features.properties.ID, we can determine if the contract has CveCat or not
+                const totalContractsNoCat = layerDataInformation.features.filter(isEmptyID).length;
+                const totalContractsCat = totalContracts - totalContractsNoCat;
+                return {
+                    ...route.toJSON(),
+                    layerData: layerDataInformation,
+                    totalContracts,
+                    totalContractsCat,
+                    totalContractsNoCat
+                };
+            } catch (err) {
+                console.error('Error processing JSON file:', err);
+                console.log(archivePath);
+                // Handle error gracefully, e.g., provide a fallback value or omit the route
+                return null;
+            }
+        }));
+
+        res.status(200).send(processedRoutes.filter(route => route !== null));
+
+    } catch (error) {
+        console.error('Error processing routes:', error);
+        res.status(400).send(error);
+    }
 });
 
 router.get('/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
