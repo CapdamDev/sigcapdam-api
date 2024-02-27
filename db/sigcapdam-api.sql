@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-02-2024 a las 18:56:58
+-- Tiempo de generación: 27-02-2024 a las 17:37:50
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -541,16 +541,20 @@ CREATE TABLE IF NOT EXISTS `Routes` (
   `updatedAt` datetime NOT NULL,
   `assignedUser` int(11) DEFAULT NULL,
   `isActive` tinyint(1) NOT NULL DEFAULT 1,
+  `layerId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `Routes_assignedUser_foreign_idx` (`assignedUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `Routes_assignedUser_foreign_idx` (`assignedUser`),
+  KEY `Routes_layerId_foreign_idx` (`layerId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Routes`
 --
 
-INSERT INTO `Routes` (`id`, `routeNumber`, `createdAt`, `updatedAt`, `assignedUser`, `isActive`) VALUES
-(1, 101, '2024-02-23 22:47:45', '2024-02-23 22:47:45', 1, 1);
+INSERT INTO `Routes` (`id`, `routeNumber`, `createdAt`, `updatedAt`, `assignedUser`, `isActive`, `layerId`) VALUES
+(1, 101, '2024-02-23 22:47:45', '2024-02-23 22:47:45', 1, 1, 10),
+(2, 1003, '2024-02-23 22:47:45', '2024-02-23 22:47:45', 1, 1, 159),
+(3, 103, '2024-02-23 22:47:45', '2024-02-23 22:47:45', 1, 1, 12);
 
 -- --------------------------------------------------------
 
@@ -588,7 +592,8 @@ INSERT INTO `SequelizeMeta` (`name`) VALUES
 ('20240215150447-changeNombreToNameUsers.js'),
 ('20240223212355-create-route.js'),
 ('20240223214420-addUserIdRelationInRoutes.js'),
-('20240224160840-addIsActiveToRoutes.js');
+('20240224160840-addIsActiveToRoutes.js'),
+('20240226140115-addLayerIdToRoutes.js');
 
 -- --------------------------------------------------------
 
@@ -638,7 +643,8 @@ ALTER TABLE `Departments`
 -- Filtros para la tabla `Routes`
 --
 ALTER TABLE `Routes`
-  ADD CONSTRAINT `Routes_assignedUser_foreign_idx` FOREIGN KEY (`assignedUser`) REFERENCES `Users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `Routes_assignedUser_foreign_idx` FOREIGN KEY (`assignedUser`) REFERENCES `Users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `Routes_layerId_foreign_idx` FOREIGN KEY (`layerId`) REFERENCES `Layers` (`id`);
 
 --
 -- Filtros para la tabla `Users`
