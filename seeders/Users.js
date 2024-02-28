@@ -6,8 +6,6 @@ const { queryInterface } = require('sequelize');
 /** @type {import('sequelize-cli').Seed} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    console.log('Comenzando la siembra');
-
     try {
       // Tu código de siembra existente aquí
       const hashedPassword = await bcrypt.hash('123tamarindo', 10);
@@ -25,8 +23,6 @@ module.exports = {
         updatedAt: new Date(),
         department_id: 1
       }]);
-
-      console.log('Siembra completa');
     } catch (error) {
       console.error('Error de siembra:', error);
     }
