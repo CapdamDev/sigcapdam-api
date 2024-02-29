@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   class Layer extends Model {
     static associate(models) {
       Layer.belongsTo(models.Category, {
-        foreignKey: "category",
+        foreignKey: "categoryId",
         as: "categoryData",
       });
     }
@@ -13,11 +13,13 @@ module.exports = (sequelize, DataTypes) => {
 
   Layer.init(
     {
-      name: DataTypes.STRING, // Nombre del campo para el nombre de la capa
-      archive: DataTypes.STRING, // Nombre del campo para el archivo de la capa
-      category: DataTypes.INTEGER, // Nombre del campo para la categoría de la capa (clave foránea)
-      icono: DataTypes.STRING, // Nombre del campo para el icono de la capa
-      isActive: DataTypes.BOOLEAN, // Nombre del campo para indicar si la capa está activa o no
+      name: DataTypes.STRING,     
+      icon: DataTypes.STRING,
+      color: DataTypes.STRING,
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
+      isActive: DataTypes.BOOLEAN,
+      categoryId: DataTypes.INTEGER,
     },
     {
       sequelize,

@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       // Define la asociación aquí desde la capa hasta la categoría
       Category.hasMany(models.Layer, {
         as: "layers",
-        foreignKey: "category",
+        foreignKey: "categoryId",
       });
     }
   }

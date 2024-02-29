@@ -12,10 +12,10 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      archive: {
+      icon: {
         type: Sequelize.STRING
       },
-      category: {
+      color: {
         type: Sequelize.STRING
       },
       createdAt: {

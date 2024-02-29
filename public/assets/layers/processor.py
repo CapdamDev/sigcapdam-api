@@ -34,7 +34,7 @@ def insert_data(layer):
     properties = json.dumps(layer[0])  # Convert properties to JSON string
     geometry = format_geometry(layer[1])  # Format geometry
     
-    query = "(NULL, '1', '" + properties + "', ST_GeomFromText('" + geometry + "'));"
+    query = "(NULL, '1', '" + properties + "', ST_GeomFromText('" + geometry + "'), NOW(), NOW());"
     return query
 
 # Function to insert the data into the database
@@ -45,8 +45,8 @@ def insert_layers(layers):
 # Main function
 def main():
     layers = parse_json('1003.json')  # Parse the JSON file
+    print("INSERT INTO Polygons (id, layerId, properties, geometry, createdAt, updatedAt) VALUES")
     insert_layers(layers)  # Insert the data into the database
 
 
-print("INSERT INTO Layers (id, category, properties, geometry) VALUES")
 main()
