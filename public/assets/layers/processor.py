@@ -11,32 +11,30 @@ def parse_json(file):
             layers.append((properties, geometry))
         return layers
 
-# Function to format the geometry into the correct format for MySQL
+
+# This function formats the geometry into the correct format for MySQL, talking about the different types of geometries used in the GeoJSON format
 def format_geometry(geometry):
     geom_type = geometry['type']
     coords = geometry['coordinates']
     
-    if geom_type == 'Point':
-        return "POINT(" + " ".join(map(str, coords)) + ")"
-    elif geom_type == 'LineString':
-        return "LINESTRING(" + ", ".join(" ".join(map(str, coord)) for coord in coords) + ")"
-    elif geom_type == 'Polygon':
-        return "POLYGON(" + ", ".join("(" + ", ".join(" ".join(map(str, coord)) for coord in ring) + ")" for ring in coords) + ")"
-    elif geom_type == 'MultiPoint':
-        return "MULTIPOINT(" + ", ".join(" ".join(map(str, coord)) for coord in coords) + ")"
-    elif geom_type == 'MultiLineString':
-        return "MULTILINESTRING(" + ", ".join("(" + ", ".join(" ".join(map(str, coord)) for coord in line) + ")" for line in coords) + ")"
-    elif geom_type == 'MultiPolygon':
-        return "MULTIPOLYGON(" + ", ".join("(" + ", ".join("(" + ", ".join(" ".join(map(str, coord)) for coord in ring) + ")" for ring in poly) + ")" for poly in coords) + ")"
-    else:
-        raise ValueError("Unsupported geometry type: " + geom_type)
+    # Use a case statement to handle different geometry types
+    case = {
+        'Point': "POINT(" + " ".join(map(str, coords)) + ")",
+        'LineString': "LINESTRING(" + ", ".join(" ".join(map(str, coord)) for coord in coords) + ")",
+        'Polygon': "POLYGON(" + ", ".join("(" + ", ".join(" ".join(map(str, coord)) for coord in ring) + ")" for ring in coords) + ")",
+        'MultiPoint': "MULTIPOINT(" + ", ".join(" ".join(map(str, coord)) for coord in coords) + ")",
+        'MultiLineString': "MULTILINESTRING(" + ", ".join("(" + ", ".join(" ".join(map(str, coord)) for coord in line) + ")" for line in coords) + ")",
+        'MultiPolygon': "MULTIPOLYGON(" + ", ".join("(" + ", ".join("(" + ", ".join(" ".join(map(str, coord)) for coord in ring) + ")" for ring in poly) + ")" for poly in coords) + ")"
+    }
+    
+    return case.get(geom_type, ValueError("Unsupported geometry type: " + geom_type))
 
 # Function to generate the SQL query for inserting data into the database
 def insert_data(layer):
     properties = json.dumps(layer[0])  # Convert properties to JSON string
     geometry = format_geometry(layer[1])  # Format geometry
     
-    query = "INSERT INTO Layers (id, category, properties, geometry) VALUES (NULL, '1', '" + properties + "', ST_GeomFromText('" + geometry + "'));"
+    query = "(NULL, '1', '" + properties + "', ST_GeomFromText('" + geometry + "'), NOW(), NOW());"
     return query
 
 # Function to insert the data into the database
@@ -46,7 +44,9 @@ def insert_layers(layers):
 
 # Main function
 def main():
-    layers = parse_json('1001.json')  # Parse the JSON file
+    layers = parse_json('1003.json')  # Parse the JSON file
+    print("INSERT INTO Polygons (id, layerId, properties, geometry, createdAt, updatedAt) VALUES")
     insert_layers(layers)  # Insert the data into the database
+
 
 main()

@@ -117,43 +117,15 @@ router.get("/:category/:name", passport.authenticate("jwt", { session: false }),
 });
 
 router.get("/all", passport.authenticate("jwt", { session: false }), function (req, res) {
-	helper.checkPermission(req.user.role_id, "layer_get_all")
-		.then((rolePerm) => {
-			Layer.findAll({
-				where: {
-					isActive: true,
-				},
-				include: [
-					{
-						model: Category,
-						attributes: ["name", "isActive"],
-						as: "categoryData",
-						where: {
-							isActive: 1,
-						},
-					},
-				],
-			})
-				.then((layers) => {
-					res.status(200).json(layers);
-				})
-				.catch((error) => {
-					res.status(500).json({
-						error: "Internal Server Error",
-						success: false,
-					});
-				});
+	Layer.findAll()
+		.then((layers) => {
+			res.status(200).json(layers);
 		})
 		.catch((error) => {
-			if (error.status === 401) {
-				res.status(401).json({
-					error: "Unauthorized",
-				});
-			} else {
-				res.status(403).json({
-					error: "Forbidden",
-				});
-			}
+			res.status(500).json({
+				error: "Internal Server Error",
+				success: false,
+			});
 		});
 });
 
