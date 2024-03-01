@@ -17,6 +17,7 @@ var categoriesRouter = require('./routes/categories');
 var directionsRouter = require('./routes/directions');
 var departmentsRouter = require('./routes/departments');
 var routesRouter = require('./routes/routes');
+var polygonsRouter = require('./routes/polygons');
 
 var app = express();
 
@@ -38,6 +39,7 @@ app.use((req, res, next) => { res.header("Access-Control-Allow-Origin", "http://
   next(); 
 });
 
+// API Routes
 app.use('/', indexRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/categories', categoriesRouter);
@@ -48,6 +50,7 @@ app.use('/api/v1/permissions', permsRouter);
 app.use('/api/v1/roles', rolesRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/routes', routesRouter);
+app.use('/api/v1/polygons', polygonsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

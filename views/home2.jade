@@ -484,128 +484,215 @@ html(lang='es')
 
                             document.addEventListener('DOMContentLoaded', function () {
 
-                                // Obtener todos polígonos de la base de datos
-                                fetch('/api/v1/categories/all', {
+                                // Obtener todos los layers
+                                fetch('/api/v1/layers/all', {
                                     method: 'GET',
                                     headers: {
                                         'Content-Type': 'application/json',
                                         'Authorization': '!{cookies.token}',
                                     },
                                 })
-                                .then((response)=> {
-                                    if(response.status === 401) {
+                                .then((response) => {
+                                    if (response.status === 401) {
                                         Swal.fire({
                                             title: 'Error',
                                             text: 'Vuelve a iniciar sesión',
                                             icon: 'error',
-                                            confirmButtonText: 'Ok'
-                                        })
-                                        .then(()=> {
+                                            confirmButtonText: 'OK'
+                                        }).then(() => {
                                             fetch('api/v1/auth/logout', {
                                                 method: 'POST',
                                                 headers: {
-                                                    'Content-Type': 'application/json',
+                                                    'Content-Type': 'application/json'
                                                 },
                                             })
                                             .then(response => {
-                                                if(response.ok) {
+                                                if (response.ok) {
                                                     window.location.href = '/';
                                                 } else {
-                                                    throw new Error('Logout failed');
+                                                    throw new Error('Logout failed.');
                                                 }
                                             })
                                         });
-                                    }else {
+                                    }
+                                    else if(response.status === 500){
+                                        return {
+                                            name: 'No layers',
+                                            archive: 'No layers',
+                                            icono: 'profile.png',
+                                            categoryData: {
+                                                name: 'No layers',
+                                                isActive: true
+                                            },
+                                        }
+                                    }
+                                    else {
                                         return response.json();
                                     }
                                 })
-                                .then((categories) => {
-                                    // Now get the Layers from the API before creating the jstree
-                                    fetch('/api/v1/layers/all', {
-                                        method: 'GET',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'Authorization': '!{cookies.token}',
-                                        },
-                                    })
-                                    .then((response)=> {
-                                        if(response.status === 401) {
-                                            Swal.fire({
-                                                title: 'Error',
-                                                text: 'Vuelve a iniciar sesión',
-                                                icon: 'error',
-                                                confirmButtonText: 'Ok'
-                                            })
-                                            .then(()=> {
-                                                fetch('api/v1/auth/logout', {
-                                                    method: 'POST',
-                                                    headers: {
-                                                        'Content-Type': 'application/json',
-                                                    },
-                                                })
-                                                .then(response => {
-                                                    if(response.ok) {
-                                                        window.location.href = '/';
-                                                    } else {
-                                                        throw new Error('Logout failed');
-                                                    }
-                                                })
+                                .then((layers) => {
+                                    let categories = {};
+
+                                    // Process the layers
+                                        layers.forEach(function (layer) {
+                                            // Ensure the URL is correct
+                                            var geoJsonUrl = 'assets/layers/' + layer.archive;
+
+                                            var layerSource = new ol.source.Vector({
+                                                url: geoJsonUrl,
+                                                format: new ol.format.GeoJSON()
                                             });
-                                        }else {
-                                            return response.json();
-                                        }
-                                    })
-                                    .then((layers) => {
-                                        console.log(categories);
-                                        console.log(layers);
-                                        // Now get the Polygons response 
-                                        // Pending to finish this part, because I have some doubts about use ALL polygons or only fetching the polygon marked as "visible" //
-                                        fetch('/api/v1/polygons/all', { 
-                                            method: 'GET',
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                                'Authorization': '!{cookies.token}',
-                                            },
-                                        })
-                                        .then((polygons) => { 
-                                            // Now we create the jstree, the parents are the categories and the children are the layers
-                                            $('#jstree').jstree({
-                                                'core' : {
-                                                    'data' : categories.map(category => {
-                                                        return {
-                                                            text: category.name,
-                                                            children: layers.filter(layer => layer.categoryId === category.id).map(layer => {
-                                                                return {
-                                                                    id: layer.id,
-                                                                    text: '<img src="assets/layers/' + layer.icon + '" class="inline-block w-4 h-4"> ' + layer.name,
-                                                                }
+
+                                            // Create a new iconStyle for each layer
+                                            var iconStyleForLayer = new ol.style.Style({
+                                                image: new ol.style.Icon({
+                                                    anchor: [0.5, 0.5],
+                                                    anchorXUnits: 'fraction',
+                                                    anchorYUnits: 'fraction',
+                                                    src: 'assets/layers/' + layer.icono,
+                                                    scale: 0.6
+                                                }),
+                                            });
+
+                                            var vectorLayer = new ol.layer.Vector({
+                                                source: layerSource,
+                                                visible: false, // Start with the layer not 
+                                                style: function(feature, resolution) {
+                                                    // Revisar si el layer es de tipo punto, línea o polígono
+                                                    if(feature.getGeometry().getType() === 'Point' || feature.getGeometry().getType() === 'MultiPoint') {
+                                                        return iconStyleForLayer;
+                                                    } else if(feature.getGeometry().getType() === 'LineString' || feature.getGeometry().getType() === 'MultiLineString') {
+                                                        var color = feature.get('COLOR_1');
+                                                        return new ol.style.Style({
+                                                            // Establecer el valor de color obtenido en el stroke
+                                                            stroke: new ol.style.Stroke({
+                                                                color: 'rgba('+ color +', 0.5)',
+                                                                width: 4
+                                                            })
+                                                        });
+                                                    } else if(feature.getGeometry().getType() === 'Polygon' || feature.getGeometry().getType() === 'MultiPolygon' ) {
+                                                        var color = feature.get('COLOR_1');
+                                                        var color2 = feature.get('COLOR_2');
+                                                        return new ol.style.Style({
+                                                            stroke: new ol.style.Stroke({
+                                                                color: 'rgba('+ color +', 0.5)',
+                                                                width: 4,
+                                                                scale: 2
                                                             }),
-                                                        }
-                                                    }),
-                                                    "themes": {
-                                                        "theme": "default",
-                                                        "icons": false,
-                                                        "variant": "small",
-                                                        "stripes": false,
-                                                        "dots": false
-                                                    },
-                                                    },
-                                                    "checkbox": {
-                                                        "keep_selected_style": false
-                                                    },
-                                                    "plugins": ["checkbox", "themes", "search"],
-                                                    "search": {
-                                                        "case_sensitive": false,
-                                                        "show_only_matches": true
-                                                },
+                                                            fill: new ol.style.Fill({
+                                                                color: 'rgba('+ color +', 0.2)',
+                                                                width: 4,
+                                                                scale: 2
+                                                            })
+                                                        });
+                                                    }
+                                                }
                                             });
-                                        })
+
+                                            if(layer.name) {
+                                                vectorLayer.set('name', layer.name);
+                                            } else {
+                                                vectorLayer.set('name', 'No name');
+                                            }
+
+                                            var iconStyle = new ol.style.Style({
+                                                image: new ol.style.Icon({
+                                                    anchor: [0.5, 0.5],
+                                                    anchorXUnits: 'fraction',
+                                                    anchorYUnits: 'fraction',
+                                                    src: 'assets/layers/' + layer.icono,
+                                                    scale: 0.1
+                                                }),
+                                            });
+
+                                            if(!categories[layer.categoryData.name]) {
+                                                categories[layer.categoryData.name] = [];
+                                            }
+
+                                            // Add the layer to the category on jsTree
+                                            categories[layer.categoryData.name].push({
+                                                id: layer.name,
+                                                text: '<img src="assets/layers/' + layer.icono + '" class="inline-block w-4 h-4"> ' + layer.name,
+                                                state: {
+                                                    opened: true,
+                                                    selected: false
+                                                }
+                                            });
+
+                                            map.addLayer(vectorLayer);
+
+                                        });
+
+                                        // Initialize JSTree
+                                        let jstreeData = Object.keys(categories).map(category => {
+                                            return {
+                                                text: category,
+                                                state: {
+                                                    opened: true // Open categories by default
+                                                },
+                                                children: categories[category]
+                                            };
+                                        });
+
+                                        if(jstreeData.length === 0){
+                                            jstreeData = [{
+                                                text: 'No se encontraron capas',
+                                                state: {
+                                                    opened: false,
+                                                    selected: false,
+                                                    checkbox_disabled: true
+                                                },
+                                            }];
+                                        }
+
+                                        $("#jstree").jstree({
+                                            "core": {
+                                                "data": jstreeData,
+                                                "themes": {
+                                                    "theme": "default",
+                                                    "icons": false,
+                                                    "variant": "small",
+                                                    "stripes": false,
+                                                    "dots": false
+                                                },
+                                            },
+                                            "checkbox": {
+                                                "keep_selected_style": false
+                                            },
+                                            "plugins": ["checkbox", "themes", "search"],
+                                            "search": {
+                                                "case_sensitive": false,
+                                                "show_only_matches": true
+                                            }
+                                        }).on('ready.jstree', function () {
+                                            // Close all nodes once the tree is loaded
+                                            var to = false;
+                                            $('#jstree').jstree('close_all');
+                                        }).on('changed.jstree', function (e, data) {
+                                            // Get all selected nodes
+                                            var selectedNodes = $('#jstree').jstree(true).get_selected();
+
+                                            // Get all layers
+                                            var layers = map.getLayers().getArray();
+                                            var layersToProcess = layers.slice(1);
+
+                                            // Loop through all layers
+                                            layersToProcess.forEach(function (layer) {
+                                                // Get the layer name
+                                                var layerName = layer.get('name');
+
+                                                // Determine if the current layer's name is in the array of selected nodes
+                                                var isSelected = selectedNodes.indexOf(layerName) !== -1;
+
+                                                // Set layer visibility based on whether it's selected
+                                                layer.setVisible(isSelected);
+                                            });
+                                        });
                                     })
                                     .catch((error) => {
-                                        console.error('Error:', error);
+                                        console.error('Error fetching layers:', error);
                                     });
-                                })
-                            });
+                                });
 
                             function showContainer(containerId) {
                                 var contenedorClaveCatastro = document.getElementById("contenedor_clavecatastro");

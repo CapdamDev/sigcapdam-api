@@ -8,6 +8,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "categoryId",
         as: "categoryData",
       });
+
+      Layer.hasMany(models.Polygon, {
+        foreignKey: "layerId",
+        as: "polygons",
+      });
     }
   }
 
@@ -16,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,     
       icon: DataTypes.STRING,
       color: DataTypes.STRING,
+      categoryId: DataTypes.INTEGER,
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
       isActive: DataTypes.BOOLEAN,

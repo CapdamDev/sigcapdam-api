@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const router = express.Router();
-const { Category, Department, Direction, Layer, Permission, Role, RolePermission, User, Route } = require("../models");
+const { Category, Department, Direction, Layer, Permission, Role, RolePermission, User, Route , Polygon} = require("../models");
 const passport = require("passport");
 require("../config/passport")(passport);
 const Helper = require("../utils/helper");
@@ -117,7 +117,18 @@ router.get("/:category/:name", passport.authenticate("jwt", { session: false }),
 });
 
 router.get("/all", passport.authenticate("jwt", { session: false }), function (req, res) {
-	Layer.findAll()
+	Layer.findAll({
+		include: [
+			{
+				model: Category,
+				attributes: ["name", "isActive"],
+				as: "categoryData",
+				where: {
+					isActive: 1,
+				},
+			},
+		],
+	})
 		.then((layers) => {
 			res.status(200).json(layers);
 		})
