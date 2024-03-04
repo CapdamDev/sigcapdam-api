@@ -45,28 +45,7 @@ router.get("/all", passport.authenticate("jwt", { session: false }), function (r
                     }, ],
                 })
                 .then((polygons) => {
-                    // Add layerData.icon and layerData.color inside polygon.properties
-                    // polygons = polygons.map((polygon) => {
-                    //     polygon.properties = JSON.parse(polygon.properties);
-                    //     polygon.properties.icon = polygon.layerData.icon;
-                    //     polygon.properties.color = polygon.layerData.color;
-                    //     polygon.properties.layerName = polygon.layerData.name;
-                    //     return polygon;
-                    // });
-
-                    const geoJSON = {
-                        type: "FeatureCollection",
-                        features: polygons.map((polygon) => {
-                            return {
-                                type: "Feature",
-                                properties: polygon.properties,
-                                geometry: polygon.geometry,
-                            };
-                        }),
-                    };
-                    res.status(200).send(geoJSON);
-                    // Send polygons as JSON
-                    // res.status(200).send(polygons);
+                    res.status(200).send(polygons);
                 })
                 .catch((error) => {
                     res.status(400).send(error);
@@ -85,24 +64,13 @@ router.get("/:layerId", passport.authenticate("jwt", { session: false }), functi
                     where: {
                         layerId: req.params.layerId,
                     },
+                    include: [{
+                        model: Layer,
+                        as: "layerData",
+                    }, ],
                 })
                 .then((polygons) => {
-                    // Convert properties into JSON
-                    polygons = polygons.map((polygon) => {
-                        polygon.properties = JSON.parse(polygon.properties);
-                        return polygon;
-                    });
-                    const geoJSON = {
-                        type: "FeatureCollection",
-                        features: polygons.map((polygon) => {
-                            return {
-                                type: "Feature",
-                                properties: polygon.properties,
-                                geometry: polygon.geometry,
-                            };
-                        }),
-                    };
-                    res.status(200).send(geoJSON);
+                    res.status(200).send(polygons);
                 })
                 .catch((error) => {
                     res.status(400).send(error);

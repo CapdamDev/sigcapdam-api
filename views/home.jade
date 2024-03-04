@@ -558,17 +558,6 @@ html(lang='es')
                                     .then((layers) => {
                                         console.log(categories);
                                         console.log(layers);
-                                        // Now get the Polygons response 
-                                        // Pending to finish this part, because I have some doubts about use ALL polygons or only fetching the polygon marked as "visible" //
-                                        fetch('/api/v1/polygons/all', { 
-                                            method: 'GET',
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                                'Authorization': '!{cookies.token}',
-                                            },
-                                        })
-                                        .then((polygons) => { 
-                                            // Now we create the jstree, the parents are the categories and the children are the layers
                                             $('#jstree').jstree({
                                                 'core' : {
                                                     'data' : categories.map(category => {
@@ -598,8 +587,63 @@ html(lang='es')
                                                         "case_sensitive": false,
                                                         "show_only_matches": true
                                                 },
-                                            });
-                                        })
+                                            }).on('changed.jstree', function (e, data) {
+                                                var selectedNodes = $('#jstree').jstree(true).get_selected();
+
+                                                // Pending to finish this part, because I have some doubts about use 
+                                                // ALL polygons or only fetching the polygon marked as "visible" //   
+
+                                            })
+
+                                        // Now we need to get the polygons from the API when the user clicks on a layer to show it on the map
+                                        // The API needs the layerId to get the polygons, so we need to get the layerId from the jstree, and then make the fetch to the API, on each click event
+                                        // the app will be adding the polygons to the map
+
+
+
+                                        // Now get the Polygons response 
+                                        // Pending to finish this part, because I have some doubts about use ALL polygons or only fetching the polygon marked as "visible" //
+                                        //- fetch('/api/v1/polygons/all', { 
+                                        //-     method: 'GET',
+                                        //-     headers: {
+                                        //-         'Content-Type': 'application/json',
+                                        //-         'Authorization': '!{cookies.token}',
+                                        //-     },
+                                        //- })
+                                        //- .then((polygons) => { 
+                                        //-     // Now we create the jstree, the parents are the categories and the children are the layers
+                                        //-     $('#jstree').jstree({
+                                        //-         'core' : {
+                                        //-             'data' : categories.map(category => {
+                                        //-                 return {
+                                        //-                     text: category.name,
+                                        //-                     children: layers.filter(layer => layer.categoryId === category.id).map(layer => {
+                                        //-                         return {
+                                        //-                             id: layer.id,
+                                        //-                             text: '<img src="assets/layers/' + layer.icon + '" class="inline-block w-4 h-4"> ' + layer.name,
+                                        //-                         }
+                                        //-                     }),
+                                        //-                 }
+                                        //-             }),
+                                        //-             "themes": {
+                                        //-                 "theme": "default",
+                                        //-                 "icons": false,
+                                        //-                 "variant": "small",
+                                        //-                 "stripes": false,
+                                        //-                 "dots": false
+                                        //-             },
+                                        //-             },
+                                        //-             "checkbox": {
+                                        //-                 "keep_selected_style": false
+                                        //-             },
+                                        //-             "plugins": ["checkbox", "themes", "search"],
+                                        //-             "search": {
+                                        //-                 "case_sensitive": false,
+                                        //-                 "show_only_matches": true
+                                        //-         },
+                                        //-     });
+                                        //- })
+                                        // 
                                     })
                                     .catch((error) => {
                                         console.error('Error:', error);
