@@ -45,13 +45,17 @@ html(lang='es')
 
                                                     td(id="layerActions" scope="row" class="px-4 py-3 items-center")
                                                         div(class="space-x-2")
-                                                                button(class=" hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200" type="button" data-modal-target="updateLayerModal" data-modal-toggle="updateLayerModal" id="updateModalButton" value=layer.id)
+                                                                button(class=" hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200" type="button" data-modal-target="updateLayerModal" data-modal-toggle="updateLayerModal" id="updateModalButton" value=layer.id title="Editar información de la capa")
                                                                     svg(svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true")
                                                                         path(d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z")
                                                                         path(fill-rule="evenodd" clip-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z")
-                                                                button(class="hover:bg-gray-100 dark:hover:bg-gray-600 text-red-500 dark:hover:text-red-400" type="button" data-modal-target="deleteModal" data-modal-toggle="deleteModal" id="deleteModalButton" value=layer.id)
+                                                                button(class="hover:bg-gray-100 dark:hover:bg-gray-600 text-red-500 dark:hover:text-red-400" type="button" data-modal-target="deleteModal" data-modal-toggle="deleteModal" id="deleteModalButton" value=layer.id title="Eliminar capa")
                                                                     svg(class="w-4 h-4 mr-2" viewbox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true")
                                                                         path(fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M6.09922 0.300781C5.93212 0.30087 5.76835 0.347476 5.62625 0.435378C5.48414 0.523281 5.36931 0.649009 5.29462 0.798481L4.64302 2.10078H1.59922C1.36052 2.10078 1.13161 2.1956 0.962823 2.36439C0.79404 2.53317 0.699219 2.76209 0.699219 3.00078C0.699219 3.23948 0.79404 3.46839 0.962823 3.63718C1.13161 3.80596 1.36052 3.90078 1.59922 3.90078V12.9008C1.59922 13.3782 1.78886 13.836 2.12643 14.1736C2.46399 14.5111 2.92183 14.7008 3.39922 14.7008H10.5992C11.0766 14.7008 11.5344 14.5111 11.872 14.1736C12.2096 13.836 12.3992 13.3782 12.3992 12.9008V3.90078C12.6379 3.90078 12.8668 3.80596 13.0356 3.63718C13.2044 3.46839 13.2992 3.23948 13.2992 3.00078C13.2992 2.76209 13.2044 2.53317 13.0356 2.36439C12.8668 2.1956 12.6379 2.10078 12.3992 2.10078H9.35542L8.70382 0.798481C8.62913 0.649009 8.5143 0.523281 8.37219 0.435378C8.23009 0.347476 8.06631 0.30087 7.89922 0.300781H6.09922ZM4.29922 5.70078C4.29922 5.46209 4.39404 5.23317 4.56282 5.06439C4.73161 4.8956 4.96052 4.80078 5.19922 4.80078C5.43791 4.80078 5.66683 4.8956 5.83561 5.06439C6.0044 5.23317 6.09922 5.46209 6.09922 5.70078V11.1008C6.09922 11.3395 6.0044 11.5684 5.83561 11.7372C5.66683 11.906 5.43791 12.0008 5.19922 12.0008C4.96052 12.0008 4.73161 11.906 4.56282 11.7372C4.39404 11.5684 4.29922 11.3395 4.29922 11.1008V5.70078ZM8.79922 4.80078C8.56052 4.80078 8.33161 4.8956 8.16282 5.06439C7.99404 5.23317 7.89922 5.46209 7.89922 5.70078V11.1008C7.89922 11.3395 7.99404 11.5684 8.16282 11.7372C8.33161 11.906 8.56052 12.0008 8.79922 12.0008C9.03791 12.0008 9.26683 11.906 9.43561 11.7372C9.6044 11.5684 9.69922 11.3395 9.69922 11.1008V5.70078C9.69922 5.46209 9.6044 5.23317 9.43561 5.06439C9.26683 4.8956 9.03791 4.80078 8.79922 4.80078Z")
+                                                                //- Button to edit the layer points, geometries or attributes
+                                                                button(class="hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200" type="button" data-modal-target="editGeometriesModal" data-modal-toggle="editGeometriesModal" id="editGeometriesButton" value=layer.id title="Editar puntos, geometrías o atributos de la capa")
+                                                                    svg(class="w-4 h-4 mr-2" viewbox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true")
+                                                                        path(fill-rule="evenodd" clip-rule="evenodd" d="M10 3a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V4a1 1 0 011-1z")
                                         div(id="createLayerModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
                                             div(class="relative p-4 w-full max-w-2xl max-h-full")
                                                 div(class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
@@ -74,9 +78,11 @@ html(lang='es')
                                                             div(class="sm:col-span-2")
                                                                 label(for="archive" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Archivo JSON
                                                                 input(type="file" id="archive" accept=".json, .geojson" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Capa JSON")
+                                                                span(id="statusMessage" class="text-gray-500 dark:text-gray-300 text-sm") El archivo debe ser en formato JSON o GeoJSON.
                                                             div(class="sm:col-span-2")
                                                                 label(for="icono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Icono
                                                                 input(type="file" id="icono" accept=".png, .jpg" name="icono" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Icono en PNG o JPG")
+                                                                span(id="statusMessage2" class="text-gray-500 dark:text-gray-300 text-sm") El archivo debe ser en formato PNG o JPG.
                                                             div(class="sm:col-span-2 items-center text-center")
                                                                 button(type="submit" class="text-white inline-flex items-center bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-500 dark:focus:ring-sky-800")
                                                                     svg(class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
@@ -123,6 +129,22 @@ html(lang='es')
                                                         button(data-modal-toggle="deleteModal" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-sky-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-sky-800")
                                                             | Cancel
                                                         button(type="submit" id="confirmDelete" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900") Sí, borrar
+                                        
+                                        div(id="editGeometriesModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
+                                            div(class="relative p-4 w-full max-w-10 max-h-full grid grid-cols-2 gap-4")
+                                                div(id="mapGeometries" class="relative p-4 text-center bg-white rounded-lg dark:bg-gray-800 sm:p-8")
+                                                    //- Mapa para editar los puntos, geometrías o atributos de la capa
+                                                    div(id="mapContainer" class="relative text-center bg-white rounded-lg dark:bg-gray-800")
+                                                        h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left") Mapa
+                                                        hr(class="my-4")
+                                                        img(src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="Mapa de la capa" class="w-full h-full object-contain rounded-lg map-image")
+                                                        //- #map(class="w-full h-full object-contain rounded-lg map-image")
+
+                                                div(id="mapGeometries" class="relative p-4 text-center bg-white rounded-lg dark:bg-gray-800 sm:p-8")
+                                                    div(id="properties" class="relative text-center bg-white rounded-lg dark:bg-gray-800")
+                                                        h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left") Propiedades
+                                                        hr(class="my-4 border-gray-300")
+
 
             include ./includes/footer.jade
 
@@ -158,6 +180,76 @@ html(lang='es')
                         const createForm = document.getElementById('create-form');
                         const updateForm = document.getElementById('update-form');
                         const deleteModal = document.getElementById('deleteModal');
+                        const updateJsonFile = document.getElementById('update-json-form'); 
+
+
+                        const statusMessage = document.getElementById('statusMessage');
+                        const statusMessage2 = document.getElementById('statusMessage2');
+
+
+                        // Add on change event listener to the archive file input to check the file upload status
+                        document.getElementById('archive').addEventListener('change', function () {
+                            if (this.files[0].type !== 'application/json') {
+                                statusMessage.textContent = 'El archivo debe ser en formato JSON o GeoJSON.';
+                                statusMessage.style.color = 'red';
+                            } else {
+                                const file = this.files[0];
+                                const fileSize = file.size;
+                                let loaded = 0;
+
+                                const reader = new FileReader();
+                                reader.onloadstart = function () {
+                                    statusMessage.textContent = 'Cargando archivo...';
+                                    statusMessage.style.color = 'blue';
+                                };
+                                reader.onprogress = function (event) {
+                                    if (event.lengthComputable) {
+                                        loaded = event.loaded;
+                                        const percentLoaded = Math.round((loaded / fileSize) * 100);
+                                        console.log(`Bytes loaded: ${loaded}, Percentage: ${percentLoaded}%`);
+                                        statusMessage.textContent = `Cargando archivo... ${percentLoaded}%`;
+                                    }
+                                };
+                                reader.onloadend = function () {
+                                    statusMessage.textContent = 'Archivo cargado exitosamente.';
+                                    statusMessage.style.color = 'green';
+                                };
+
+                                reader.readAsDataURL(file);
+                            }
+                        });
+
+                        // Add on change event listener to the icono file input to check the file upload status
+                        document.getElementById('icono').addEventListener('change', function () {
+                            if (this.files[0].type !== 'image/png' && this.files[0].type !== 'image/jpeg') {
+                                statusMessage2.textContent = 'El archivo debe ser en formato SVG.';
+                                statusMessage2.style.color = 'red';
+                            } else {
+                                const file = this.files[0];
+                                const fileSize = file.size;
+                                let loaded = 0;
+
+                                const reader = new FileReader();
+                                reader.onloadstart = function () {
+                                    statusMessage2.textContent = 'Cargando archivo...';
+                                    statusMessage2.style.color = 'blue';
+                                };
+                                reader.onprogress = function (event) {
+                                    if (event.lengthComputable) {
+                                        loaded = event.loaded;
+                                        const percentLoaded = Math.round((loaded / fileSize) * 100);
+                                        statusMessage2.textContent = `Cargando archivo... ${percentLoaded}%`;
+                                    }
+                                };
+                                reader.onloadend = function () {
+                                    statusMessage2.textContent = 'Archivo cargado exitosamente.';
+                                    statusMessage2.style.color = 'green';
+                                };
+
+                                reader.readAsDataURL(file);
+                            }
+                        });
+
 
                         createForm.addEventListener('submit', async function (event) {
                             event.preventDefault();
@@ -169,6 +261,7 @@ html(lang='es')
                             const icono = document.getElementById('icono').files[0];
 
                             try {
+
                                 const formData = new FormData();
                                 formData.append('name', name);
                                 formData.append('category', category);
@@ -188,39 +281,159 @@ html(lang='es')
                                     Swal.fire("Error", "A layer with the same name and category already exists.", "error");
                                     throw new Error("A layer with the same name and category already exists.");
                                 }
+                                else {
+                                    console.log("Capa no existe, se puede crear");
+                                    // Close the API check request
+                                    checkLayer.close();
 
-                                const checkLayerData = await checkLayer.json();
+                                    function uploadFiles() {
+                                        const url = '/api/v1/layers/upload';
+                                        const method = 'POST';
+                                        const headers = {
+                                            'Authorization': '!{cookies.token}',
+                                        };
 
-                                const response = await fetch('/api/v1/layers/', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Authorization': '!{cookies.token}',
-                                    },
-                                    body: formData,
-                                });
+                                        const xhr = new XMLHttpRequest();
 
-                                // Make a loop in formData to log in to the console the data
-                                for (const [key, value] of formData.entries()) {
-                                    console.log(key, value);
-                                }
+                                        xhr.upload.onprogress = function (event) {
+                                            if (event.lengthComputable) {
+                                                const percentage = (event.loaded / event.total) * 100;
+                                                console.log(percentage);
+                                            }
+                                        };
 
-                                const data = await response.json();
+                                        xhr.onerror = function () {
+                                            console.error('Error occurred during file upload.');
+                                            // Handle error appropriately
+                                            Swal.fire("Error", "The layer could not be created.", "error");
+                                        };
 
-                                if (response.ok) {
-                                    Swal.fire({
-                                        title: "Capa creada",
-                                        text: "La capa ha sido creada correctamente.",
-                                        icon: "success",
-                                        showConfirmButton: true,
-                                    }).then(() => {
-                                        window.location.reload();
-                                    });
-                                } else {
-                                    throw new Error(data.message);
+                                        xhr.open(method, url, true);
+
+                                        // Set headers
+                                        for (const [key, value] of Object.entries(headers)) {
+                                            xhr.setRequestHeader(key, value);
+                                        }
+
+                                        xhr.send(formData);
+
+                                        xhr.onload = function () {
+                                            if (xhr.status === 200 || xhr.status === 201) {
+                                                // Handle successful upload
+                                                console.log('Files uploaded successfully.');
+                                                uploadLayer(); // Assuming this function creates the layer after successful upload
+                                            } else {
+                                                console.error('Error occurred during file upload.');
+                                                // Handle error appropriately
+                                                Swal.fire("Error", "The layer could not be created.", "error");
+                                            }
+                                        };
+                                    }
+
+                                    function uploadLayer() {
+                                        const url = '/api/v1/layers/';
+                                        const method = 'POST';
+                                        const headers = {
+                                            'Authorization': '!{cookies.token}',
+                                        };
+
+                                        const xhr = new XMLHttpRequest();
+                                        const data = formData;
+                                        xhr.open(method, url, true);
+
+                                        for (const [key, value] of Object.entries(headers)) {
+                                            xhr.setRequestHeader(key, value);
+                                        }
+
+                                        xhr.send(data);
+
+                                        xhr.onload = function () {
+                                            if (xhr.status === 200 || xhr.status === 201) {
+                                                Swal.fire({
+                                                    title: "Capa creada",
+                                                    text: "La capa ha sido creada correctamente.",
+                                                    icon: "success",
+                                                    showConfirmButton: true,
+                                                }).then(() => {
+                                                    window.location.reload();
+                                                });
+                                            } else {
+                                                Swal.fire("Error", "La capa no se ha podido crear.", "error");
+                                            }
+                                        }
+                                    }
+
+                                    uploadFiles(); // Initiate the file upload process
+
+                                    //- function uploadLayer() {
+                                    //-     const url = '/api/v1/layers/';
+                                    //-     const method = 'POST';
+                                    //-     const headers = {
+                                    //-         'Authorization': '!{cookies.token}',
+                                    //-     };
+
+                                    //-     const xhr = new XMLHttpRequest();
+                                    //-     const data = formData;
+
+                                    //-     xhr.open(method, url, true);
+
+                                    //-     // Set headers
+                                    //-     for (const [key, value] of Object.entries(headers)) {
+                                    //-         xhr.setRequestHeader(key, value);
+                                    //-     }
+                                    //-     xhr.send(data);
+
+                                    //-     xhr.responseType = 'json';
+
+                                    //-     xhr.onload = function () {
+                                    //-         if (xhr.status === 200 || xhr.status === 201) {
+                                    //-             Swal.fire({
+                                    //-                 title: "Capa creada",
+                                    //-                 text: "La capa ha sido creada correctamente.",
+                                    //-                 icon: "success",
+                                    //-                 showConfirmButton: true,
+                                    //-             }).then(() => {
+                                    //-                 window.location.reload();
+                                    //-             });
+                                    //-         } else {
+                                    //-             Swal.fire("Error", "La capa no se ha podido crear.", "error");
+                                    //-         }
+                                    //-     }
+                                    //- }
+
+
+                                    //- const response = await fetch('/api/v1/layers/', {
+                                    //-     method: 'POST',
+                                    //-     headers: {
+                                    //-         'Authorization': '!{cookies.token}'
+                                    //-     },
+                                    //-     body: formData,
+                                    //- });
+
+
+                                    //- // Make a loop in formData to log in to the console the data
+                                    //- for (const [key, value] of formData.entries()) {
+                                    //-     console.log(key, value);
+                                    //- }
+
+                                    //- const data = await response.json();
+
+                                    //- if (response.ok) {
+                                    //-     Swal.fire({
+                                    //-         title: "Capa creada",
+                                    //-         text: "La capa ha sido creada correctamente.",
+                                    //-         icon: "success",
+                                    //-         showConfirmButton: true,
+                                    //-     }).then(() => {
+                                    //-         window.location.reload();
+                                    //-     });
+                                    //- } else {
+                                    //-     Swal.fire("Error", data.msg, "error");
+                                    //- }
                                 }
                             } catch (error) {
                                 console.error('Error:', error);
-                                Swal.fire("Error", error.message, "error");
+                                Swal.fire("Error", error.msg, "error");
                             }
                         });
 
@@ -333,6 +546,19 @@ html(lang='es')
                                     Swal.fire("Error", error.message, "error");
                                 }
                             });
-                        })
+                        });
+
+                        // Edit geometries
+                        $(document).on("click", "#editGeometriesButton", function() {
+                            const layerId = $(this).val();
+
+                            // Get the layer data from the layers array
+                            const layerData = layers.find(layer => layer.id == layerId);
+
+                            // Set the layer data to the update form
+                            $("#layerUpdateId").val(layerData.id);
+                            $("#updateNameInput").val(layerData.name);
+                            $("#categoriesUpdate").val(layerData.category);
+                        });
                     });
 

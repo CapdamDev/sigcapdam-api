@@ -16,6 +16,10 @@ const storage = multer.diskStorage({
 		cb(null, dir);
 	},
 	filename: function (req, file, cb) {
+		// Check the size of the file
+		if (file.size > 50 * 1024 * 1024) {
+			return cb(new Error("File size is too large. Max file size is 50MB."));
+		}
 		// Utiliza req.body.name como nombre de archivo (puede que desees sanitizarlo)
 		const sanitizedFileName = req.body.name.replace(/\s+/g, "_"); // Reemplaza los espacios por guiones bajos
 		const originalExtension = file.originalname.split(".").pop(); // Obtiene la extensión original del archivo
@@ -26,20 +30,45 @@ const storage = multer.diskStorage({
 
 const upload = multer({
 	storage,
-	limits: { fileSize: 10 * 1024 * 1024 }, // Set the file size limit to 10MB
+	limits: { fileSize: 50 * 1024 * 1024 }, 
 });
 
-const cpUpload = upload.fields([
-	{ name: "icono", maxCount: 1 },
+// Ruta para subir los dos archivos
+router.post("/upload", upload.fields([
 	{ name: "archive", maxCount: 1 },
-]);
+	{ name: "icono", maxCount: 1 },
+]), (req, res) => {
+	try {
+		if (!req.files || !req.files["archive"] || !req.files["icono"]) {
+			res.status(400).send({
+				success: false,
+				msg: "Please upload both archive and icono files.",
+			});
+		} else {
+			res.status(200).send({
+				success: true,
+				msg: "Files uploaded successfully.",
+			});
+		}
+	} catch (error) {
+		res.status(500).send({
+			success: false,
+			msg: "Internal Server Error",
+		});
+	}
+});
 
 // Agrega una nueva layer
-router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (req, res) => {
+router.post("/", passport.authenticate("jwt", { session: false }), upload.fields([
+	{ name: "archive", maxCount: 1 },
+	{ name: "icono", maxCount: 1 },
+]), (req, res) => {
 	helper.checkPermission(req.user.role_id, "layer_add")
 		.then((rolePerm) => {
 			const archiveFileName = req.files["archive"][0].filename;
+			console.log(req.files["archive"][0]["filename"]);
 			const iconoFileName = req.files["icono"][0].filename;
+			console.log(req.files["icono"][0]["filename"]);
 			if (!req.body.name || !req.body.category) {
 				res.status(400).send({
 					msg: "Please pass name or category.",
@@ -53,20 +82,6 @@ router.post("/", passport.authenticate("jwt", { session: false }), cpUpload, (re
 								msg: "Invalid category ID.",
 							});
 						} else {
-							// Create a directory for the category icon
-							try {
-								// Check if directory already exists
-								const dir = "./public/assets/layer_icons/";
-								const categoryDir = dir + category.name;
-								if (!fs.existsSync(categoryDir)) {
-									fs.mkdirSync(categoryDir);
-									console.log("Directory is created.");
-								} else {
-									console.log("Directory already exists.");
-								}
-							} catch (err) {
-								console.log(err);
-							}
 							Layer.create({
 								name: req.body.name,
 								archive: archiveFileName,
@@ -199,8 +214,8 @@ router.get("/routes", passport.authenticate("jwt", { session: false }), function
 		});
 });
 
-// Consulta una layer por su id
-router.get("/:id", passport.authenticate("jwt", { session: false, }), function (req, res) {
+// Consulta una layer por su id y anexa la info del JSON de la layer
+router.get("/:id", passport.authenticate("jwt", { session: false }), function (req, res) {
 	helper.checkPermission(req.user.role_id, "layer_get")
 		.then((rolePerm) => {
 			Layer.findByPk(req.params.id)
@@ -211,7 +226,13 @@ router.get("/:id", passport.authenticate("jwt", { session: false, }), function (
 							error: "Layer no encontrada",
 						});
 					} else {
-						res.status(200).json(layer);
+						const layerJson = JSON.parse(
+							fs.readFileSync(`./public/assets/layers/${layer.name}.json`, "utf8")
+						);
+						res.status(200).json({
+							layer: layer,
+							layerJson: layerJson,
+						});
 					}
 				})
 				.catch((error) => {
@@ -223,7 +244,30 @@ router.get("/:id", passport.authenticate("jwt", { session: false, }), function (
 		});
 });
 
-router.put("/:id", passport.authenticate("jwt", { session: false }), cpUpload, (req, res) => {
+// router.get("/:id", passport.authenticate("jwt", { session: false, }), function (req, res) {
+// 	helper.checkPermission(req.user.role_id, "layer_get")
+// 		.then((rolePerm) => {
+// 			Layer.findByPk(req.params.id)
+// 				.then((layer) => {
+// 					if (!layer) {
+// 						res.status(404).json({
+// 							success: false,
+// 							error: "Layer no encontrada",
+// 						});
+// 					} else {
+// 						res.status(200).json(layer);
+// 					}
+// 				})
+// 				.catch((error) => {
+// 					res.status(400).send(error);
+// 				});
+// 		})
+// 		.catch((error) => {
+// 			res.status(403).send(error);
+// 		});
+// });
+
+router.put("/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
 	helper.checkPermission(req.user.role_id, "layer_update")
 		.then((rolePerm) => {
 			Category.findByPk(req.body.category).then((category) => {

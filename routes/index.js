@@ -3,6 +3,11 @@ const router = express.Router();
 const passport = require("passport");
 const { Category, Department, Direction, Layer, Permission, Role, RolePermission, User, Route } = require("../models");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+
+router.use(bodyParser.json({limit: '5mb', extended: true}))
+
+router.use(bodyParser.urlencoded({limit: '5mb', extended: true}))
 
 router.use(cookieParser());
 

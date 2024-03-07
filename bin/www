@@ -8,6 +8,10 @@ var app = require('../app');
 var debug = require('debug')('sigcapdam-api:server');
 var http = require('http');
 const tx2 = require('tx2');
+const bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
 
 var histogram = tx2.histogram({
   name: 'Latency',
