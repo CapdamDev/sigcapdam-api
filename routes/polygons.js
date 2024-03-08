@@ -57,12 +57,13 @@ router.get("/all", passport.authenticate("jwt", { session: false }), function (r
 });
 
 // Obtener un polígono por ID de layer y enviarlo como GeoJSON
-router.get("/:layerId", passport.authenticate("jwt", { session: false }), function (req, res) {
+router.get("/:layerIds", passport.authenticate("jwt", { session: false }), function (req, res) {
+    const layerIds = req.params.layerIds.split(",");
     helper.checkPermission(req.user.role_id, "polygon_get")
         .then((rolePerm) => {
             Polygon.findAll({
                     where: {
-                        layerId: req.params.layerId,
+                        layerId: layerIds,
                     },
                     include: [{
                         model: Layer,

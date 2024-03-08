@@ -556,7 +556,9 @@ html(lang='es')
                                         }
                                     })
                                     .then((layers) => {
+                                        console.log("Categories are: ");
                                         console.log(categories);
+                                        console.log("Layers are: ");
                                         console.log(layers);
                                             $('#jstree').jstree({
                                                 'core' : {
@@ -588,62 +590,101 @@ html(lang='es')
                                                         "show_only_matches": true
                                                 },
                                             }).on('changed.jstree', function (e, data) {
-                                                var selectedNodes = $('#jstree').jstree(true).get_selected();
+                                                console.log(data.selected);
 
-                                                // Pending to finish this part, because I have some doubts about use 
-                                                // ALL polygons or only fetching the polygon marked as "visible" //   
+                                                // Remove the parent nodes of data.selected array
+                                                // Al parents start with j1_ and the children start with j2_
+                                                var selectedNodes = data.selected.filter(node => !node.startsWith('j1_'));
+                                                console.log(selectedNodes);
+                                                
+                                                selectedNodes = $('#jstree').jstree(true).get_selected();
+                                                var selectedIds = selectedNodes.join(',');
 
-                                            })
+                                                // Clear existing vector layers and popups
+                                                map.getLayers().forEach(layer => {
+                                                    if (layer instanceof ol.layer.Vector) {
+                                                        map.removeLayer(layer);
+                                                    }
+                                                });
 
-                                        // Now we need to get the polygons from the API when the user clicks on a layer to show it on the map
-                                        // The API needs the layerId to get the polygons, so we need to get the layerId from the jstree, and then make the fetch to the API, on each click event
-                                        // the app will be adding the polygons to the map
+                                                // Get the polygons from the API where the layerId is equal 
+                                                // to the selectedNodes id from the jstree
+                                                fetch('/api/v1/polygons/' + selectedIds, {
+                                                    method: 'GET',
+                                                    headers: {
+                                                        'Content-Type': 'application/json',
+                                                        'Authorization': '!{cookies.token}',
+                                                    },
+                                                })
+                                                .then(response => response.json()) // Parse the response as JSON
+                                                .then((polygonsData) => {
+                                                    console.log("<-------- PolygonsData -------->")
+                                                    console.log(polygonsData);
+                                                    //- const geometries = polygonsData.map(polygon => polygon.geometry);
+                                                    //- console.log("<-------- Geometries -------->")
+                                                    //- console.log(geometries);
+
+                                                    // NOW WE HAVE NO ERRORS IN CONSOLE, BUT THE MAP IS NOT SHOWING THE POLYGONS,
+                                                    // POINTS, ETC. FROM THE DATABASE
+                                                    polygonsData.forEach(function (geometry) {
+                                                        console.log(geometry.geometry);
+
+                                                        var layerSource = new ol.source.Vector({
+                                                            features: (new ol.format.GeoJSON()).readFeatures(geometry.geometry, {
+                                                                dataProjection: 'EPSG:4326',
+                                                                featureProjection: 'EPSG:3857',
+                                                            }),
+                                                        });
+
+                                                        var iconStyleForLayer = new ol.style.Style({
+                                                            image: new ol.style.Icon({
+                                                                anchor: [0.5, 0.5],
+                                                                anchorXUnits: 'fraction',
+                                                                anchorYUnits: 'fraction',
+                                                                src: 'assets/layers/' + geometry.layerData.icon,
+                                                            }),
+                                                        });
+
+                                                        var vectorLayer = new ol.layer.Vector({
+                                                            source: layerSource,
+                                                            visible: false,
+                                                            style: function(feature, resolution) {
+                                                                if(feature.getGeometry().getType() === 'Point') {
+                                                                    return iconStyleForLayer;
+                                                                }
+                                                            }
+                                                        });
+
+                                                        if(geometry.layerData.name){
+                                                            vectorLayer.set('name', geometry.layerData.name);
+                                                        } else{
+                                                            vectorLayer.set('name', 'Capa sin nombre');
+                                                        }
+
+                                                        var iconStyle = new ol.style.Style({
+                                                            image: new ol.style.Icon({
+                                                                anchor: [0.5, 0.5],
+                                                                anchorXUnits: 'fraction',
+                                                                anchorYUnits: 'fraction',
+                                                                src: 'assets/layers/' + geometry.layerData.icon,
+                                                                scale: 0.1,
+                                                            }),
+                                                        });
+
+                                                        map.addLayer(vectorLayer);
+
+                                                    })
 
 
-
-                                        // Now get the Polygons response 
-                                        // Pending to finish this part, because I have some doubts about use ALL polygons or only fetching the polygon marked as "visible" //
-                                        //- fetch('/api/v1/polygons/all', { 
-                                        //-     method: 'GET',
-                                        //-     headers: {
-                                        //-         'Content-Type': 'application/json',
-                                        //-         'Authorization': '!{cookies.token}',
-                                        //-     },
-                                        //- })
-                                        //- .then((polygons) => { 
-                                        //-     // Now we create the jstree, the parents are the categories and the children are the layers
-                                        //-     $('#jstree').jstree({
-                                        //-         'core' : {
-                                        //-             'data' : categories.map(category => {
-                                        //-                 return {
-                                        //-                     text: category.name,
-                                        //-                     children: layers.filter(layer => layer.categoryId === category.id).map(layer => {
-                                        //-                         return {
-                                        //-                             id: layer.id,
-                                        //-                             text: '<img src="assets/layers/' + layer.icon + '" class="inline-block w-4 h-4"> ' + layer.name,
-                                        //-                         }
-                                        //-                     }),
-                                        //-                 }
-                                        //-             }),
-                                        //-             "themes": {
-                                        //-                 "theme": "default",
-                                        //-                 "icons": false,
-                                        //-                 "variant": "small",
-                                        //-                 "stripes": false,
-                                        //-                 "dots": false
-                                        //-             },
-                                        //-             },
-                                        //-             "checkbox": {
-                                        //-                 "keep_selected_style": false
-                                        //-             },
-                                        //-             "plugins": ["checkbox", "themes", "search"],
-                                        //-             "search": {
-                                        //-                 "case_sensitive": false,
-                                        //-                 "show_only_matches": true
-                                        //-         },
-                                        //-     });
-                                        //- })
-                                        // 
+                                                    //- console.log("<-------- PolygonsData -------->")
+                                                    //- polygonsData.forEach(polygon => {
+                                                    //-     // Extract the coordinates from polygon.geometry
+                                                    //-     const polygonStr = polygon.geometry;
+                                                    //-     // Log the polygonStr
+                                                    //-     console.log(polygonStr);
+                                                    //- })                                                    
+                                                });
+                                            });
                                     })
                                     .catch((error) => {
                                         console.error('Error:', error);
