@@ -215,36 +215,7 @@ router.get("/routes", passport.authenticate("jwt", { session: false }), function
 });
 
 // Consulta una layer por su id y anexa la info del JSON de la layer
-router.get("/:id", passport.authenticate("jwt", { session: false }), function (req, res) {
-	helper.checkPermission(req.user.role_id, "layer_get")
-		.then((rolePerm) => {
-			Layer.findByPk(req.params.id)
-				.then((layer) => {
-					if (!layer) {
-						res.status(404).json({
-							success: false,
-							error: "Layer no encontrada",
-						});
-					} else {
-						const layerJson = JSON.parse(
-							fs.readFileSync(`./public/assets/layers/${layer.name}.json`, "utf8")
-						);
-						res.status(200).json({
-							layer: layer,
-							layerJson: layerJson,
-						});
-					}
-				})
-				.catch((error) => {
-					res.status(400).send(error);
-				});
-		})
-		.catch((error) => {
-			res.status(403).send(error);
-		});
-});
-
-// router.get("/:id", passport.authenticate("jwt", { session: false, }), function (req, res) {
+// router.get("/:id", passport.authenticate("jwt", { session: false }), function (req, res) {
 // 	helper.checkPermission(req.user.role_id, "layer_get")
 // 		.then((rolePerm) => {
 // 			Layer.findByPk(req.params.id)
@@ -255,7 +226,13 @@ router.get("/:id", passport.authenticate("jwt", { session: false }), function (r
 // 							error: "Layer no encontrada",
 // 						});
 // 					} else {
-// 						res.status(200).json(layer);
+// 						const layerJson = JSON.parse(
+// 							fs.readFileSync(`./public/assets/layers/${layer.name}.json`, "utf8")
+// 						);
+// 						res.status(200).json({
+// 							layer: layer,
+// 							layerJson: layerJson,
+// 						});
 // 					}
 // 				})
 // 				.catch((error) => {
@@ -266,6 +243,29 @@ router.get("/:id", passport.authenticate("jwt", { session: false }), function (r
 // 			res.status(403).send(error);
 // 		});
 // });
+
+router.get("/:id", passport.authenticate("jwt", { session: false, }), function (req, res) {
+	helper.checkPermission(req.user.role_id, "layer_get")
+		.then((rolePerm) => {
+			Layer.findByPk(req.params.id)
+				.then((layer) => {
+					if (!layer) {
+						res.status(404).json({
+							success: false,
+							error: "Layer no encontrada",
+						});
+					} else {
+						res.status(200).json(layer);
+					}
+				})
+				.catch((error) => {
+					res.status(400).send(error);
+				});
+		})
+		.catch((error) => {
+			res.status(403).send(error);
+		});
+});
 
 router.put("/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
 	helper.checkPermission(req.user.role_id, "layer_update")

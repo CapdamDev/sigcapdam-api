@@ -71,7 +71,10 @@ router.get('/all', passport.authenticate('jwt', { session: false }), async funct
                 const totalContractsCat = totalContracts - totalContractsNoCat;
                 return {
                     ...route.toJSON(),
-                    layerData: layerDataInformation,
+                    layerData: {
+                        archive: route.layerData.archive,
+                        data: layerDataInformation
+                    },
                     totalContracts,
                     totalContractsCat,
                     totalContractsNoCat

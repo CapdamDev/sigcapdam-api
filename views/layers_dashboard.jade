@@ -135,10 +135,25 @@ html(lang='es')
                                                 div(id="mapGeometries" class="relative p-4 text-center bg-white rounded-lg dark:bg-gray-800 sm:p-8")
                                                     //- Mapa para editar los puntos, geometrías o atributos de la capa
                                                     div(id="mapContainer" class="relative text-center bg-white rounded-lg dark:bg-gray-800")
-                                                        h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left") Mapa
-                                                        hr(class="my-4")
-                                                        img(src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="Mapa de la capa" class="w-full h-full object-contain rounded-lg map-image")
-                                                        //- #map(class="w-full h-full object-contain rounded-lg map-image")
+                                                        div(class="grid grid-cols-3 gap-4")
+                                                            div
+                                                                h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left") Mapa
+                                                            div
+                                                                select(id='map-type' class='w-60 h-8 text-white bg-gray-900 border-0 py-2 pl-4 focus:outline-none hover:bg-gray-600 rounded text-xs')
+                                                                    option(value='Hybrid') Hybrid
+                                                                    option(value='OSM') OpenStreetMap
+                                                                    option(value='Roadmap') Roadmap
+                                                                    option(value='Terrain') Terrain
+                                                                    option(value='AlteredRoadmap') Altered Roadmap
+                                                                    option(value='SatelliteOnly') Satellite Only
+                                                            div
+                                                                span(class='text-gray-500 dark:text-gray-200') Coordenadas del mouse:
+                                                                span#mouse-position.text-gray-500(class='dark:text-gray-200 ml-2')
+                                                            
+                                                    hr(class="my-4")
+                                                    div(class="flex items-center w-full h-96")
+                                                        //- img(src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="Mapa de la capa" class="w-full h-full object-contain rounded-lg map-image")
+                                                        #map(class="w-full h-full object-contain rounded-lg map-image")
 
                                                 div(id="mapGeometries" class="relative p-4 text-center bg-white rounded-lg dark:bg-gray-800 sm:p-8")
                                                     div(id="properties" class="relative text-center bg-white rounded-lg dark:bg-gray-800")
@@ -148,6 +163,7 @@ html(lang='es')
 
             include ./includes/footer.jade
 
+                script(src='../assets/custom/js/mapInit.js')
                 script.
                     const layers = !{JSON.stringify(layers)};
 
@@ -185,7 +201,6 @@ html(lang='es')
 
                         const statusMessage = document.getElementById('statusMessage');
                         const statusMessage2 = document.getElementById('statusMessage2');
-
 
                         // Add on change event listener to the archive file input to check the file upload status
                         document.getElementById('archive').addEventListener('change', function () {
@@ -551,14 +566,133 @@ html(lang='es')
                         // Edit geometries
                         $(document).on("click", "#editGeometriesButton", function() {
                             const layerId = $(this).val();
+                            console.log(layerId);
 
-                            // Get the layer data from the layers array
-                            const layerData = layers.find(layer => layer.id == layerId);
+                            fetch('/api/v1/layers/' + layerId, {
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': '!{cookies.token}',
+                                },
+                            })
+                            .then((response) => {
+                                if(response.status === 401){
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: 'Vuelve a iniciar sesión para continuar.',
+                                        icon: 'error',
+                                        confirmButtonText: 'Aceptar',
+                                    }).then(() => {
+                                        fetch('api/v1/auth/logout', {
+                                            method: 'GET',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                            }
+                                        })
+                                        .then(response => {
+                                            if(response.ok){
+                                                window.location.href = '/login';
+                                            } else {
+                                                throw new Error('Error al cerrar sesión.');
+                                            }
+                                        })
+                                    });
+                                }
+                                else {
+                                    return response.json();
+                                }
+                            }).then((layers) => {
+                                
+                                layers.forEach(function (layer) {
+                                    // Ensure the URL is correct
+                                    var geoJsonUrl = 'assets/layers/' + layer.archive;
 
-                            // Set the layer data to the update form
-                            $("#layerUpdateId").val(layerData.id);
-                            $("#updateNameInput").val(layerData.name);
-                            $("#categoriesUpdate").val(layerData.category);
+                                    var layerSource = new ol.source.Vector({
+                                        url: geoJsonUrl,
+                                        format: new ol.format.GeoJSON()
+                                    });
+
+                                    // Create a new iconStyle for each layer
+                                    var iconStyleForLayer = new ol.style.Style({
+                                        image: new ol.style.Icon({
+                                            anchor: [0.5, 0.5],
+                                            anchorXUnits: 'fraction',
+                                            anchorYUnits: 'fraction',
+                                            src: 'assets/layers/' + layer.icono,
+                                            scale: 0.6
+                                        }),
+                                    });
+
+                                    var vectorLayer = new ol.layer.Vector({
+                                        source: layerSource,
+                                        visible: false, // Start with the layer not 
+                                        style: function(feature, resolution) {
+                                            // Revisar si el layer es de tipo punto, línea o polígono
+                                            if(feature.getGeometry().getType() === 'Point' || feature.getGeometry().getType() === 'MultiPoint') {
+                                                return iconStyleForLayer;
+                                            } else if(feature.getGeometry().getType() === 'LineString' || feature.getGeometry().getType() === 'MultiLineString') {
+                                                var color = feature.get('COLOR_1');
+                                                return new ol.style.Style({
+                                                    // Establecer el valor de color obtenido en el stroke
+                                                    stroke: new ol.style.Stroke({
+                                                        color: 'rgba('+ color +', 0.5)',
+                                                        width: 4
+                                                    })
+                                                });
+                                            } else if(feature.getGeometry().getType() === 'Polygon' || feature.getGeometry().getType() === 'MultiPolygon' ) {
+                                                var color = feature.get('COLOR_1');
+                                                var color2 = feature.get('COLOR_2');
+                                                return new ol.style.Style({
+                                                    stroke: new ol.style.Stroke({
+                                                        color: 'rgba('+ color +', 0.5)',
+                                                        width: 4,
+                                                        scale: 2
+                                                    }),
+                                                    fill: new ol.style.Fill({
+                                                        color: 'rgba('+ color +', 0.2)',
+                                                        width: 4,
+                                                        scale: 2
+                                                    })
+                                                });
+                                            }
+                                        }
+                                    });
+
+                                    if(layer.name) {
+                                        vectorLayer.set('name', layer.name);
+                                    } else {
+                                        vectorLayer.set('name', 'No name');
+                                    }
+
+                                    var iconStyle = new ol.style.Style({
+                                        image: new ol.style.Icon({
+                                            anchor: [0.5, 0.5],
+                                            anchorXUnits: 'fraction',
+                                            anchorYUnits: 'fraction',
+                                            src: 'assets/layers/' + layer.icono,
+                                            scale: 0.1
+                                        }),
+                                    });
+                                    
+                                    map.addLayer(vectorLayer);
+
+                                    if(!categories[layer.categoryData.name]) {
+                                        categories[layer.categoryData.name] = [];
+                                    }
+
+                                    // Add the layer to the category on jsTree
+                                    categories[layer.categoryData.name].push({
+                                        id: layer.name,
+                                        text: '<img src="assets/layers/' + layer.icono + '" class="inline-block w-4 h-4"> ' + layer.name,
+                                        state: {
+                                            opened: true,
+                                            selected: false
+                                        }
+                                    });
+                                });
+
+                            })
+
                         });
                     });
 
