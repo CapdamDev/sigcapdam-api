@@ -477,11 +477,14 @@ html(lang='es')
                                         layers.forEach(function (layer) {
                                             // Ensure the URL is correct
                                             var geoJsonUrl = 'assets/layers/' + layer.archive;
+                                            console.log(geoJsonUrl);
 
                                             var layerSource = new ol.source.Vector({
                                                 url: geoJsonUrl,
                                                 format: new ol.format.GeoJSON()
                                             });
+
+                                            console.log(layerSource);
 
                                             // Create a new iconStyle for each layer
                                             var iconStyleForLayer = new ol.style.Style({
@@ -493,6 +496,8 @@ html(lang='es')
                                                     scale: 0.6
                                                 }),
                                             });
+
+                                            console.log(iconStyleForLayer);
 
                                             var vectorLayer = new ol.layer.Vector({
                                                 source: layerSource,
@@ -528,6 +533,8 @@ html(lang='es')
                                                     }
                                                 }
                                             });
+
+                                            console.log(vectorLayer);
 
                                             if(layer.name) {
                                                 vectorLayer.set('name', layer.name);

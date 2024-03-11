@@ -155,15 +155,19 @@ html(lang='es')
                                                         //- img(src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="Mapa de la capa" class="w-full h-full object-contain rounded-lg map-image")
                                                         #map(class="w-full h-full object-contain rounded-lg map-image")
 
-                                                div(id="mapGeometries" class="relative p-4 text-center bg-white rounded-lg dark:bg-gray-800 sm:p-8")
+                                                div(id="mapGeometries" class="relative p-4 text-center bg-white rounded-lg dark:bg-gray-800")
                                                     div(id="properties" class="relative text-center bg-white rounded-lg dark:bg-gray-800")
                                                         h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left") Propiedades
                                                         hr(class="my-4 border-gray-300")
+                                                    button(type="button" id="closeGeometriesModal" class="absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white")
+                                                        svg(aria-hidden="true" class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
+                                                            path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
+                                                        span(class="sr-only") Close
 
 
             include ./includes/footer.jade
 
-                script(src='../assets/custom/js/mapInit.js')
+                //- script(src='../assets/custom/js/mapInit.js')
                 script.
                     const layers = !{JSON.stringify(layers)};
 
@@ -192,6 +196,67 @@ html(lang='es')
                         });
                     });
 
+                    // Coordenadas que centrarán el mapa al cargar la página
+                    var centerCoordinates = [-104.3470, 19.1149];
+                    var token = sessionStorage.getItem('token');
+
+                    const AllTiles = {
+                        OSM: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        Roadmap: 'http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}',
+                        Terrain: 'http://mt0.google.com/vt/lyrs=p&hl=en&x={x}&y={y}&z={z}',
+                        AlteredRoadmap: 'http://mt0.google.com/vt/lyrs=r&hl=en&x={x}&y={y}&z={z}',
+                        SatelliteOnly: 'http://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}',
+                        Hybrid: 'http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}',
+                    }
+
+                    const initialLayer = 'OSM';
+                    const initialSource = new ol.source.XYZ({
+                        url: AllTiles[initialLayer],
+                        crossOrigin: 'Anonymous',
+                    });
+
+                    // Crear el mapa
+                    var map = new ol.Map({
+                        target: 'map',
+                        layers: [
+                            new ol.layer.Tile({
+                                source: initialSource,
+                            })
+                        ],
+                        view: new ol.View({
+                            center: ol.proj.fromLonLat(centerCoordinates),
+                            zoom: 18,
+                            //- maxZoom: 18,
+                            //- minZoom: 16.5,
+                        })
+                    });
+
+                    const mapTypeSelector = document.getElementById('map-type');
+                    mapTypeSelector.addEventListener('change', function () {
+                        const selectedLayer = mapTypeSelector.value;
+                        const selectedSource = new ol.source.XYZ({
+                            url: AllTiles[selectedLayer],
+                            crossOrigin: 'Anonymous',
+                        });
+                        map.getLayers().setAt(0, new ol.layer.Tile({
+                            source: selectedSource,
+                        }));
+                    });
+
+                    const tileLayer = map.getLayers().item(0);
+                    tileLayer.setSource(initialSource);
+
+                    // Ver las coordenadas del mouse en el mapa
+                    var mousePositionControl = new ol.control.MousePosition({
+                        coordinateFormat: ol.coordinate.createStringXY(4),
+                        projection: 'EPSG:4326',
+                        className: 'custom-mouse-position',
+                        target: document.getElementById('mouse-position'),
+                        undefinedHTML: '&nbsp;'
+                    });
+
+                    map.addControl(mousePositionControl);
+
                     document.addEventListener('DOMContentLoaded', function () {
                         const createForm = document.getElementById('create-form');
                         const updateForm = document.getElementById('update-form');
@@ -203,36 +268,37 @@ html(lang='es')
                         const statusMessage2 = document.getElementById('statusMessage2');
 
                         // Add on change event listener to the archive file input to check the file upload status
-                        document.getElementById('archive').addEventListener('change', function () {
-                            if (this.files[0].type !== 'application/json') {
-                                statusMessage.textContent = 'El archivo debe ser en formato JSON o GeoJSON.';
-                                statusMessage.style.color = 'red';
-                            } else {
-                                const file = this.files[0];
-                                const fileSize = file.size;
-                                let loaded = 0;
+                        // This function not work with to see in real time the progress
+                        //- document.getElementById('archive').addEventListener('change', function () {
+                        //-     if (this.files[0].type !== 'application/json') {
+                        //-         statusMessage.textContent = 'El archivo debe ser en formato JSON o GeoJSON.';
+                        //-         statusMessage.style.color = 'red';
+                        //-     } else {
+                        //-         const file = this.files[0];
+                        //-         const fileSize = file.size;
+                        //-         let loaded = 0;
 
-                                const reader = new FileReader();
-                                reader.onloadstart = function () {
-                                    statusMessage.textContent = 'Cargando archivo...';
-                                    statusMessage.style.color = 'blue';
-                                };
-                                reader.onprogress = function (event) {
-                                    if (event.lengthComputable) {
-                                        loaded = event.loaded;
-                                        const percentLoaded = Math.round((loaded / fileSize) * 100);
-                                        console.log(`Bytes loaded: ${loaded}, Percentage: ${percentLoaded}%`);
-                                        statusMessage.textContent = `Cargando archivo... ${percentLoaded}%`;
-                                    }
-                                };
-                                reader.onloadend = function () {
-                                    statusMessage.textContent = 'Archivo cargado exitosamente.';
-                                    statusMessage.style.color = 'green';
-                                };
+                        //-         const reader = new FileReader();
+                        //-         reader.onloadstart = function () {
+                        //-             statusMessage.textContent = 'Cargando archivo...';
+                        //-             statusMessage.style.color = 'blue';
+                        //-         };
+                        //-         reader.onprogress = function (event) {
+                        //-             if (event.lengthComputable) {
+                        //-                 loaded = event.loaded;
+                        //-                 const percentLoaded = Math.round((loaded / fileSize) * 100);
+                        //-                 console.log(`Bytes loaded: ${loaded}, Percentage: ${percentLoaded}%`);
+                        //-                 statusMessage.textContent = `Cargando archivo... ${percentLoaded}%`;
+                        //-             }
+                        //-         };
+                        //-         reader.onloadend = function () {
+                        //-             statusMessage.textContent = 'Archivo cargado exitosamente.';
+                        //-             statusMessage.style.color = 'green';
+                        //-         };
 
-                                reader.readAsDataURL(file);
-                            }
-                        });
+                        //-         reader.readAsDataURL(file);
+                        //-     }
+                        //- });
 
                         // Add on change event listener to the icono file input to check the file upload status
                         document.getElementById('icono').addEventListener('change', function () {
@@ -569,130 +635,92 @@ html(lang='es')
                             console.log(layerId);
 
                             fetch('/api/v1/layers/' + layerId, {
-                                method: 'GET',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Authorization': '!{cookies.token}',
-                                },
-                            })
-                            .then((response) => {
-                                if(response.status === 401){
-                                    Swal.fire({
-                                        title: 'Error',
-                                        text: 'Vuelve a iniciar sesión para continuar.',
-                                        icon: 'error',
-                                        confirmButtonText: 'Aceptar',
-                                    }).then(() => {
-                                        fetch('api/v1/auth/logout', {
-                                            method: 'GET',
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                            }
-                                        })
-                                        .then(response => {
-                                            if(response.ok){
-                                                window.location.href = '/login';
-                                            } else {
-                                                throw new Error('Error al cerrar sesión.');
-                                            }
-                                        })
-                                    });
-                                }
-                                else {
-                                    return response.json();
-                                }
-                            }).then((layers) => {
-                                
-                                layers.forEach(function (layer) {
-                                    // Ensure the URL is correct
-                                    var geoJsonUrl = 'assets/layers/' + layer.archive;
+                                    method: 'GET',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Authorization': '!{cookies.token}',
+                                    },
+                                })
+                                .then((response) => {
+                                    if(response.status === 401){
+                                        Swal.fire({
+                                            title: 'Error',
+                                            text: 'Vuelve a iniciar sesión para continuar.',
+                                            icon: 'error',
+                                            confirmButtonText: 'Aceptar',
+                                        }).then(() => {
+                                            fetch('/api/v1/auth/logout', {
+                                                method: 'GET',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                }
+                                            })
+                                            .then(response => {
+                                                if(response.ok){
+                                                    window.location.href = '/login';
+                                                } else {
+                                                    throw new Error('Error al cerrar sesión.');
+                                                }
+                                            })
+                                        });
+                                    }
+                                    else {
+                                        return response.json();
+                                    }
+                                })
+                                .then((layers) => {
+                                    const geojson = 'assets/layers/' + layers.archive;
+                                    fetch(geojson)
+                                    .then(response => response.json())
+                                    .then(geojsonData => {
 
-                                    var layerSource = new ol.source.Vector({
-                                        url: geoJsonUrl,
-                                        format: new ol.format.GeoJSON()
-                                    });
+                                            const vectorSource = new ol.source.Vector({ features: [] });
 
-                                    // Create a new iconStyle for each layer
-                                    var iconStyleForLayer = new ol.style.Style({
-                                        image: new ol.style.Icon({
-                                            anchor: [0.5, 0.5],
-                                            anchorXUnits: 'fraction',
-                                            anchorYUnits: 'fraction',
-                                            src: 'assets/layers/' + layer.icono,
-                                            scale: 0.6
-                                        }),
-                                    });
-
-                                    var vectorLayer = new ol.layer.Vector({
-                                        source: layerSource,
-                                        visible: false, // Start with the layer not 
-                                        style: function(feature, resolution) {
-                                            // Revisar si el layer es de tipo punto, línea o polígono
-                                            if(feature.getGeometry().getType() === 'Point' || feature.getGeometry().getType() === 'MultiPoint') {
-                                                return iconStyleForLayer;
-                                            } else if(feature.getGeometry().getType() === 'LineString' || feature.getGeometry().getType() === 'MultiLineString') {
-                                                var color = feature.get('COLOR_1');
-                                                return new ol.style.Style({
-                                                    // Establecer el valor de color obtenido en el stroke
-                                                    stroke: new ol.style.Stroke({
-                                                        color: 'rgba('+ color +', 0.5)',
-                                                        width: 4
-                                                    })
+                                            geojsonData.features.forEach((feature) => {
+                                                const iconFeature = new ol.Feature({
+                                                    geometry: new ol.geom.Point(ol.proj.fromLonLat(feature.geometry.coordinates)),
                                                 });
-                                            } else if(feature.getGeometry().getType() === 'Polygon' || feature.getGeometry().getType() === 'MultiPolygon' ) {
-                                                var color = feature.get('COLOR_1');
-                                                var color2 = feature.get('COLOR_2');
-                                                return new ol.style.Style({
-                                                    stroke: new ol.style.Stroke({
-                                                        color: 'rgba('+ color +', 0.5)',
-                                                        width: 4,
-                                                        scale: 2
+
+
+                                                const iconStyle = new ol.style.Style({
+                                                    image: new ol.style.Icon({
+                                                        anchor: [0.5, 46],
+                                                        anchorXUnits: 'fraction',
+                                                        anchorYUnits: 'pixels',
+                                                        src: 'assets/layers/' + layers.icono,
                                                     }),
-                                                    fill: new ol.style.Fill({
-                                                        color: 'rgba('+ color +', 0.2)',
-                                                        width: 4,
-                                                        scale: 2
-                                                    })
                                                 });
-                                            }
-                                        }
-                                    });
 
-                                    if(layer.name) {
-                                        vectorLayer.set('name', layer.name);
-                                    } else {
-                                        vectorLayer.set('name', 'No name');
-                                    }
+                                                iconFeature.setStyle(iconStyle);
 
-                                    var iconStyle = new ol.style.Style({
-                                        image: new ol.style.Icon({
-                                            anchor: [0.5, 0.5],
-                                            anchorXUnits: 'fraction',
-                                            anchorYUnits: 'fraction',
-                                            src: 'assets/layers/' + layer.icono,
-                                            scale: 0.1
-                                        }),
-                                    });
-                                    
-                                    map.addLayer(vectorLayer);
+                                                // Add each feature to the single vector source
+                                                vectorSource.addFeature(iconFeature);
+                                            });
 
-                                    if(!categories[layer.categoryData.name]) {
-                                        categories[layer.categoryData.name] = [];
-                                    }
+                                            // Create a single vector layer using the accumulated features
+                                            const vectorLayer = new ol.layer.Vector({
+                                                source: vectorSource,
+                                                name: 'iconLayer',
+                                            });
 
-                                    // Add the layer to the category on jsTree
-                                    categories[layer.categoryData.name].push({
-                                        id: layer.name,
-                                        text: '<img src="assets/layers/' + layer.icono + '" class="inline-block w-4 h-4"> ' + layer.name,
-                                        state: {
-                                            opened: true,
-                                            selected: false
-                                        }
-                                    });
-                                });
+                                            map.addLayer(vectorLayer);
 
-                            })
+                                        // Create a single vector source to hold all features
 
+                                        // If closeGeometriesModal button is clicked, remove the icon layer
+                                        document.getElementById('closeGeometriesModal').addEventListener('click', function() {
+                                            console.log('Close button clicked')
+                                            map.getLayers().forEach((layer) => {
+                                                if (layer.get('name') === 'iconLayer') {
+                                                    map.removeLayer(layer);
+                                                }
+                                            });
+                                        });
+                                    })
+                                }).catch((error) => {
+                                console.error('Error:', error);
+                                Swal.fire("Error", error.message, "error");
+                            });
                         });
                     });
 
