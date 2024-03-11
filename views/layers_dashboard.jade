@@ -140,8 +140,8 @@ html(lang='es')
                                                                 h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left") Mapa
                                                             div
                                                                 select(id='map-type' class='w-60 h-8 text-white bg-gray-900 border-0 py-2 pl-4 focus:outline-none hover:bg-gray-600 rounded text-xs')
-                                                                    option(value='Hybrid') Hybrid
                                                                     option(value='OSM') OpenStreetMap
+                                                                    option(value='Hybrid') Hybrid
                                                                     option(value='Roadmap') Roadmap
                                                                     option(value='Terrain') Terrain
                                                                     option(value='AlteredRoadmap') Altered Roadmap
@@ -159,7 +159,7 @@ html(lang='es')
                                                     div(id="properties" class="relative text-center bg-white rounded-lg dark:bg-gray-800")
                                                         h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left") Propiedades
                                                         hr(class="my-4 border-gray-300")
-                                                    button(type="button" id="closeGeometriesModal" class="absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white")
+                                                    button(type="button" id="closeGeometriesModal" class="absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="editGeometriesModal")
                                                         svg(aria-hidden="true" class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
                                                             path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
                                                         span(class="sr-only") Close
