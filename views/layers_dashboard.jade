@@ -156,14 +156,15 @@ html(lang='es')
                                                         #map(class="w-full h-full object-contain rounded-lg map-image")
 
                                                 div(id="mapGeometries" class="relative p-4 text-center bg-white rounded-lg dark:bg-gray-800")
-                                                    div(id="properties" class="relative text-center bg-white rounded-lg dark:bg-gray-800")
+                                                    div(class="relative text-center bg-white rounded-lg dark:bg-gray-800")
                                                         h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left") Propiedades
                                                         hr(class="my-4 border-gray-300")
+                                                        div(name="propertiesDiv" id="propertiesDiv")
+                                                        
                                                     button(type="button" id="closeGeometriesModal" class="absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="editGeometriesModal")
                                                         svg(aria-hidden="true" class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
                                                             path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
                                                         span(class="sr-only") Close
-
 
             include ./includes/footer.jade
 
@@ -262,43 +263,6 @@ html(lang='es')
                         const updateForm = document.getElementById('update-form');
                         const deleteModal = document.getElementById('deleteModal');
                         const updateJsonFile = document.getElementById('update-json-form'); 
-
-
-                        const statusMessage = document.getElementById('statusMessage');
-                        const statusMessage2 = document.getElementById('statusMessage2');
-
-                        // Add on change event listener to the archive file input to check the file upload status
-                        // This function not work with to see in real time the progress
-                        //- document.getElementById('archive').addEventListener('change', function () {
-                        //-     if (this.files[0].type !== 'application/json') {
-                        //-         statusMessage.textContent = 'El archivo debe ser en formato JSON o GeoJSON.';
-                        //-         statusMessage.style.color = 'red';
-                        //-     } else {
-                        //-         const file = this.files[0];
-                        //-         const fileSize = file.size;
-                        //-         let loaded = 0;
-
-                        //-         const reader = new FileReader();
-                        //-         reader.onloadstart = function () {
-                        //-             statusMessage.textContent = 'Cargando archivo...';
-                        //-             statusMessage.style.color = 'blue';
-                        //-         };
-                        //-         reader.onprogress = function (event) {
-                        //-             if (event.lengthComputable) {
-                        //-                 loaded = event.loaded;
-                        //-                 const percentLoaded = Math.round((loaded / fileSize) * 100);
-                        //-                 console.log(`Bytes loaded: ${loaded}, Percentage: ${percentLoaded}%`);
-                        //-                 statusMessage.textContent = `Cargando archivo... ${percentLoaded}%`;
-                        //-             }
-                        //-         };
-                        //-         reader.onloadend = function () {
-                        //-             statusMessage.textContent = 'Archivo cargado exitosamente.';
-                        //-             statusMessage.style.color = 'green';
-                        //-         };
-
-                        //-         reader.readAsDataURL(file);
-                        //-     }
-                        //- });
 
                         // Add on change event listener to the icono file input to check the file upload status
                         document.getElementById('icono').addEventListener('change', function () {
@@ -679,12 +643,13 @@ html(lang='es')
                                             geojsonData.features.forEach((feature) => {
                                                 const iconFeature = new ol.Feature({
                                                     geometry: new ol.geom.Point(ol.proj.fromLonLat(feature.geometry.coordinates)),
+                                                    properties: feature.properties,
                                                 });
 
 
                                                 const iconStyle = new ol.style.Style({
                                                     image: new ol.style.Icon({
-                                                        anchor: [0.5, 46],
+                                                        anchor: [0.5, 0.5],
                                                         anchorXUnits: 'fraction',
                                                         anchorYUnits: 'pixels',
                                                         src: 'assets/layers/' + layers.icono,
@@ -705,11 +670,8 @@ html(lang='es')
 
                                             map.addLayer(vectorLayer);
 
-                                        // Create a single vector source to hold all features
-
                                         // If closeGeometriesModal button is clicked, remove the icon layer
                                         document.getElementById('closeGeometriesModal').addEventListener('click', function() {
-                                            console.log('Close button clicked')
                                             map.getLayers().forEach((layer) => {
                                                 if (layer.get('name') === 'iconLayer') {
                                                     map.removeLayer(layer);
@@ -720,6 +682,25 @@ html(lang='es')
                                 }).catch((error) => {
                                 console.error('Error:', error);
                                 Swal.fire("Error", error.message, "error");
+                            });
+
+                            // Make the map clickable
+                            map.on('click', function (event) {
+                                const coordinates = event.coordinate;
+                                console.log(coordinates);
+                                // Show all features at the clicked position
+                                map.forEachFeatureAtPixel(event.pixel, function (feature, layer) {
+                                    console.log(feature.getProperties().properties);
+
+                                    // Create a form to show the properties of the features in the properties div
+                                    const propertiesDiv = document.getElementById('propertiesDiv');
+                                    propertiesDiv.innerHTML = '';
+                                    for (const [key, value] of Object.entries(feature.getProperties().properties)) {
+                                        const propertyDiv = document.createElement('div');
+                                        propertyDiv.innerHTML = `<span class="font-semibold">${key}:</span> ${value}`;
+                                        propertiesDiv.appendChild(propertyDiv);
+                                    }
+                                });
                             });
                         });
                     });
