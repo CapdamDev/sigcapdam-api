@@ -586,34 +586,79 @@ html(lang='es')
                                         const vectorSource = new ol.source.Vector({ features: [] });
 
                                         geojsonData.features.forEach((feature) => {
+                                            
+                                            const getGeometry = (coordinates, type) => {
+                                                switch (type) {
+                                                    case 'Point':
+                                                        return new ol.geom.Point(ol.proj.fromLonLat(coordinates));
+                                                    case 'MultiPoint':
+                                                        return new ol.geom.MultiPoint(coordinates.map(coord => ol.proj.fromLonLat(coord)));
+                                                    case 'LineString':
+                                                        return new ol.geom.LineString(coordinates.map(coord => ol.proj.fromLonLat(coord)));
+                                                    case 'Polygon':
+                                                        return new ol.geom.Polygon(coordinates.map(ring => ring.map(coord => ol.proj.fromLonLat(coord))));
+                                                    case 'MultiPolygon':
+                                                        return new ol.geom.MultiPolygon(coordinates.map(polygon => polygon.map(ring => ring.map(coord => ol.proj.fromLonLat(coord)))));
+                                                    default:
+                                                        throw new Error('Invalid geometry type');
+                                                }
+                                            };
+
                                             const iconFeature = new ol.Feature({
-                                                geometry: new ol.geom.Point(ol.proj.fromLonLat(feature.geometry.coordinates)),
+                                                geometry: getGeometry(feature.geometry.coordinates, feature.geometry.type),
                                                 properties: feature.properties,
                                             });
 
 
-                                            const iconStyle = new ol.style.Style({
-                                                image: new ol.style.Icon({
-                                                    anchor: [0.5, 0.5],
-                                                    anchorXUnits: 'fraction',
-                                                    anchorYUnits: 'pixels',
-                                                    src: 'assets/layers/' + layers.icono,
-                                                }),
-                                            });
+                                            //- const iconStyle = new ol.style.Style({
+                                            //-     image: new ol.style.Icon({
+                                            //-         anchor: [0.5, 0.5],
+                                            //-         anchorXUnits: 'fraction',
+                                            //-         anchorYUnits: 'pixels',
+                                            //-         src: 'assets/layers/' + layers.icono,
+                                            //-     }),
+                                            //- });
 
-                                            iconFeature.setStyle(iconStyle);
+                                            //- iconFeature.setStyle(iconStyle);
 
                                             // Add each feature to the single vector source
                                             vectorSource.addFeature(iconFeature);
-                                            // Create a single vector layer using the accumulated features
-                                            const vectorLayer = new ol.layer.Vector({
-                                                source: vectorSource,
-                                                name: 'iconLayer',
-                                            });
-
-                                            map.addLayer(vectorLayer);
                                         });
 
+                                        // Create a single vector layer using the accumulated features
+                                        const vectorLayer = new ol.layer.Vector({
+                                            source: vectorSource,
+                                            name: 'iconLayer',
+                                        });
+
+                                        map.addLayer(vectorLayer);
+
+
+                                        // Make the map clickable
+                                        map.on('click', function (event) {
+                                            const coordinates = event.coordinate;
+                                            // Show all features at the clicked position
+                                            map.forEachFeatureAtPixel(event.pixel, function (feature, layer) {
+                                                console.log(feature.getProperties().properties);
+
+                                                // Create a form to show and edit the properties of the features in the properties div
+                                                const propertiesDiv = document.getElementById('propertiesDiv');
+                                                propertiesDiv.innerHTML = '';
+                                                const gridContainer = document.createElement('div');
+                                                gridContainer.classList.add('grid', 'grid-cols-2', 'gap-4');
+
+                                                for (const [key, value] of Object.entries(feature.getProperties().properties)) {
+                                                    const propertiesDiv = document.createElement('div');
+                                                    propertiesDiv.innerHTML = `
+                                                        <label for="${key}" class="font-semibold">${key}:</label>
+                                                        <input type="text" id="${key}" name="${key}" value="${value}" class="border border-gray-300 rounded-md px-2 py-1">
+                                                    `;
+                                                    gridContainer.appendChild(propertiesDiv);
+                                                }
+
+                                                propertiesDiv.appendChild(gridContainer);
+                                            });
+                                        });
 
                                         // Make the map clickable
                                         map.on('click', function (event) {
@@ -644,7 +689,7 @@ html(lang='es')
                                         // If closeGeometriesModal button is clicked, remove the icon layer
                                         document.getElementById('closeGeometriesModal').addEventListener('click', function() {
                                             map.getLayers().forEach((layer) => {
-                                                if (layer.get('name') === 'iconLayer') {
+                                                if (layer instanceof ol.layer.Vector) {
                                                     map.removeLayer(layer);
                                                 }
                                             });
@@ -653,7 +698,6 @@ html(lang='es')
                                             const propertiesDiv = document.getElementById('propertiesDiv');
                                             propertiesDiv.innerHTML = '<h3 class="text-lg font-semibold text-gray-900 dark:text-white text-left">No se ha seleccionado un punto del mapa</h3>';
                                         });
-
                                     })
                                 })
                                 .catch((error) => {
