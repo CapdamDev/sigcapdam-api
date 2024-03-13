@@ -56,115 +56,114 @@ html(lang='es')
                                                                 button(class="hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200" type="button" data-modal-target="editGeometriesModal" data-modal-toggle="editGeometriesModal" id="editGeometriesButton" value=layer.id title="Editar puntos, geometrías o atributos de la capa")
                                                                     svg(class="w-4 h-4 mr-2" viewbox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true")
                                                                         path(fill-rule="evenodd" clip-rule="evenodd" d="M10 3a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V4a1 1 0 011-1z")
-                                        div(id="createLayerModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
-                                            div(class="relative p-4 w-full max-w-2xl max-h-full")
-                                                div(class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
-                                                    div(class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600")
-                                                        h3(class="text-lg font-semibold text-gray-900 dark:text-white") Nueva capa
-                                                        button(type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-target="createLayerModal" data-modal-toggle="createLayerModal")
-                                                            svg(aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
-                                                                path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
-                                                            span(class="sr-only") Close
-                                                    form(name='createLayerModalForm' id='create-form' class='md:space-y-6' action='/api/v1/layers/' method='POST' enctype='multipart/form-data')
-                                                        div(class="grid gap-4 mb-4 sm:grid-cols-2")
-                                                            div
-                                                                label(for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Nombre
-                                                                input(type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Nombre de la capa" required="")
-                                                            div
-                                                                label(for="categoriesCreate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Categoría
-                                                                select(id="categoriesCreate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
-                                                                    for category in categories
-                                                                        option(value=category.id id="categoriesCreate")= category.name
-                                                            div(class="sm:col-span-2")
-                                                                label(for="archive" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Archivo JSON
-                                                                input(type="file" id="archive" accept=".json, .geojson" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Capa JSON")
-                                                                span(id="statusMessage" class="text-gray-500 dark:text-gray-300 text-sm") El archivo debe ser en formato JSON o GeoJSON.
-                                                            div(class="sm:col-span-2")
-                                                                label(for="icono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Icono
-                                                                input(type="file" id="icono" accept=".png, .jpg" name="icono" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Icono en PNG o JPG")
-                                                                span(id="statusMessage2" class="text-gray-500 dark:text-gray-300 text-sm") El archivo debe ser en formato PNG o JPG.
-                                                            div(class="sm:col-span-2 items-center text-center")
-                                                                button(type="submit" class="text-white inline-flex items-center bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-500 dark:focus:ring-sky-800")
-                                                                    svg(class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
-                                                                        path(fill-rule="evenodd", d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z", clip-rule="evenodd")
-                                                                    | Agregar nueva capa
-                                        div(id="updateLayerModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
-                                            div(class="relative p-4 w-full max-w-2xl max-h-full")
-                                                div(class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
-                                                    div(class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:dark-border-gray-600")
-                                                        h3(class="text-lg font-semibold text-gray-900 dark:text-white") Actualizar capa
-                                                        button(type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateLayerModal")
-                                                            svg(aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
-                                                                path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
-                                                            span(class="sr-only") Close
-                                                    form(name="updateLayerModalForm" id="update-form" action="/api/v1/layers/" method="PUT" enctype="multipart/form-data")
-                                                        div(class="grid gap-4 mb-4 sm:grid-cols-2" id="layerUpdateId")
-                                                            div
-                                                                label(for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Nombre
-                                                                input(type="text" name="updateNameInput" id="updateNameInput" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Nombre de la capa" required="")
-                                                            div
-                                                                label(for="categoriesUpdate", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Categoría
-                                                                select(id="categoriesUpdate", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
-                                                                    each category in categories
-                                                                        option(value=category.id id="categoriesUpdate")= category.name
-                                                            div(class="sm:col-span-2")
-                                                                label(for="archive" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Archivo JSON
-                                                                input(type="file" id="updateArchiveInput" accept=".json, .geojson" rows="4" class="block p-2.5 pl-6 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Capa JSON")
-                                                            div(class="sm:col-span-2")
-                                                                label(for="icono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Icono
-                                                                input(type="file" id="updateIconoInput" accept=".png, .jpg" name="icono" rows="4" class="block p-2.5 pl-6 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Icono en PNG o JPG")
-                                                            div(class="flex items-center space-x-4")
-                                                                button(type="submit" class="text-white bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-500 dark:focus:ring-sky-800") Actualizar
-                                        div(id="deleteModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
-                                            div(class="relative p-4 w-full max-w-md max-h-full")
-                                                div(class="relative p-4 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
-                                                    button(type="button" class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="deleteModal")
-                                                        svg(aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
-                                                            path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
-                                                        span(class="sr-only") Close
-                                                    svg(class="text-gray-400 dark:text-gray-500 w-11 h-11 mb-3.5 mx-auto" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
-                                                        path(fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd")
-                                                    p(id="showId" class="mb-4 text-gray-500 dark:text-gray-300") ¿Estás seguro de borrar esta capa? Esta acción no se puede deshacer.
-                                                    div(class="flex justify-center items-center space-x-4")
-                                                        button(data-modal-toggle="deleteModal" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-sky-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-sky-800")
-                                                            | Cancel
-                                                        button(type="submit" id="confirmDelete" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900") Sí, borrar
-                                        
-                                        div(id="editGeometriesModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
-                                            div(class="relative p-4 w-full max-w-10 max-h-full grid grid-cols-2 gap-4")
-                                                div(id="mapGeometries" class="relative p-4 text-center bg-white rounded-lg dark:bg-gray-800 sm:p-8")
-                                                    //- Mapa para editar los puntos, geometrías o atributos de la capa
-                                                    div(id="mapContainer" class="relative text-center bg-white rounded-lg dark:bg-gray-800")
-                                                        div(class="grid grid-cols-3 gap-4")
-                                                            div
-                                                                h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left") Mapa
-                                                            div
-                                                                select(id='map-type' class='w-60 h-8 text-white bg-gray-900 border-0 py-2 pl-4 focus:outline-none hover:bg-gray-600 rounded text-xs')
-                                                                    option(value='OSM') OpenStreetMap
-                                                                    option(value='Hybrid') Hybrid
-                                                                    option(value='Roadmap') Roadmap
-                                                                    option(value='Terrain') Terrain
-                                                                    option(value='AlteredRoadmap') Altered Roadmap
-                                                                    option(value='SatelliteOnly') Satellite Only
-                                                            div
-                                                                span(class='text-gray-500 dark:text-gray-200') Coordenadas del mouse:
-                                                                span#mouse-position.text-gray-500(class='dark:text-gray-200 ml-2')
-                                                            
-                                                    hr(class="my-4")
-                                                    div(class="flex items-center w-full h-96")
-                                                        //- img(src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="Mapa de la capa" class="w-full h-full object-contain rounded-lg map-image")
-                                                        #map(class="w-full h-full object-contain rounded-lg map-image")
+                                                div(id="createLayerModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
+                                                    div(class="relative p-4 w-full max-w-2xl max-h-full")
+                                                        div(class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
+                                                            div(class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600")
+                                                                h3(class="text-lg font-semibold text-gray-900 dark:text-white") Nueva capa
+                                                                button(type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-target="createLayerModal" data-modal-toggle="createLayerModal")
+                                                                    svg(aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
+                                                                        path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
+                                                                    span(class="sr-only") Close
+                                                            form(name='createLayerModalForm' id='create-form' class='md:space-y-6' action='/api/v1/layers/' method='POST' enctype='multipart/form-data')
+                                                                div(class="grid gap-4 mb-4 sm:grid-cols-2")
+                                                                    div
+                                                                        label(for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Nombre
+                                                                        input(type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Nombre de la capa" required="")
+                                                                    div
+                                                                        label(for="categoriesCreate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Categoría
+                                                                        select(id="categoriesCreate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
+                                                                            for category in categories
+                                                                                option(value=category.id id="categoriesCreate")= category.name
+                                                                    div(class="sm:col-span-2")
+                                                                        label(for="archive" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Archivo JSON
+                                                                        input(type="file" id="archive" accept=".json, .geojson" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Capa JSON")
+                                                                        span(id="statusMessage" class="text-gray-500 dark:text-gray-300 text-sm") El archivo debe ser en formato JSON o GeoJSON.
+                                                                    div(class="sm:col-span-2")
+                                                                        label(for="icono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Icono
+                                                                        input(type="file" id="icono" accept=".png, .jpg" name="icono" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Icono en PNG o JPG")
+                                                                        span(id="statusMessage2" class="text-gray-500 dark:text-gray-300 text-sm") El archivo debe ser en formato PNG o JPG.
+                                                                    div(class="sm:col-span-2 items-center text-center")
+                                                                        button(type="submit" class="text-white inline-flex items-center bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-500 dark:focus:ring-sky-800")
+                                                                            svg(class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
+                                                                                path(fill-rule="evenodd", d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z", clip-rule="evenodd")
+                                                                            | Agregar nueva capa
+                                                div(id="updateLayerModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
+                                                    div(class="relative p-4 w-full max-w-2xl max-h-full")
+                                                        div(class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
+                                                            div(class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:dark-border-gray-600")
+                                                                h3(class="text-lg font-semibold text-gray-900 dark:text-white") Actualizar capa
+                                                                button(type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateLayerModal")
+                                                                    svg(aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
+                                                                        path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
+                                                                    span(class="sr-only") Close
+                                                            form(name="updateLayerModalForm" id="update-form" action="/api/v1/layers/" method="PUT" enctype="multipart/form-data")
+                                                                div(class="grid gap-4 mb-4 sm:grid-cols-2" id="layerUpdateId")
+                                                                    div
+                                                                        label(for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Nombre
+                                                                        input(type="text" name="updateNameInput" id="updateNameInput" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Nombre de la capa" required="")
+                                                                    div
+                                                                        label(for="categoriesUpdate", class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Categoría
+                                                                        select(id="categoriesUpdate", class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500")
+                                                                            each category in categories
+                                                                                option(value=category.id id="categoriesUpdate")= category.name
+                                                                    div(class="sm:col-span-2")
+                                                                        label(for="archive" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Archivo JSON
+                                                                        input(type="file" id="updateArchiveInput" accept=".json, .geojson" rows="4" class="block p-2.5 pl-6 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-prim2ary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Capa JSON")
+                                                                    div(class="sm:col-span-2")
+                                                                        label(for="icono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white") Icono
+                                                                        input(type="file" id="updateIconoInput" accept=".png, .jpg" name="icono" rows="4" class="block p-2.5 pl-6 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Icono en PNG o JPG")
+                                                                    div(class="flex items-center space-x-4")
+                                                                        button(type="submit" class="text-white bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-500 dark:focus:ring-sky-800") Actualizar
+                                                div(id="deleteModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
+                                                    div(class="relative p-4 w-full max-w-md max-h-full")
+                                                        div(class="relative p-4 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5")
+                                                            button(type="button" class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="deleteModal")
+                                                                svg(aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
+                                                                    path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
+                                                                span(class="sr-only") Close
+                                                            svg(class="text-gray-400 dark:text-gray-500 w-11 h-11 mb-3.5 mx-auto" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
+                                                                path(fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd")
+                                                            p(id="showId" class="mb-4 text-gray-500 dark:text-gray-300") ¿Estás seguro de borrar esta capa? Esta acción no se puede deshacer.
+                                                            div(class="flex justify-center items-center space-x-4")
+                                                                button(data-modal-toggle="deleteModal" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-sky-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-sky-800")
+                                                                    | Cancel
+                                                                button(type="submit" id="confirmDelete" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900") Sí, borrar
+                                                div(id="editGeometriesModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full")
+                                                    div(class="relative p-4 w-full max-w-10 max-h-full grid grid-cols-2 gap-4")
+                                                        div(id="mapGeometries" class="relative p-4 text-center bg-white rounded-lg dark:bg-gray-800 sm:p-8")
+                                                            //- Mapa para editar los puntos, geometrías o atributos de la capa
+                                                            div(id="mapContainer" class="relative text-center bg-white rounded-lg dark:bg-gray-800")
+                                                                div(class="grid grid-cols-3 gap-4")
+                                                                    div
+                                                                        h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left") Mapa
+                                                                    div
+                                                                        select(id='map-type' class='w-60 h-8 text-white bg-gray-900 border-0 py-2 pl-4 focus:outline-none hover:bg-gray-600 rounded text-xs')
+                                                                            option(value='OSM') OpenStreetMap
+                                                                            option(value='Hybrid') Hybrid
+                                                                            option(value='Roadmap') Roadmap
+                                                                            option(value='Terrain') Terrain
+                                                                            option(value='AlteredRoadmap') Altered Roadmap
+                                                                            option(value='SatelliteOnly') Satellite Only
+                                                                    div
+                                                                        span(class='text-gray-500 dark:text-gray-200') Coordenadas del mouse:
+                                                                        span#mouse-position.text-gray-500(class='dark:text-gray-200 ml-2')
+                                                                    
+                                                            hr(class="my-4")
+                                                            div(class="flex items-center w-full h-96 h-80-md h-72-sm")
+                                                                //- img(src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="Mapa de la capa" class="w-full h-full object-contain rounded-lg map-image")
+                                                                #map(class="w-full h-full object-contain rounded-lg map-image")
 
-                                                div(id="mapGeometries" class="relative p-4 text-center bg-white rounded-lg dark:bg-gray-800")
-                                                    div(class="relative text-center bg-white rounded-lg dark:bg-gray-800")
-                                                        h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left") Propiedades
-                                                        hr(class="my-4 border-gray-300")
-                                                        div(name="propertiesDiv" id="propertiesDiv")
-                                                        
-                                                    button(type="button" id="closeGeometriesModal" class="absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="editGeometriesModal")
-                                                        svg(aria-hidden="true" class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
-                                                            path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
-                                                        span(class="sr-only") Close
+                                                        div(id="mapGeometries" class="relative p-4 text-center bg-white rounded-lg dark:bg-gray-800")
+                                                            div(class="relative text-center bg-white rounded-lg dark:bg-gray-800")
+                                                                h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left") Propiedades
+                                                                hr(class="my-4 border-gray-300")
+                                                                div(name="propertiesDiv" id="propertiesDiv")
+                                                                
+                                                            button(type="button" id="closeGeometriesModal" class="absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="editGeometriesModal")
+                                                                svg(aria-hidden="true" class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
+                                                                    path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
+                                                                span(class="sr-only") Close
 
             include ./includes/footer.jade
 
@@ -175,8 +174,8 @@ html(lang='es')
                     $(document).ready(function(){
                         const table = new DataTable('#layersTable', {
                             responsive: true,
-                            pageLength: 15,
-                            lengthMenu: [ [15, 30, 60, -1], [15, 30, 60, "Todos"] ],
+                            pageLength: -1,
+                            lengthMenu: [ [-1, 15, 30, 60], ["Todos", 15, 30, 60] ],
                             scrollX: true,
                             scrollY: true,
                             scrollCollapse: true,
@@ -409,72 +408,6 @@ html(lang='es')
                                     }
 
                                     uploadFiles(); // Initiate the file upload process
-
-                                    //- function uploadLayer() {
-                                    //-     const url = '/api/v1/layers/';
-                                    //-     const method = 'POST';
-                                    //-     const headers = {
-                                    //-         'Authorization': '!{cookies.token}',
-                                    //-     };
-
-                                    //-     const xhr = new XMLHttpRequest();
-                                    //-     const data = formData;
-
-                                    //-     xhr.open(method, url, true);
-
-                                    //-     // Set headers
-                                    //-     for (const [key, value] of Object.entries(headers)) {
-                                    //-         xhr.setRequestHeader(key, value);
-                                    //-     }
-                                    //-     xhr.send(data);
-
-                                    //-     xhr.responseType = 'json';
-
-                                    //-     xhr.onload = function () {
-                                    //-         if (xhr.status === 200 || xhr.status === 201) {
-                                    //-             Swal.fire({
-                                    //-                 title: "Capa creada",
-                                    //-                 text: "La capa ha sido creada correctamente.",
-                                    //-                 icon: "success",
-                                    //-                 showConfirmButton: true,
-                                    //-             }).then(() => {
-                                    //-                 window.location.reload();
-                                    //-             });
-                                    //-         } else {
-                                    //-             Swal.fire("Error", "La capa no se ha podido crear.", "error");
-                                    //-         }
-                                    //-     }
-                                    //- }
-
-
-                                    //- const response = await fetch('/api/v1/layers/', {
-                                    //-     method: 'POST',
-                                    //-     headers: {
-                                    //-         'Authorization': '!{cookies.token}'
-                                    //-     },
-                                    //-     body: formData,
-                                    //- });
-
-
-                                    //- // Make a loop in formData to log in to the console the data
-                                    //- for (const [key, value] of formData.entries()) {
-                                    //-     console.log(key, value);
-                                    //- }
-
-                                    //- const data = await response.json();
-
-                                    //- if (response.ok) {
-                                    //-     Swal.fire({
-                                    //-         title: "Capa creada",
-                                    //-         text: "La capa ha sido creada correctamente.",
-                                    //-         icon: "success",
-                                    //-         showConfirmButton: true,
-                                    //-     }).then(() => {
-                                    //-         window.location.reload();
-                                    //-     });
-                                    //- } else {
-                                    //-     Swal.fire("Error", data.msg, "error");
-                                    //- }
                                 }
                             } catch (error) {
                                 console.error('Error:', error);
@@ -628,6 +561,9 @@ html(lang='es')
                                             })
                                         });
                                     }
+                                    else if(!response.ok){
+                                        throw new Error('Error al obtener la capa.');
+                                    }
                                     else {
                                         return response.json();
                                     }
@@ -635,33 +571,40 @@ html(lang='es')
                                 .then((layers) => {
                                     const geojson = 'assets/layers/' + layers.archive;
                                     fetch(geojson)
-                                    .then(response => response.json())
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Error fetching data');
+                                        }
+                                        return response.json();
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                        // Handle error here
+                                    })
                                     .then(geojsonData => {
 
-                                            const vectorSource = new ol.source.Vector({ features: [] });
+                                        const vectorSource = new ol.source.Vector({ features: [] });
 
-                                            geojsonData.features.forEach((feature) => {
-                                                const iconFeature = new ol.Feature({
-                                                    geometry: new ol.geom.Point(ol.proj.fromLonLat(feature.geometry.coordinates)),
-                                                    properties: feature.properties,
-                                                });
-
-
-                                                const iconStyle = new ol.style.Style({
-                                                    image: new ol.style.Icon({
-                                                        anchor: [0.5, 0.5],
-                                                        anchorXUnits: 'fraction',
-                                                        anchorYUnits: 'pixels',
-                                                        src: 'assets/layers/' + layers.icono,
-                                                    }),
-                                                });
-
-                                                iconFeature.setStyle(iconStyle);
-
-                                                // Add each feature to the single vector source
-                                                vectorSource.addFeature(iconFeature);
+                                        geojsonData.features.forEach((feature) => {
+                                            const iconFeature = new ol.Feature({
+                                                geometry: new ol.geom.Point(ol.proj.fromLonLat(feature.geometry.coordinates)),
+                                                properties: feature.properties,
                                             });
 
+
+                                            const iconStyle = new ol.style.Style({
+                                                image: new ol.style.Icon({
+                                                    anchor: [0.5, 0.5],
+                                                    anchorXUnits: 'fraction',
+                                                    anchorYUnits: 'pixels',
+                                                    src: 'assets/layers/' + layers.icono,
+                                                }),
+                                            });
+
+                                            iconFeature.setStyle(iconStyle);
+
+                                            // Add each feature to the single vector source
+                                            vectorSource.addFeature(iconFeature);
                                             // Create a single vector layer using the accumulated features
                                             const vectorLayer = new ol.layer.Vector({
                                                 source: vectorSource,
@@ -669,6 +612,34 @@ html(lang='es')
                                             });
 
                                             map.addLayer(vectorLayer);
+                                        });
+
+
+                                        // Make the map clickable
+                                        map.on('click', function (event) {
+                                            const coordinates = event.coordinate;
+                                            // Show all features at the clicked position
+                                            map.forEachFeatureAtPixel(event.pixel, function (feature, layer) {
+                                                console.log(feature.getProperties().properties);
+
+                                                // Create a form to show and edit the properties of the features in the properties div
+                                                const propertiesDiv = document.getElementById('propertiesDiv');
+                                                propertiesDiv.innerHTML = '';
+                                                const gridContainer = document.createElement('div');
+                                                gridContainer.classList.add('grid', 'grid-cols-2', 'gap-4');
+
+                                                for (const [key, value] of Object.entries(feature.getProperties().properties)) {
+                                                    const propertiesDiv = document.createElement('div');
+                                                    propertiesDiv.innerHTML = `
+                                                        <label for="${key}" class="font-semibold">${key}:</label>
+                                                        <input type="text" id="${key}" name="${key}" value="${value}" class="border border-gray-300 rounded-md px-2 py-1">
+                                                    `;
+                                                    gridContainer.appendChild(propertiesDiv);
+                                                }
+
+                                                propertiesDiv.appendChild(gridContainer);
+                                            });
+                                        });
 
                                         // If closeGeometriesModal button is clicked, remove the icon layer
                                         document.getElementById('closeGeometriesModal').addEventListener('click', function() {
@@ -677,30 +648,16 @@ html(lang='es')
                                                     map.removeLayer(layer);
                                                 }
                                             });
+
+                                            // Clear the properties div
+                                            const propertiesDiv = document.getElementById('propertiesDiv');
+                                            propertiesDiv.innerHTML = '<h3 class="text-lg font-semibold text-gray-900 dark:text-white text-left">No se ha seleccionado un punto del mapa</h3>';
                                         });
+
                                     })
-                                }).catch((error) => {
-                                console.error('Error:', error);
+                                })
+                                .catch((error) => {
                                 Swal.fire("Error", error.message, "error");
-                            });
-
-                            // Make the map clickable
-                            map.on('click', function (event) {
-                                const coordinates = event.coordinate;
-                                console.log(coordinates);
-                                // Show all features at the clicked position
-                                map.forEachFeatureAtPixel(event.pixel, function (feature, layer) {
-                                    console.log(feature.getProperties().properties);
-
-                                    // Create a form to show the properties of the features in the properties div
-                                    const propertiesDiv = document.getElementById('propertiesDiv');
-                                    propertiesDiv.innerHTML = '';
-                                    for (const [key, value] of Object.entries(feature.getProperties().properties)) {
-                                        const propertyDiv = document.createElement('div');
-                                        propertyDiv.innerHTML = `<span class="font-semibold">${key}:</span> ${value}`;
-                                        propertiesDiv.appendChild(propertyDiv);
-                                    }
-                                });
                             });
                         });
                     });
