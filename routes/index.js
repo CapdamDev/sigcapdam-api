@@ -92,7 +92,7 @@ router.get("/layers_dashboard", async function (req, res, next) {
 				res.render("layers_dashboard", { layers, cookies, url, categories });
 			}
 		} catch (error) {
-			res.status(500).json({ error: "Internal Server Error" });
+			res.redirect("/login");
 		}
 	}
 });
