@@ -4,6 +4,8 @@ html(lang='es')
         title SIGCAPDAM - Gestión de capas
         include ./includes/head.jade
 
+    #loadingSpinner(class='fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-opacity-100', style='backdrop-filter: blur(5px);')
+        div(class="animate-spin rounded-full border-t-4 border-blue-500 border-solid h-12 w-12")
     body(class='bg-white dark:bg-gray-900')
         include ./includes/sidebar.jade
         block content
@@ -146,19 +148,20 @@ html(lang='es')
                                                                             option(value='AlteredRoadmap') Altered Roadmap
                                                                             option(value='SatelliteOnly') Satellite Only
                                                                     div
-                                                                        span(class='text-gray-500 dark:text-gray-200') Coordenadas del mouse:
-                                                                        span#mouse-position.text-gray-500(class='dark:text-gray-200 ml-2')
+                                                                        h5(class='text-gray-500 dark:text-gray-200') Coordenadas del mouse:
+                                                                        h5#mouse-position.text-gray-500(class='dark:text-gray-200')
                                                                     
                                                             hr(class="my-4")
                                                             div(class="flex items-center w-full h-96 h-80-md h-72-sm")
                                                                 //- img(src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="Mapa de la capa" class="w-full h-full object-contain rounded-lg map-image")
                                                                 #map(class="w-full h-full object-contain rounded-lg map-image")
 
-                                                        div(id="mapGeometries" class="relative p-4 text-center bg-white rounded-lg dark:bg-gray-800")
-                                                            div(class="relative text-center bg-white rounded-lg dark:bg-gray-800")
-                                                                h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left") Propiedades
+                                                        div(id="mapProperties" class="relative p-4 text-center bg-white rounded-lg dark:bg-gray-800")
+                                                            div
+                                                                h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left py-3.5") Propiedades
                                                                 hr(class="my-4 border-gray-300")
                                                                 div(name="propertiesDiv" id="propertiesDiv")
+                                                                    div(class="grid grid-cols-2 gap-4")
                                                                 
                                                             button(type="button" id="closeGeometriesModal" class="absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="editGeometriesModal")
                                                                 svg(aria-hidden="true" class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
@@ -172,6 +175,9 @@ html(lang='es')
                     const layers = !{JSON.stringify(layers)};
 
                     $(document).ready(function(){
+
+                        const loadingSpinner = document.getElementById('loadingSpinner');
+
                         const table = new DataTable('#layersTable', {
                             responsive: true,
                             pageLength: -1,
@@ -183,6 +189,11 @@ html(lang='es')
                                 url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
                             },
                             columnDefs: [ { className: "dt-center", "targets": "_all" } ],
+                        });
+
+                        table.on('init', function () {
+                            // Hide spinner after DataTable is initialized
+                            loadingSpinner.style.display = 'none';
                         });
 
                         // Add single row selection to the table
@@ -327,8 +338,6 @@ html(lang='es')
                                 }
                                 else {
                                     console.log("Capa no existe, se puede crear");
-                                    // Close the API check request
-                                    checkLayer.close();
 
                                     function uploadFiles() {
                                         const url = '/api/v1/layers/upload';
@@ -609,6 +618,40 @@ html(lang='es')
                                                 properties: feature.properties,
                                             });
 
+                                            if(feature.geometry.type === 'Point' || feature.geometry.type === 'MultiPoint'){
+                                                const iconStyle = new ol.style.Style({
+                                                    image: new ol.style.Icon({
+                                                        anchor: [0.5, 0.5],
+                                                        anchorXUnits: 'fraction',
+                                                        anchorYUnits: 'pixels',
+                                                        src: 'assets/layers/' + layers.icono,
+                                                    }),
+                                                });
+
+                                                iconFeature.setStyle(iconStyle);
+                                            } else {
+                                                // Read the iconFeature.properties to find the key COLOR_1 and COLOR_2, to set the fill and stroke colors
+                                                const color1 = iconFeature.getProperties().properties.COLOR_1;
+                                                console.log(color1);
+                                                const iconStyle = new ol.style.Style({
+                                                    fill: new ol.style.Fill({
+                                                        color: 'rgba(' + color1 + ', 0.2)',
+                                                    }),
+                                                    stroke: new ol.style.Stroke({
+                                                        color: 'rgba(' + color1 + ', 1)',
+                                                        width: 2,
+                                                    }),
+                                                    image: new ol.style.Circle({
+                                                        radius: 7,
+                                                        fill: new ol.style.Fill({
+                                                            color: '#ffcc33',
+                                                        }),
+                                                    }),
+                                                });
+
+                                                iconFeature.setStyle(iconStyle);
+                                            }
+
 
                                             //- const iconStyle = new ol.style.Style({
                                             //-     image: new ol.style.Icon({
@@ -676,8 +719,10 @@ html(lang='es')
                                                 for (const [key, value] of Object.entries(feature.getProperties().properties)) {
                                                     const propertiesDiv = document.createElement('div');
                                                     propertiesDiv.innerHTML = `
-                                                        <label for="${key}" class="font-semibold">${key}:</label>
-                                                        <input type="text" id="${key}" name="${key}" value="${value}" class="border border-gray-300 rounded-md px-2 py-1">
+                                                            <div>
+                                                                <label for="${key}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">${key}</label>
+                                                                <input type="text" name="${key}" id="${key}" value="${value}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-primary-500" placeholder="Nombre de la capa" required="">
+                                                            </div>
                                                     `;
                                                     gridContainer.appendChild(propertiesDiv);
                                                 }

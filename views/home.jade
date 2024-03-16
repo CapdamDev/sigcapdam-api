@@ -17,13 +17,13 @@ html(lang='es')
 
                 div(class='px-6 2xl:h-[calc(52rem)] xl:h-[calc(48rem)] lg:h-[calc(45rem)] md:h-[calc(40rem)] sm:h-[calc(35rem)] h-[calc(35rem)]')
                     #map(class='h-full flex flex-row justify-center items-center border border-dashed border-gray-300/40 dark:border-gray-700')
-                    
+
                 div(class='absolute top-32 right-1 transform translate-y-[-50%] px-6 py-4')
-                        button(class='w-8 h-8 text-white bg-gray-900 border-0 py-2 focus:outline-none hover:bg-gray-600 rounded text-xs' onclick='toggleRightPanel()')
-                            i(class='fas fa-eye-slash' id='rightPanelIcon')
+                    button(class='w-8 h-8 text-white bg-gray-900 border-0 py-2 focus:outline-none hover:bg-gray-600 rounded text-xs' onclick='toggleRightPanel()')
+                        i(class='fas fa-eye-slash' id='rightPanelIcon')
 
                     div(class='absolute top-1/2 right-1 transform translate-y-[-50%] px-6 py-4' id='right-panel')
-                    
+
                         //- Select to change the map type
                         div.flex.w-full.text-white.border-0.py-2.text-center.items-center(class='dark:text-white dark:bg-gray-800 focus:outline-none')
                             span.mx-auto Tipo de mapa
@@ -72,7 +72,7 @@ html(lang='es')
                             div(class='justify-center items-center dark:bg-white bg-gray-900 border-0 py-2 hidden' id='contenedor_contrato')
                                 div(class='items-center justify-center text-center w-full border-0')
                                     input(type='text' class='text-center text-gray-600 dark:text-white bg-white dark:bg-gray-800 border-0 py-2 focus:outline-none dark:hover:bg-gray-700 mx-1' placeholder='No. Contrato' id='contratoAgua')
-                            
+
                             //- Button to send the form and submit to search the claveCatastral or contrato 07 20 04 022 003 000
                             div(class='flex justify-center items-center dark:bg-white bg-gray-900 border-0 py-2')
                                 button(class='w-60 h-8 text-white bg-gray-900 border-0 py-2 focus:outline-none hover:bg-gray-600 rounded text-xs' onclick='buscarDomicilio()') Buscar
@@ -169,7 +169,7 @@ html(lang='es')
                                             source: vectorSource,
                                             style: new ol.style.Style({
                                                 stroke: new ol.style.Stroke({
-                                                    color: 'rgba(255, 0, 0, 0.5)',
+                                                    color: 'rgba(255, 0, 0, 0.5)' 
                                                     width: 4
                                                 }),
                                                 fill: new ol.style.Fill({
@@ -263,7 +263,7 @@ html(lang='es')
                                             text: 'El número de contrato no puede ser 0',
                                         })
                                     }
-                                    
+
                                     // Clear existing vector layers and popups
                                     map.getLayers().forEach(layer => {
                                         if (layer instanceof ol.layer.Vector) {
@@ -339,7 +339,7 @@ html(lang='es')
                                                 source: vectorSource,
                                                 style: new ol.style.Style({
                                                     stroke: new ol.style.Stroke({
-                                                        color: 'rgba(255, 0, 0, 0.5)',
+                                                        color: 'rgba(255, 0, 0, 0.5)' 
                                                         width: 4
                                                     }),
                                                     fill: new ol.style.Fill({
@@ -398,7 +398,7 @@ html(lang='es')
                                                 <p class="text-sm">Drenaje: '+ data1.bimestral[0].Drenaje +'</p>\
                                                 <p class="text-sm">Tarifa: '+ data1.bimestral[0].Tarifa +'</p>\
                                             </div>');
-                                            
+
 
                                             // And clean variables
                                             mun, local, zona, manza, predio, subpredio = "";
@@ -420,7 +420,9 @@ html(lang='es')
                                         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                                     });
                                 });
-                            })
+                            });
+
+
 
                             document.addEventListener('DOMContentLoaded', function () {
 
@@ -489,11 +491,11 @@ html(lang='es')
                                             // Create a new iconStyle for each layer
                                             var iconStyleForLayer = new ol.style.Style({
                                                 image: new ol.style.Icon({
-                                                    anchor: [0.5, 0.5],
+                                                    anchor: [0.8, 0.8],
                                                     anchorXUnits: 'fraction',
                                                     anchorYUnits: 'fraction',
                                                     src: 'assets/layers/' + layer.icono,
-                                                    scale: 0.6
+                                                    scale: 1,
                                                 }),
                                             });
 
@@ -509,7 +511,7 @@ html(lang='es')
                                                         return new ol.style.Style({
                                                             // Establecer el valor de color obtenido en el stroke
                                                             stroke: new ol.style.Stroke({
-                                                                color: 'rgba('+ color +', 0.5)',
+                                                                color: 'rgba('+ color +', 0.5)' 
                                                                 width: 4
                                                             })
                                                         });
@@ -518,12 +520,12 @@ html(lang='es')
                                                         var color2 = feature.get('COLOR_2');
                                                         return new ol.style.Style({
                                                             stroke: new ol.style.Stroke({
-                                                                color: 'rgba('+ color +', 0.5)',
+                                                                color: 'rgba('+ color +', 0.5)' 
                                                                 width: 4,
                                                                 scale: 2
                                                             }),
                                                             fill: new ol.style.Fill({
-                                                                color: 'rgba('+ color +', 0.2)',
+                                                                color: 'rgba('+ color +', 0.2)' 
                                                                 width: 4,
                                                                 scale: 2
                                                             })
@@ -542,14 +544,14 @@ html(lang='es')
 
                                             var iconStyle = new ol.style.Style({
                                                 image: new ol.style.Icon({
-                                                    anchor: [0.5, 0.5],
+                                                    anchor: [0.8, 0.8],
                                                     anchorXUnits: 'fraction',
                                                     anchorYUnits: 'fraction',
                                                     src: 'assets/layers/' + layer.icono,
                                                     scale: 0.1
                                                 }),
                                             });
-                                            
+
                                             map.addLayer(vectorLayer);
 
                                             if(!categories[layer.categoryData.name]) {
@@ -565,8 +567,6 @@ html(lang='es')
                                                     selected: false
                                                 }
                                             });
-
-
                                         });
 
                                         // Initialize JSTree
@@ -662,7 +662,7 @@ html(lang='es')
                                     document.getElementById("subpredio").value = "";
                                 }
                             }
-                                
+
                             function toggleRightPanel() {
                                 var rightPanel = document.getElementById('right-panel');
                                 rightPanel.classList.toggle('hidden');
@@ -671,3 +671,82 @@ html(lang='es')
                                 rightPanelIcon.classList.toggle('fa-eye-slash');
                                 rightPanelIcon.classList.toggle('fa-eye');
                             }
+
+                            // Script para obtener las properties de un feature
+                            map.on('click', function (evt) {
+                                // Remove the popup if it exists
+                                map.getOverlays().clear();
+
+                                var feature = map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+                                    return feature;
+                                });
+
+                                if (feature) {
+                                    var properties = feature.getProperties();
+                                    var featureProperties = {};
+
+                                    // Extract only the properties of the feature
+                                    for (var key in properties) {
+                                        if (properties.hasOwnProperty(key) && key !== 'geometry') {
+                                            featureProperties[key] = properties[key];
+                                        }
+                                    }
+
+                                    console.log(featureProperties);
+
+                                    // Make an API fetch to get data we needed from the feature
+                                    // https://simiceg.manzanillo.gob.mx/capa_mostrar.php?on=252
+
+                                    fetch(`https://corsproxy.io/?https://digecat.manzanillo.gob.mx/index.php/Exteriror/mapa_clave_catastro_simple_detalles?do1=${featureProperties.ID_}`)
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error(`Network response was not ok: ${response.statusText}`);
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(data => {
+                                        console.log(data);
+
+                                        // Show the info in a popup
+                                        const popup = new ol.Overlay.Popup();
+                                        map.addOverlay(popup);
+
+                                        // Format data2[0].valtotal to MXN currency
+                                        var formatter = new Intl.NumberFormat('es-MX', {
+                                            style: 'currency',
+                                            currency: 'MXN',
+                                        });
+
+                                        data[0].valtotal = formatter.format(data[0].valtotal);
+                                        data[0].total_esperado_anual_anterior = formatter.format(data[0].total_esperado_anual_anterior);
+
+                                        popup.show(evt.coordinate, 
+                                            '<div class="text-center">\
+                                                <h1 class="text-2xl font-bold">Información del domicilio</h1>\
+                                                <h2 class="text-1xl font-bold">---------- Dirección general de Catastro Manzanillo ----------</h2>\
+                                                <p class="text-sm">Clave catastral: ' + JSON.stringify(data[0].clavecat2) + '</p>\
+                                                <p class="text-sm">Fecha de registro: ' + JSON.stringify(data[0].fechaa) + '</p>\
+                                                <p class="text-sm">Tarjeta: ' + JSON.stringify(data[0].tarjeta) + '</p>\
+                                                <p class="text-sm">Última actualización: ' + JSON.stringify(data[0].fechamod) + '</p>\
+                                                <p class="text-sm">Predial sin multas: ' + JSON.stringify(data[0].total_esperado_anual_anterior) + '</p>\
+                                                <p class="text-sm">Año pagado: ' + JSON.stringify(data[0].pr_uejep) + '</p>\
+                                                <p class="text-sm">Bimestre pagado: ' + JSON.stringify(data[0].pr_bimp) + '</p>\
+                                                <h2 class="text-1xl font-bold">---------- Nomenclatura ----------</h2>\
+                                                <p class="text-sm">Dirección: ' + JSON.stringify(data[0].calle) + '</p>\
+                                                <p class="text-sm">Uso: ' + JSON.stringify(data[0].uso_propiedad) + '</p>\
+                                                <h2 class="text-1xl font-bold">---------- Superficies ----------</h2>\
+                                                <p class="text-sm">Terreno: '+ JSON.stringify(data[0].supterr) +' m²</p>\
+                                                <p class="text-sm">Valor terreno.: '+ JSON.stringify(data[0].valtotal) +'</p>\
+                                                <p class="text-sm">Construcción: '+ JSON.stringify(data[0].supcon) +' m²</p>\
+                                            </div>');
+                                    })
+
+
+                                    // Show the properties in a sweet alert
+                                    //- Swal.fire({
+                                    //-     title: 'Propiedades del feature',
+                                    //-     html: '<pre>' + propertiesString + '</pre>',
+                                    //-     confirmButtonText: 'OK'
+                                    //- });
+                                }
+                            });
