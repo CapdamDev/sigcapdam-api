@@ -161,8 +161,9 @@ html(lang='es')
                                                                 h3(class="text-lg font-semibold text-gray-900 dark:text-white text-left py-3.5") Propiedades
                                                                 hr(class="my-4 border-gray-300")
                                                                 div(name="propertiesDiv" id="propertiesDiv")
+                                                                    //- Set a message of "No se ha seleccionado ninguna capa" if the user hasn't selected a layer
+                                                                    h3(class="text-lg font-semibold text-gray-900 dark:text-white") No se ha seleccionado un punto del mapa
                                                                     div(class="grid grid-cols-2 gap-4")
-                                                                
                                                             button(type="button" id="closeGeometriesModal" class="absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="editGeometriesModal")
                                                                 svg(aria-hidden="true" class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg")
                                                                     path(fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd")
@@ -628,6 +629,9 @@ html(lang='es')
                                                     }),
                                                 });
 
+                                                // Center the map on the first point
+                                                map.getView().setCenter(ol.proj.fromLonLat(feature.geometry.coordinates));
+
                                                 iconFeature.setStyle(iconStyle);
                                             } else {
                                                 // Read the iconFeature.properties to find the key COLOR_1 and COLOR_2, to set the fill and stroke colors
@@ -649,6 +653,11 @@ html(lang='es')
                                                     }),
                                                 });
 
+                                                // Center the map on the first polygon
+                                                const extent = ol.extent.createEmpty();
+                                                ol.extent.extend(extent, iconFeature.getGeometry().getExtent());
+                                                map.getView().fit(extent, { padding: [100, 100, 100, 100] });
+
                                                 iconFeature.setStyle(iconStyle);
                                             }
 
@@ -666,6 +675,7 @@ html(lang='es')
 
                                             // Add each feature to the single vector source
                                             vectorSource.addFeature(iconFeature);
+
                                         });
 
                                         // Create a single vector layer using the accumulated features
@@ -678,34 +688,36 @@ html(lang='es')
 
 
                                         // Make the map clickable
-                                        map.on('click', function (event) {
-                                            const coordinates = event.coordinate;
-                                            // Show all features at the clicked position
-                                            map.forEachFeatureAtPixel(event.pixel, function (feature, layer) {
-                                                console.log(feature.getProperties().properties);
+                                        //- map.on('click', function (event) {
+                                        //-     const coordinates = event.coordinate;
+                                        
+                                        //-     // Show all features at the clicked position
+                                        //-     map.forEachFeatureAtPixel(event.pixel, function (feature, layer) {
+                                        //-         console.log(feature.getProperties().properties);
 
-                                                // Create a form to show and edit the properties of the features in the properties div
-                                                const propertiesDiv = document.getElementById('propertiesDiv');
-                                                propertiesDiv.innerHTML = '';
-                                                const gridContainer = document.createElement('div');
-                                                gridContainer.classList.add('grid', 'grid-cols-2', 'gap-4');
+                                        //-         // Create a form to show and edit the properties of the features in the properties div
+                                        //-         const propertiesDiv = document.getElementById('propertiesDiv');
+                                        //-         propertiesDiv.innerHTML = '';
+                                        //-         const gridContainer = document.createElement('div');
+                                        //-         gridContainer.classList.add('grid', 'grid-cols-2', 'gap-4');
 
-                                                for (const [key, value] of Object.entries(feature.getProperties().properties)) {
-                                                    const propertiesDiv = document.createElement('div');
-                                                    propertiesDiv.innerHTML = `
-                                                        <label for="${key}" class="font-semibold">${key}:</label>
-                                                        <input type="text" id="${key}" name="${key}" value="${value}" class="border border-gray-300 rounded-md px-2 py-1">
-                                                    `;
-                                                    gridContainer.appendChild(propertiesDiv);
-                                                }
+                                        //-         for (const [key, value] of Object.entries(feature.getProperties().properties)) {
+                                        //-             const propertiesDiv = document.createElement('div');
+                                        //-             propertiesDiv.innerHTML = `
+                                        //-                 <label for="${key}" class="font-semibold">${key}:</label>
+                                        //-                 <input type="text" id="${key}" name="${key}" value="${value}" class="border border-gray-300 rounded-md px-2 py-1">
+                                        //-             `;
+                                        //-             gridContainer.appendChild(propertiesDiv);
+                                        //-         }
 
-                                                propertiesDiv.appendChild(gridContainer);
-                                            });
-                                        });
+                                        //-         propertiesDiv.appendChild(gridContainer);
+                                        //-     });
+                                        //- });
 
                                         // Make the map clickable
                                         map.on('click', function (event) {
                                             const coordinates = event.coordinate;
+                                            
                                             // Show all features at the clicked position
                                             map.forEachFeatureAtPixel(event.pixel, function (feature, layer) {
                                                 console.log(feature.getProperties().properties);
@@ -731,8 +743,18 @@ html(lang='es')
                                             });
                                         });
 
-                                        // If closeGeometriesModal button is clicked, remove the icon layer
+                                        // If closeGeometriesModal button is clicked or the user presses the escape key, remove the icon layer
                                         document.getElementById('closeGeometriesModal').addEventListener('click', function() {
+                                            removeIconLayer();
+                                        });
+
+                                        document.addEventListener('keydown', function(event) {
+                                            if (event.key === 'Escape') {
+                                                removeIconLayer();
+                                            }
+                                        });
+
+                                        function removeIconLayer() {
                                             map.getLayers().forEach((layer) => {
                                                 if (layer instanceof ol.layer.Vector) {
                                                     map.removeLayer(layer);
@@ -741,7 +763,22 @@ html(lang='es')
 
                                             // Clear the properties div
                                             const propertiesDiv = document.getElementById('propertiesDiv');
-                                            propertiesDiv.innerHTML = '<h3 class="text-lg font-semibold text-gray-900 dark:text-white text-left">No se ha seleccionado un punto del mapa</h3>';
+                                            propertiesDiv.innerHTML = '<h3 class="text-lg font-semibold text-gray-900 dark:text-white">No se ha seleccionado un punto del mapa</h3>';
+                                        }
+
+                                        // If the user presses the escape key, close the modal
+                                        document.addEventListener('keydown', function(event) {
+                                            if (event.key === 'Escape') {
+                                                map.getLayers().forEach((layer) => {
+                                                    if (layer instanceof ol.layer.Vector) {
+                                                        map.removeLayer(layer);
+                                                    }
+                                                });
+
+                                                // Clear the properties div
+                                                const propertiesDiv = document.getElementById('propertiesDiv');
+                                                propertiesDiv.innerHTML = '<h3 class="text-lg font-semibold text-gray-900 dark:text-white">No se ha seleccionado un punto del mapa</h3>';
+                                            }
                                         });
                                     })
                                 })
