@@ -438,70 +438,76 @@ html(lang='es')
                             $("#updateNameInput").val(layerData.name);
                             $("#categoriesUpdate").val(layerData.category);
 
-                            // Update the information sending the information to the API
-                            updateForm.addEventListener('submit', async function (event) {
-                                event.preventDefault();
+                                // Update the information sending the information to the API
+                                updateForm.addEventListener('submit', async function (event) {
+                                    event.preventDefault();
 
-                                const name = document.getElementById('updateNameInput').value;
-                                const category = document.getElementById('categoriesUpdate').value;
+                                    const name = document.getElementById('updateNameInput').value;
+                                    const category = document.getElementById('categoriesUpdate').value;
 
-                                const archive = document.getElementById('updateArchiveInput').files[0];
-                                const icono = document.getElementById('updateIconoInput').files[0];
+                                    const archive = document.getElementById('updateArchiveInput').files[0];
+                                    const icono = document.getElementById('updateIconoInput').files[0];
 
-                                console.log(name);
-                                console.log(category);
-                                console.log(archive);
-                                console.log(icono);
+                                    console.log(name);
+                                    console.log(category);
+                                    console.log(archive);
+                                    console.log(icono);
 
-                                try {
-                                    const formData = new FormData();
-                                    formData.append('layerId', layerId);
-                                    formData.append('name', name);
-                                    formData.append('category', category);
-                                    formData.append('archive', archive);
-                                    formData.append('icono', icono);
+                                    try {
+                                        const formData = new FormData();
+                                        formData.append('layerId', layerId);
+                                        formData.append('name', name);
+                                        formData.append('category', category);
+                                        formData.append('archive', archive);
+                                        formData.append('icono', icono);
 
-                                    // Construct the URL with the actual values for name and category
-                                    const checkLayer = await fetch(`/api/v1/layers/${encodeURIComponent(layerId)}`, {
-                                        method: 'GET',
-                                        headers: {
-                                            'Authorization': '!{cookies.token}',
-                                        },
-                                    });
+                                        const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-                                    if(checkLayer.success === false){
-                                        Swal.fire("Error", "La capa no existe, no se puede actualizar.", "error");
-                                        throw new Error("La capa no existe.");
-                                    }
+                                        console.log(jsonData);
 
-                                    const checkLayerData = await checkLayer.json();
-
-                                    const response = await fetch(`/api/v1/layers/${encodeURIComponent(layerId)}`, {
-                                        method: 'PUT',
-                                        headers: {
-                                            'Authorization' : '!{cookies.token}',
-                                        },
-                                        body: formData,
-                                    });
-                                    if (response.ok) {
-                                        Swal.fire({
-                                            title: "Capa actualizada",
-                                            text: "La capa ha sido actualizada correctamente.",
-                                            icon: "success",
-                                            showConfirmButton: true,
-                                        }).then(() => {
-                                            window.location.reload();
+                                        // Construct the URL with the actual values for name and category
+                                        const checkLayer = await fetch(`/api/v1/layers/${encodeURIComponent(layerId)}`, {
+                                            method: 'GET',
+                                            headers: {
+                                                'Authorization': '!{cookies.token}',
+                                                'Content-Type': 'application/json',
+                                            },
                                         });
-                                    } else {
-                                        throw new Error(data.message);
+
+                                        if(checkLayer.success === false){
+                                            Swal.fire("Error", "La capa no existe, no se puede actualizar.", "error");
+                                            throw new Error("La capa no existe.");
+                                        }
+
+                                        const checkLayerData = await checkLayer.json();
+
+                                        const response = await fetch(`/api/v1/layers/${encodeURIComponent(layerId)}`, {
+                                            method: 'PUT',
+                                            headers: {
+                                                'Authorization' : '!{cookies.token}',
+                                                'Content-Type': 'application/json',
+                                            },
+                                            body: jsonData,
+                                        });
+                                        if (response.ok) {
+                                            Swal.fire({
+                                                title: "Capa actualizada",
+                                                text: "La capa ha sido actualizada correctamente.",
+                                                icon: "success",
+                                                showConfirmButton: true,
+                                            }).then(() => {
+                                                window.location.reload();
+                                            });
+                                        } else {
+                                            throw new Error("ERROR");
+                                        }
                                     }
-                                }
-                                catch (error) {
-                                    console.error('Error:', error);
-                                    Swal.fire("Error", error.message, "error");
-                                }
-                            })
-                        });
+                                    catch (error) {
+                                        console.error('Error:', error);
+                                        Swal.fire("Error", error.message, "error");
+                                    }
+                                })
+                            });
 
                         // Delete layer
                         $(document).on("click", "#deleteModalButton", function() {

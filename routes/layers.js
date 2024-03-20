@@ -269,28 +269,24 @@ router.get("/:id", passport.authenticate("jwt", { session: false, }), function (
 
 router.put("/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
 	helper.checkPermission(req.user.role_id, "layer_update")
-		.then((rolePerm) => {
+		.then(() => {
 			Category.findByPk(req.body.category).then((category) => {
 				if (!category) {
 					res.status(400).send({
 						msg: "ID de categoría inválido.",
 					});
 				} else {
-					Layer.findByPk(req.body.layerId).then((layer) => {
-						const archiveFileName = req.files["archive"]
-							? req.files["archive"][0].filename
-							: layer.archive;
-						const iconoFileName = req.files["icono"]
-							? req.files["icono"][0].filename
-							: layer.icono;
+					Layer.findByPk(req.body.layerId).then(() => {
+						const archiveFileName = req.files && req.files["archive"] ? req.files["archive"][0].filename : req.body.archive;
+						const iconoFileName = req.files && req.files["icono"] ? req.files["icono"][0].filename : req.body.icono;
 
 						// Antes de la actualización, verifica si existe una layer con el mismo nombre y categoría, si existe, no actualiza
 						Layer.update(
 							{
 								name: req.body.name,
-								archive: archiveFileName,
 								category: req.body.category,
-								icono: iconoFileName,
+								...(archiveFileName && { archive: archiveFileName }),
+								...(iconoFileName && { icono: iconoFileName }),
 							},
 							{
 								where: {
@@ -298,7 +294,7 @@ router.put("/:id", passport.authenticate("jwt", { session: false }), (req, res) 
 								},
 							}
 						)
-							.then((layer) =>
+							.then(() =>
 								res.status(201).send({
 									data: "success",
 								})
