@@ -267,7 +267,10 @@ router.get("/:id", passport.authenticate("jwt", { session: false, }), function (
 		});
 });
 
-router.put("/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
+router.put("/:id", passport.authenticate("jwt", { session: false }), upload.fields([
+	{ name: "archive", maxCount: 1 },
+	{ name: "icono", maxCount: 1 },
+]), (req, res) => {
 	helper.checkPermission(req.user.role_id, "layer_update")
 		.then(() => {
 			Category.findByPk(req.body.category).then((category) => {
@@ -277,31 +280,109 @@ router.put("/:id", passport.authenticate("jwt", { session: false }), (req, res) 
 					});
 				} else {
 					Layer.findByPk(req.body.layerId).then(() => {
-						const archiveFileName = req.files && req.files["archive"] ? req.files["archive"][0].filename : req.body.archive;
-						const iconoFileName = req.files && req.files["icono"] ? req.files["icono"][0].filename : req.body.icono;
+						const archiveFileName = req.files["archive"][0].filename;
+						const iconoFileName = req.files["icono"][0].filename;
 
-						// Antes de la actualización, verifica si existe una layer con el mismo nombre y categoría, si existe, no actualiza
-						Layer.update(
-							{
-								name: req.body.name,
-								category: req.body.category,
-								...(archiveFileName && { archive: archiveFileName }),
-								...(iconoFileName && { icono: iconoFileName }),
-							},
-							{
-								where: {
-									id: req.params.id,
+						// Log the archiveFileName and iconoFileName
+						console.log(archiveFileName);
+						console.log(iconoFileName);
+
+						
+						if(archiveFileName !== 'undefined' && iconoFileName !== 'undefined') {
+							// Handle the case when either archiveFileName or iconoFileName is defined
+							// Update the layer with the provided information
+							Layer.update(
+								{
+									name: req.body.name,
+									category: req.body.category,
+									archive: archiveFileName,
+									icono: iconoFileName,
 								},
-							}
-						)
-							.then(() =>
-								res.status(201).send({
-									data: "success",
-								})
+								{
+									where: {
+										id: req.params.id,
+									},
+								}
 							)
-							.catch((error) => {
-								res.status(400).send(error);
-							});
+								.then(() =>
+									res.status(201).send({
+										data: "success",
+									})
+								)
+								.catch((error) => {
+									res.status(400).send(error);
+								});
+						}
+						else if(archiveFileName !== 'undefined' && iconoFileName === 'undefined') {
+							// Handle the case when archiveFileName is defined but iconoFileName is not defined
+							// Update the layer with the provided information
+							Layer.update(
+								{
+									name: req.body.name,
+									category: req.body.category,
+									archive: archiveFileName,
+								},
+								{
+									where: {
+										id: req.params.id,
+									},
+								}
+							)
+								.then(() =>
+									res.status(201).send({
+										data: "success",
+									})
+								)
+								.catch((error) => {
+									res.status(400).send(error);
+								});
+						}
+						else if(archiveFileName === 'undefined' && iconoFileName !== 'undefined') {
+							// Handle the case when archiveFileName is not defined but iconoFileName is defined
+							// Update the layer with the provided information
+							Layer.update(
+								{
+									name: req.body.name,
+									category: req.body.category,
+									icono: iconoFileName,
+								},
+								{
+									where: {
+										id: req.params.id,
+									},
+								}
+							)
+								.then(() =>
+									res.status(201).send({
+										data: "success",
+									})
+								)
+								.catch((error) => {
+									res.status(400).send(error);
+								});
+						}
+						else {
+							// Antes de la actualización, verifica si existe una layer con el mismo nombre y categoría, si existe, no actualiza
+							Layer.update(
+								{
+									name: req.body.name,
+									category: req.body.category,
+								},
+								{
+									where: {
+										id: req.params.id,
+									},
+								}
+							)
+								.then(() =>
+									res.status(201).send({
+										data: "success",
+									})
+								)
+								.catch((error) => {
+									res.status(400).send(error);
+								});
+						} 
 					});
 				}
 			});

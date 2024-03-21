@@ -461,48 +461,89 @@ html(lang='es')
                                         formData.append('archive', archive);
                                         formData.append('icono', icono);
 
-                                        const jsonData = JSON.stringify(Object.fromEntries(formData));
-
-                                        console.log(jsonData);
-
                                         // Construct the URL with the actual values for name and category
                                         const checkLayer = await fetch(`/api/v1/layers/${encodeURIComponent(layerId)}`, {
                                             method: 'GET',
                                             headers: {
                                                 'Authorization': '!{cookies.token}',
-                                                'Content-Type': 'application/json',
                                             },
                                         });
 
-                                        if(checkLayer.success === false){
-                                            Swal.fire("Error", "La capa no existe, no se puede actualizar.", "error");
-                                            throw new Error("La capa no existe.");
+                                        function uploadFiles() {
+                                            const url = '/api/v1/layers/upload';
+                                            const method= 'POST';
+                                            const headers = {
+                                                'Authorization': '!(cookies.token)',
+                                            };
+
+                                            const xhr = new XMLHttpRequest();
+
+                                            xhr.upload.onprogress = function (event) {
+                                                if(event.lengthComputable){
+                                                    const percentage = (event.loaded / event.total) * 100;
+                                                    console.log(percentage);
+                                                }
+                                            };
+
+                                            xhr.onerror = function () {
+                                                console.erro('Error ocurred during file upload.');
+                                                Swal.fire("Error", "The layer could not be updated.", "error");
+                                            };
+
+                                            xhr.open(method, url, true);
+
+                                            for (const [key, value] of Object.entries(headers)) {
+                                                xhr.setRequestHeader(key, value);
+                                            }
+
+                                            xhr.send(formData);
+
+                                            xhr.onload = function () {
+                                                if(xhr.status === 200 || xhr.status === 201){
+                                                    console.log('Files uploaded successfully.');
+                                                    updateLayer();
+                                                } else {
+                                                    console.error('Error occurred during file upload.');
+                                                    Swal.fire("Error", "The layer could not be updated.", "error");
+                                                }
+                                            }
+                                        };
+
+                                        function updateLayer() {
+                                            const url = '/api/v1/layers/' + layerId;
+                                            const method = 'PUT';
+                                            const headers = {
+                                                'Authorization': '!{cookies.token}',
+                                            };
+
+                                            const xhr = new XMLHttpRequest();
+                                            const data = formData;
+                                            xhr.open(method, url, true);
+
+                                            for (const [key, value] of Object.entries(headers)) {
+                                                xhr.setRequestHeader(key, value);
+                                            }
+
+                                            xhr.send(data);
+
+                                            xhr.onload = function () {
+                                                if(xhr.status === 200 || xhr.status === 201){
+                                                    Swal.fire({
+                                                        title: "Capa actualizada",
+                                                        text: "La capa ha sido actualizada correctamente.",
+                                                        icon: "success",
+                                                        showConfirmButton: true,
+                                                    }).then(() => {
+                                                        window.location.reload();
+                                                    });
+                                                } else {
+                                                    Swal.fire("Error", "La capa no se ha podido actualizar.", "error");
+                                                }
+                                            }
                                         }
 
-                                        const checkLayerData = await checkLayer.json();
-
-                                        const response = await fetch(`/api/v1/layers/${encodeURIComponent(layerId)}`, {
-                                            method: 'PUT',
-                                            headers: {
-                                                'Authorization' : '!{cookies.token}',
-                                                'Content-Type': 'application/json',
-                                            },
-                                            body: jsonData,
-                                        });
-                                        if (response.ok) {
-                                            Swal.fire({
-                                                title: "Capa actualizada",
-                                                text: "La capa ha sido actualizada correctamente.",
-                                                icon: "success",
-                                                showConfirmButton: true,
-                                            }).then(() => {
-                                                window.location.reload();
-                                            });
-                                        } else {
-                                            throw new Error("ERROR");
-                                        }
-                                    }
-                                    catch (error) {
+                                        uploadFiles();
+                                    } catch (error) {
                                         console.error('Error:', error);
                                         Swal.fire("Error", error.message, "error");
                                     }
@@ -547,6 +588,7 @@ html(lang='es')
                         // Edit geometries
                         $(document).on("click", "#editGeometriesButton", function() {
                             const layerId = $(this).val();
+                            console.log(layerId);
 
                             fetch('/api/v1/layers/' + layerId, {
                                     method: 'GET',
