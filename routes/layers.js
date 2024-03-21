@@ -9,6 +9,7 @@ const helper = new Helper();
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
 
+// TODO: Agregar la lógica para un solo archivo o varios archivos, por ahora solo se suben con dos archivos
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
 		// Establece el directorio para almacenar los archivos usando la carpeta ./public/assets/layers/nombre_de_la_categoria
