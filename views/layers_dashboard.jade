@@ -486,7 +486,7 @@ html(lang='es')
                                             };
 
                                             xhr.onerror = function () {
-                                                console.erro('Error ocurred during file upload.');
+                                                console.error('Error ocurred during file upload.');
                                                 Swal.fire("Error", "The layer could not be updated.", "error");
                                             };
 
@@ -542,7 +542,11 @@ html(lang='es')
                                             }
                                         }
 
-                                        uploadFiles();
+                                        if(!archive && !icono || archive === 'undefined' && icono === 'undefined'){
+                                            updateLayer();
+                                        } else {
+                                            uploadFiles();
+                                        }
                                     } catch (error) {
                                         console.error('Error:', error);
                                         Swal.fire("Error", error.message, "error");

@@ -9,7 +9,6 @@ const helper = new Helper();
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
 
-// TODO: Agregar la lógica para un solo archivo o varios archivos, por ahora solo se suben con dos archivos
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
 		// Establece el directorio para almacenar los archivos usando la carpeta ./public/assets/layers/nombre_de_la_categoria
@@ -25,7 +24,16 @@ const storage = multer.diskStorage({
 		const sanitizedFileName = req.body.name.replace(/\s+/g, "_"); // Reemplaza los espacios por guiones bajos
 		const originalExtension = file.originalname.split(".").pop(); // Obtiene la extensión original del archivo
 		const newFileName = `${sanitizedFileName}.${originalExtension}`;
-		cb(null, newFileName);
+		const filePath = `./public/assets/layers/${newFileName}`;
+		fs.access(filePath, fs.constants.F_OK, (err) => {
+			if (err) {
+				// File does not exist, proceed with the upload
+				cb(null, newFileName);
+			} else {
+				// File already exists, do nothing
+				cb(null, "");
+			}
+		});
 	},
 });
 
@@ -281,15 +289,23 @@ router.put("/:id", passport.authenticate("jwt", { session: false }), upload.fiel
 					});
 				} else {
 					Layer.findByPk(req.body.layerId).then(() => {
-						const archiveFileName = req.files["archive"][0].filename;
-						const iconoFileName = req.files["icono"][0].filename;
+						let archiveFileName;
+						let iconoFileName;
+						
+						if (req.files && req.files["archive"] && req.files["archive"][0]) {
+							archiveFileName = req.files["archive"][0].filename;
+						}
+						
+						if (req.files && req.files["icono"] && req.files["icono"][0]) {
+							iconoFileName = req.files["icono"][0].filename;
+						}
 
 						// Log the archiveFileName and iconoFileName
 						console.log(archiveFileName);
 						console.log(iconoFileName);
 
 						
-						if(archiveFileName !== 'undefined' && iconoFileName !== 'undefined') {
+						if(archiveFileName !== 'undefined' && iconoFileName !== 'undefined' || archiveFileName !== undefined || iconoFileName !== undefined) {
 							// Handle the case when either archiveFileName or iconoFileName is defined
 							// Update the layer with the provided information
 							Layer.update(
