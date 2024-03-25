@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-03-2024 a las 23:40:48
+-- Tiempo de generación: 25-03-2024 a las 17:15:29
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -626,16 +626,15 @@ CREATE TABLE IF NOT EXISTS `Users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `Users_department_id_foreign_idx` (`department_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Users`
 --
 
 INSERT INTO `Users` (`id`, `role_id`, `picture`, `name`, `ape_pat`, `ape_mat`, `email`, `password`, `isActive`, `createdAt`, `updatedAt`, `department_id`) VALUES
-(1, 2, 'profile.png', 'Programacion', 'Ochoa', 'Preciado', 'programacion@capdam.gob.mx', '$2a$10$SvRh3Vgs9ngyd8F3534/V.oVs8LoW2Putr.Dk58Z.lZJYEuGSUEAW', 1, '2023-12-23 18:28:47', '2024-03-15 22:25:21', 3),
-(3, 2, 'profile.png', 'Admin', 'Capdam', 'Manzanillo', 'sistemas@capdam.gob.mx', '$2a$10$jzI2/d2mMjyyBn2VT2zZQ.Nl.2Z91sIZrZdMYmN6GdBGo/4H6iije', 1, '2023-12-30 15:03:42', '2024-02-09 21:52:15', 3),
-(4, 3, 'profile.png', 'Enrique de Jesús', 'Ochoa', 'Preciado', 'eochoa11@ucol.mx', '$2a$10$a5JPxiotKowUKDWoJ..N/.gL.64QaQwxc3rhN1h3n2OKcg2h..reS', 1, '2024-01-29 14:07:11', '2024-02-09 21:50:51', 1);
+(1, 1, 'profile.png', 'Programacion', 'Ochoa', 'Preciado', 'programacion@capdam.gob.mx', '$2a$10$SvRh3Vgs9ngyd8F3534/V.oVs8LoW2Putr.Dk58Z.lZJYEuGSUEAW', 1, '2023-12-23 18:28:47', '2024-03-15 22:25:21', 3),
+(2, 2, 'profile.png', 'Admin', 'Capdam', 'Manzanillo', 'sistemas@capdam.gob.mx', '$2a$10$jzI2/d2mMjyyBn2VT2zZQ.Nl.2Z91sIZrZdMYmN6GdBGo/4H6iije', 1, '2023-12-30 15:03:42', '2024-02-09 21:52:15', 3);
 
 --
 -- Restricciones para tablas volcadas
