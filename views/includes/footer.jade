@@ -10,6 +10,10 @@ script(src='../assets/fonts/font-awesome/fontawesome.js')
 script(src='../assets/tagify/tagify.js')
 script(src='../assets/tagify/tagify.polyfills.min.js')
 script.
+
+    // Set class dark to HTML tag
+    document.documentElement.classList.add('dark');
+
     $('#logoutButton').on('click', function () {
         fetch('/api/v1/auth/logout', {
             method: 'POST',
