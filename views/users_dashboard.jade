@@ -208,6 +208,8 @@ html(lang='es')
                                     department_id: department_id
                                 };
 
+                                console.log(body);
+
                                 const response = await fetch('/api/v1/users/new', {
                                     method: 'POST',
                                     headers: {
@@ -218,6 +220,8 @@ html(lang='es')
                                 });
 
                                 const data = await response.json();
+
+                                console.log(data);
 
                                 if(response.status === 400) {
                                     // Swal of user already exists

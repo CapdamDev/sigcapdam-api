@@ -75,6 +75,7 @@ router.post("/new", passport.authenticate("jwt", { session: false }), (req, res)
                 ape_mat: req.body.ape_mat,
                 email: req.body.email,
                 password: req.body.password,
+                department_id: req.body.department_id,
                 isActive: "1",
               })
                 .then((user) => res.status(201).send(user))
@@ -167,7 +168,8 @@ router.put('/:id', passport.authenticate('jwt', { session: false }), function (r
                 email: req.body.email || user.email,
                 // isActive: req.body.isActive || user.isActive,
                 role_id: req.body.role_id || user.role_id,
-                picture: req.body.picture || user.picture
+                picture: req.body.picture || user.picture,
+                department_id: req.body.department_id || user.department_id
               }, {
                 where: {
                   id: req.params.id
@@ -189,7 +191,8 @@ router.put('/:id', passport.authenticate('jwt', { session: false }), function (r
                 email: req.body.email || user.email,
                 password: req.body.password || user.password,
                 // isActive: req.body.isActive || user.isActive,
-                role_id: req.body.role_id || user.role_id
+                role_id: req.body.role_id || user.role_id,
+                department_id: req.body.department_id || user.department_id
               }, {
                 where: {
                   id: req.params.id
