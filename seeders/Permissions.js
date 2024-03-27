@@ -213,6 +213,48 @@ module.exports = {
                 perm_description: 'Borrar departamento',
                 createdAt: new Date(),
                 updatedAt: new Date()
+            },
+            {
+                perm_name: 'category_get_inactive',
+                perm_description: 'Obtener categorias inactivas',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                name: 'route_add',
+                perm_description: 'Agregar ruta',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                name: 'route_update',
+                perm_description: 'Actualizar ruta',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                name: 'route_get',
+                perm_description: 'Obtener ruta',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                name: 'route_get_all',
+                perm_description: 'Obtener todas las rutas',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                name: 'route_delete',
+                perm_description: 'Borrar ruta',
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                name: 'route_user_add',
+                perm_description: 'Agregar usuario a ruta',
+                createdAt: new Date(),
+                updatedAt: new Date()
             }
         ], {});
     },

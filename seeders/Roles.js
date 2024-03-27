@@ -5,7 +5,7 @@ module.exports = {
     up: async (queryInterface, Sequelize) => {
         await queryInterface.bulkInsert('Roles', [{
             role_name: 'root',
-            role_description: 'Administrador del Sistema',
+            role_description: 'SysAdmin',
             createdAt: new Date(),
             updatedAt: new Date(),
             isActive: 1

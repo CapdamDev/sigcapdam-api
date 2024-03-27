@@ -5,7 +5,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Directions', [
       {
-        name: 'Dirección de Programación',
+        name: 'DIRECCIÓN GENERAL',
         createdAt: new Date(),
         updatedAt: new Date(),
         isActive: 1
